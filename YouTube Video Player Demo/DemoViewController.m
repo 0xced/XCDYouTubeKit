@@ -8,6 +8,8 @@
 
 #import "DemoViewController.h"
 
+#import "XCDYouTubeVideoPlayerViewController.h"
+
 @interface DemoViewController ()
 @property (nonatomic, weak) IBOutlet UITextField *videoIdentifierTextField;
 @end
@@ -16,7 +18,8 @@
 
 - (IBAction) playYouTubeVideo:(id)sender
 {
-	NSLog(@"TODO: play '%@'", self.videoIdentifierTextField.text);
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithYouTubeVideoIdentifier:self.videoIdentifierTextField.text];
+	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 }
 
 @end
