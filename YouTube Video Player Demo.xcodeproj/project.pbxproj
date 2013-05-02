@@ -1,0 +1,319 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C29CC80D17324DD400581C7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC80C17324DD400581C7C /* UIKit.framework */; };
+		C29CC80F17324DD400581C7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC80E17324DD400581C7C /* Foundation.framework */; };
+		C29CC81117324DD400581C7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC81017324DD400581C7C /* CoreGraphics.framework */; };
+		C29CC81717324DD400581C7C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C29CC81517324DD400581C7C /* InfoPlist.strings */; };
+		C29CC81917324DD400581C7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CC81817324DD400581C7C /* main.m */; };
+		C29CC81D17324DD400581C7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CC81C17324DD400581C7C /* AppDelegate.m */; };
+		C29CC81F17324DD400581C7C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CC81E17324DD400581C7C /* Default.png */; };
+		C29CC82117324DD500581C7C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CC82017324DD500581C7C /* Default@2x.png */; };
+		C29CC82317324DD500581C7C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CC82217324DD500581C7C /* Default-568h@2x.png */; };
+		C29CC82617324DD500581C7C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CC82517324DD500581C7C /* ViewController.m */; };
+		C29CC82917324DD500581C7C /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29CC82717324DD500581C7C /* ViewController_iPhone.xib */; };
+		C29CC82C17324DD500581C7C /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29CC82A17324DD500581C7C /* ViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C29CC80917324DD400581C7C /* YouTube Video Player Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Video Player Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C29CC80C17324DD400581C7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C29CC80E17324DD400581C7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C29CC81017324DD400581C7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C29CC81417324DD400581C7C /* YouTube Video Player Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YouTube Video Player Demo-Info.plist"; sourceTree = "<group>"; };
+		C29CC81617324DD400581C7C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C29CC81817324DD400581C7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C29CC81A17324DD400581C7C /* YouTube Video Player Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YouTube Video Player Demo-Prefix.pch"; sourceTree = "<group>"; };
+		C29CC81B17324DD400581C7C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C29CC81C17324DD400581C7C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C29CC81E17324DD400581C7C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C29CC82017324DD500581C7C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		C29CC82217324DD500581C7C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C29CC82417324DD500581C7C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C29CC82517324DD500581C7C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C29CC82817324DD500581C7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		C29CC82B17324DD500581C7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C29CC80617324DD400581C7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C29CC80D17324DD400581C7C /* UIKit.framework in Frameworks */,
+				C29CC80F17324DD400581C7C /* Foundation.framework in Frameworks */,
+				C29CC81117324DD400581C7C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C29CC80017324DD400581C7C = {
+			isa = PBXGroup;
+			children = (
+				C29CC81217324DD400581C7C /* YouTube Video Player Demo */,
+				C29CC80B17324DD400581C7C /* Frameworks */,
+				C29CC80A17324DD400581C7C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C29CC80A17324DD400581C7C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C29CC80917324DD400581C7C /* YouTube Video Player Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C29CC80B17324DD400581C7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C29CC80C17324DD400581C7C /* UIKit.framework */,
+				C29CC80E17324DD400581C7C /* Foundation.framework */,
+				C29CC81017324DD400581C7C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C29CC81217324DD400581C7C /* YouTube Video Player Demo */ = {
+			isa = PBXGroup;
+			children = (
+				C29CC81B17324DD400581C7C /* AppDelegate.h */,
+				C29CC81C17324DD400581C7C /* AppDelegate.m */,
+				C29CC82417324DD500581C7C /* ViewController.h */,
+				C29CC82517324DD500581C7C /* ViewController.m */,
+				C29CC82717324DD500581C7C /* ViewController_iPhone.xib */,
+				C29CC82A17324DD500581C7C /* ViewController_iPad.xib */,
+				C29CC81317324DD400581C7C /* Supporting Files */,
+			);
+			path = "YouTube Video Player Demo";
+			sourceTree = "<group>";
+		};
+		C29CC81317324DD400581C7C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C29CC81417324DD400581C7C /* YouTube Video Player Demo-Info.plist */,
+				C29CC81517324DD400581C7C /* InfoPlist.strings */,
+				C29CC81817324DD400581C7C /* main.m */,
+				C29CC81A17324DD400581C7C /* YouTube Video Player Demo-Prefix.pch */,
+				C29CC81E17324DD400581C7C /* Default.png */,
+				C29CC82017324DD500581C7C /* Default@2x.png */,
+				C29CC82217324DD500581C7C /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C29CC80817324DD400581C7C /* YouTube Video Player Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C29CC82F17324DD500581C7C /* Build configuration list for PBXNativeTarget "YouTube Video Player Demo" */;
+			buildPhases = (
+				C29CC80517324DD400581C7C /* Sources */,
+				C29CC80617324DD400581C7C /* Frameworks */,
+				C29CC80717324DD400581C7C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "YouTube Video Player Demo";
+			productName = "YouTube Video Player Demo";
+			productReference = C29CC80917324DD400581C7C /* YouTube Video Player Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C29CC80117324DD400581C7C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Cédric Luthi";
+			};
+			buildConfigurationList = C29CC80417324DD400581C7C /* Build configuration list for PBXProject "YouTube Video Player Demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C29CC80017324DD400581C7C;
+			productRefGroup = C29CC80A17324DD400581C7C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C29CC80817324DD400581C7C /* YouTube Video Player Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C29CC80717324DD400581C7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C29CC81717324DD400581C7C /* InfoPlist.strings in Resources */,
+				C29CC81F17324DD400581C7C /* Default.png in Resources */,
+				C29CC82117324DD500581C7C /* Default@2x.png in Resources */,
+				C29CC82317324DD500581C7C /* Default-568h@2x.png in Resources */,
+				C29CC82917324DD500581C7C /* ViewController_iPhone.xib in Resources */,
+				C29CC82C17324DD500581C7C /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C29CC80517324DD400581C7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C29CC81917324DD400581C7C /* main.m in Sources */,
+				C29CC81D17324DD400581C7C /* AppDelegate.m in Sources */,
+				C29CC82617324DD500581C7C /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C29CC81517324DD400581C7C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C29CC81617324DD400581C7C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C29CC82717324DD500581C7C /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C29CC82817324DD500581C7C /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		C29CC82A17324DD500581C7C /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C29CC82B17324DD500581C7C /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C29CC82D17324DD500581C7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C29CC82E17324DD500581C7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C29CC83017324DD500581C7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YouTube Video Player Demo/YouTube Video Player Demo-Prefix.pch";
+				INFOPLIST_FILE = "YouTube Video Player Demo/YouTube Video Player Demo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C29CC83117324DD500581C7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YouTube Video Player Demo/YouTube Video Player Demo-Prefix.pch";
+				INFOPLIST_FILE = "YouTube Video Player Demo/YouTube Video Player Demo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C29CC80417324DD400581C7C /* Build configuration list for PBXProject "YouTube Video Player Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C29CC82D17324DD500581C7C /* Debug */,
+				C29CC82E17324DD500581C7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C29CC82F17324DD500581C7C /* Build configuration list for PBXNativeTarget "YouTube Video Player Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C29CC83017324DD500581C7C /* Debug */,
+				C29CC83117324DD500581C7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C29CC80117324DD400581C7C /* Project object */;
+}
