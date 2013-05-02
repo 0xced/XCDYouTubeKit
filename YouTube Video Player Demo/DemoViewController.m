@@ -8,6 +8,15 @@
 
 #import "DemoViewController.h"
 
+@interface DemoViewController ()
+@property (nonatomic, weak) IBOutlet UITextField *videoIdentifierTextField;
+@end
+
 @implementation DemoViewController
+
+- (IBAction) playYouTubeVideo:(id)sender
+{
+	NSLog(@"TODO: play '%@'", self.videoIdentifierTextField.text);
+}
 
 @end
