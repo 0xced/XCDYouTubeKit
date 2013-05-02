@@ -7,27 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C285F6D717324F7500D81C59 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C285F6D617324F7500D81C59 /* DemoViewController.xib */; };
 		C29CC80D17324DD400581C7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC80C17324DD400581C7C /* UIKit.framework */; };
 		C29CC80F17324DD400581C7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC80E17324DD400581C7C /* Foundation.framework */; };
 		C29CC81117324DD400581C7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC81017324DD400581C7C /* CoreGraphics.framework */; };
-		C29CC81717324DD400581C7C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C29CC81517324DD400581C7C /* InfoPlist.strings */; };
 		C29CC81917324DD400581C7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CC81817324DD400581C7C /* main.m */; };
 		C29CC81D17324DD400581C7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CC81C17324DD400581C7C /* AppDelegate.m */; };
 		C29CC81F17324DD400581C7C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CC81E17324DD400581C7C /* Default.png */; };
 		C29CC82117324DD500581C7C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CC82017324DD500581C7C /* Default@2x.png */; };
 		C29CC82317324DD500581C7C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CC82217324DD500581C7C /* Default-568h@2x.png */; };
-		C29CC82617324DD500581C7C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CC82517324DD500581C7C /* ViewController.m */; };
-		C29CC82917324DD500581C7C /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29CC82717324DD500581C7C /* ViewController_iPhone.xib */; };
-		C29CC82C17324DD500581C7C /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29CC82A17324DD500581C7C /* ViewController_iPad.xib */; };
+		C29CC82617324DD500581C7C /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CC82517324DD500581C7C /* DemoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C285F6D617324F7500D81C59 /* DemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoViewController.xib; sourceTree = "<group>"; };
 		C29CC80917324DD400581C7C /* YouTube Video Player Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Video Player Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29CC80C17324DD400581C7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C29CC80E17324DD400581C7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C29CC81017324DD400581C7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C29CC81417324DD400581C7C /* YouTube Video Player Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YouTube Video Player Demo-Info.plist"; sourceTree = "<group>"; };
-		C29CC81617324DD400581C7C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C29CC81817324DD400581C7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C29CC81A17324DD400581C7C /* YouTube Video Player Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YouTube Video Player Demo-Prefix.pch"; sourceTree = "<group>"; };
 		C29CC81B17324DD400581C7C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -35,10 +33,8 @@
 		C29CC81E17324DD400581C7C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C29CC82017324DD500581C7C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C29CC82217324DD500581C7C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C29CC82417324DD500581C7C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C29CC82517324DD500581C7C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C29CC82817324DD500581C7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		C29CC82B17324DD500581C7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		C29CC82417324DD500581C7C /* DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		C29CC82517324DD500581C7C /* DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +58,10 @@
 				C29CC80B17324DD400581C7C /* Frameworks */,
 				C29CC80A17324DD400581C7C /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 1;
 		};
 		C29CC80A17324DD400581C7C /* Products */ = {
 			isa = PBXGroup;
@@ -87,10 +86,9 @@
 			children = (
 				C29CC81B17324DD400581C7C /* AppDelegate.h */,
 				C29CC81C17324DD400581C7C /* AppDelegate.m */,
-				C29CC82417324DD500581C7C /* ViewController.h */,
-				C29CC82517324DD500581C7C /* ViewController.m */,
-				C29CC82717324DD500581C7C /* ViewController_iPhone.xib */,
-				C29CC82A17324DD500581C7C /* ViewController_iPad.xib */,
+				C29CC82417324DD500581C7C /* DemoViewController.h */,
+				C29CC82517324DD500581C7C /* DemoViewController.m */,
+				C285F6D617324F7500D81C59 /* DemoViewController.xib */,
 				C29CC81317324DD400581C7C /* Supporting Files */,
 			);
 			path = "YouTube Video Player Demo";
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				C29CC81417324DD400581C7C /* YouTube Video Player Demo-Info.plist */,
-				C29CC81517324DD400581C7C /* InfoPlist.strings */,
 				C29CC81817324DD400581C7C /* main.m */,
 				C29CC81A17324DD400581C7C /* YouTube Video Player Demo-Prefix.pch */,
 				C29CC81E17324DD400581C7C /* Default.png */,
@@ -161,12 +158,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C29CC81717324DD400581C7C /* InfoPlist.strings in Resources */,
 				C29CC81F17324DD400581C7C /* Default.png in Resources */,
 				C29CC82117324DD500581C7C /* Default@2x.png in Resources */,
 				C29CC82317324DD500581C7C /* Default-568h@2x.png in Resources */,
-				C29CC82917324DD500581C7C /* ViewController_iPhone.xib in Resources */,
-				C29CC82C17324DD500581C7C /* ViewController_iPad.xib in Resources */,
+				C285F6D717324F7500D81C59 /* DemoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,38 +174,11 @@
 			files = (
 				C29CC81917324DD400581C7C /* main.m in Sources */,
 				C29CC81D17324DD400581C7C /* AppDelegate.m in Sources */,
-				C29CC82617324DD500581C7C /* ViewController.m in Sources */,
+				C29CC82617324DD500581C7C /* DemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		C29CC81517324DD400581C7C /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C29CC81617324DD400581C7C /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		C29CC82717324DD500581C7C /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C29CC82817324DD500581C7C /* en */,
-			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		C29CC82A17324DD500581C7C /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C29CC82B17324DD500581C7C /* en */,
-			);
-			name = ViewController_iPad.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C29CC82D17324DD500581C7C /* Debug */ = {
@@ -260,11 +228,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "NS_BLOCK_ASSERTIONS=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -312,6 +280,7 @@
 				C29CC83117324DD500581C7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
