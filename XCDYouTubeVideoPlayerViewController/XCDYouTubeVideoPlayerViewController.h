@@ -19,6 +19,9 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 
 - (id) initWithYouTubeVideoIdentifier:(NSString *)videoIdentifier;
 
+// On iPhone, defaults to @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
+// On iPad, defaults to @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
+// If you really know what you are doing, you can use the `itag` values as described on http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs
 @property (nonatomic, strong) NSArray *preferredVideoQuality;
 
 @end
