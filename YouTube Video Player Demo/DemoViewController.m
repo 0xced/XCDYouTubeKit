@@ -12,6 +12,7 @@
 
 @interface DemoViewController ()
 @property (nonatomic, weak) IBOutlet UITextField *videoIdentifierTextField;
+@property (nonatomic, weak) IBOutlet UISwitch *lowQualitySwitch;
 @end
 
 @implementation DemoViewController
@@ -19,6 +20,8 @@
 - (IBAction) playYouTubeVideo:(id)sender
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithYouTubeVideoIdentifier:self.videoIdentifierTextField.text];
+	if (self.lowQualitySwitch.on)
+		videoPlayerViewController.preferredVideoQuality = @[ @(XCDYouTubeVideoQualitySmall240), @(XCDYouTubeVideoQualityMedium360) ];
 	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 }
 
