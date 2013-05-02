@@ -19,6 +19,7 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 		{
 			NSString *key = pair[0];
 			NSString *value = [pair[1] stringByReplacingPercentEscapesUsingEncoding:encoding];
+			value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
 			dictionary[key] = value;
 		}
 	}
