@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C285F6D717324F7500D81C59 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C285F6D617324F7500D81C59 /* DemoViewController.xib */; };
+		C285F6DC1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C285F6DB1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.m */; };
+		C285F6DE1732523400D81C59 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C285F6DD1732523400D81C59 /* MediaPlayer.framework */; };
 		C29CC80D17324DD400581C7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC80C17324DD400581C7C /* UIKit.framework */; };
 		C29CC80F17324DD400581C7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC80E17324DD400581C7C /* Foundation.framework */; };
 		C29CC81117324DD400581C7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC81017324DD400581C7C /* CoreGraphics.framework */; };
@@ -21,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		C285F6D617324F7500D81C59 /* DemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoViewController.xib; sourceTree = "<group>"; };
+		C285F6DA1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideoPlayerViewController.h; sourceTree = "<group>"; };
+		C285F6DB1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewController.m; sourceTree = "<group>"; };
+		C285F6DD1732523400D81C59 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C29CC80917324DD400581C7C /* YouTube Video Player Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Video Player Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29CC80C17324DD400581C7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C29CC80E17324DD400581C7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -45,15 +50,26 @@
 				C29CC80D17324DD400581C7C /* UIKit.framework in Frameworks */,
 				C29CC80F17324DD400581C7C /* Foundation.framework in Frameworks */,
 				C29CC81117324DD400581C7C /* CoreGraphics.framework in Frameworks */,
+				C285F6DE1732523400D81C59 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C285F6D91732520500D81C59 /* XCDYouTubeVideoPlayerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C285F6DA1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.h */,
+				C285F6DB1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.m */,
+			);
+			path = XCDYouTubeVideoPlayerViewController;
+			sourceTree = "<group>";
+		};
 		C29CC80017324DD400581C7C = {
 			isa = PBXGroup;
 			children = (
+				C285F6D91732520500D81C59 /* XCDYouTubeVideoPlayerViewController */,
 				C29CC81217324DD400581C7C /* YouTube Video Player Demo */,
 				C29CC80B17324DD400581C7C /* Frameworks */,
 				C29CC80A17324DD400581C7C /* Products */,
@@ -77,6 +93,7 @@
 				C29CC80C17324DD400581C7C /* UIKit.framework */,
 				C29CC80E17324DD400581C7C /* Foundation.framework */,
 				C29CC81017324DD400581C7C /* CoreGraphics.framework */,
+				C285F6DD1732523400D81C59 /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -175,6 +192,7 @@
 				C29CC81917324DD400581C7C /* main.m in Sources */,
 				C29CC81D17324DD400581C7C /* AppDelegate.m in Sources */,
 				C29CC82617324DD500581C7C /* DemoViewController.m in Sources */,
+				C285F6DC1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
