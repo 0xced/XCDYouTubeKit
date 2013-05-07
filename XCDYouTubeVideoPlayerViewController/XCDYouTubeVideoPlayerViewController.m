@@ -38,6 +38,16 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	else
 		_preferredVideoQuality = @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
 	
+	if (videoIdentifier)
+		self.videoIdentifier = videoIdentifier;
+	
+	return self;
+}
+
+- (void) setVideoIdentifier:(NSString *)videoIdentifier
+{
+	_videoIdentifier = videoIdentifier;
+	
 	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@", videoIdentifier]];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -72,8 +82,6 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 		if (!streamURL)
 			[self performSelectorOnMainThread:@selector(dismiss) withObject:nil waitUntilDone:NO];
 	}];
-	
-	return self;
 }
 
 - (void) setStreamURL:(NSURL *)streamURL
