@@ -51,6 +51,9 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@", videoIdentifier]];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+		if (_videoIdentifier && ![_videoIdentifier isEqual:videoIdentifier])
+			return;
+		
 		NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 		NSStringEncoding queryEncoding = NSUTF8StringEncoding;
 		NSDictionary *video = DictionaryWithQueryString(videoQuery, queryEncoding);
