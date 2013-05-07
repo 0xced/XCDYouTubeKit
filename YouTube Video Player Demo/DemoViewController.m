@@ -10,12 +10,17 @@
 
 #import "XCDYouTubeVideoPlayerViewController.h"
 
-@interface DemoViewController ()
+@interface DemoViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *videoIdentifierTextField;
 @property (nonatomic, weak) IBOutlet UISwitch *lowQualitySwitch;
 @end
 
 @implementation DemoViewController
+
+- (NSString *) title
+{
+	return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+}
 
 - (IBAction) playYouTubeVideo:(id)sender
 {
@@ -23,6 +28,12 @@
 	if (self.lowQualitySwitch.on)
 		videoPlayerViewController.preferredVideoQuality = @[ @(XCDYouTubeVideoQualitySmall240), @(XCDYouTubeVideoQualityMedium360) ];
 	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+	[self playYouTubeVideo:textField];
+	return YES;
 }
 
 @end
