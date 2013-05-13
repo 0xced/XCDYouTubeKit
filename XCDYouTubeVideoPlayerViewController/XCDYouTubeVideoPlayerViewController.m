@@ -75,6 +75,14 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
+- (void) finishWithPlaybackError
+{
+	NSDictionary *userInfo = @{ MPMoviePlayerPlaybackDidFinishReasonUserInfoKey: @(MPMovieFinishReasonPlaybackError) };
+	[[NSNotificationCenter defaultCenter] postNotificationName:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer userInfo:userInfo];
+	
+	[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
+}
+
 #pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -94,12 +102,12 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	if (videoURL)
 		self.moviePlayer.contentURL = videoURL;
 	else
-		[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
+		[self finishWithPlaybackError];
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
+	[self finishWithPlaybackError];
 }
 
 #pragma mark - URL Parsing
