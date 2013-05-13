@@ -88,7 +88,7 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	[self.connectionData appendData:data];
 }
 
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection;
+- (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSURL *videoURL = [self videoURLWithData:self.connectionData];
 	if (videoURL)
