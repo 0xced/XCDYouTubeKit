@@ -28,9 +28,19 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 
 @implementation XCDYouTubeVideoPlayerViewController
 
-- (id) initWithYouTubeVideoIdentifier:(NSString *)videoIdentifier
+- (id) init
 {
-	if (!(self = [super initWithContentURL:nil]))
+	return [self initWithVideoIdentifier:nil];
+}
+
+- (id) initWithContentURL:(NSURL *)contentURL
+{
+	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:` method instead." userInfo:nil];
+}
+
+- (id) initWithVideoIdentifier:(NSString *)videoIdentifier
+{
+	if (!(self = [super init]))
 		return nil;
 	
 	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)

@@ -24,7 +24,7 @@
 
 - (IBAction) playYouTubeVideo:(id)sender
 {
-	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithYouTubeVideoIdentifier:self.videoIdentifierTextField.text];
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoIdentifierTextField.text];
 	if (self.lowQualitySwitch.on)
 		videoPlayerViewController.preferredVideoQuality = @[ @(XCDYouTubeVideoQualitySmall240), @(XCDYouTubeVideoQualityMedium360) ];
 	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];

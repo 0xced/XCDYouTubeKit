@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 
 @interface XCDYouTubeVideoPlayerViewController : MPMoviePlayerViewController
 
-- (id) initWithYouTubeVideoIdentifier:(NSString *)videoIdentifier;
+- (id) initWithVideoIdentifier:(NSString *)videoIdentifier;
 
 @property (nonatomic, strong) NSString *videoIdentifier;
 
