@@ -26,6 +26,11 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	return dictionary;
 }
 
+@interface XCDYouTubeVideoPlayerViewController ()
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableData *connectionData;
+@end
+
 @implementation XCDYouTubeVideoPlayerViewController
 
 - (id) init
@@ -56,55 +61,76 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 
 - (void) setVideoIdentifier:(NSString *)videoIdentifier
 {
+	if (![NSThread isMainThread])
+	{
+		[self performSelectorOnMainThread:_cmd withObject:videoIdentifier waitUntilDone:NO];
+		return;
+	}
+	
 	_videoIdentifier = videoIdentifier;
 	
 	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@", videoIdentifier]];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-		if (_videoIdentifier && ![_videoIdentifier isEqual:videoIdentifier])
-			return;
-		
-		NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-		NSStringEncoding queryEncoding = NSUTF8StringEncoding;
-		NSDictionary *video = DictionaryWithQueryString(videoQuery, queryEncoding);
-		NSArray *streamQueries = [video[@"url_encoded_fmt_stream_map"] componentsSeparatedByString:@","];
-		
-		NSMutableDictionary *streamURLs = [NSMutableDictionary new];
-		for (NSString *streamQuery in streamQueries)
-		{
-			NSDictionary *stream = DictionaryWithQueryString(streamQuery, queryEncoding);
-			NSString *type = stream[@"type"];
-			if ([type hasPrefix:@"video/mp4"] || [type hasPrefix:@"video/3gpp"])
-			{
-				NSURL *streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", stream[@"url"], stream[@"sig"]]];
-				streamURLs[@([stream[@"itag"] integerValue])] = streamURL;
-			}
-		}
-		
-		NSURL *streamURL = nil;
-		for (NSNumber *videoQuality in self.preferredVideoQuality)
-		{
-			streamURL = streamURLs[videoQuality];
-			if (streamURL)
-			{
-				[self performSelectorOnMainThread:@selector(setStreamURL:) withObject:streamURL waitUntilDone:NO];
-				break;
-			}
-		}
-		
-		if (!streamURL)
-			[self performSelectorOnMainThread:@selector(dismiss) withObject:nil waitUntilDone:NO];
-	}];
+	[self.connection cancel];
+	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
-- (void) setStreamURL:(NSURL *)streamURL
+#pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate
+
+- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	self.moviePlayer.contentURL = streamURL;
+	NSUInteger capacity = response.expectedContentLength == NSURLResponseUnknownLength ? 0 : response.expectedContentLength;
+	self.connectionData = [[NSMutableData alloc] initWithCapacity:capacity];
 }
 
-- (void) dismiss
+- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	[self.connectionData appendData:data];
+}
+
+- (void) connectionDidFinishLoading:(NSURLConnection *)connection;
+{
+	NSURL *videoURL = [self videoURLWithData:self.connectionData];
+	if (videoURL)
+		self.moviePlayer.contentURL = videoURL;
+	else
+		[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
+}
+
+- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
 	[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
+}
+
+#pragma mark - URL Parsing
+
+- (NSURL *) videoURLWithData:(NSData *)data
+{
+	NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+	NSStringEncoding queryEncoding = NSUTF8StringEncoding;
+	NSDictionary *video = DictionaryWithQueryString(videoQuery, queryEncoding);
+	NSArray *streamQueries = [video[@"url_encoded_fmt_stream_map"] componentsSeparatedByString:@","];
+	
+	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
+	for (NSString *streamQuery in streamQueries)
+	{
+		NSDictionary *stream = DictionaryWithQueryString(streamQuery, queryEncoding);
+		NSString *type = stream[@"type"];
+		if ([type hasPrefix:@"video/mp4"] || [type hasPrefix:@"video/3gpp"])
+		{
+			NSURL *streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", stream[@"url"], stream[@"sig"]]];
+			streamURLs[@([stream[@"itag"] integerValue])] = streamURL;
+		}
+	}
+	
+	for (NSNumber *videoQuality in self.preferredVideoQuality)
+	{
+		NSURL *streamURL = streamURLs[videoQuality];
+		if (streamURL)
+			return streamURL;
+	}
+	
+	return nil;
 }
 
 @end
