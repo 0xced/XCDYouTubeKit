@@ -39,12 +39,31 @@
 	return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
 }
 
+- (void) viewDidLoad
+{
+	self.videoIdentifierTextField.superview.layer.cornerRadius = 10.f;
+}
+
 - (IBAction) playYouTubeVideo:(id)sender
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoIdentifierTextField.text];
 	if (self.lowQualitySwitch.on)
 		videoPlayerViewController.preferredVideoQuality = @[ @(XCDYouTubeVideoQualitySmall240), @(XCDYouTubeVideoQualityMedium360) ];
 	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+}
+
+- (IBAction) playTrendingVideo:(id)sender
+{
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
+	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+	
+	// https://developers.google.com/youtube/2.0/developers_guide_protocol_video_feeds#Standard_feeds
+	NSURL *url = [NSURL URLWithString:@"https://gdata.youtube.com/feeds/api/standardfeeds/on_the_web?v=2&alt=json&max-results=1"];
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+		id json = [NSJSONSerialization JSONObjectWithData:data ?: [NSData new] options:0 error:NULL];
+		NSString *videoIdentifier = [[[json valueForKeyPath:@"feed.entry.media$group.yt$videoid.$t"] lastObject] description];
+		videoPlayerViewController.videoIdentifier = videoIdentifier;
+	}];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
