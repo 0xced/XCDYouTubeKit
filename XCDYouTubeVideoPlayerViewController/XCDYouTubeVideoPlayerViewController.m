@@ -29,6 +29,7 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 @interface XCDYouTubeVideoPlayerViewController ()
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *connectionData;
+@property (nonatomic, strong) NSMutableArray *elFields;
 @end
 
 @implementation XCDYouTubeVideoPlayerViewController
@@ -69,7 +70,19 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	
 	_videoIdentifier = videoIdentifier;
 	
-	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@", videoIdentifier]];
+	self.elFields = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage", @"vevo", @"" ]];
+	
+	[self startVideoInfoRequest];
+}
+
+- (void) startVideoInfoRequest
+{
+	NSString *elField = [self.elFields objectAtIndex:0];
+	[self.elFields removeObjectAtIndex:0];
+	if (elField.length > 0)
+		elField = [@"&el=" stringByAppendingString:elField];
+	
+	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=en", self.videoIdentifier, elField]];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[self.connection cancel];
 	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -101,6 +114,8 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	NSURL *videoURL = [self videoURLWithData:self.connectionData];
 	if (videoURL)
 		self.moviePlayer.contentURL = videoURL;
+	else if (self.elFields.count > 0)
+		[self startVideoInfoRequest];
 	else
 		[self finishWithPlaybackError];
 }
