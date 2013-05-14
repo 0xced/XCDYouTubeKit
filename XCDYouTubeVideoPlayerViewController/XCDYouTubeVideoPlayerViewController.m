@@ -96,6 +96,16 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
 }
 
+#pragma mark - UIViewController
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	
+	if ([self isBeingDismissed])
+		[self.connection cancel];
+}
+
 #pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
