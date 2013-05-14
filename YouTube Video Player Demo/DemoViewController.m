@@ -23,6 +23,8 @@
 		return nil;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackStateDidChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerLoadStateDidChange:) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
 	
 	return self;
 }
@@ -56,7 +58,7 @@
 - (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
 {
 	MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
-	NSString *reason = @"Unknown Reason";
+	NSString *reason = @"Unknown";
 	switch (finishReason)
 	{
 		case MPMovieFinishReasonPlaybackEnded:
@@ -69,7 +71,51 @@
 			reason = @"User Exited";
 			break;
 	}
-	NSLog(@"moviePlayerPlaybackDidFinish: %@", reason);
+	NSLog(@"Finish Reason: %@", reason);
+}
+
+- (void) moviePlayerPlaybackStateDidChange:(NSNotification *)notification
+{
+	MPMoviePlayerController *moviePlayerController = notification.object;
+	NSString *playbackState = @"Unknown";
+	switch (moviePlayerController.playbackState)
+	{
+		case MPMoviePlaybackStateStopped:
+			playbackState = @"Stopped";
+			break;
+		case MPMoviePlaybackStatePlaying:
+			playbackState = @"Playing";
+			break;
+		case MPMoviePlaybackStatePaused:
+			playbackState = @"Paused";
+			break;
+		case MPMoviePlaybackStateInterrupted:
+			playbackState = @"Interrupted";
+			break;
+		case MPMoviePlaybackStateSeekingForward:
+			playbackState = @"Seeking Forward";
+			break;
+		case MPMoviePlaybackStateSeekingBackward:
+			playbackState = @"Seeking Backward";
+			break;
+	}
+	NSLog(@"Playback State: %@", playbackState);
+}
+
+- (void) moviePlayerLoadStateDidChange:(NSNotification *)notification
+{
+	MPMoviePlayerController *moviePlayerController = notification.object;
+	
+	NSMutableString *loadState = [NSMutableString new];
+	MPMovieLoadState state = moviePlayerController.loadState;
+	if (state & MPMovieLoadStatePlayable)
+		[loadState appendString:@" | Playable"];
+	if (state & MPMovieLoadStatePlaythroughOK)
+		[loadState appendString:@" | Playthrough OK"];
+	if (state & MPMovieLoadStateStalled)
+		[loadState appendString:@" | Stalled"];
+	
+	NSLog(@"Load State: %@", loadState.length > 0 ? [loadState substringFromIndex:3] : @"N/A");
 }
 
 @end
