@@ -77,6 +77,7 @@
 - (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
 {
 	MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
+	NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
 	NSString *reason = @"Unknown";
 	switch (finishReason)
 	{
@@ -90,7 +91,7 @@
 			reason = @"User Exited";
 			break;
 	}
-	NSLog(@"Finish Reason: %@", reason);
+	NSLog(@"Finish Reason: %@%@", reason, error ? [@"\n" stringByAppendingString:[error description]] : @"");
 }
 
 - (void) moviePlayerPlaybackStateDidChange:(NSNotification *)notification
