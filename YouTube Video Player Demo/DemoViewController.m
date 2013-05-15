@@ -44,6 +44,11 @@
 	self.videoIdentifierTextField.superview.layer.cornerRadius = 10.f;
 }
 
+- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self.view endEditing:YES];
+}
+
 - (IBAction) playYouTubeVideo:(id)sender
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoIdentifierTextField.text];
