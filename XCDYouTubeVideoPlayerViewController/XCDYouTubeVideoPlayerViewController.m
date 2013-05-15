@@ -8,6 +8,8 @@
 
 #import "XCDYouTubeVideoPlayerViewController.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
 NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey";
 
@@ -154,7 +156,7 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	{
 		NSDictionary *stream = DictionaryWithQueryString(streamQuery, queryEncoding);
 		NSString *type = stream[@"type"];
-		if ([type hasPrefix:@"video/mp4"] || [type hasPrefix:@"video/3gpp"])
+		if ([AVURLAsset isPlayableExtendedMIMEType:type])
 		{
 			NSURL *streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", stream[@"url"], stream[@"sig"]]];
 			streamURLs[@([stream[@"itag"] integerValue])] = streamURL;

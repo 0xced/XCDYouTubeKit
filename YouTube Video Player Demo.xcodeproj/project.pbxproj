@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C261FBDD17444FF2005FDFCA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C261FBDC17444FF2005FDFCA /* AVFoundation.framework */; };
 		C285F6D717324F7500D81C59 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C285F6D617324F7500D81C59 /* DemoViewController.xib */; };
 		C285F6DC1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C285F6DB1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.m */; };
 		C285F6DE1732523400D81C59 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C285F6DD1732523400D81C59 /* MediaPlayer.framework */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C261FBDC17444FF2005FDFCA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C285F6D617324F7500D81C59 /* DemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoViewController.xib; sourceTree = "<group>"; };
 		C285F6DA1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideoPlayerViewController.h; sourceTree = "<group>"; };
 		C285F6DB1732522300D81C59 /* XCDYouTubeVideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewController.m; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 				C29CC80F17324DD400581C7C /* Foundation.framework in Frameworks */,
 				C29CC81117324DD400581C7C /* CoreGraphics.framework in Frameworks */,
 				C285F6DE1732523400D81C59 /* MediaPlayer.framework in Frameworks */,
+				C261FBDD17444FF2005FDFCA /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,10 +93,11 @@
 		C29CC80B17324DD400581C7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C29CC80C17324DD400581C7C /* UIKit.framework */,
-				C29CC80E17324DD400581C7C /* Foundation.framework */,
+				C261FBDC17444FF2005FDFCA /* AVFoundation.framework */,
 				C29CC81017324DD400581C7C /* CoreGraphics.framework */,
+				C29CC80E17324DD400581C7C /* Foundation.framework */,
 				C285F6DD1732523400D81C59 /* MediaPlayer.framework */,
+				C29CC80C17324DD400581C7C /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
