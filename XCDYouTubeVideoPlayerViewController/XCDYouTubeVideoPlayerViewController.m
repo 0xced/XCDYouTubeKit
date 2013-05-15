@@ -8,6 +8,9 @@
 
 #import "XCDYouTubeVideoPlayerViewController.h"
 
+NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
+NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey";
+
 static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncoding encoding)
 {
 	NSMutableDictionary *dictionary = [NSMutableDictionary new];
@@ -82,15 +85,16 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	if (elField.length > 0)
 		elField = [@"&el=" stringByAppendingString:elField];
 	
-	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=en", self.videoIdentifier, elField]];
+	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=en", self.videoIdentifier ?: @"", elField]];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[self.connection cancel];
 	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
-- (void) finishWithPlaybackError
+- (void) finishWithError:(NSError *)error
 {
-	NSDictionary *userInfo = @{ MPMoviePlayerPlaybackDidFinishReasonUserInfoKey: @(MPMovieFinishReasonPlaybackError) };
+	NSDictionary *userInfo = @{ MPMoviePlayerPlaybackDidFinishReasonUserInfoKey: @(MPMovieFinishReasonPlaybackError),
+	                            XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey: error };
 	[[NSNotificationCenter defaultCenter] postNotificationName:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer userInfo:userInfo];
 	
 	[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
@@ -121,23 +125,24 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	NSURL *videoURL = [self videoURLWithData:self.connectionData];
+	NSError *error = nil;
+	NSURL *videoURL = [self videoURLWithData:self.connectionData error:&error];
 	if (videoURL)
 		self.moviePlayer.contentURL = videoURL;
 	else if (self.elFields.count > 0)
 		[self startVideoInfoRequest];
 	else
-		[self finishWithPlaybackError];
+		[self finishWithError:error];
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	[self finishWithPlaybackError];
+	[self finishWithError:error];
 }
 
 #pragma mark - URL Parsing
 
-- (NSURL *) videoURLWithData:(NSData *)data
+- (NSURL *) videoURLWithData:(NSData *)data error:(NSError **)error
 {
 	NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	NSStringEncoding queryEncoding = NSUTF8StringEncoding;
@@ -161,6 +166,17 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 		NSURL *streamURL = streamURLs[videoQuality];
 		if (streamURL)
 			return streamURL;
+	}
+	
+	if (error)
+	{
+		NSMutableDictionary *userInfo = [@{ NSURLErrorKey: self.connection.originalRequest.URL } mutableCopy];
+		NSString *reason = video[@"reason"];
+		if (reason)
+			userInfo[NSLocalizedDescriptionKey] = reason;
+		
+		NSInteger code = [video[@"errorcode"] integerValue];
+		*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:code userInfo:userInfo];
 	}
 	
 	return nil;
