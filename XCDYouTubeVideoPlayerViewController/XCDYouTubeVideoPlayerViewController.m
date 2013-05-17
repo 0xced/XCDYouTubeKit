@@ -73,6 +73,9 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 		return;
 	}
 	
+	if ([videoIdentifier isEqual:self.videoIdentifier])
+		return;
+	
 	_videoIdentifier = videoIdentifier;
 	
 	self.elFields = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage", @"vevo", @"" ]];
