@@ -9,6 +9,7 @@
 #import "XCDYouTubeVideoPlayerViewController.h"
 
 #import <AVFoundation/AVFoundation.h>
+#import <objc/runtime.h>
 
 NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
 NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey";
@@ -35,9 +36,12 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *connectionData;
 @property (nonatomic, strong) NSMutableArray *elFields;
+@property (nonatomic, assign, getter = isEmbedded) BOOL embedded;
 @end
 
 @implementation XCDYouTubeVideoPlayerViewController
+
+static void *MoviePlayerKey = &MoviePlayerKey;
 
 - (id) init
 {
@@ -83,6 +87,16 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	[self startVideoInfoRequest];
 }
 
+- (void) presentInView:(UIView *)view
+{
+	self.embedded = YES;
+	
+	self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
+	self.moviePlayer.view.frame = CGRectMake(0.f, 0.f, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds));
+	[view addSubview:self.moviePlayer.view];
+	objc_setAssociatedObject(view, MoviePlayerKey, self.moviePlayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (void) startVideoInfoRequest
 {
 	NSString *elField = [self.elFields objectAtIndex:0];
@@ -102,10 +116,21 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	                            XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey: error };
 	[[NSNotificationCenter defaultCenter] postNotificationName:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer userInfo:userInfo];
 	
-	[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
+	if (self.isEmbedded)
+		[self.moviePlayer.view removeFromSuperview];
+	else
+		[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
 }
 
 #pragma mark - UIViewController
+
+- (void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	if ([self isBeingPresented])
+		self.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+}
 
 - (void) viewWillDisappear:(BOOL)animated
 {
@@ -133,11 +158,18 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	NSError *error = nil;
 	NSURL *videoURL = [self videoURLWithData:self.connectionData error:&error];
 	if (videoURL)
+	{
 		self.moviePlayer.contentURL = videoURL;
+		[self.moviePlayer prepareToPlay];
+	}
 	else if (self.elFields.count > 0)
+	{
 		[self startVideoInfoRequest];
+	}
 	else
+	{
 		[self finishWithError:error];
+	}
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
