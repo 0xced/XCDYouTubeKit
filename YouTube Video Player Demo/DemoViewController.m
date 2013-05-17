@@ -13,6 +13,10 @@
 @interface DemoViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *videoIdentifierTextField;
 @property (nonatomic, weak) IBOutlet UISwitch *lowQualitySwitch;
+@property (nonatomic, weak) IBOutlet UIView *videoContainerView;
+@property (nonatomic, weak) IBOutlet UISwitch *fullScreenSwitch;
+
+@property (nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;
 @end
 
 @implementation DemoViewController
@@ -51,16 +55,32 @@
 
 - (IBAction) playYouTubeVideo:(id)sender
 {
-	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoIdentifierTextField.text];
+	if (!self.videoPlayerViewController)
+		self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoIdentifierTextField.text];
+	else
+		self.videoPlayerViewController.videoIdentifier = self.videoIdentifierTextField.text;
+	
 	if (self.lowQualitySwitch.on)
-		videoPlayerViewController.preferredVideoQuality = @[ @(XCDYouTubeVideoQualitySmall240), @(XCDYouTubeVideoQualityMedium360) ];
-	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+		self.videoPlayerViewController.preferredVideoQuality = @[ @(XCDYouTubeVideoQualitySmall240), @(XCDYouTubeVideoQualityMedium360) ];
+	
+	if (self.fullScreenSwitch.on)
+		[self presentMoviePlayerViewControllerAnimated:self.videoPlayerViewController];
+	else if (![self.videoContainerView.subviews containsObject:self.videoPlayerViewController.moviePlayer.view])
+		[self.videoPlayerViewController presentInView:self.videoContainerView];
 }
 
 - (IBAction) playTrendingVideo:(id)sender
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
-	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+	if (self.fullScreenSwitch.on)
+	{
+		[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+	}
+	else
+	{
+		[self.videoContainerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+		[videoPlayerViewController presentInView:self.videoContainerView];
+	}
 	
 	// https://developers.google.com/youtube/2.0/developers_guide_protocol_video_feeds#Standard_feeds
 	NSURL *url = [NSURL URLWithString:@"https://gdata.youtube.com/feeds/api/standardfeeds/on_the_web?v=2&alt=json&max-results=1"];
