@@ -27,7 +27,7 @@ MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NS
 // On iPhone, defaults to @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
 // On iPad, defaults to @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
 // If you really know what you are doing, you can use the `itag` values as described on http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs
-@property (nonatomic, strong) NSArray *preferredVideoQualities;
+@property (nonatomic, copy) NSArray *preferredVideoQualities;
 
 // Ownership of the `moviePlayer` property is transferred to the view.
 - (void) presentInView:(UIView *)view;
