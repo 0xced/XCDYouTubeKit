@@ -92,7 +92,7 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 	self.embedded = YES;
 	
 	self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
-	self.moviePlayer.view.frame = CGRectMake(0.f, 0.f, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds));
+	self.moviePlayer.view.frame = CGRectMake(0.f, 0.f, view.bounds.size.width, view.bounds.size.height);
 	self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	[view addSubview:self.moviePlayer.view];
 	objc_setAssociatedObject(view, MoviePlayerKey, self.moviePlayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);

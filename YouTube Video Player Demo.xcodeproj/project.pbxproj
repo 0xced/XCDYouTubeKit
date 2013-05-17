@@ -13,7 +13,6 @@
 		C285F6DE1732523400D81C59 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C285F6DD1732523400D81C59 /* MediaPlayer.framework */; };
 		C29CC80D17324DD400581C7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC80C17324DD400581C7C /* UIKit.framework */; };
 		C29CC80F17324DD400581C7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC80E17324DD400581C7C /* Foundation.framework */; };
-		C29CC81117324DD400581C7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29CC81017324DD400581C7C /* CoreGraphics.framework */; };
 		C29CC81917324DD400581C7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CC81817324DD400581C7C /* main.m */; };
 		C29CC81D17324DD400581C7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C29CC81C17324DD400581C7C /* AppDelegate.m */; };
 		C29CC81F17324DD400581C7C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C29CC81E17324DD400581C7C /* Default.png */; };
@@ -31,7 +30,6 @@
 		C29CC80917324DD400581C7C /* YouTube Video Player Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Video Player Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29CC80C17324DD400581C7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C29CC80E17324DD400581C7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		C29CC81017324DD400581C7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C29CC81417324DD400581C7C /* YouTube Video Player Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YouTube Video Player Demo-Info.plist"; sourceTree = "<group>"; };
 		C29CC81817324DD400581C7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C29CC81A17324DD400581C7C /* YouTube Video Player Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YouTube Video Player Demo-Prefix.pch"; sourceTree = "<group>"; };
@@ -51,7 +49,6 @@
 			files = (
 				C29CC80D17324DD400581C7C /* UIKit.framework in Frameworks */,
 				C29CC80F17324DD400581C7C /* Foundation.framework in Frameworks */,
-				C29CC81117324DD400581C7C /* CoreGraphics.framework in Frameworks */,
 				C285F6DE1732523400D81C59 /* MediaPlayer.framework in Frameworks */,
 				C261FBDD17444FF2005FDFCA /* AVFoundation.framework in Frameworks */,
 			);
@@ -94,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				C261FBDC17444FF2005FDFCA /* AVFoundation.framework */,
-				C29CC81017324DD400581C7C /* CoreGraphics.framework */,
 				C29CC80E17324DD400581C7C /* Foundation.framework */,
 				C285F6DD1732523400D81C59 /* MediaPlayer.framework */,
 				C29CC80C17324DD400581C7C /* UIKit.framework */,
