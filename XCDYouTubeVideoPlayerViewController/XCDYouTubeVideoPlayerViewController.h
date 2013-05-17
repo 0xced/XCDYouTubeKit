@@ -22,7 +22,7 @@ MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NS
 
 - (id) initWithVideoIdentifier:(NSString *)videoIdentifier;
 
-@property (nonatomic, strong) NSString *videoIdentifier;
+@property (nonatomic, copy) NSString *videoIdentifier;
 
 // On iPhone, defaults to @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
 // On iPad, defaults to @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]

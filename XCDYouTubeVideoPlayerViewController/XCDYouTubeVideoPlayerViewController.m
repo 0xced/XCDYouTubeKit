@@ -80,7 +80,7 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 	if ([videoIdentifier isEqual:self.videoIdentifier])
 		return;
 	
-	_videoIdentifier = videoIdentifier;
+	_videoIdentifier = [videoIdentifier copy];
 	
 	self.elFields = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage", @"vevo", @"" ]];
 	
