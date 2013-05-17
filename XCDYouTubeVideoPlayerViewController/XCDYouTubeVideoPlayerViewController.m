@@ -59,9 +59,9 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 		return nil;
 	
 	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-		_preferredVideoQuality = @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
+		_preferredVideoQualities = @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
 	else
-		_preferredVideoQuality = @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
+		_preferredVideoQualities = @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
 	
 	if (videoIdentifier)
 		self.videoIdentifier = videoIdentifier;
@@ -199,7 +199,7 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 		}
 	}
 	
-	for (NSNumber *videoQuality in self.preferredVideoQuality)
+	for (NSNumber *videoQuality in self.preferredVideoQualities)
 	{
 		NSURL *streamURL = streamURLs[videoQuality];
 		if (streamURL)

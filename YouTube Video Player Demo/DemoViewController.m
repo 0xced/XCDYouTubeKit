@@ -61,7 +61,7 @@
 		self.videoPlayerViewController.videoIdentifier = self.videoIdentifierTextField.text;
 	
 	if (self.lowQualitySwitch.on)
-		self.videoPlayerViewController.preferredVideoQuality = @[ @(XCDYouTubeVideoQualitySmall240), @(XCDYouTubeVideoQualityMedium360) ];
+		self.videoPlayerViewController.preferredVideoQualities = @[ @(XCDYouTubeVideoQualitySmall240), @(XCDYouTubeVideoQualityMedium360) ];
 	
 	if (self.fullScreenSwitch.on)
 		[self presentMoviePlayerViewControllerAnimated:self.videoPlayerViewController];
