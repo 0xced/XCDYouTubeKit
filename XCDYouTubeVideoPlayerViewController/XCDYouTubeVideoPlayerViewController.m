@@ -37,11 +37,13 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 @property (nonatomic, strong) NSMutableData *connectionData;
 @property (nonatomic, strong) NSMutableArray *elFields;
 @property (nonatomic, assign, getter = isEmbedded) BOOL embedded;
+@property (nonatomic, assign) BOOL statusBarHidden;
+@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 @end
 
 @implementation XCDYouTubeVideoPlayerViewController
 
-static void *MoviePlayerKey = &MoviePlayerKey;
+static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerViewControllerKey;
 
 - (id) init
 {
@@ -66,7 +68,14 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 	if (videoIdentifier)
 		self.videoIdentifier = videoIdentifier;
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerWillExitFullscreen:) name:MPMoviePlayerWillExitFullscreenNotification object:self.moviePlayer];
+	
 	return self;
+}
+
+- (void) dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) setVideoIdentifier:(NSString *)videoIdentifier
@@ -91,11 +100,15 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 {
 	self.embedded = YES;
 	
+	UIApplication *application = [UIApplication sharedApplication];
+	self.statusBarHidden = application.statusBarHidden;
+	self.statusBarStyle = application.statusBarStyle;
+	
 	self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
 	self.moviePlayer.view.frame = CGRectMake(0.f, 0.f, view.bounds.size.width, view.bounds.size.height);
 	self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	[view addSubview:self.moviePlayer.view];
-	objc_setAssociatedObject(view, MoviePlayerKey, self.moviePlayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	objc_setAssociatedObject(view, XCDYouTubeVideoPlayerViewControllerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void) startVideoInfoRequest
@@ -176,6 +189,15 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
 	[self finishWithError:error];
+}
+
+#pragma mark - Notifications
+
+- (void) moviePlayerWillExitFullscreen:(NSNotification *)notification
+{
+	UIApplication *application = [UIApplication sharedApplication];
+	[application setStatusBarHidden:self.statusBarHidden withAnimation:UIStatusBarAnimationFade];
+	[application setStatusBarStyle:self.statusBarStyle animated:YES];
 }
 
 #pragma mark - URL Parsing

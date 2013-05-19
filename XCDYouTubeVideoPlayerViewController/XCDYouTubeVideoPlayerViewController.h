@@ -29,7 +29,7 @@ MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NS
 // If you really know what you are doing, you can use the `itag` values as described on http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs
 @property (nonatomic, copy) NSArray *preferredVideoQualities;
 
-// Ownership of the `moviePlayer` property is transferred to the view.
+// Ownership of the XCDYouTubeVideoPlayerViewController instance is transferred to the view.
 - (void) presentInView:(UIView *)view;
 
 @end
