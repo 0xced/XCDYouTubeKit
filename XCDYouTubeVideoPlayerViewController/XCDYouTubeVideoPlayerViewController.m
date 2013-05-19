@@ -68,6 +68,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	if (videoIdentifier)
 		self.videoIdentifier = videoIdentifier;
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerWillEnterFullscreen:) name:MPMoviePlayerWillEnterFullscreenNotification object:self.moviePlayer];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerWillExitFullscreen:) name:MPMoviePlayerWillExitFullscreenNotification object:self.moviePlayer];
 	
 	return self;
@@ -99,10 +100,6 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 - (void) presentInView:(UIView *)view
 {
 	self.embedded = YES;
-	
-	UIApplication *application = [UIApplication sharedApplication];
-	self.statusBarHidden = application.statusBarHidden;
-	self.statusBarStyle = application.statusBarStyle;
 	
 	self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
 	self.moviePlayer.view.frame = CGRectMake(0.f, 0.f, view.bounds.size.width, view.bounds.size.height);
@@ -192,6 +189,13 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 }
 
 #pragma mark - Notifications
+
+- (void) moviePlayerWillEnterFullscreen:(NSNotification *)notification
+{
+	UIApplication *application = [UIApplication sharedApplication];
+	self.statusBarHidden = application.statusBarHidden;
+	self.statusBarStyle = application.statusBarStyle;
+}
 
 - (void) moviePlayerWillExitFullscreen:(NSNotification *)notification
 {
