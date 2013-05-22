@@ -14,6 +14,12 @@
 NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
 NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey";
 
+NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification = @"XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification";
+NSString *const XCDMetadataKeyTitle = @"Title";
+NSString *const XCDMetadataKeySmallThumbnailURL = @"SmallThumbnailURL";
+NSString *const XCDMetadataKeyMediumThumbnailURL = @"MediumThumbnailURL";
+NSString *const XCDMetadataKeyLargeThumbnailURL = @"LargeThumbnailURL";
+
 static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncoding encoding)
 {
 	NSMutableDictionary *dictionary = [NSMutableDictionary new];
@@ -230,7 +236,24 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	{
 		NSURL *streamURL = streamURLs[videoQuality];
 		if (streamURL)
+		{
+			NSString *title = video[@"title"];
+			NSString *thumbnailSmall = video[@"thumbnail_url"];
+			NSString *thumbnailMedium = video[@"iurlsd"];
+			NSString *thumbnailLarge = video[@"iurlmaxres"];
+			NSMutableDictionary *userInfo = [NSMutableDictionary new];
+			if (title)
+				userInfo[XCDMetadataKeyTitle] = title;
+			if (thumbnailSmall)
+				userInfo[XCDMetadataKeySmallThumbnailURL] = [NSURL URLWithString:thumbnailSmall];
+			if (thumbnailMedium)
+				userInfo[XCDMetadataKeyMediumThumbnailURL] = [NSURL URLWithString:thumbnailMedium];
+			if (thumbnailLarge)
+				userInfo[XCDMetadataKeyLargeThumbnailURL] = [NSURL URLWithString:thumbnailLarge];
+			
+			[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:self userInfo:userInfo];
 			return streamURL;
+		}
 	}
 	
 	if (error)

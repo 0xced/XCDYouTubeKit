@@ -18,6 +18,12 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 MP_EXTERN NSString *const XCDYouTubeVideoErrorDomain;
 MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NSError
 
+MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification;
+MP_EXTERN NSString *const XCDMetadataKeyTitle;
+MP_EXTERN NSString *const XCDMetadataKeySmallThumbnailURL;
+MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL;
+MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL;
+
 @interface XCDYouTubeVideoPlayerViewController : MPMoviePlayerViewController
 
 - (id) initWithVideoIdentifier:(NSString *)videoIdentifier;
