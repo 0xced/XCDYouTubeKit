@@ -26,6 +26,7 @@
 	if (!(self = [super initWithNibName:nibName bundle:nibBundle]))
 		return nil;
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveMetadata:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackStateDidChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerLoadStateDidChange:) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
@@ -161,6 +162,11 @@
 		[loadState appendString:@" | Stalled"];
 	
 	NSLog(@"Load State: %@", loadState.length > 0 ? [loadState substringFromIndex:3] : @"N/A");
+}
+
+- (void) videoPlayerViewControllerDidReceiveMetadata:(NSNotification *)notification
+{
+	NSLog(@"Metadata: %@", notification.userInfo);
 }
 
 @end
