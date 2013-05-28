@@ -32,14 +32,14 @@ Use `XCDYouTubeVideoPlayerViewController` the same way you use a `MPMoviePlayerV
 
 #### Present the video in full-screen
 
-```
+```objc
 XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 ```
 
 #### Fetch the video identifier asynchronously
 
-```
+```objc
 XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
 [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 
@@ -53,7 +53,7 @@ NSURL *url = [NSURL URLWithString:@"https://gdata.youtube.com/feeds/api/standard
 
 #### Present the video in a non full-screen view
 
-```
+```objc
 XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 [videoPlayerViewController presentInView:self.videoContainerView];
 ```
