@@ -81,6 +81,7 @@
 	{
 		[self.videoContainerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 		[videoPlayerViewController presentInView:self.videoContainerView];
+		[videoPlayerViewController.moviePlayer prepareToPlay];
 	}
 	
 	// https://developers.google.com/youtube/2.0/developers_guide_protocol_video_feeds#Standard_feeds
@@ -167,6 +168,43 @@
 - (void) videoPlayerViewControllerDidReceiveMetadata:(NSNotification *)notification
 {
 	NSLog(@"Metadata: %@", notification.userInfo);
+	
+	if (notification.object != self.videoPlayerViewController)
+		return;
+	
+	NSURL *thumbnailURL = notification.userInfo[XCDMetadataKeyMediumThumbnailURL] ?: notification.userInfo[XCDMetadataKeySmallThumbnailURL];
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:thumbnailURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+		UIImageView *thumbnailImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.videoContainerView.bounds.size.width, self.videoContainerView.bounds.size.height)];
+		thumbnailImageView.image = [UIImage imageWithData:data];
+		thumbnailImageView.backgroundColor = [UIColor blackColor];
+		thumbnailImageView.contentMode = UIViewContentModeScaleAspectFit;
+		thumbnailImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		thumbnailImageView.userInteractionEnabled = YES;
+		[self.videoContainerView addSubview:thumbnailImageView];
+		
+		// Do not get the `Play` image like this in production code
+		NSString *simulatorRoot = [[[NSProcessInfo processInfo] environment] objectForKey:@"IPHONE_SIMULATOR_ROOT"] ?: @"";
+		NSBundle *quickTimePlugin = [NSBundle bundleWithPath:[simulatorRoot stringByAppendingPathComponent:@"/System/Library/Internet Plug-Ins/QuickTime Plugin.webplugin"]];
+		NSURL *playURL = [quickTimePlugin URLForResource:@"Play" withExtension:@"png"];
+		UIImage *playImage = [UIImage imageWithContentsOfFile:playURL.path];
+		UIButton *playButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		playButton.frame = thumbnailImageView.frame;
+		playButton.autoresizingMask = thumbnailImageView.autoresizingMask;
+		[playButton setImage:playImage forState:UIControlStateNormal];
+		[playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
+		[thumbnailImageView addSubview:playButton];
+	}];
+}
+
+- (void) play:(UIButton *)sender
+{
+	[UIView animateWithDuration:0.3f animations:^{
+		sender.superview.alpha = 0.f;
+	} completion:^(BOOL finished) {
+		[sender.superview removeFromSuperview];
+	}];
+	
+	[self.videoPlayerViewController.moviePlayer play];
 }
 
 @end
