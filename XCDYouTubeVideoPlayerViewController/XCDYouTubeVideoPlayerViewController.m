@@ -110,7 +110,8 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
 	self.moviePlayer.view.frame = CGRectMake(0.f, 0.f, view.bounds.size.width, view.bounds.size.height);
 	self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	[view addSubview:self.moviePlayer.view];
+	if (![view.subviews containsObject:self.moviePlayer.view])
+		[view addSubview:self.moviePlayer.view];
 	objc_setAssociatedObject(view, XCDYouTubeVideoPlayerViewControllerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

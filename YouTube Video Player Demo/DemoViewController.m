@@ -63,7 +63,7 @@
 	
 	if (self.fullScreenSwitch.on)
 		[self presentMoviePlayerViewControllerAnimated:self.videoPlayerViewController];
-	else if (![self.videoContainerView.subviews containsObject:self.videoPlayerViewController.moviePlayer.view])
+	else
 		[self.videoPlayerViewController presentInView:self.videoContainerView];
 }
 
