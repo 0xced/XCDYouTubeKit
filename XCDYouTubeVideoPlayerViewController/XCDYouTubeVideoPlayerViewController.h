@@ -19,6 +19,7 @@ MP_EXTERN NSString *const XCDYouTubeVideoErrorDomain;
 MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NSError
 
 MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification;
+// Metadata notification userInfo keys, they are all optional
 MP_EXTERN NSString *const XCDMetadataKeyTitle;
 MP_EXTERN NSString *const XCDMetadataKeySmallThumbnailURL;
 MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL;
