@@ -180,18 +180,11 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	NSError *error = nil;
 	NSURL *videoURL = [self videoURLWithData:self.connectionData error:&error];
 	if (videoURL)
-	{
 		self.moviePlayer.contentURL = videoURL;
-		[self.moviePlayer prepareToPlay];
-	}
 	else if (self.elFields.count > 0)
-	{
 		[self startVideoInfoRequest];
-	}
 	else
-	{
 		[self finishWithError:error];
-	}
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
