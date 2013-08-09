@@ -18,6 +18,19 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 MP_EXTERN NSString *const XCDYouTubeVideoErrorDomain;
 MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NSError
 
+enum {
+	XCDYouTubeErrorInvalidVideoIdentifier = 2,
+	XCDYouTubeErrorRemovedVideo           = 100,
+	XCDYouTubeErrorRestrictedPlayback     = 150
+};
+
+MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification;
+// Metadata notification userInfo keys, they are all optional
+MP_EXTERN NSString *const XCDMetadataKeyTitle;
+MP_EXTERN NSString *const XCDMetadataKeySmallThumbnailURL;
+MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL;
+MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL;
+
 @interface XCDYouTubeVideoPlayerViewController : MPMoviePlayerViewController
 
 - (id) initWithVideoIdentifier:(NSString *)videoIdentifier;
@@ -29,7 +42,7 @@ MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NS
 // If you really know what you are doing, you can use the `itag` values as described on http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs
 @property (nonatomic, copy) NSArray *preferredVideoQualities;
 
-// Ownership of the `moviePlayer` property is transferred to the view.
+// Ownership of the XCDYouTubeVideoPlayerViewController instance is transferred to the view.
 - (void) presentInView:(UIView *)view;
 
 @end

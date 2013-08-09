@@ -14,6 +14,12 @@
 NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
 NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey";
 
+NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification = @"XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification";
+NSString *const XCDMetadataKeyTitle = @"Title";
+NSString *const XCDMetadataKeySmallThumbnailURL = @"SmallThumbnailURL";
+NSString *const XCDMetadataKeyMediumThumbnailURL = @"MediumThumbnailURL";
+NSString *const XCDMetadataKeyLargeThumbnailURL = @"LargeThumbnailURL";
+
 static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncoding encoding)
 {
 	NSMutableDictionary *dictionary = [NSMutableDictionary new];
@@ -37,11 +43,13 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 @property (nonatomic, strong) NSMutableData *connectionData;
 @property (nonatomic, strong) NSMutableArray *elFields;
 @property (nonatomic, assign, getter = isEmbedded) BOOL embedded;
+@property (nonatomic, assign) BOOL statusBarHidden;
+@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 @end
 
 @implementation XCDYouTubeVideoPlayerViewController
 
-static void *MoviePlayerKey = &MoviePlayerKey;
+static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerViewControllerKey;
 
 - (id) init
 {
@@ -66,7 +74,15 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 	if (videoIdentifier)
 		self.videoIdentifier = videoIdentifier;
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerWillEnterFullscreen:) name:MPMoviePlayerWillEnterFullscreenNotification object:self.moviePlayer];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerWillExitFullscreen:) name:MPMoviePlayerWillExitFullscreenNotification object:self.moviePlayer];
+	
 	return self;
+}
+
+- (void) dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) setVideoIdentifier:(NSString *)videoIdentifier
@@ -94,8 +110,9 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 	self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
 	self.moviePlayer.view.frame = CGRectMake(0.f, 0.f, view.bounds.size.width, view.bounds.size.height);
 	self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	[view addSubview:self.moviePlayer.view];
-	objc_setAssociatedObject(view, MoviePlayerKey, self.moviePlayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	if (![view.subviews containsObject:self.moviePlayer.view])
+		[view addSubview:self.moviePlayer.view];
+	objc_setAssociatedObject(view, XCDYouTubeVideoPlayerViewControllerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void) startVideoInfoRequest
@@ -129,16 +146,21 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 {
 	[super viewWillAppear:animated];
 	
-	if ([self isBeingPresented])
-		self.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+	if (![self isBeingPresented])
+		return;
+	
+	self.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+	[self.moviePlayer play];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
 	
-	if ([self isBeingDismissed])
-		[self.connection cancel];
+	if (![self isBeingDismissed])
+		return;
+	
+	[self.connection cancel];
 }
 
 #pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate
@@ -159,23 +181,32 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 	NSError *error = nil;
 	NSURL *videoURL = [self videoURLWithData:self.connectionData error:&error];
 	if (videoURL)
-	{
 		self.moviePlayer.contentURL = videoURL;
-		[self.moviePlayer prepareToPlay];
-	}
 	else if (self.elFields.count > 0)
-	{
 		[self startVideoInfoRequest];
-	}
 	else
-	{
 		[self finishWithError:error];
-	}
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
 	[self finishWithError:error];
+}
+
+#pragma mark - Notifications
+
+- (void) moviePlayerWillEnterFullscreen:(NSNotification *)notification
+{
+	UIApplication *application = [UIApplication sharedApplication];
+	self.statusBarHidden = application.statusBarHidden;
+	self.statusBarStyle = application.statusBarStyle;
+}
+
+- (void) moviePlayerWillExitFullscreen:(NSNotification *)notification
+{
+	UIApplication *application = [UIApplication sharedApplication];
+	[application setStatusBarHidden:self.statusBarHidden withAnimation:UIStatusBarAnimationFade];
+	[application setStatusBarStyle:self.statusBarStyle animated:YES];
 }
 
 #pragma mark - URL Parsing
@@ -192,9 +223,11 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 	{
 		NSDictionary *stream = DictionaryWithQueryString(streamQuery, queryEncoding);
 		NSString *type = stream[@"type"];
-		if ([AVURLAsset isPlayableExtendedMIMEType:type])
+		NSString *urlString = stream[@"url"];
+		NSString *signature = stream[@"sig"];
+		if (urlString && signature && [AVURLAsset isPlayableExtendedMIMEType:type])
 		{
-			NSURL *streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", stream[@"url"], stream[@"sig"]]];
+			NSURL *streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, signature]];
 			streamURLs[@([stream[@"itag"] integerValue])] = streamURL;
 		}
 	}
@@ -203,7 +236,24 @@ static void *MoviePlayerKey = &MoviePlayerKey;
 	{
 		NSURL *streamURL = streamURLs[videoQuality];
 		if (streamURL)
+		{
+			NSString *title = video[@"title"];
+			NSString *thumbnailSmall = video[@"thumbnail_url"];
+			NSString *thumbnailMedium = video[@"iurlsd"];
+			NSString *thumbnailLarge = video[@"iurlmaxres"];
+			NSMutableDictionary *userInfo = [NSMutableDictionary new];
+			if (title)
+				userInfo[XCDMetadataKeyTitle] = title;
+			if (thumbnailSmall)
+				userInfo[XCDMetadataKeySmallThumbnailURL] = [NSURL URLWithString:thumbnailSmall];
+			if (thumbnailMedium)
+				userInfo[XCDMetadataKeyMediumThumbnailURL] = [NSURL URLWithString:thumbnailMedium];
+			if (thumbnailLarge)
+				userInfo[XCDMetadataKeyLargeThumbnailURL] = [NSURL URLWithString:thumbnailLarge];
+			
+			[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:self userInfo:userInfo];
 			return streamURL;
+		}
 	}
 	
 	if (error)
