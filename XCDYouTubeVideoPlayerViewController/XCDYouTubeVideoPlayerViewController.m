@@ -224,9 +224,10 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 		NSDictionary *stream = DictionaryWithQueryString(streamQuery, queryEncoding);
 		NSString *type = stream[@"type"];
 		NSString *urlString = stream[@"url"];
-		if (urlString && [AVURLAsset isPlayableExtendedMIMEType:type])
+		NSString *signature = stream[@"sig"];
+		if (urlString && signature && [AVURLAsset isPlayableExtendedMIMEType:type])
 		{
-			NSURL *streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, stream[@"sig"]]];
+			NSURL *streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, signature]];
 			streamURLs[@([stream[@"itag"] integerValue])] = streamURL;
 		}
 	}
