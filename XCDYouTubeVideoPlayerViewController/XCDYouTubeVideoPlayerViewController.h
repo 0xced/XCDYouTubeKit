@@ -18,6 +18,12 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 MP_EXTERN NSString *const XCDYouTubeVideoErrorDomain;
 MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NSError
 
+enum {
+	XCDYouTubeErrorInvalidVideoIdentifier = 2,
+	XCDYouTubeErrorRemovedVideo           = 100,
+	XCDYouTubeErrorRestrictedPlayback     = 150
+};
+
 MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification;
 // Metadata notification userInfo keys, they are all optional
 MP_EXTERN NSString *const XCDMetadataKeyTitle;
