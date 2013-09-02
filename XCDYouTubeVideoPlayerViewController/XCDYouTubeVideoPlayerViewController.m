@@ -38,6 +38,19 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	return dictionary;
 }
 
+static NSString *ApplicationLanguageIdentifier(void)
+{
+	static NSString *applicationLanguageIdentifier;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		applicationLanguageIdentifier = @"en";
+		NSArray *preferredLocalizations = [NSBundle preferredLocalizationsFromArray:[[NSBundle mainBundle] localizations]];
+		if (preferredLocalizations.count > 0)
+			applicationLanguageIdentifier = [NSLocale canonicalLanguageIdentifierFromString:preferredLocalizations[0]] ?: applicationLanguageIdentifier;
+	});
+	return applicationLanguageIdentifier;
+}
+
 @interface XCDYouTubeVideoPlayerViewController ()
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *connectionData;
@@ -122,7 +135,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	if (elField.length > 0)
 		elField = [@"&el=" stringByAppendingString:elField];
 	
-	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=en", self.videoIdentifier ?: @"", elField]];
+	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=%@", self.videoIdentifier ?: @"", elField, ApplicationLanguageIdentifier()]];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[self.connection cancel];
 	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
