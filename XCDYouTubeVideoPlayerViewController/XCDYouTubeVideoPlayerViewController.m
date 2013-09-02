@@ -274,7 +274,14 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 		NSMutableDictionary *userInfo = [@{ NSURLErrorKey: self.connection.originalRequest.URL } mutableCopy];
 		NSString *reason = video[@"reason"];
 		if (reason)
+		{
+			reason = [reason stringByReplacingOccurrencesOfString:@"<br\\s*/?>" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, reason.length)];
+			NSRange range;
+			while ((range = [reason rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+				reason = [reason stringByReplacingCharactersInRange:range withString:@""];
+			
 			userInfo[NSLocalizedDescriptionKey] = reason;
+		}
 		
 		NSInteger code = [video[@"errorcode"] integerValue];
 		*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:code userInfo:userInfo];
