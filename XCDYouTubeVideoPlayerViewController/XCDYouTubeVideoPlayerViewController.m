@@ -44,7 +44,7 @@ static NSString *ApplicationLanguageIdentifier(void)
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		applicationLanguageIdentifier = @"en";
-		NSArray *preferredLocalizations = [NSBundle preferredLocalizationsFromArray:[[NSBundle mainBundle] localizations]];
+		NSArray *preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
 		if (preferredLocalizations.count > 0)
 			applicationLanguageIdentifier = [NSLocale canonicalLanguageIdentifierFromString:preferredLocalizations[0]] ?: applicationLanguageIdentifier;
 	});
