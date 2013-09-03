@@ -16,12 +16,12 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 };
 
 MP_EXTERN NSString *const XCDYouTubeVideoErrorDomain;
-MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NSError
+MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NSError key for the `MPMoviePlayerPlaybackDidFinishNotification` userInfo dictionary
 
 enum {
-	XCDYouTubeErrorInvalidVideoIdentifier = 2,
-	XCDYouTubeErrorRemovedVideo           = 100,
-	XCDYouTubeErrorRestrictedPlayback     = 150
+	XCDYouTubeErrorInvalidVideoIdentifier = 2,   // The given `videoIdentifier` string is invalid (including `nil`)
+	XCDYouTubeErrorRemovedVideo           = 100, // The video has been removed as a violation of YouTube's policy
+	XCDYouTubeErrorRestrictedPlayback     = 150  // The video is not playable because of legal reasons or the this is a private video
 };
 
 MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification;
