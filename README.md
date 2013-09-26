@@ -43,7 +43,7 @@ XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVid
 XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
 [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 
-NSURL *url = [NSURL URLWithString:@"https://gdata.youtube.com/feeds/api/standardfeeds/on_the_web?v=2&alt=json&max-results=1"];
+NSURL *url = [NSURL URLWithString:@"https://gdata.youtube.com/feeds/api/standardfeeds/most_popular?v=2&alt=json&time=today&max-results=1"];
 [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 	id json = [NSJSONSerialization JSONObjectWithData:data ?: [NSData new] options:0 error:NULL];
 	NSString *videoIdentifier = [[[json valueForKeyPath:@"feed.entry.media$group.yt$videoid.$t"] lastObject] description];
@@ -56,6 +56,7 @@ NSURL *url = [NSURL URLWithString:@"https://gdata.youtube.com/feeds/api/standard
 ```objc
 XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 [videoPlayerViewController presentInView:self.videoContainerView];
+[videoPlayerViewController.moviePlayer play];
 ```
 
 See the demo project for more sample code.
