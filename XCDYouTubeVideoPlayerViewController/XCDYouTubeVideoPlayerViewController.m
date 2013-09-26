@@ -193,7 +193,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	NSUInteger capacity = response.expectedContentLength == NSURLResponseUnknownLength ? 0 : response.expectedContentLength;
+	NSUInteger capacity = response.expectedContentLength == NSURLResponseUnknownLength ? 0 : (NSUInteger)response.expectedContentLength;
 	self.connectionData = [[NSMutableData alloc] initWithCapacity:capacity];
 }
 
@@ -237,7 +237,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 
 #pragma mark - URL Parsing
 
-- (NSURL *) videoURLWithData:(NSData *)data error:(NSError **)error
+- (NSURL *) videoURLWithData:(NSData *)data error:(NSError * __autoreleasing *)error
 {
 	NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	NSStringEncoding queryEncoding = NSUTF8StringEncoding;
