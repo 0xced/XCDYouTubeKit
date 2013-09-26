@@ -40,6 +40,7 @@ MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL;
 // On iPhone, defaults to @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
 // On iPad, defaults to @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
 // If you really know what you are doing, you can use the `itag` values as described on http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs
+// Setting this property to nil restores its default values
 @property (nonatomic, copy) NSArray *preferredVideoQualities;
 
 // Ownership of the XCDYouTubeVideoPlayerViewController instance is transferred to the view.
