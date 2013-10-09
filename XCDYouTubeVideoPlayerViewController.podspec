@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/0xced/XCDYouTubeVideoPlayerViewController"
   s.license      = 'MIT'
   s.author       = { "Cédric Luthi" => "cedric.luthi@gmail.com" }
-  s.source       = { :git => "https://github.com/0xced/XCDYouTubeVideoPlayerViewController.git", :tag => "1.1.0" }
+  s.source       = { :git => "https://github.com/0xced/XCDYouTubeVideoPlayerViewController.git", :tag => s.version.to_s }
   s.platform     = :ios, '5.0'
   s.source_files = 'XCDYouTubeVideoPlayerViewController'
   s.frameworks   = 'AVFoundation', 'MediaPlayer'
