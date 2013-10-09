@@ -1,6 +1,11 @@
 #### Version 1.1.1
 
 * For errors of the `XCDYouTubeVideoErrorDomain` domain, `-[NSError localizedDescription]` is actually localized and doesn’t contain HTML tags, making it suitable for displaying to the user.
+* Setting the `preferredVideoQualities` property to nil restores its default values.
+* Added some documentation in the XCDYouTubeVideoPlayerViewController header file.
+* XCDYouTubeVideoPlayerViewController is built as a static library.
+* Better demo project with one feature illustrated per view controller.
+* iOS 7 compatible demo project.
 
 #### Version 1.1.0
 
