@@ -23,25 +23,8 @@
 		C27415DC17F4CDD80026834B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415D117F4CDD80026834B /* main.m */; };
 		C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E217F4D02E0026834B /* AVFoundation.framework */; };
 		C27415E517F4D0330026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E417F4D0330026834B /* MediaPlayer.framework */; };
-		C27415F017F5590F0026834B /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415EF17F558F50026834B /* libXCDYouTubeVideoPlayerViewController.a */; };
+		C2EDD2ED1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EDD2EC1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C27415EE17F558F50026834B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C27415EA17F558F50026834B /* XCDYouTubeVideoPlayerViewController.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C2A3F2CD17F4827800AC1C3B;
-			remoteInfo = XCDYouTubeVideoPlayerViewController;
-		};
-		C2D5CD1C17F572780086A486 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C27415EA17F558F50026834B /* XCDYouTubeVideoPlayerViewController.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C2A3F2CC17F4827800AC1C3B;
-			remoteInfo = XCDYouTubeVideoPlayerViewController;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C2478E9C17FF739100BCE94D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -68,7 +51,7 @@
 		C27415DE17F4CE4A0026834B /* YouTube Video Player Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YouTube Video Player Demo-Prefix.pch"; sourceTree = "<group>"; };
 		C27415E217F4D02E0026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = /Applications/Xcode4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = "<absolute>"; };
 		C27415E417F4D0330026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = /Applications/Xcode4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = "<absolute>"; };
-		C27415EA17F558F50026834B /* XCDYouTubeVideoPlayerViewController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = XCDYouTubeVideoPlayerViewController.xcodeproj; sourceTree = "<group>"; };
+		C2EDD2EC1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXCDYouTubeVideoPlayerViewController.a; path = "../build/Debug-iphoneos/libXCDYouTubeVideoPlayerViewController.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C27415F017F5590F0026834B /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */,
+				C2EDD2ED1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */,
 				C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */,
 				C27415A617F491230026834B /* CoreGraphics.framework in Frameworks */,
 				C27415A417F491230026834B /* Foundation.framework in Frameworks */,
@@ -91,7 +74,6 @@
 		C274159517F491230026834B = {
 			isa = PBXGroup;
 			children = (
-				C27415EA17F558F50026834B /* XCDYouTubeVideoPlayerViewController.xcodeproj */,
 				C27415BE17F4CDD80026834B /* YouTube Video Player Demo */,
 				C27415A017F491230026834B /* Frameworks */,
 				C274159F17F491230026834B /* Products */,
@@ -109,6 +91,7 @@
 		C27415A017F491230026834B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2EDD2EC1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a */,
 				C27415E217F4D02E0026834B /* AVFoundation.framework */,
 				C27415A517F491230026834B /* CoreGraphics.framework */,
 				C27415A317F491230026834B /* Foundation.framework */,
@@ -134,7 +117,7 @@
 				C27415C917F4CDD80026834B /* MainStoryboard.storyboard */,
 				C27415CB17F4CDD80026834B /* Supporting Files */,
 			);
-			path = "YouTube Video Player Demo";
+			name = "YouTube Video Player Demo";
 			sourceTree = "<group>";
 		};
 		C27415CB17F4CDD80026834B /* Supporting Files */ = {
@@ -151,14 +134,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C27415EB17F558F50026834B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C27415EF17F558F50026834B /* libXCDYouTubeVideoPlayerViewController.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,7 +148,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C2D5CD1D17F572780086A486 /* PBXTargetDependency */,
 			);
 			name = "YouTube Video Player Demo";
 			productName = "YouTube Video Player Demo";
@@ -199,28 +173,12 @@
 			mainGroup = C274159517F491230026834B;
 			productRefGroup = C274159F17F491230026834B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C27415EB17F558F50026834B /* Products */;
-					ProjectRef = C27415EA17F558F50026834B /* XCDYouTubeVideoPlayerViewController.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				C274159D17F491230026834B /* YouTube Video Player Demo */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		C27415EF17F558F50026834B /* libXCDYouTubeVideoPlayerViewController.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libXCDYouTubeVideoPlayerViewController.a;
-			remoteRef = C27415EE17F558F50026834B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C274159C17F491230026834B /* Resources */ = {
@@ -252,14 +210,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C2D5CD1D17F572780086A486 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = XCDYouTubeVideoPlayerViewController;
-			targetProxy = C2D5CD1C17F572780086A486 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C27415C917F4CDD80026834B /* MainStoryboard.storyboard */ = {
@@ -335,9 +285,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YouTube Video Player Demo/Supporting Files/YouTube Video Player Demo-Prefix.pch";
+				GCC_PREFIX_HEADER = "Supporting Files/YouTube Video Player Demo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/include";
-				INFOPLIST_FILE = "YouTube Video Player Demo/Supporting Files/YouTube Video Player Demo-Info.plist";
+				INFOPLIST_FILE = "Supporting Files/YouTube Video Player Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -347,9 +297,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YouTube Video Player Demo/Supporting Files/YouTube Video Player Demo-Prefix.pch";
+				GCC_PREFIX_HEADER = "Supporting Files/YouTube Video Player Demo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/include";
-				INFOPLIST_FILE = "YouTube Video Player Demo/Supporting Files/YouTube Video Player Demo-Info.plist";
+				INFOPLIST_FILE = "Supporting Files/YouTube Video Player Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
