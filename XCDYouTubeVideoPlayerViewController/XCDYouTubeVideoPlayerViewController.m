@@ -1,6 +1,6 @@
 //
 //  XCDYouTubeVideoPlayerViewController.m
-//  YouTube Video Player Demo
+//  XCDYouTubeVideoPlayerViewController
 //
 //  Created by Cédric Luthi on 02.05.13.
 //  Copyright (c) 2013 Cédric Luthi. All rights reserved.
@@ -38,6 +38,19 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	return dictionary;
 }
 
+static NSString *ApplicationLanguageIdentifier(void)
+{
+	static NSString *applicationLanguageIdentifier;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		applicationLanguageIdentifier = @"en";
+		NSArray *preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
+		if (preferredLocalizations.count > 0)
+			applicationLanguageIdentifier = [NSLocale canonicalLanguageIdentifierFromString:preferredLocalizations[0]] ?: applicationLanguageIdentifier;
+	});
+	return applicationLanguageIdentifier;
+}
+
 @interface XCDYouTubeVideoPlayerViewController ()
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *connectionData;
@@ -66,10 +79,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	if (!(self = [super init]))
 		return nil;
 	
-	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-		_preferredVideoQualities = @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
-	else
-		_preferredVideoQualities = @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
+	self.preferredVideoQualities = nil;
 	
 	if (videoIdentifier)
 		self.videoIdentifier = videoIdentifier;
@@ -103,6 +113,21 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	[self startVideoInfoRequest];
 }
 
+- (void) setPreferredVideoQualities:(NSArray *)preferredVideoQualities
+{
+	if (preferredVideoQualities)
+	{
+		_preferredVideoQualities = [preferredVideoQualities copy];
+	}
+	else
+	{
+		if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+			_preferredVideoQualities = @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
+		else
+			_preferredVideoQualities = @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
+	}
+}
+
 - (void) presentInView:(UIView *)view
 {
 	self.embedded = YES;
@@ -122,8 +147,9 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	if (elField.length > 0)
 		elField = [@"&el=" stringByAppendingString:elField];
 	
-	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=en", self.videoIdentifier ?: @"", elField]];
-	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=%@", self.videoIdentifier ?: @"", elField, ApplicationLanguageIdentifier()]];
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+	[request setValue:ApplicationLanguageIdentifier() forHTTPHeaderField:@"Accept-Language"];
 	[self.connection cancel];
 	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
@@ -167,7 +193,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	NSUInteger capacity = response.expectedContentLength == NSURLResponseUnknownLength ? 0 : response.expectedContentLength;
+	NSUInteger capacity = response.expectedContentLength == NSURLResponseUnknownLength ? 0 : (NSUInteger)response.expectedContentLength;
 	self.connectionData = [[NSMutableData alloc] initWithCapacity:capacity];
 }
 
@@ -211,7 +237,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 
 #pragma mark - URL Parsing
 
-- (NSURL *) videoURLWithData:(NSData *)data error:(NSError **)error
+- (NSURL *) videoURLWithData:(NSData *)data error:(NSError * __autoreleasing *)error
 {
 	NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	NSStringEncoding queryEncoding = NSUTF8StringEncoding;
@@ -261,7 +287,14 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 		NSMutableDictionary *userInfo = [@{ NSURLErrorKey: self.connection.originalRequest.URL } mutableCopy];
 		NSString *reason = video[@"reason"];
 		if (reason)
+		{
+			reason = [reason stringByReplacingOccurrencesOfString:@"<br\\s*/?>" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, reason.length)];
+			NSRange range;
+			while ((range = [reason rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+				reason = [reason stringByReplacingCharactersInRange:range withString:@""];
+			
 			userInfo[NSLocalizedDescriptionKey] = reason;
+		}
 		
 		NSInteger code = [video[@"errorcode"] integerValue];
 		*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:code userInfo:userInfo];
