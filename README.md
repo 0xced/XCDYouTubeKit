@@ -37,20 +37,6 @@ XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVid
 [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 ```
 
-#### Fetch the video identifier asynchronously
-
-```objc
-XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
-[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
-
-NSURL *url = [NSURL URLWithString:@"https://gdata.youtube.com/feeds/api/standardfeeds/most_popular?v=2&alt=json&time=today&max-results=1"];
-[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-	id json = [NSJSONSerialization JSONObjectWithData:data ?: [NSData new] options:0 error:NULL];
-	NSString *videoIdentifier = [[[json valueForKeyPath:@"feed.entry.media$group.yt$videoid.$t"] lastObject] description];
-	videoPlayerViewController.videoIdentifier = videoIdentifier;
-}];
-```
-
 #### Present the video in a non full-screen view
 
 ```objc
