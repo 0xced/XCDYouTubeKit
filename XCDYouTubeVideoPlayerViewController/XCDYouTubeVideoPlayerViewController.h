@@ -16,7 +16,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 };
 
 MP_EXTERN NSString *const XCDYouTubeVideoErrorDomain;
-MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NSError key for the `MPMoviePlayerPlaybackDidFinishNotification` userInfo dictionary
+
+// NSError key for the `MPMoviePlayerPlaybackDidFinishNotification` userInfo dictionary
+// Ideally, there should be a `MPMoviePlayerPlaybackDidFinishErrorUserInfoKey` declared near to `MPMoviePlayerPlaybackDidFinishReasonUserInfoKey`
+// in MPMoviePlayerController.h but since it doesn't exist, here is a convenient constant key.
+MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey;
 
 enum {
 	XCDYouTubeErrorInvalidVideoIdentifier = 2,   // The given `videoIdentifier` string is invalid (including `nil`)

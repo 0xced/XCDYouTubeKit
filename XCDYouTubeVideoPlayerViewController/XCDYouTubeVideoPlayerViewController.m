@@ -12,7 +12,7 @@
 #import <objc/runtime.h>
 
 NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
-NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey";
+NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"error"; // documented in -[MPMoviePlayerController initWithContentURL:]
 
 NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification = @"XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification";
 NSString *const XCDMetadataKeyTitle = @"Title";
