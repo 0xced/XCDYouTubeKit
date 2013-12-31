@@ -58,7 +58,10 @@
 				C2A3F2CF17F4827800AC1C3B /* Frameworks */,
 				C2A3F2CE17F4827800AC1C3B /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 1;
 		};
 		C2A3F2CE17F4827800AC1C3B /* Products */ = {
 			isa = PBXGroup;

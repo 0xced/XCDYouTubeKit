@@ -78,7 +78,10 @@
 				C27415A017F491230026834B /* Frameworks */,
 				C274159F17F491230026834B /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 1;
 		};
 		C274159F17F491230026834B /* Products */ = {
 			isa = PBXGroup;
