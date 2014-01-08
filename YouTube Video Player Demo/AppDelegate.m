@@ -99,7 +99,22 @@
 
 - (void) videoPlayerViewControllerDidReceiveMetadata:(NSNotification *)notification
 {
-	NSLog(@"Metadata: %@", notification.userInfo);
+	NSDictionary *metadata = notification.userInfo;
+	NSLog(@"Metadata: %@", metadata);
+	
+	NSString *title = metadata[XCDMetadataKeyTitle];
+	if (title)
+		[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{ MPMediaItemPropertyTitle: title };
+	
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:metadata[XCDMetadataKeyMediumThumbnailURL]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+		if (data)
+		{
+			UIImage *image = [UIImage imageWithData:data];
+			MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:image];
+			if (title && artwork)
+				[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{ MPMediaItemPropertyTitle: title, MPMediaItemPropertyArtwork: artwork };
+		}
+	}];
 }
 
 @end
