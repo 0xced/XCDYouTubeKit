@@ -8,8 +8,6 @@
 
 #import "SettingsViewController.h"
 
-#import <AVFoundation/AVFoundation.h>
-
 @interface SettingsViewController () <UIActionSheetDelegate>
 
 @property (nonatomic, weak) IBOutlet UISwitch *playVideoInBackgroundSwitch;
@@ -46,6 +44,8 @@
 		return;
 	
 	NSString *category = @[AVAudioSessionCategorySoloAmbient, AVAudioSessionCategoryPlayback][buttonIndex];
+	[[NSUserDefaults standardUserDefaults] setObject:category forKey:@"AudioSessionCategory"];
+	
 	NSError *error = nil;
 	BOOL success = [[AVAudioSession sharedInstance] setCategory:category error:&error];
 	if (success)
@@ -56,6 +56,7 @@
 
 - (IBAction) done:(id)sender
 {
+	[[NSUserDefaults standardUserDefaults] synchronize];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
