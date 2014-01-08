@@ -24,6 +24,7 @@
 		C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E217F4D02E0026834B /* AVFoundation.framework */; };
 		C27415E517F4D0330026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E417F4D0330026834B /* MediaPlayer.framework */; };
 		C2EDD2ED1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EDD2EC1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a */; };
+		C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EFB48618730A2B0046B1FE /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		C27415E217F4D02E0026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = /Applications/Xcode4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = "<absolute>"; };
 		C27415E417F4D0330026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = /Applications/Xcode4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = "<absolute>"; };
 		C2EDD2EC1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXCDYouTubeVideoPlayerViewController.a; path = "../build/Debug-iphoneos/libXCDYouTubeVideoPlayerViewController.a"; sourceTree = "<group>"; };
+		C2EFB48518730A2B0046B1FE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		C2EFB48618730A2B0046B1FE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				C27415C817F4CDD80026834B /* DemoThumbnailViewController.m */,
 				C27415C117F4CDD80026834B /* DemoAsynchronousViewController.h */,
 				C27415C217F4CDD80026834B /* DemoAsynchronousViewController.m */,
+				C2EFB48518730A2B0046B1FE /* SettingsViewController.h */,
+				C2EFB48618730A2B0046B1FE /* SettingsViewController.m */,
 				C27415C917F4CDD80026834B /* MainStoryboard.storyboard */,
 				C27415CB17F4CDD80026834B /* Supporting Files */,
 			);
@@ -209,6 +214,7 @@
 				C27415D517F4CDD80026834B /* DemoInlineViewController.m in Sources */,
 				C27415D617F4CDD80026834B /* DemoThumbnailViewController.m in Sources */,
 				C27415DC17F4CDD80026834B /* main.m in Sources */,
+				C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
