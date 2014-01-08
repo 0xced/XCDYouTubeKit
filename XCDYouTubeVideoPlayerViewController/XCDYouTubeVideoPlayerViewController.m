@@ -270,7 +270,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 		{
 			NSString *title = video[@"title"];
 			NSString *thumbnailSmall = video[@"thumbnail_url"];
-			NSString *thumbnailMedium = video[@"iurlsd"];
+			NSString *thumbnailMedium = video[@"iurlsd"] ?: video[@"iurl"];
 			NSString *thumbnailLarge = video[@"iurlmaxres"];
 			NSMutableDictionary *userInfo = [NSMutableDictionary new];
 			if (title)
