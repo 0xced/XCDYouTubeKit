@@ -138,4 +138,9 @@
 	XCTAssertTrue([self.monitor waitWithTimeout:10], @"");
 }
 
+- (void) testWrongInitializer
+{
+	XCTAssertThrowsSpecificNamed([[XCDYouTubeVideoPlayerViewController alloc] initWithContentURL:nil], NSException, NSGenericException, @"");
+}
+
 @end
