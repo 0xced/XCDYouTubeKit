@@ -44,7 +44,7 @@
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 	[videoPlayerViewController addObserver:self forKeyPath:@"moviePlayer.contentURL" options:(NSKeyValueObservingOptions)0 context:_cmd];
-	[self.monitor waitWithTimeout:10];
+	XCTAssertTrue([self.monitor waitWithTimeout:10], @"");
 	XCTAssertNotNil(videoPlayerViewController.moviePlayer.contentURL, @"");
 }
 
@@ -65,7 +65,7 @@
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(youTubeVideoPlayerViewControllerDidReceiveMetadata:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:videoPlayerViewController];
-	[self.monitor waitWithTimeout:10];
+	XCTAssertTrue([self.monitor waitWithTimeout:10], @"");
 }
 
 - (void) youTubeVideoPlayerViewControllerDidReceiveMetadata:(NSNotification *)notification
@@ -82,7 +82,7 @@
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackStateDidChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:videoPlayerViewController.moviePlayer];
-	[self.monitor waitWithTimeout:10];
+	XCTAssertTrue([self.monitor waitWithTimeout:10], @"");
 	XCTAssertEqual(videoPlayerViewController.moviePlayer.playbackState, MPMoviePlaybackStatePlaying, @"");
 }
 
