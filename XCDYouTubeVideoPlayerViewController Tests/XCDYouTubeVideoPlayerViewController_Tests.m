@@ -78,4 +78,17 @@
 	[self.monitor signal];
 }
 
+- (void) testThatGangnamStyleVideoStartsPlaying
+{
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackStateDidChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:videoPlayerViewController.moviePlayer];
+	[self.monitor waitWithTimeout:10];
+	XCTAssertEqual(videoPlayerViewController.moviePlayer.playbackState, MPMoviePlaybackStatePlaying, @"");
+}
+
+- (void) moviePlayerPlaybackStateDidChange:(NSNotification *)notification
+{
+	[self.monitor signal];
+}
+
 @end
