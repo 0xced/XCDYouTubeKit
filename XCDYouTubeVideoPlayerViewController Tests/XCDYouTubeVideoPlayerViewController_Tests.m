@@ -113,4 +113,15 @@
 	XCTAssertTrue([self.monitor waitWithTimeout:10], @"");
 }
 
+- (void) testAsynchronousVideoIdentifier
+{
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
+	[videoPlayerViewController performSelector:@selector(setVideoIdentifier:) withObject:@"9bZkp7q19f0" afterDelay:0];
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackStateDidChangeNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+		XCTAssertEqual(videoPlayerViewController.moviePlayer.playbackState, MPMoviePlaybackStatePlaying, @"");
+		[self.monitor signal];
+	}];
+	XCTAssertTrue([self.monitor waitWithTimeout:10], @"");
+}
+
 @end
