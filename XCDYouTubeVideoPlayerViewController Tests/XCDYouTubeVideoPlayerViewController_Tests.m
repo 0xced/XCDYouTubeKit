@@ -91,4 +91,18 @@
 	[self.monitor signal];
 }
 
+- (void) testRestrictedVideo
+{
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"1kIsylLeHHU"];
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+		MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
+		XCTAssertEqual(finishReason, MPMovieFinishReasonPlaybackError, @"");
+		NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain, @"");
+		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback, @"");
+		[self.monitor signal];
+	}];
+	XCTAssertTrue([self.monitor waitWithTimeout:10], @"");
+}
+
 @end
