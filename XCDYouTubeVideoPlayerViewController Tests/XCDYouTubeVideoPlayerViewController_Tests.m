@@ -64,31 +64,25 @@
 - (void) testThatGangnamStyleVideoHasMetadata
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(youTubeVideoPlayerViewControllerDidReceiveMetadata:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:videoPlayerViewController];
+	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:videoPlayerViewController queue:nil usingBlock:^(NSNotification *notification) {
+		NSDictionary *metadata = notification.userInfo;
+		XCTAssertEqualObjects(metadata[XCDMetadataKeyTitle], @"PSY - GANGNAM STYLE (\U0000ac15\U0000b0a8\U0000c2a4\U0000d0c0\U0000c77c) M/V", @"");
+		XCTAssertTrue([metadata[XCDMetadataKeySmallThumbnailURL] isKindOfClass:[NSURL class]], @"Small thumbnail URL must be a NSURL");
+		XCTAssertTrue([metadata[XCDMetadataKeyMediumThumbnailURL] isKindOfClass:[NSURL class]], @"Medium thumbnail URL must be a NSURL");
+		XCTAssertTrue([metadata[XCDMetadataKeyLargeThumbnailURL] isKindOfClass:[NSURL class]], @"Large thumbnail URL must be a NSURL");
+		[self.monitor signal];
+	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10], @"");
-}
-
-- (void) youTubeVideoPlayerViewControllerDidReceiveMetadata:(NSNotification *)notification
-{
-	NSDictionary *metadata = notification.userInfo;
-	XCTAssertEqualObjects(metadata[XCDMetadataKeyTitle], @"PSY - GANGNAM STYLE (\U0000ac15\U0000b0a8\U0000c2a4\U0000d0c0\U0000c77c) M/V", @"");
-	XCTAssertTrue([metadata[XCDMetadataKeySmallThumbnailURL] isKindOfClass:[NSURL class]], @"Small thumbnail URL must be a NSURL");
-	XCTAssertTrue([metadata[XCDMetadataKeyMediumThumbnailURL] isKindOfClass:[NSURL class]], @"Medium thumbnail URL must be a NSURL");
-	XCTAssertTrue([metadata[XCDMetadataKeyLargeThumbnailURL] isKindOfClass:[NSURL class]], @"Large thumbnail URL must be a NSURL");
-	[self.monitor signal];
 }
 
 - (void) testThatGangnamStyleVideoStartsPlaying
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackStateDidChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:videoPlayerViewController.moviePlayer];
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackStateDidChangeNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+		XCTAssertEqual(videoPlayerViewController.moviePlayer.playbackState, MPMoviePlaybackStatePlaying, @"");
+		[self.monitor signal];
+	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10], @"");
-	XCTAssertEqual(videoPlayerViewController.moviePlayer.playbackState, MPMoviePlaybackStatePlaying, @"");
-}
-
-- (void) moviePlayerPlaybackStateDidChange:(NSNotification *)notification
-{
-	[self.monitor signal];
 }
 
 - (void) testRestrictedVideo
