@@ -7,12 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C20F579D18817D5400EDBFB0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20F579C18817D5400EDBFB0 /* XCTest.framework */; };
+		C20F57A818817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C20F57A718817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m */; };
+		C20F57AF1881804D00EDBFB0 /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeVideoPlayerViewController.a */; };
+		C20F57B01881806000EDBFB0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158817F48AD10026834B /* MediaPlayer.framework */; };
+		C20F57B11881806700EDBFB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158917F48AD10026834B /* UIKit.framework */; };
+		C20F57B21881806900EDBFB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158717F48AD10026834B /* AVFoundation.framework */; };
 		C274158D17F48B100026834B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158717F48AD10026834B /* AVFoundation.framework */; };
 		C274158E17F48B100026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158817F48AD10026834B /* MediaPlayer.framework */; };
 		C274158F17F48B100026834B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158917F48AD10026834B /* UIKit.framework */; };
+		C276638518849FC000241DDE /* TRVSMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C276638418849FC000241DDE /* TRVSMonitor.m */; };
 		C2A3F2D617F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = C2A3F2D517F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h */; };
 		C2A3F2D817F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3F2D717F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C20F57AA18817D5400EDBFB0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2A3F2C517F4827800AC1C3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2A3F2CC17F4827800AC1C3B;
+			remoteInfo = XCDYouTubeVideoPlayerViewController;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C2A3F2CB17F4827800AC1C3B /* Copy Files */ = {
@@ -29,15 +46,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C20F579B18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCDYouTubeVideoPlayerViewController Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C20F579C18817D5400EDBFB0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C20F57A718817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewController_Tests.m; sourceTree = "<group>"; };
 		C274158717F48AD10026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C274158817F48AD10026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C274158917F48AD10026834B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C276638318849FC000241DDE /* TRVSMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRVSMonitor.h; sourceTree = "<group>"; };
+		C276638418849FC000241DDE /* TRVSMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRVSMonitor.m; sourceTree = "<group>"; };
 		C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeVideoPlayerViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXCDYouTubeVideoPlayerViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2A3F2D517F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideoPlayerViewController.h; sourceTree = "<group>"; };
 		C2A3F2D717F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C20F579818817D5400EDBFB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C20F57AF1881804D00EDBFB0 /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */,
+				C20F57B21881806900EDBFB0 /* AVFoundation.framework in Frameworks */,
+				C20F57B01881806000EDBFB0 /* MediaPlayer.framework in Frameworks */,
+				C20F57B11881806700EDBFB0 /* UIKit.framework in Frameworks */,
+				C20F579D18817D5400EDBFB0 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2A3F2CA17F4827800AC1C3B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -51,10 +85,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C20F57A118817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C276638218849FC000241DDE /* TRVSMonitor */,
+				C20F57A718817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m */,
+			);
+			path = "XCDYouTubeVideoPlayerViewController Tests";
+			sourceTree = "<group>";
+		};
+		C276638218849FC000241DDE /* TRVSMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				C276638318849FC000241DDE /* TRVSMonitor.h */,
+				C276638418849FC000241DDE /* TRVSMonitor.m */,
+			);
+			name = TRVSMonitor;
+			path = TRVSMonitor/TRVSMonitor;
+			sourceTree = "<group>";
+		};
 		C2A3F2C417F4827800AC1C3B = {
 			isa = PBXGroup;
 			children = (
 				C2A3F2D217F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */,
+				C20F57A118817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests */,
 				C2A3F2CF17F4827800AC1C3B /* Frameworks */,
 				C2A3F2CE17F4827800AC1C3B /* Products */,
 			);
@@ -67,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeVideoPlayerViewController.a */,
+				C20F579B18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,6 +132,7 @@
 				C274158717F48AD10026834B /* AVFoundation.framework */,
 				C274158817F48AD10026834B /* MediaPlayer.framework */,
 				C274158917F48AD10026834B /* UIKit.framework */,
+				C20F579C18817D5400EDBFB0 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -93,6 +149,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C20F579A18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C20F57AE18817D5400EDBFB0 /* Build configuration list for PBXNativeTarget "XCDYouTubeVideoPlayerViewController Tests" */;
+			buildPhases = (
+				C20F579718817D5400EDBFB0 /* Sources */,
+				C20F579818817D5400EDBFB0 /* Frameworks */,
+				C20F579918817D5400EDBFB0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C20F57AB18817D5400EDBFB0 /* PBXTargetDependency */,
+			);
+			name = "XCDYouTubeVideoPlayerViewController Tests";
+			productName = "XCDYouTubeVideoPlayerViewController Tests";
+			productReference = C20F579B18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C2A3F2CC17F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2A3F2DB17F4827800AC1C3B /* Build configuration list for PBXNativeTarget "XCDYouTubeVideoPlayerViewController" */;
@@ -118,6 +192,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Cédric Luthi";
+				TargetAttributes = {
+					C20F579A18817D5400EDBFB0 = {
+						TestTargetID = C2A3F2CC17F4827800AC1C3B;
+					};
+				};
 			};
 			buildConfigurationList = C2A3F2C817F4827800AC1C3B /* Build configuration list for PBXProject "XCDYouTubeVideoPlayerViewController" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -132,11 +211,31 @@
 			projectRoot = "";
 			targets = (
 				C2A3F2CC17F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */,
+				C20F579A18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		C20F579918817D5400EDBFB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		C20F579718817D5400EDBFB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C276638518849FC000241DDE /* TRVSMonitor.m in Sources */,
+				C20F57A818817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2A3F2C917F4827800AC1C3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -147,7 +246,41 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C20F57AB18817D5400EDBFB0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2A3F2CC17F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */;
+			targetProxy = C20F57AA18817D5400EDBFB0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		C20F57AC18817D5400EDBFB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C20F57AD18817D5400EDBFB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		C2A3F2D917F4827800AC1C3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -160,6 +293,7 @@
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1.1.1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -173,6 +307,7 @@
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -203,6 +338,7 @@
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1.1.1;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -215,6 +351,7 @@
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -250,6 +387,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C20F57AE18817D5400EDBFB0 /* Build configuration list for PBXNativeTarget "XCDYouTubeVideoPlayerViewController Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C20F57AC18817D5400EDBFB0 /* Debug */,
+				C20F57AD18817D5400EDBFB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C2A3F2C817F4827800AC1C3B /* Build configuration list for PBXProject "XCDYouTubeVideoPlayerViewController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
