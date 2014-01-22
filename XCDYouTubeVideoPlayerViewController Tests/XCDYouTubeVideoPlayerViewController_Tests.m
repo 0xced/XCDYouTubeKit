@@ -53,7 +53,7 @@
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 	[videoPlayerViewController addObserver:self forKeyPath:@"moviePlayer.contentURL" options:(NSKeyValueObservingOptions)0 context:_cmd];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
-		XCTFail();
+		XCTFail(@"%@", notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey]);
 		[self.monitor signal];
 	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
@@ -85,7 +85,7 @@
 		[self.monitor signal];
 	}];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
-		XCTFail();
+		XCTFail(@"%@", notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey]);
 		[self.monitor signal];
 	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
@@ -99,7 +99,7 @@
 		[self.monitor signal];
 	}];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
-		XCTFail();
+		XCTFail(@"%@", notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey]);
 		[self.monitor signal];
 	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
@@ -156,7 +156,7 @@
 		[self.monitor signal];
 	}];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
-		XCTFail();
+		XCTFail(@"%@", notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey]);
 		[self.monitor signal];
 	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
