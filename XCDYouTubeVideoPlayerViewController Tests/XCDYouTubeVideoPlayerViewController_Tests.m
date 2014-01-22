@@ -44,6 +44,10 @@
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 	[videoPlayerViewController addObserver:self forKeyPath:@"moviePlayer.contentURL" options:(NSKeyValueObservingOptions)0 context:_cmd];
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+		XCTFail();
+		[self.monitor signal];
+	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
 	XCTAssertNotNil(videoPlayerViewController.moviePlayer.contentURL);
 }
@@ -72,6 +76,10 @@
 		XCTAssertTrue([metadata[XCDMetadataKeyLargeThumbnailURL] isKindOfClass:[NSURL class]], @"Large thumbnail URL must be a NSURL");
 		[self.monitor signal];
 	}];
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+		XCTFail();
+		[self.monitor signal];
+	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
 }
 
@@ -80,6 +88,10 @@
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackStateDidChangeNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
 		XCTAssertEqual(videoPlayerViewController.moviePlayer.playbackState, MPMoviePlaybackStatePlaying);
+		[self.monitor signal];
+	}];
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+		XCTFail();
 		[self.monitor signal];
 	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
@@ -133,6 +145,10 @@
 	[videoPlayerViewController performSelector:@selector(setVideoIdentifier:) withObject:@"9bZkp7q19f0" afterDelay:0];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackStateDidChangeNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
 		XCTAssertEqual(videoPlayerViewController.moviePlayer.playbackState, MPMoviePlaybackStatePlaying);
+		[self.monitor signal];
+	}];
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+		XCTFail();
 		[self.monitor signal];
 	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
