@@ -1,5 +1,4 @@
 language: objective-c
 before_install: brew update
 install: brew upgrade xctool
-script:
-  - xctool test -project XCDYouTubeVideoPlayerViewController.xcodeproj -scheme XCDYouTubeVideoPlayerViewController\ Tests -sdk iphonesimulator
+script: xctool test -project XCDYouTubeVideoPlayerViewController.xcodeproj -scheme XCDYouTubeVideoPlayerViewController -sdk iphonesimulator
