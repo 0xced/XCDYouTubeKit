@@ -61,9 +61,23 @@
 	XCTAssertNotNil(videoPlayerViewController.moviePlayer.contentURL);
 }
 
+- (void) testAsynchronousVideoIdentifier
+{
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
+	[videoPlayerViewController performSelector:@selector(setVideoIdentifier:) withObject:@"jiyIcz7wUH0" afterDelay:0];
+	[videoPlayerViewController addObserver:self forKeyPath:@"moviePlayer.contentURL" options:(NSKeyValueObservingOptions)0 context:_cmd];
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+		XCTFail(@"%@", notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey]);
+		[self.monitor signal];
+	}];
+	XCTAssertTrue([self.monitor waitWithTimeout:10]);
+	[videoPlayerViewController removeObserver:self forKeyPath:@"moviePlayer.contentURL" context:_cmd];
+	XCTAssertNotNil(videoPlayerViewController.moviePlayer.contentURL);
+}
+
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if (context == @selector(testThatYourVerseVideoHasURL))
+	if (context == @selector(testThatYourVerseVideoHasURL) || context == @selector(testAsynchronousVideoIdentifier))
 	{
 		[self.monitor signal];
 	}
@@ -82,20 +96,6 @@
 		XCTAssertTrue([metadata[XCDMetadataKeySmallThumbnailURL] isKindOfClass:[NSURL class]], @"Small thumbnail URL must be a NSURL");
 		XCTAssertTrue([metadata[XCDMetadataKeyMediumThumbnailURL] isKindOfClass:[NSURL class]], @"Medium thumbnail URL must be a NSURL");
 		XCTAssertTrue([metadata[XCDMetadataKeyLargeThumbnailURL] isKindOfClass:[NSURL class]], @"Large thumbnail URL must be a NSURL");
-		[self.monitor signal];
-	}];
-	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
-		XCTFail(@"%@", notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey]);
-		[self.monitor signal];
-	}];
-	XCTAssertTrue([self.monitor waitWithTimeout:10]);
-}
-
-- (void) testThatYourVerseVideoStartsPlaying
-{
-	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"jiyIcz7wUH0"];
-	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackStateDidChangeNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
-		XCTAssertEqual(videoPlayerViewController.moviePlayer.playbackState, MPMoviePlaybackStatePlaying);
 		[self.monitor signal];
 	}];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
@@ -142,21 +142,6 @@
 		NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
-		[self.monitor signal];
-	}];
-	XCTAssertTrue([self.monitor waitWithTimeout:10]);
-}
-
-- (void) testAsynchronousVideoIdentifier
-{
-	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
-	[videoPlayerViewController performSelector:@selector(setVideoIdentifier:) withObject:@"jiyIcz7wUH0" afterDelay:0];
-	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackStateDidChangeNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
-		XCTAssertEqual(videoPlayerViewController.moviePlayer.playbackState, MPMoviePlaybackStatePlaying);
-		[self.monitor signal];
-	}];
-	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
-		XCTFail(@"%@", notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey]);
 		[self.monitor signal];
 	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
