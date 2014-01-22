@@ -57,6 +57,7 @@
 		[self.monitor signal];
 	}];
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
+	[videoPlayerViewController removeObserver:self forKeyPath:@"moviePlayer.contentURL" context:_cmd];
 	XCTAssertNotNil(videoPlayerViewController.moviePlayer.contentURL);
 }
 
@@ -65,7 +66,6 @@
 	if (context == @selector(testThatGangnamStyleVideoHasURL))
 	{
 		[self.monitor signal];
-		[object removeObserver:self forKeyPath:keyPath context:context];
 	}
 	else
 	{
