@@ -29,6 +29,14 @@
 
 - (IBAction) togglePlayVideoInBackground:(UISwitch *)sender
 {
+	/* Background video playback (i.e. audio playback since the video is not visible in background) requires:
+	 *  1. The `UIBackgroundModes` array (Required background modes) in the application Info.plist file must contain the `audio` element (App plays audio or streams audio/video using AirPlay).
+	 *  2. The audio session category must be set to `AVAudioSessionCategoryPlayback`
+	 *  3. The undocumented `PlayVideoInBackground` user default used by the MediaPlayer framework must be true.
+	 *
+	 * - Audio playback works when locking the device on both iOS 6 and iOS 7. (Untested on iOS 5)
+	 * - Audio playback works when quitting the app on iOS 6 only but stops on iOS 7. (Untested on iOS 5)
+	 */
 	[[NSUserDefaults standardUserDefaults] setBool:self.playVideoInBackgroundSwitch.on forKey:@"PlayVideoInBackground"];
 }
 
