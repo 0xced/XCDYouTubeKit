@@ -82,8 +82,8 @@ static NSString *ApplicationLanguageIdentifier(void)
 {
     if (self.completionHandler)
     {
-        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Cannot call startWithCompletionHandler while already extracting.", @"")};
-        NSError *error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:100 userInfo:userInfo];
+        NSLog(@"Cannot call -[XCDYoutubeExtractor startWithCompletionHandler:] on an extractor which is already extracting");
+        NSError *error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:1 userInfo:nil];
         completionHandler(nil, error);
         return;
     }
