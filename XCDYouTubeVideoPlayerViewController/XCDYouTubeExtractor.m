@@ -80,7 +80,10 @@ static NSString *ApplicationLanguageIdentifier(void)
 
 - (void) startWithCompletionHandler:(XCDYoutubeExtractorCompletionHandler)completionHandler
 {
-    if (self.completionHandler)
+    if (!completionHandler) {
+        return;
+    }
+    if (self.isExtracting)
     {
         NSLog(@"Cannot call -[XCDYoutubeExtractor startWithCompletionHandler:] on an extractor which is already extracting");
         NSError *error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:1 userInfo:nil];
@@ -98,6 +101,7 @@ static NSString *ApplicationLanguageIdentifier(void)
 {
     [self.connection cancel];
     self.extracting = NO;
+    self.completionHandler = nil;
 }
 
 - (void) startVideoInfoRequest
@@ -135,6 +139,7 @@ static NSString *ApplicationLanguageIdentifier(void)
     {
         self.extracting = NO;
         self.completionHandler(info, nil);
+        self.completionHandler = nil;
     }
 	else if (self.elFields.count > 0)
 		[self startVideoInfoRequest];
@@ -151,6 +156,7 @@ static NSString *ApplicationLanguageIdentifier(void)
 {
     self.extracting = NO;
 	self.completionHandler(nil, error);
+    self.completionHandler = nil;
 }
 
 #pragma mark - URL Parsing
