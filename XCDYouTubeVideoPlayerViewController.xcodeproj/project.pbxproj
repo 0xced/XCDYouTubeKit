@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A077C8218A230BD00B9EBA8 /* XCDYouTubeExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A077C8118A230BD00B9EBA8 /* XCDYouTubeExtractor.m */; };
+		7A077C8518A2396A00B9EBA8 /* XCDYouTubeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A077C8418A236B500B9EBA8 /* XCDYouTubeConstants.m */; };
+		7A077C8618A23D3C00B9EBA8 /* XCDYouTubeConstants.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7A077C8318A232FB00B9EBA8 /* XCDYouTubeConstants.h */; };
+		7A077C8718A23D4200B9EBA8 /* XCDYouTubeExtractor.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7A077C8018A230BD00B9EBA8 /* XCDYouTubeExtractor.h */; };
 		C274158D17F48B100026834B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158717F48AD10026834B /* AVFoundation.framework */; };
 		C274158E17F48B100026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158817F48AD10026834B /* MediaPlayer.framework */; };
 		C274158F17F48B100026834B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158917F48AD10026834B /* UIKit.framework */; };
@@ -21,6 +25,8 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				7A077C8718A23D4200B9EBA8 /* XCDYouTubeExtractor.h in Copy Files */,
+				7A077C8618A23D3C00B9EBA8 /* XCDYouTubeConstants.h in Copy Files */,
 				C2A3F2D617F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h in Copy Files */,
 			);
 			name = "Copy Files";
@@ -29,6 +35,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7A077C8018A230BD00B9EBA8 /* XCDYouTubeExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeExtractor.h; sourceTree = "<group>"; };
+		7A077C8118A230BD00B9EBA8 /* XCDYouTubeExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeExtractor.m; sourceTree = "<group>"; };
+		7A077C8318A232FB00B9EBA8 /* XCDYouTubeConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeConstants.h; sourceTree = "<group>"; };
+		7A077C8418A236B500B9EBA8 /* XCDYouTubeConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeConstants.m; sourceTree = "<group>"; };
 		C274158717F48AD10026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C274158817F48AD10026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C274158917F48AD10026834B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -81,8 +91,12 @@
 		C2A3F2D217F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */ = {
 			isa = PBXGroup;
 			children = (
+				7A077C8318A232FB00B9EBA8 /* XCDYouTubeConstants.h */,
+				7A077C8418A236B500B9EBA8 /* XCDYouTubeConstants.m */,
 				C2A3F2D517F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h */,
 				C2A3F2D717F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m */,
+				7A077C8018A230BD00B9EBA8 /* XCDYouTubeExtractor.h */,
+				7A077C8118A230BD00B9EBA8 /* XCDYouTubeExtractor.m */,
 			);
 			path = XCDYouTubeVideoPlayerViewController;
 			sourceTree = "<group>";
@@ -138,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A077C8518A2396A00B9EBA8 /* XCDYouTubeConstants.m in Sources */,
+				7A077C8218A230BD00B9EBA8 /* XCDYouTubeExtractor.m in Sources */,
 				C2A3F2D817F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

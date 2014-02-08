@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A077CCB18A4CCD100B9EBA8 /* DemoExtractorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A077CCA18A4CCD100B9EBA8 /* DemoExtractorViewController.m */; };
 		C2478E9D17FF739100BCE94D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2478E9C17FF739100BCE94D /* Icon@2x.png */; };
 		C27415A217F491230026834B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415A117F491230026834B /* UIKit.framework */; };
 		C27415A417F491230026834B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415A317F491230026834B /* Foundation.framework */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A077CC918A4CCD100B9EBA8 /* DemoExtractorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoExtractorViewController.h; sourceTree = "<group>"; };
+		7A077CCA18A4CCD100B9EBA8 /* DemoExtractorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoExtractorViewController.m; sourceTree = "<group>"; };
 		C2478E9C17FF739100BCE94D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		C274159E17F491230026834B /* YouTube Video Player Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Video Player Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C27415A117F491230026834B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -114,6 +117,8 @@
 				C27415C817F4CDD80026834B /* DemoThumbnailViewController.m */,
 				C27415C117F4CDD80026834B /* DemoAsynchronousViewController.h */,
 				C27415C217F4CDD80026834B /* DemoAsynchronousViewController.m */,
+				7A077CC918A4CCD100B9EBA8 /* DemoExtractorViewController.h */,
+				7A077CCA18A4CCD100B9EBA8 /* DemoExtractorViewController.m */,
 				C27415C917F4CDD80026834B /* MainStoryboard.storyboard */,
 				C27415CB17F4CDD80026834B /* Supporting Files */,
 			);
@@ -202,6 +207,7 @@
 			files = (
 				C27415D217F4CDD80026834B /* AppDelegate.m in Sources */,
 				C27415D317F4CDD80026834B /* DemoAsynchronousViewController.m in Sources */,
+				7A077CCB18A4CCD100B9EBA8 /* DemoExtractorViewController.m in Sources */,
 				C27415D417F4CDD80026834B /* DemoFullScreenViewController.m in Sources */,
 				C27415D517F4CDD80026834B /* DemoInlineViewController.m in Sources */,
 				C27415D617F4CDD80026834B /* DemoThumbnailViewController.m in Sources */,

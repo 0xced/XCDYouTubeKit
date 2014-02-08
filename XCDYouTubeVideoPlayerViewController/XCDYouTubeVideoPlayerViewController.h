@@ -7,15 +7,8 @@
 //
 
 #import <MediaPlayer/MediaPlayer.h>
+#import "XCDYoutubeConstants.h"
 
-typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
-	XCDYouTubeVideoQualitySmall240  = 36,
-	XCDYouTubeVideoQualityMedium360 = 18,
-	XCDYouTubeVideoQualityHD720     = 22,
-	XCDYouTubeVideoQualityHD1080    = 37,
-};
-
-MP_EXTERN NSString *const XCDYouTubeVideoErrorDomain;
 MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey; // NSError key for the `MPMoviePlayerPlaybackDidFinishNotification` userInfo dictionary
 
 enum {
@@ -25,11 +18,6 @@ enum {
 };
 
 MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification;
-// Metadata notification userInfo keys, they are all optional
-MP_EXTERN NSString *const XCDMetadataKeyTitle;
-MP_EXTERN NSString *const XCDMetadataKeySmallThumbnailURL;
-MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL;
-MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL;
 
 @interface XCDYouTubeVideoPlayerViewController : MPMoviePlayerViewController
 
