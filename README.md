@@ -1,6 +1,6 @@
 ## About
 
-**XCDYouTubeVideoPlayerViewController** is a YouTube video player for iPhone and iPad. 
+**XCDYouTubeVideoPlayerViewController** is a YouTube video player for iPhone and iPad. An extractor for iPhone, iPad, and Mac to get actual video URLs, title, and preview images is also available.
 
 <img src="Screenshots/XCDYouTubeVideoPlayerViewController.png" width="480" height="320">
 
@@ -14,7 +14,7 @@ XCDYouTubeVideoPlayerViewController uses progressive download, so remember that 
 
 ## Requirements
 
-- Runs on iOS 5.0 and later
+- Runs on iOS 5.0 and later (`XCDYouTubeExtractor` runs on Mac OSX 10.6 and later)
 - Must be compiled with ARC
 
 ## Installation
@@ -23,8 +23,8 @@ XCDYouTubeVideoPlayerViewController is available through CocoaPods.
 
 Alternatively, you can install it manually:
 
-1. Copy the `XCDYouTubeVideoPlayerViewController.h` and `XCDYouTubeVideoPlayerViewController.m` files in your project.
-2. Add `MediaPlayer.framework` and `AVFoundation.framework` in your project.
+1. Copy the `XCDYouTubeVideoPlayerViewController.h`, `XCDYouTubeVideoPlayerViewController.m`, `XCDYouTubeConstants.h`, `XCDYouTubeConstants.m`, `XCDYouTubeExtractor.h`, and `XCDYouTubeExtractor.m` files in your project.
+2. Add `MediaPlayer.framework` and `AVFoundation.framework` in your project. (Only required for `XCDYouTubeVideoPlayerViewController`
 
 ## Usage
 
@@ -33,18 +33,25 @@ Use `XCDYouTubeVideoPlayerViewController` the same way you use a `MPMoviePlayerV
 #### Present the video in full-screen
 
 ```objc
-XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
+XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"VpZmIiIXuZ0"];
 [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 ```
 
 #### Present the video in a non full-screen view
 
 ```objc
-XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
+XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"VpZmIiIXuZ0"];
 [videoPlayerViewController presentInView:self.videoContainerView];
 [videoPlayerViewController.moviePlayer play];
 ```
 
+#### Extract Video URL and other info
+```objc
+XCDYouTubeExtractor *extractor = [XCDYouTubeExtractor extractorWithVideoIdentifier:@"VpZmIiIXuZ0"];
+[extractor startWithCompletionHandler:^(NSDictionary *info, NSError *error) {
+  NSLog(@"URL:%@", info[@(XCDYouTubeVideoQualitySmall240)];
+}];
+```
 See the demo project for more sample code.
 
 ## Contact
