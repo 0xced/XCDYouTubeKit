@@ -53,6 +53,8 @@ static NSString *ApplicationLanguageIdentifier(void)
 
 @property (nonatomic, copy) XCDYoutubeExtractorCompletionHandler completionHandler;
 
+@property (nonatomic, strong) XCDYouTubeExtractor *strongSelf;
+
 @end
 
 @implementation XCDYouTubeExtractor
@@ -80,7 +82,8 @@ static NSString *ApplicationLanguageIdentifier(void)
 
 - (void) startWithCompletionHandler:(XCDYoutubeExtractorCompletionHandler)completionHandler
 {
-    if (!completionHandler) {
+    if (!completionHandler)
+    {
         return;
     }
     if (self.isExtracting)
@@ -95,6 +98,8 @@ static NSString *ApplicationLanguageIdentifier(void)
     self.completionHandler = completionHandler;
     self.elFields = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage", @"vevo", @"" ]];
     [self startVideoInfoRequest];
+    
+    self.strongSelf = self;
 }
 
 - (void)cancel
@@ -102,6 +107,7 @@ static NSString *ApplicationLanguageIdentifier(void)
     [self.connection cancel];
     self.extracting = NO;
     self.completionHandler = nil;
+    self.strongSelf = nil;
 }
 
 - (void) startVideoInfoRequest
@@ -140,6 +146,7 @@ static NSString *ApplicationLanguageIdentifier(void)
         self.extracting = NO;
         self.completionHandler(info, nil);
         self.completionHandler = nil;
+        self.strongSelf = nil;
     }
 	else if (self.elFields.count > 0)
 		[self startVideoInfoRequest];
@@ -157,6 +164,7 @@ static NSString *ApplicationLanguageIdentifier(void)
     self.extracting = NO;
 	self.completionHandler(nil, error);
     self.completionHandler = nil;
+    self.strongSelf = nil;
 }
 
 #pragma mark - URL Parsing
