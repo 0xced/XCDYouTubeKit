@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Cédric Luthi. All rights reserved.
 //
 
-#import <MediaPlayer/MediaPlayer.h>
+#import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 	XCDYouTubeVideoQualitySmall240  = 36,
@@ -15,10 +15,10 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 	XCDYouTubeVideoQualityHD1080    = 37,
 };
 
-MP_EXTERN NSString *const XCDYouTubeVideoErrorDomain;
+FOUNDATION_EXPORT NSString *const XCDYouTubeVideoErrorDomain;
 
 // Metadata notification userInfo keys, they are all optional
-MP_EXTERN NSString *const XCDMetadataKeyTitle;
-MP_EXTERN NSString *const XCDMetadataKeySmallThumbnailURL;
-MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL;
-MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL;
+FOUNDATION_EXPORT NSString *const XCDMetadataKeyTitle;
+FOUNDATION_EXPORT NSString *const XCDMetadataKeySmallThumbnailURL;
+FOUNDATION_EXPORT NSString *const XCDMetadataKeyMediumThumbnailURL;
+FOUNDATION_EXPORT NSString *const XCDMetadataKeyLargeThumbnailURL;
