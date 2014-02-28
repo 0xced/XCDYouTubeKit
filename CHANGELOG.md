@@ -1,3 +1,7 @@
+#### Version 1.1.2
+
+* Adaptation to YouTube API change. (#19)
+
 #### Version 1.1.1
 
 * For errors of the `XCDYouTubeVideoErrorDomain` domain, `-[NSError localizedDescription]` is actually localized and doesn’t contain HTML tags, making it suitable for displaying to the user.

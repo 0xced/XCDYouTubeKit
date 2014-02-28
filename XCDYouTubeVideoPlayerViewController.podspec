@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XCDYouTubeVideoPlayerViewController"
-  s.version      = "1.1.1"
+  s.version      = "1.1.2"
   s.summary      = "YouTube video player for iPhone and iPad."
   s.homepage     = "https://github.com/0xced/XCDYouTubeVideoPlayerViewController"
   s.license      = 'MIT'
