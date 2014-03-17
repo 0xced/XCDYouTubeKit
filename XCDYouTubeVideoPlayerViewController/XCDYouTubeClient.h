@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol XCDYouTubeOperation
+- (void) cancel;
+@end
+
 @class XCDYouTubeVideo;
 
 @interface XCDYouTubeClient : NSObject
 
 + (instancetype) sharedClient;
 
-- (void) getYouTubeVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler;
+- (id<XCDYouTubeOperation>) getYouTubeVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler;
 
 @end

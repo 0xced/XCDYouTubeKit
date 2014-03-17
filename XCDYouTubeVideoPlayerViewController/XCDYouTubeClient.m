@@ -20,9 +20,9 @@
 	return sharedClient;
 }
 
-- (void) getYouTubeVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler
+- (id<XCDYouTubeOperation>) getYouTubeVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler
 {
-	
+	return nil;
 }
 
 @end
