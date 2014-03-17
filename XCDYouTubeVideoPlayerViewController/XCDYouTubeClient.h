@@ -1,5 +1,5 @@
 //
-//  XCDYouTubeVideoClient.h
+//  XCDYouTubeClient.h
 //  XCDYouTubeVideoPlayerViewController
 //
 //  Created by Cédric Luthi on 17.03.14.
@@ -10,7 +10,7 @@
 
 @class XCDYouTubeVideo;
 
-@interface XCDYouTubeVideoClient : NSObject
+@interface XCDYouTubeClient : NSObject
 
 + (instancetype) sharedClient;
 

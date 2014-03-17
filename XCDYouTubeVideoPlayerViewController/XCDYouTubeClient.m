@@ -1,18 +1,18 @@
 //
-//  XCDYouTubeVideoClient.m
+//  XCDYouTubeClient.m
 //  XCDYouTubeVideoPlayerViewController
 //
 //  Created by Cédric Luthi on 17.03.14.
 //  Copyright (c) 2014 Cédric Luthi. All rights reserved.
 //
 
-#import "XCDYouTubeVideoClient.h"
+#import "XCDYouTubeClient.h"
 
-@implementation XCDYouTubeVideoClient
+@implementation XCDYouTubeClient
 
 + (instancetype) sharedClient
 {
-	static XCDYouTubeVideoClient *sharedClient;
+	static XCDYouTubeClient *sharedClient;
 	static dispatch_once_t once;
 	dispatch_once(&once, ^{
 		sharedClient = [self new];
