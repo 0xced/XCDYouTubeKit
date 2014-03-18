@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Cédric Luthi. All rights reserved.
 //
 
-#import "XCDYouTubeVideo.h"
+#import "XCDYouTubeVideo+Private.h"
 
 @implementation XCDYouTubeVideo
 
-- (instancetype) initWithData:(NSData *)data error:(NSError * __autoreleasing *)error
+- (instancetype) initWithIdentifier:(NSString *)identifier data:(NSData *)data error:(NSError * __autoreleasing *)error
 {
 	if (!(self = [super init]))
 		return nil;

@@ -10,8 +10,6 @@
 
 @interface XCDYouTubeVideo : NSObject
 
-- (instancetype) initWithData:(NSData *)data error:(NSError **)error;
-
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) NSString *title;
 
