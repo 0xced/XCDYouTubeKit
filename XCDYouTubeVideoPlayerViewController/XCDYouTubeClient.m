@@ -10,16 +10,6 @@
 
 @implementation XCDYouTubeClient
 
-+ (instancetype) sharedClient
-{
-	static XCDYouTubeClient *sharedClient;
-	static dispatch_once_t once;
-	dispatch_once(&once, ^{
-		sharedClient = [self new];
-	});
-	return sharedClient;
-}
-
 - (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler
 {
 	return nil;

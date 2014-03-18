@@ -16,8 +16,6 @@
 
 @interface XCDYouTubeClient : NSObject
 
-+ (instancetype) sharedClient;
-
 - (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler;
 
 @end
