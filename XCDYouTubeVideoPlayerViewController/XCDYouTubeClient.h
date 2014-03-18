@@ -16,6 +16,10 @@
 
 @interface XCDYouTubeClient : NSObject
 
+- (instancetype) initWithLanguageIdentifier:(NSString *)languageIdentifier;
+
+@property (nonatomic, readonly) NSString *languageIdentifier;
+
 - (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler;
 
 @end
