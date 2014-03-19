@@ -1,4 +1,3 @@
 language: objective-c
-before_install: brew update
-install: brew upgrade xctool
-script: xctool test -project XCDYouTubeVideoPlayerViewController.xcodeproj -scheme XCDYouTubeVideoPlayerViewController -sdk iphonesimulator
+install: gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+script: xcodebuild test -project XCDYouTubeVideoPlayerViewController.xcodeproj -scheme XCDYouTubeVideoPlayerViewController -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c; exit ${PIPESTATUS[0]}
