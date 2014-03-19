@@ -1,6 +1,6 @@
 ## About
 
-[![build status](http://img.shields.io/travis/0xced/XCDYouTubeVideoPlayerViewController.svg)](https://travis-ci.org/0xced/XCDYouTubeVideoPlayerViewController)
+[![build status](http://pitaya.ch/travis/0xced/XCDYouTubeVideoPlayerViewController.svg)](https://travis-ci.org/0xced/XCDYouTubeVideoPlayerViewController)
 
 **XCDYouTubeVideoPlayerViewController** is a YouTube video player for iPhone and iPad. 
 
