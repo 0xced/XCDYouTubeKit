@@ -12,10 +12,8 @@
 		C20F57AF1881804D00EDBFB0 /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeVideoPlayerViewController.a */; };
 		C20F57B01881806000EDBFB0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158817F48AD10026834B /* MediaPlayer.framework */; };
 		C20F57B11881806700EDBFB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158917F48AD10026834B /* UIKit.framework */; };
-		C20F57B21881806900EDBFB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158717F48AD10026834B /* AVFoundation.framework */; };
 		C25308C518D7392500132734 /* XCDYouTubeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C25308C418D7392500132734 /* XCDYouTubeClient.m */; };
 		C25308C818D739EB00132734 /* XCDYouTubeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = C25308C718D739EB00132734 /* XCDYouTubeVideo.m */; };
-		C274158D17F48B100026834B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158717F48AD10026834B /* AVFoundation.framework */; };
 		C274158E17F48B100026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158817F48AD10026834B /* MediaPlayer.framework */; };
 		C274158F17F48B100026834B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158917F48AD10026834B /* UIKit.framework */; };
 		C276638518849FC000241DDE /* TRVSMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C276638418849FC000241DDE /* TRVSMonitor.m */; };
@@ -56,7 +54,6 @@
 		C25308C618D739EB00132734 /* XCDYouTubeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideo.h; sourceTree = "<group>"; };
 		C25308C718D739EB00132734 /* XCDYouTubeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideo.m; sourceTree = "<group>"; };
 		C26DF31518D8544D002248A9 /* XCDYouTubeVideo+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XCDYouTubeVideo+Private.h"; sourceTree = "<group>"; };
-		C274158717F48AD10026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C274158817F48AD10026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C274158917F48AD10026834B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C276638318849FC000241DDE /* TRVSMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRVSMonitor.h; sourceTree = "<group>"; };
@@ -72,7 +69,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C20F57AF1881804D00EDBFB0 /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */,
-				C20F57B21881806900EDBFB0 /* AVFoundation.framework in Frameworks */,
 				C20F57B01881806000EDBFB0 /* MediaPlayer.framework in Frameworks */,
 				C20F57B11881806700EDBFB0 /* UIKit.framework in Frameworks */,
 				C20F579D18817D5400EDBFB0 /* XCTest.framework in Frameworks */,
@@ -83,7 +79,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C274158D17F48B100026834B /* AVFoundation.framework in Frameworks */,
 				C274158E17F48B100026834B /* MediaPlayer.framework in Frameworks */,
 				C274158F17F48B100026834B /* UIKit.framework in Frameworks */,
 			);
@@ -136,7 +131,6 @@
 		C2A3F2CF17F4827800AC1C3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C274158717F48AD10026834B /* AVFoundation.framework */,
 				C274158817F48AD10026834B /* MediaPlayer.framework */,
 				C274158917F48AD10026834B /* UIKit.framework */,
 				C20F579C18817D5400EDBFB0 /* XCTest.framework */,

@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/0xced/XCDYouTubeVideoPlayerViewController.git", :tag => s.version.to_s }
   s.platform         = :ios, "5.0"
   s.source_files     = "XCDYouTubeVideoPlayerViewController"
-  s.frameworks       = "AVFoundation", "MediaPlayer"
+  s.frameworks       = "MediaPlayer"
   s.requires_arc     = true
 end

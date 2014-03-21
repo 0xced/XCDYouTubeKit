@@ -17,4 +17,6 @@
 @property (nonatomic, readonly) NSURL *mediumThumbnailURL;
 @property (nonatomic, readonly) NSURL *largeThumbnailURL;
 
+@property (nonatomic, readonly) NSDictionary *streamURLs;
+
 @end
