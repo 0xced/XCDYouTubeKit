@@ -78,8 +78,7 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	{
 		if (error)
 		{
-			// TODO: add @{ NSURLErrorKey: connection.originalRequest.URL } in the userInfo dictionary
-			NSMutableDictionary *userInfo = [NSMutableDictionary new];
+			NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: response.URL } mutableCopy] : [NSMutableDictionary new];
 			NSString *reason = video[@"reason"];
 			if (reason)
 			{
