@@ -10,6 +10,6 @@
 
 @interface XCDYouTubeVideo ()
 
-- (instancetype) initWithIdentifier:(NSString *)identifier data:(NSData *)data error:(NSError **)error;
+- (instancetype) initWithIdentifier:(NSString *)identifier response:(NSURLResponse *)response data:(NSData *)data error:(NSError **)error;
 
 @end

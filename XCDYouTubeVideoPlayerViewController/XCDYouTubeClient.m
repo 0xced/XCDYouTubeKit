@@ -15,6 +15,7 @@
 @property (nonatomic, copy) void (^completionHandler)(XCDYouTubeVideo *, NSError *);
 
 @property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSURLResponse *response;
 @property (nonatomic, strong) NSMutableData *connectionData;
 @property (nonatomic, strong) NSMutableArray *eventLabels;
 @end
@@ -87,6 +88,7 @@
 {
 	NSUInteger capacity = response.expectedContentLength == NSURLResponseUnknownLength ? 0 : (NSUInteger)response.expectedContentLength;
 	self.connectionData = [[NSMutableData alloc] initWithCapacity:capacity];
+	self.response = response;
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -97,7 +99,7 @@
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSError *error = nil;
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier data:self.connectionData error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier response:self.response data:self.connectionData error:&error];
 	if (video)
 		self.completionHandler(video, nil);
 	else if (self.eventLabels.count > 0)

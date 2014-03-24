@@ -30,7 +30,7 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 
 @implementation XCDYouTubeVideo
 
-- (instancetype) initWithIdentifier:(NSString *)identifier data:(NSData *)data error:(NSError * __autoreleasing *)error
+- (instancetype) initWithIdentifier:(NSString *)identifier response:(NSURLResponse *)response data:(NSData *)data error:(NSError * __autoreleasing *)error
 {
 	if (!(self = [super init]))
 		return nil;
