@@ -74,7 +74,9 @@
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
 	[self.connection cancel];
-	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+	[self.connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+	[self.connection start];
 }
 
 - (void) finishWithError:(NSError *)error
