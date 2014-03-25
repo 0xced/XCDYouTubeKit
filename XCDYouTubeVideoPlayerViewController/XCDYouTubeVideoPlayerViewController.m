@@ -66,12 +66,6 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 
 - (void) setVideoIdentifier:(NSString *)videoIdentifier
 {
-	if (![NSThread isMainThread])
-	{
-		[self performSelectorOnMainThread:_cmd withObject:videoIdentifier waitUntilDone:NO];
-		return;
-	}
-	
 	if ([videoIdentifier isEqual:self.videoIdentifier])
 		return;
 	
