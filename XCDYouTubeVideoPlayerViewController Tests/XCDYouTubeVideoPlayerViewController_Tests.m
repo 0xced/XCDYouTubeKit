@@ -28,9 +28,6 @@
 	if (self != [XCDYouTubeVideoPlayerViewController_Tests class])
 		return;
 	
-	// See http://stackoverflow.com/questions/21069515/avurlasset-isplayableextendedmimetype-behaves-differently-when-unit-tested/21081159#21081159
-	setenv("IPHONE_SIMULATOR_CLASS", "N41", 0);
-	
 	// The connections to YouTube over https fail with a certificate error when running the unit tests but work fine inside an app environment
 	// Error Domain=NSURLErrorDomain Code=-1202 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “www.youtube.com” which could put your confidential information at risk."
 	[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:@"www.youtube.com"];
