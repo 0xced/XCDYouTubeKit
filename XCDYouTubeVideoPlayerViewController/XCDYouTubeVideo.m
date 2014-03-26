@@ -99,7 +99,7 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 
 - (NSString *) debugDescription
 {
-	return [NSString stringWithFormat:@"<%@: %p> [%@] %@", self.class, self, self.identifier, self.title];
+	return [NSString stringWithFormat:@"<%@: %p> [%@] %@\n%@", self.class, self, self.identifier, self.title, self.streamURLs];
 }
 
 @end
