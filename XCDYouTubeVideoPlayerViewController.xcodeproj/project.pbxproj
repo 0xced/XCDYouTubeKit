@@ -49,6 +49,7 @@
 		C20F579B18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCDYouTubeVideoPlayerViewController Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20F579C18817D5400EDBFB0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C20F57A718817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewController_Tests.m; sourceTree = "<group>"; };
+		C24C162918E4DA6E005E92E9 /* XCDYouTubeError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeError.h; sourceTree = "<group>"; };
 		C25308C318D7392500132734 /* XCDYouTubeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeClient.h; sourceTree = "<group>"; };
 		C25308C418D7392500132734 /* XCDYouTubeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeClient.m; sourceTree = "<group>"; };
 		C25308C618D739EB00132734 /* XCDYouTubeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideo.h; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 			children = (
 				C25308C318D7392500132734 /* XCDYouTubeClient.h */,
 				C25308C418D7392500132734 /* XCDYouTubeClient.m */,
+				C24C162918E4DA6E005E92E9 /* XCDYouTubeError.h */,
 				C26DF31518D8544D002248A9 /* XCDYouTubeVideo+Private.h */,
 				C25308C618D739EB00132734 /* XCDYouTubeVideo.h */,
 				C25308C718D739EB00132734 /* XCDYouTubeVideo.m */,

@@ -10,10 +10,10 @@
 
 #import "XCDYouTubeClient.h"
 #import "XCDYouTubeVideo.h"
+#import "XCDYouTubeError.h"
 
 #import <objc/runtime.h>
 
-NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
 NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"error"; // documented in -[MPMoviePlayerController initWithContentURL:]
 
 NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification = @"XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification";

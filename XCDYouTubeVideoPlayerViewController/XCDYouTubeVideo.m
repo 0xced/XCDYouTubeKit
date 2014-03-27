@@ -8,7 +8,9 @@
 
 #import "XCDYouTubeVideo+Private.h"
 
-extern NSString *const XCDYouTubeVideoErrorDomain;
+#import "XCDYouTubeError.h"
+
+NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
 
 static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncoding encoding)
 {
