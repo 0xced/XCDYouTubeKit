@@ -119,7 +119,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 - (void) stopWithError:(NSError *)error
 {
 	NSDictionary *userInfo = @{ MPMoviePlayerPlaybackDidFinishReasonUserInfoKey: @(MPMovieFinishReasonPlaybackError),
-								XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey: error ?: [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:0 userInfo:nil] };
+	                            XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey: error };
 	[[NSNotificationCenter defaultCenter] postNotificationName:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer userInfo:userInfo];
 	
 	if (self.isEmbedded)
