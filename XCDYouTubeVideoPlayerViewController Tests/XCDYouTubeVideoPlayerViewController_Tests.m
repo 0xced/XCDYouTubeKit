@@ -123,4 +123,13 @@
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
 }
 
+- (void) testCancelingOperation
+{
+	id<XCDYouTubeOperation> operation = [[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTFail();
+	}];
+	[operation cancel];
+	XCTAssertFalse([self.monitor waitWithTimeout:1]);
+}
+
 @end
