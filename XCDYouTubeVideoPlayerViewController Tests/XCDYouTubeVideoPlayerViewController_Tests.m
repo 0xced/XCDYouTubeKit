@@ -116,6 +116,7 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		XCTAssertFalse([NSThread isMainThread]);
 		[[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+			XCTAssertTrue([NSThread isMainThread]);
 			[self.monitor signal];
 		}];
 	});
