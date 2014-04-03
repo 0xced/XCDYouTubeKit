@@ -19,6 +19,16 @@
 
 @synthesize languageIdentifier = _languageIdentifier;
 
++ (instancetype) defaultClient
+{
+	static XCDYouTubeClient *defaultClient;
+	static dispatch_once_t once;
+	dispatch_once(&once, ^{
+		defaultClient = [self new];
+	});
+	return defaultClient;
+}
+
 - (instancetype) init
 {
 	return [self initWithLanguageIdentifier:nil];

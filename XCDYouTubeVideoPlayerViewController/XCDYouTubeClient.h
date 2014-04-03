@@ -13,6 +13,8 @@
 
 @interface XCDYouTubeClient : NSObject
 
++ (instancetype) defaultClient; // Client with the default language identifier, i.e. the preferred language for the main bundle.
+
 - (instancetype) initWithLanguageIdentifier:(NSString *)languageIdentifier;
 
 @property (nonatomic, readonly) NSString *languageIdentifier;

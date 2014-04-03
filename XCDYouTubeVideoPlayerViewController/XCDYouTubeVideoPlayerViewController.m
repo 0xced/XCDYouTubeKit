@@ -71,7 +71,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	
 	_videoIdentifier = [videoIdentifier copy];
 	
-	self.videoOperation = [[XCDYouTubeClient new] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	self.videoOperation = [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		if (video)
 		{
 			NSURL *streamURL = nil;
