@@ -11,6 +11,7 @@
 #import "TRVSMonitor.h"
 #import "XCDYouTubeVideoPlayerViewController.h"
 #import "XCDYouTubeClient.h"
+#import "XCDYouTubeError.h"
 #import "XCDYouTubeVideo.h"
 
 @interface XCDYouTubeVideoPlayerViewController_Tests : XCTestCase
