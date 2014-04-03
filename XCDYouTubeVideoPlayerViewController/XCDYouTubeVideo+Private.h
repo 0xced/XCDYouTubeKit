@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Cédric Luthi. All rights reserved.
 //
 
-#import "XCDYouTubeVideo.h"
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideo.h>
 
 @interface XCDYouTubeVideo ()
 

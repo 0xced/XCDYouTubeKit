@@ -9,15 +9,10 @@
 #import "XCDYouTubeClient.h"
 
 #import "XCDYouTubeVideo+Private.h"
+#import "XCDYouTubeVideoOperation.h"
 
-@interface XCDYouTubeClient () <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
-@property (nonatomic, copy) NSString *videoIdentifier;
-@property (nonatomic, copy) void (^completionHandler)(XCDYouTubeVideo *, NSError *);
-
-@property (nonatomic, strong) NSURLConnection *connection;
-@property (nonatomic, strong) NSURLResponse *response;
-@property (nonatomic, strong) NSMutableData *connectionData;
-@property (nonatomic, strong) NSMutableArray *eventLabels;
+@interface XCDYouTubeClient ()
+@property (nonatomic, strong) NSOperationQueue *queue;
 @end
 
 @implementation XCDYouTubeClient
@@ -35,6 +30,8 @@
 		return nil;
 	
 	_languageIdentifier = languageIdentifier;
+	_queue = [NSOperationQueue new];
+	_queue.maxConcurrentOperationCount = 6; // paul_irish: Chrome re-confirmed that the 6 connections-per-host limit is the right magic number: https://code.google.com/p/chromium/issues/detail?id=285567#c14 [https://twitter.com/paul_irish/status/422808635698212864]
 	
 	return self;
 }
@@ -53,66 +50,19 @@
 
 - (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler
 {
-	self.videoIdentifier = videoIdentifier;
-	self.completionHandler = completionHandler;
-	
-	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage", @"vevo", @"" ]];
-	
-	[self startVideoInfoRequest];
-
-	return (id<XCDYouTubeOperation>)self.connection;
-}
-
-- (void) startVideoInfoRequest
-{
-	NSString *eventLabel = [self.eventLabels objectAtIndex:0];
-	[self.eventLabels removeObjectAtIndex:0];
-	if (eventLabel.length > 0)
-		eventLabel = [@"&el=" stringByAppendingString:eventLabel];
-	
-	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=%@", self.videoIdentifier ?: @"", eventLabel, self.languageIdentifier]];
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
-	[self.connection cancel];
-	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-	[self.connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-	[self.connection start];
-}
-
-- (void) finishWithError:(NSError *)error
-{
-	self.completionHandler(nil, error);
-}
-
-#pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate
-
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-	NSUInteger capacity = response.expectedContentLength == NSURLResponseUnknownLength ? 0 : (NSUInteger)response.expectedContentLength;
-	self.connectionData = [[NSMutableData alloc] initWithCapacity:capacity];
-	self.response = response;
-}
-
-- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-	[self.connectionData appendData:data];
-}
-
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection
-{
-	NSError *error = nil;
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier response:self.response data:self.connectionData error:&error];
-	if (video)
-		self.completionHandler(video, nil);
-	else if (self.eventLabels.count > 0)
-		[self startVideoInfoRequest];
-	else
-		[self finishWithError:error];
-}
-
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-	[self finishWithError:error];
+	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:videoIdentifier languageIdentifier:self.languageIdentifier];
+	operation.completionBlock = ^{
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-retain-cycles"
+			if (operation.video || operation.error) // If both `video` and `error` are nil, then the operation was cancelled
+				completionHandler(operation.video, operation.error);
+			operation.completionBlock = nil;
+#pragma clang diagnostic push
+		}];
+	};
+	[self.queue addOperation:operation];
+	return operation;
 }
 
 @end

@@ -6,11 +6,11 @@
 //  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
 //
 
-#import "XCDYouTubeVideoPlayerViewController.h"
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideoPlayerViewController.h>
 
-#import "XCDYouTubeClient.h"
-#import "XCDYouTubeVideo.h"
-#import "XCDYouTubeError.h"
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeClient.h>
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideo.h>
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeError.h>
 
 #import <objc/runtime.h>
 

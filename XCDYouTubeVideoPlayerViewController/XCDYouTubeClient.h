@@ -8,11 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol XCDYouTubeOperation
-- (void) cancel;
-@end
-
-@class XCDYouTubeVideo;
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeOperation.h>
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideo.h>
 
 @interface XCDYouTubeClient : NSObject
 
