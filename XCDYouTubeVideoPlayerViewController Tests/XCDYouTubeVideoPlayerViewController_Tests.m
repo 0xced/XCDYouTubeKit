@@ -9,10 +9,10 @@
 #import <XCTest/XCTest.h>
 
 #import "TRVSMonitor.h"
-#import "XCDYouTubeVideoPlayerViewController.h"
-#import "XCDYouTubeClient.h"
-#import "XCDYouTubeError.h"
-#import "XCDYouTubeVideo.h"
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideoPlayerViewController.h>
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeClient.h>
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeError.h>
+#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideo.h>
 
 @interface XCDYouTubeVideoPlayerViewController_Tests : XCTestCase
 
