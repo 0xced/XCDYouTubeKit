@@ -23,7 +23,7 @@ NSString *const XCDMetadataKeyMediumThumbnailURL = @"MediumThumbnailURL";
 NSString *const XCDMetadataKeyLargeThumbnailURL = @"LargeThumbnailURL";
 
 @interface XCDYouTubeVideoPlayerViewController ()
-@property (nonatomic, strong) id<XCDYouTubeOperation> videoOperation;
+@property (nonatomic, weak) id<XCDYouTubeOperation> videoOperation;
 @property (nonatomic, assign, getter = isEmbedded) BOOL embedded;
 @property (nonatomic, assign) BOOL statusBarHidden;
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
