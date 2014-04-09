@@ -132,4 +132,9 @@
 	XCTAssertFalse([self.monitor waitWithTimeout:1]);
 }
 
+- (void) testNilCompletionHandler
+{
+	XCTAssertThrowsSpecificNamed([[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:nil], NSException, NSInvalidArgumentException);
+}
+
 @end
