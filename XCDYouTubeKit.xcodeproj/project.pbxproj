@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C20F579D18817D5400EDBFB0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20F579C18817D5400EDBFB0 /* XCTest.framework */; };
-		C20F57A818817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C20F57A718817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m */; };
-		C20F57AF1881804D00EDBFB0 /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeVideoPlayerViewController.a */; };
+		C20F57A818817D5400EDBFB0 /* XCDYouTubeClient_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C20F57A718817D5400EDBFB0 /* XCDYouTubeClient_Tests.m */; };
+		C20F57AF1881804D00EDBFB0 /* libXCDYouTubeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeKit.a */; };
 		C20F57B01881806000EDBFB0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158817F48AD10026834B /* MediaPlayer.framework */; };
 		C20F57B11881806700EDBFB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158917F48AD10026834B /* UIKit.framework */; };
 		C24C162E18E9A139005E92E9 /* XCDYouTubeVideoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C162D18E9A139005E92E9 /* XCDYouTubeVideoOperation.m */; };
@@ -32,7 +32,7 @@
 			containerPortal = C2A3F2C517F4827800AC1C3B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C2A3F2CC17F4827800AC1C3B;
-			remoteInfo = XCDYouTubeVideoPlayerViewController;
+			remoteInfo = XCDYouTubeKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -55,9 +55,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C20F579B18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCDYouTubeVideoPlayerViewController Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C20F579B18817D5400EDBFB0 /* XCDYouTubeKit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCDYouTubeKit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20F579C18817D5400EDBFB0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		C20F57A718817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewController_Tests.m; sourceTree = "<group>"; };
+		C20F57A718817D5400EDBFB0 /* XCDYouTubeClient_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeClient_Tests.m; sourceTree = "<group>"; };
 		C24C162918E4DA6E005E92E9 /* XCDYouTubeError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeError.h; sourceTree = "<group>"; };
 		C24C162C18E9A139005E92E9 /* XCDYouTubeVideoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideoOperation.h; sourceTree = "<group>"; };
 		C24C162D18E9A139005E92E9 /* XCDYouTubeVideoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoOperation.m; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		C274158917F48AD10026834B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C276638318849FC000241DDE /* TRVSMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRVSMonitor.h; sourceTree = "<group>"; };
 		C276638418849FC000241DDE /* TRVSMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRVSMonitor.m; sourceTree = "<group>"; };
-		C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeVideoPlayerViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXCDYouTubeVideoPlayerViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXCDYouTubeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2A3F2D517F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideoPlayerViewController.h; sourceTree = "<group>"; };
 		C2A3F2D717F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C20F57AF1881804D00EDBFB0 /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */,
+				C20F57AF1881804D00EDBFB0 /* libXCDYouTubeKit.a in Frameworks */,
 				C20F57B01881806000EDBFB0 /* MediaPlayer.framework in Frameworks */,
 				C20F57B11881806700EDBFB0 /* UIKit.framework in Frameworks */,
 				C20F579D18817D5400EDBFB0 /* XCTest.framework in Frameworks */,
@@ -100,13 +100,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C20F57A118817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests */ = {
+		C20F57A118817D5400EDBFB0 /* XCDYouTubeKit Tests */ = {
 			isa = PBXGroup;
 			children = (
 				C276638218849FC000241DDE /* TRVSMonitor */,
-				C20F57A718817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m */,
+				C20F57A718817D5400EDBFB0 /* XCDYouTubeClient_Tests.m */,
 			);
-			path = "XCDYouTubeVideoPlayerViewController Tests";
+			path = "XCDYouTubeKit Tests";
 			sourceTree = "<group>";
 		};
 		C276638218849FC000241DDE /* TRVSMonitor */ = {
@@ -122,8 +122,8 @@
 		C2A3F2C417F4827800AC1C3B = {
 			isa = PBXGroup;
 			children = (
-				C2A3F2D217F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */,
-				C20F57A118817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests */,
+				C2A3F2D217F4827800AC1C3B /* XCDYouTubeKit */,
+				C20F57A118817D5400EDBFB0 /* XCDYouTubeKit Tests */,
 				C2A3F2CF17F4827800AC1C3B /* Frameworks */,
 				C2A3F2CE17F4827800AC1C3B /* Products */,
 			);
@@ -135,8 +135,8 @@
 		C2A3F2CE17F4827800AC1C3B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeVideoPlayerViewController.a */,
-				C20F579B18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests.xctest */,
+				C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeKit.a */,
+				C20F579B18817D5400EDBFB0 /* XCDYouTubeKit Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,7 +151,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C2A3F2D217F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */ = {
+		C2A3F2D217F4827800AC1C3B /* XCDYouTubeKit */ = {
 			isa = PBXGroup;
 			children = (
 				C25308C318D7392500132734 /* XCDYouTubeClient.h */,
@@ -166,15 +166,15 @@
 				C2A3F2D517F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h */,
 				C2A3F2D717F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m */,
 			);
-			path = XCDYouTubeVideoPlayerViewController;
+			path = XCDYouTubeKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C20F579A18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests */ = {
+		C20F579A18817D5400EDBFB0 /* XCDYouTubeKit Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C20F57AE18817D5400EDBFB0 /* Build configuration list for PBXNativeTarget "XCDYouTubeVideoPlayerViewController Tests" */;
+			buildConfigurationList = C20F57AE18817D5400EDBFB0 /* Build configuration list for PBXNativeTarget "XCDYouTubeKit Tests" */;
 			buildPhases = (
 				C20F579718817D5400EDBFB0 /* Sources */,
 				C20F579818817D5400EDBFB0 /* Frameworks */,
@@ -185,14 +185,14 @@
 			dependencies = (
 				C20F57AB18817D5400EDBFB0 /* PBXTargetDependency */,
 			);
-			name = "XCDYouTubeVideoPlayerViewController Tests";
-			productName = "XCDYouTubeVideoPlayerViewController Tests";
-			productReference = C20F579B18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests.xctest */;
+			name = "XCDYouTubeKit Tests";
+			productName = "XCDYouTubeKit Tests";
+			productReference = C20F579B18817D5400EDBFB0 /* XCDYouTubeKit Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C2A3F2CC17F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */ = {
+		C2A3F2CC17F4827800AC1C3B /* XCDYouTubeKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C2A3F2DB17F4827800AC1C3B /* Build configuration list for PBXNativeTarget "XCDYouTubeVideoPlayerViewController" */;
+			buildConfigurationList = C2A3F2DB17F4827800AC1C3B /* Build configuration list for PBXNativeTarget "XCDYouTubeKit" */;
 			buildPhases = (
 				C2A3F2CB17F4827800AC1C3B /* Copy Files */,
 				C2A3F2C917F4827800AC1C3B /* Sources */,
@@ -202,9 +202,9 @@
 			);
 			dependencies = (
 			);
-			name = XCDYouTubeVideoPlayerViewController;
-			productName = XCDYouTubeVideoPlayerViewController;
-			productReference = C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeVideoPlayerViewController.a */;
+			name = XCDYouTubeKit;
+			productName = XCDYouTubeKit;
+			productReference = C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -221,7 +221,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C2A3F2C817F4827800AC1C3B /* Build configuration list for PBXProject "XCDYouTubeVideoPlayerViewController" */;
+			buildConfigurationList = C2A3F2C817F4827800AC1C3B /* Build configuration list for PBXProject "XCDYouTubeKit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -233,8 +233,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C2A3F2CC17F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */,
-				C20F579A18817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController Tests */,
+				C2A3F2CC17F4827800AC1C3B /* XCDYouTubeKit */,
+				C20F579A18817D5400EDBFB0 /* XCDYouTubeKit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -255,7 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C276638518849FC000241DDE /* TRVSMonitor.m in Sources */,
-				C20F57A818817D5400EDBFB0 /* XCDYouTubeVideoPlayerViewController_Tests.m in Sources */,
+				C20F57A818817D5400EDBFB0 /* XCDYouTubeClient_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +275,7 @@
 /* Begin PBXTargetDependency section */
 		C20F57AB18817D5400EDBFB0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C2A3F2CC17F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController */;
+			target = C2A3F2CC17F4827800AC1C3B /* XCDYouTubeKit */;
 			targetProxy = C20F57AA18817D5400EDBFB0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -289,7 +289,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "XCDYouTubeKit Tests";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -302,7 +302,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "XCDYouTubeKit Tests";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -397,21 +397,21 @@
 		C2A3F2DC17F4827800AC1C3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XCDYouTubeKit;
 			};
 			name = Debug;
 		};
 		C2A3F2DD17F4827800AC1C3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XCDYouTubeKit;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C20F57AE18817D5400EDBFB0 /* Build configuration list for PBXNativeTarget "XCDYouTubeVideoPlayerViewController Tests" */ = {
+		C20F57AE18817D5400EDBFB0 /* Build configuration list for PBXNativeTarget "XCDYouTubeKit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C20F57AC18817D5400EDBFB0 /* Debug */,
@@ -420,7 +420,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C2A3F2C817F4827800AC1C3B /* Build configuration list for PBXProject "XCDYouTubeVideoPlayerViewController" */ = {
+		C2A3F2C817F4827800AC1C3B /* Build configuration list for PBXProject "XCDYouTubeKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2A3F2D917F4827800AC1C3B /* Debug */,
@@ -429,7 +429,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C2A3F2DB17F4827800AC1C3B /* Build configuration list for PBXNativeTarget "XCDYouTubeVideoPlayerViewController" */ = {
+		C2A3F2DB17F4827800AC1C3B /* Build configuration list for PBXNativeTarget "XCDYouTubeKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2A3F2DC17F4827800AC1C3B /* Debug */,

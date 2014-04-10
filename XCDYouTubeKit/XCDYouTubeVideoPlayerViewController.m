@@ -1,16 +1,12 @@
 //
-//  XCDYouTubeVideoPlayerViewController.m
-//  XCDYouTubeVideoPlayerViewController
-//
-//  Created by Cédric Luthi on 02.05.13.
 //  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
 //
 
-#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideoPlayerViewController.h>
+#import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
 
-#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeClient.h>
-#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideo.h>
-#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeError.h>
+#import <XCDYouTubeKit/XCDYouTubeClient.h>
+#import <XCDYouTubeKit/XCDYouTubeVideo.h>
+#import <XCDYouTubeKit/XCDYouTubeError.h>
 
 #import <objc/runtime.h>
 

@@ -1,9 +1,5 @@
 //
-//  XCDYouTubeVideoOperation.m
-//  XCDYouTubeVideoPlayerViewController
-//
-//  Created by Cédric Luthi on 31.03.14.
-//  Copyright (c) 2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
 //
 
 #import "XCDYouTubeVideoOperation.h"

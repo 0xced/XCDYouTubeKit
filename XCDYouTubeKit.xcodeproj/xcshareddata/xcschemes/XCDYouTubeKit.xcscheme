@@ -5,6 +5,22 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C2A3F2CC17F4827800AC1C3B"
+               BuildableName = "libXCDYouTubeKit.a"
+               BlueprintName = "XCDYouTubeKit"
+               ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -17,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
-               BuildableName = "XCDYouTubeVideoPlayerViewController Tests.xctest"
-               BlueprintName = "XCDYouTubeVideoPlayerViewController Tests"
-               ReferencedContainer = "container:XCDYouTubeVideoPlayerViewController.xcodeproj">
+               BuildableName = "XCDYouTubeKit Tests.xctest"
+               BlueprintName = "XCDYouTubeKit Tests"
+               ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

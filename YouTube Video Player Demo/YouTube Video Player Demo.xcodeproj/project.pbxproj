@@ -23,7 +23,7 @@
 		C27415DC17F4CDD80026834B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415D117F4CDD80026834B /* main.m */; };
 		C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E217F4D02E0026834B /* AVFoundation.framework */; };
 		C27415E517F4D0330026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E417F4D0330026834B /* MediaPlayer.framework */; };
-		C2EDD2ED1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EDD2EC1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a */; };
+		C2EDD2ED1805917900BEA32B /* libXCDYouTubeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */; };
 		C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EFB48618730A2B0046B1FE /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +52,7 @@
 		C27415DE17F4CE4A0026834B /* YouTube Video Player Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YouTube Video Player Demo-Prefix.pch"; sourceTree = "<group>"; };
 		C27415E217F4D02E0026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C27415E417F4D0330026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		C2EDD2EC1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXCDYouTubeVideoPlayerViewController.a; path = "../build/Debug-iphoneos/libXCDYouTubeVideoPlayerViewController.a"; sourceTree = "<group>"; };
+		C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXCDYouTubeKit.a; path = "../build/Debug-iphoneos/libXCDYouTubeKit.a"; sourceTree = "<group>"; };
 		C2EFB48518730A2B0046B1FE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C2EFB48618730A2B0046B1FE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2EDD2ED1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a in Frameworks */,
+				C2EDD2ED1805917900BEA32B /* libXCDYouTubeKit.a in Frameworks */,
 				C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */,
 				C27415A617F491230026834B /* CoreGraphics.framework in Frameworks */,
 				C27415A417F491230026834B /* Foundation.framework in Frameworks */,
@@ -97,7 +97,7 @@
 		C27415A017F491230026834B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C2EDD2EC1805917900BEA32B /* libXCDYouTubeVideoPlayerViewController.a */,
+				C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */,
 				C27415E217F4D02E0026834B /* AVFoundation.framework */,
 				C27415A517F491230026834B /* CoreGraphics.framework */,
 				C27415A317F491230026834B /* Foundation.framework */,

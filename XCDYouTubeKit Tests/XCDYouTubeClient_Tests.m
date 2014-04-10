@@ -1,26 +1,22 @@
 //
-//  XCDYouTubeVideoPlayerViewController_Tests.m
-//  XCDYouTubeVideoPlayerViewController Tests
-//
-//  Created by Cédric Luthi on 11.01.14.
-//  Copyright (c) 2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
 #import "TRVSMonitor.h"
-#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideoPlayerViewController.h>
-#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeClient.h>
-#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeError.h>
-#import <XCDYouTubeVideoPlayerViewController/XCDYouTubeVideo.h>
+#import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
+#import <XCDYouTubeKit/XCDYouTubeClient.h>
+#import <XCDYouTubeKit/XCDYouTubeError.h>
+#import <XCDYouTubeKit/XCDYouTubeVideo.h>
 
-@interface XCDYouTubeVideoPlayerViewController_Tests : XCTestCase
+@interface XCDYouTubeClient_Tests : XCTestCase
 
 @property TRVSMonitor *monitor;
 
 @end
 
-@implementation XCDYouTubeVideoPlayerViewController_Tests
+@implementation XCDYouTubeClient_Tests
 
 - (void) setUp
 {

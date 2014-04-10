@@ -1,9 +1,5 @@
 //
-//  XCDYouTubeError.h
-//  XCDYouTubeVideoPlayerViewController
-//
-//  Created by Cédric Luthi on 27.03.14.
-//  Copyright (c) 2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

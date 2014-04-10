@@ -5,6 +5,6 @@
       location = "group:YouTube Video Player Demo/YouTube Video Player Demo.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:XCDYouTubeVideoPlayerViewController.xcodeproj">
+      location = "group:XCDYouTubeKit.xcodeproj">
    </FileRef>
 </Workspace>
