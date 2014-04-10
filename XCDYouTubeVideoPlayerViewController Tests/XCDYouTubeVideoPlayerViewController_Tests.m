@@ -20,21 +20,7 @@
 
 @end
 
-@interface NSURLRequest (Private)
-+ (void) setAllowsAnyHTTPSCertificate:(BOOL)allowsAnyHTTPSCertificate forHost:(NSString *)host;
-@end
-
 @implementation XCDYouTubeVideoPlayerViewController_Tests
-
-+ (void) initialize
-{
-	if (self != [XCDYouTubeVideoPlayerViewController_Tests class])
-		return;
-	
-	// The connections to YouTube over https fail with a certificate error when running the unit tests but work fine inside an app environment
-	// Error Domain=NSURLErrorDomain Code=-1202 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “www.youtube.com” which could put your confidential information at risk."
-	[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:@"www.youtube.com"];
-}
 
 - (void) setUp
 {
