@@ -106,6 +106,17 @@
 	XCTAssertTrue([self.monitor waitWithTimeout:10]);
 }
 
+- (void) testNilVideoIdentifier
+{
+	[[XCDYouTubeClient new] getVideoWithIdentifier:nil completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
+		[self.monitor signal];
+	}];
+	XCTAssertTrue([self.monitor waitWithTimeout:10]);
+}
+
 - (void) testWrongInitializer
 {
 	XCTAssertThrowsSpecificNamed([[XCDYouTubeVideoPlayerViewController alloc] initWithContentURL:nil], NSException, NSGenericException);
