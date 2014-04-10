@@ -2,13 +2,13 @@
 
 [![build status](https://travis-ci.org/0xced/XCDYouTubeVideoPlayerViewController.svg)](https://travis-ci.org/0xced/XCDYouTubeVideoPlayerViewController)
 
-**XCDYouTubeVideoPlayerViewController** is a YouTube video player for iPhone and iPad. 
+**XCDYouTubeKit** is a YouTube video player for iPhone and iPad. 
 
 <img src="Screenshots/XCDYouTubeVideoPlayerViewController.png" width="480" height="320">
 
-To the best of my knowledge, the only *official* way of playing a YouTube video on iOS is with a UIWebView and the [iframe player API](https://developers.google.com/youtube/iframe_api_reference). Unfortunately, this is very slow and quite ugly, so I wrote XCDYouTubeVideoPlayerViewController which gives the user a better viewing experience.
+To the best of my knowledge, the only *official* way of playing a YouTube video on iOS is with a UIWebView and the [iframe player API](https://developers.google.com/youtube/iframe_api_reference). Unfortunately, this is very slow and quite ugly, so I wrote this player to give users a better viewing experience.
 
-XCDYouTubeVideoPlayerViewController uses progressive download, so remember that some restrictions apply if you submit your app to the App Store, as stated in 
+The player uses progressive download, so remember that some restrictions apply if you submit your app to the App Store, as stated in 
 [HTTP Live Streaming — Requirements for Apps](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/StreamingMediaGuide/UsingHTTPLiveStreaming/UsingHTTPLiveStreaming.html#//apple_ref/doc/uid/TP40008332-CH102-SW5):
 > **Warning**: iOS apps submitted for distribution in the App Store must conform to these requirements.
 > 
@@ -21,12 +21,9 @@ XCDYouTubeVideoPlayerViewController uses progressive download, so remember that 
 
 ## Installation
 
-XCDYouTubeVideoPlayerViewController is available through CocoaPods.
+XCDYouTubeKit is available through CocoaPods.
 
-Alternatively, you can install it manually:
-
-1. Copy the `XCDYouTubeVideoPlayerViewController.h` and `XCDYouTubeVideoPlayerViewController.m` files in your project.
-2. Add `MediaPlayer.framework` and `AVFoundation.framework` in your project.
+Alternatively, you can manually use the provided static library.
 
 ## Usage
 
@@ -51,7 +48,7 @@ See the demo project for more sample code.
 
 ## Credits
 
-The URL exctraction algorithms in *XCDYouTubeVideoPlayerViewController* are inspired by the [YouTube extractor](https://github.com/rg3/youtube-dl/blob/master/youtube_dl/extractor/youtube.py) module of the *youtube-dl* project.
+The URL exctraction algorithms in *XCDYouTubeKit* are inspired by the [YouTube extractor](https://github.com/rg3/youtube-dl/blob/master/youtube_dl/extractor/youtube.py) module of the *youtube-dl* project.
 
 ## Contact
 
@@ -63,4 +60,4 @@ Cédric Luthi
 
 ## License
 
-XCDYouTubeVideoPlayerViewController is available under the MIT license. See the [LICENSE](LICENSE) file for more information.
+XCDYouTubeKit is available under the MIT license. See the [LICENSE](LICENSE) file for more information.
