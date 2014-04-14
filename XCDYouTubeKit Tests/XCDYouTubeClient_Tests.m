@@ -7,8 +7,6 @@
 #import "TRVSMonitor.h"
 #import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
-#import <XCDYouTubeKit/XCDYouTubeError.h>
-#import <XCDYouTubeKit/XCDYouTubeVideo.h>
 
 @interface XCDYouTubeClient_Tests : XCTestCase
 
