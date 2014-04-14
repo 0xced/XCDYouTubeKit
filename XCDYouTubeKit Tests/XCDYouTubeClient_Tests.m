@@ -127,7 +127,10 @@
 
 - (void) testNilCompletionHandler
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
 	XCTAssertThrowsSpecificNamed([[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:nil], NSException, NSInvalidArgumentException);
+#pragma clang diagnostic pop
 }
 
 @end
