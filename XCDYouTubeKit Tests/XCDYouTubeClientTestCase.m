@@ -4,42 +4,29 @@
 
 #import <XCTest/XCTest.h>
 
-#import "TRVSMonitor.h"
-#import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
 
-@interface XCDYouTubeClient_Tests : XCTestCase
+#import "TRVSMonitor.h"
 
-@property TRVSMonitor *monitor;
-
+@interface XCDYouTubeClientTestCase : XCTestCase
 @end
 
-@implementation XCDYouTubeClient_Tests
-
-- (void) setUp
-{
-	[super setUp];
-	self.monitor = [TRVSMonitor new];
-}
-
-- (void) tearDown
-{
-	self.monitor = nil;
-	[super tearDown];
-}
+@implementation XCDYouTubeClientTestCase
 
 - (void) testThatVideoIsAvailalbeOnDetailPageEventLabel
 {
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(error);
 		XCTAssertNotNil(video);
-		[self.monitor signal];
+		[monitor signal];
 	}];
-	XCTAssertTrue([self.monitor waitWithTimeout:10]);
+	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
 - (void) testThatGangnamStyleVideoHasMetadata
 {
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(error);
 		XCTAssertEqualObjects(video.identifier, @"9bZkp7q19f0");
@@ -48,79 +35,80 @@
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
-		[self.monitor signal];
+		[monitor signal];
 	}];
-	XCTAssertTrue([self.monitor waitWithTimeout:10]);
+	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
 - (void) testRestrictedVideo
 {
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient new] getVideoWithIdentifier:@"1kIsylLeHHU" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		[self.monitor signal];
+		[monitor signal];
 	}];
-	XCTAssertTrue([self.monitor waitWithTimeout:10]);
+	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
 - (void) testRemovedVideo
 {
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient new] getVideoWithIdentifier:@"BXnA9FjvLSU" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRemovedVideo);
-		[self.monitor signal];
+		[monitor signal];
 	}];
-	XCTAssertTrue([self.monitor waitWithTimeout:10]);
+	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
 - (void) testInvalidVideoIdentifier
 {
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient new] getVideoWithIdentifier:@"tooShort" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
-		[self.monitor signal];
+		[monitor signal];
 	}];
-	XCTAssertTrue([self.monitor waitWithTimeout:10]);
+	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
 - (void) testNilVideoIdentifier
 {
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient new] getVideoWithIdentifier:nil completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
-		[self.monitor signal];
+		[monitor signal];
 	}];
-	XCTAssertTrue([self.monitor waitWithTimeout:10]);
-}
-
-- (void) testWrongInitializer
-{
-	XCTAssertThrowsSpecificNamed([[XCDYouTubeVideoPlayerViewController alloc] initWithContentURL:nil], NSException, NSGenericException);
+	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
 - (void) testUsingClientOnNonMainThread
 {
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		XCTAssertFalse([NSThread isMainThread]);
 		[[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 			XCTAssertTrue([NSThread isMainThread]);
-			[self.monitor signal];
+			[monitor signal];
 		}];
 	});
-	XCTAssertTrue([self.monitor waitWithTimeout:10]);
+	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
 - (void) testCancelingOperation
 {
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	id<XCDYouTubeOperation> operation = [[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTFail();
 	}];
 	[operation cancel];
-	XCTAssertFalse([self.monitor waitWithTimeout:1]);
+	XCTAssertFalse([monitor waitWithTimeout:1]);
 }
 
 - (void) testNilCompletionHandler
