@@ -5,6 +5,7 @@
 #import "XCDYouTubeVideoOperation.h"
 
 #import "XCDYouTubeVideo+Private.h"
+#import "XCDYouTubeError.h"
 
 @interface XCDYouTubeVideoOperation () <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 @property (atomic, copy) NSString *videoIdentifier;
@@ -137,8 +138,11 @@
 		[self finishWithError:error];
 }
 
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)connectionError
 {
+	NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: connectionError.localizedDescription,
+	                            NSUnderlyingErrorKey: connectionError };
+	NSError *error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
 	[self finishWithError:error];
 }
 
