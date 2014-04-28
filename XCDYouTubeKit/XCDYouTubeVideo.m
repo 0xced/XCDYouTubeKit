@@ -97,6 +97,11 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 
 #pragma mark - NSObject
 
+- (NSString *) description
+{
+	return self.title;
+}
+
 - (NSString *) debugDescription
 {
 	return [NSString stringWithFormat:@"<%@: %p> [%@] %@\n%@", self.class, self, self.identifier, self.title, self.streamURLs];
