@@ -97,6 +97,16 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 
 #pragma mark - NSObject
 
+- (BOOL) isEqual:(id)object
+{
+	return [object isKindOfClass:[XCDYouTubeVideo class]] ? [((XCDYouTubeVideo *)object).identifier isEqual:self.identifier] : NO;
+}
+
+- (NSUInteger) hash
+{
+	return [self.identifier hash];
+}
+
 - (NSString *) description
 {
 	return self.title;
