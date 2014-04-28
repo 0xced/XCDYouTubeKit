@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface XCDYouTubeVideo : NSObject
+@interface XCDYouTubeVideo : NSObject <NSCopying>
 
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) NSString *title;

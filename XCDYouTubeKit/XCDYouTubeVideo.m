@@ -95,9 +95,18 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	}
 }
 
+#pragma mark - NSObject
+
 - (NSString *) debugDescription
 {
 	return [NSString stringWithFormat:@"<%@: %p> [%@] %@\n%@", self.class, self, self.identifier, self.title, self.streamURLs];
+}
+
+#pragma mark - NSCopying
+
+- (id) copyWithZone:(NSZone *)zone
+{
+	return self;
 }
 
 @end
