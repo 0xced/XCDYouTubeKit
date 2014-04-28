@@ -8,8 +8,8 @@
 #import "XCDYouTubeError.h"
 
 @interface XCDYouTubeVideoOperation () <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
-@property (atomic, copy) NSString *videoIdentifier;
-@property (atomic, copy) NSString *languageIdentifier;
+@property (atomic, copy, readonly) NSString *videoIdentifier;
+@property (atomic, copy, readonly) NSString *languageIdentifier;
 
 @property (atomic, strong) NSURLConnection *connection;
 @property (atomic, strong) NSURLResponse *response;
@@ -35,8 +35,8 @@
 	if (!(self = [super init]))
 		return nil;
 	
-	_videoIdentifier = videoIdentifier;
-	_languageIdentifier = languageIdentifier;
+	_videoIdentifier = videoIdentifier ?: @"";
+	_languageIdentifier = languageIdentifier ?: @"en";
 	
 	return self;
 }
@@ -48,7 +48,7 @@
 	if (eventLabel.length > 0)
 		eventLabel = [@"&el=" stringByAppendingString:eventLabel];
 	
-	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=%@", self.videoIdentifier ?: @"", eventLabel, self.languageIdentifier]];
+	NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=%@", self.videoIdentifier, eventLabel, self.languageIdentifier]];
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:videoInfoURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
 	
