@@ -4,12 +4,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
-	XCDYouTubeVideoQualitySmall240  = 36,
-	XCDYouTubeVideoQualityMedium360 = 18,
-	XCDYouTubeVideoQualityHD720     = 22,
-	XCDYouTubeVideoQualityHD1080    = 37,
-};
+#import <XCDYouTubeKit/XCDYouTubeVideo.h>
 
 // NSError key for the `MPMoviePlayerPlaybackDidFinishNotification` userInfo dictionary
 // Ideally, there should be a `MPMoviePlayerPlaybackDidFinishErrorUserInfoKey` declared near to `MPMoviePlayerPlaybackDidFinishReasonUserInfoKey`

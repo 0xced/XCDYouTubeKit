@@ -4,6 +4,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
+	XCDYouTubeVideoQualitySmall240  = 36,
+	XCDYouTubeVideoQualityMedium360 = 18,
+	XCDYouTubeVideoQualityHD720     = 22,
+	XCDYouTubeVideoQualityHD1080    = 37,
+};
+
 @interface XCDYouTubeVideo : NSObject <NSCopying>
 
 @property (nonatomic, readonly) NSString *identifier;
