@@ -42,8 +42,6 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	if (!(self = [super init]))
 		return nil;
 	
-	self.preferredVideoQualities = nil;
-	
 	if (videoIdentifier)
 		self.videoIdentifier = videoIdentifier;
 	
@@ -56,6 +54,14 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (NSArray *) preferredVideoQualities
+{
+	if (!_preferredVideoQualities)
+		_preferredVideoQualities = @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
+	
+	return _preferredVideoQualities;
 }
 
 - (void) setVideoIdentifier:(NSString *)videoIdentifier
@@ -121,14 +127,6 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 		[self.moviePlayer.view removeFromSuperview];
 	else
 		[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
-}
-
-- (void) setPreferredVideoQualities:(NSArray *)preferredVideoQualities
-{
-	if (preferredVideoQualities)
-		_preferredVideoQualities = [preferredVideoQualities copy];
-	else
-		_preferredVideoQualities = @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
 }
 
 - (void) presentInView:(UIView *)view
