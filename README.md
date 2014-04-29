@@ -56,7 +56,6 @@ Cédric Luthi
 
 - http://github.com/0xced
 - http://twitter.com/0xced
-- cedric.luthi@gmail.com
 
 ## License
 
