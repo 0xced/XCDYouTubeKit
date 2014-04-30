@@ -16,6 +16,9 @@ NSString *const XCDMetadataKeySmallThumbnailURL = @"SmallThumbnailURL";
 NSString *const XCDMetadataKeyMediumThumbnailURL = @"MediumThumbnailURL";
 NSString *const XCDMetadataKeyLargeThumbnailURL = @"LargeThumbnailURL";
 
+NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification = @"XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification";
+NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
+
 @interface XCDYouTubeVideoPlayerViewController ()
 @property (nonatomic, weak) id<XCDYouTubeOperation> videoOperation;
 @property (nonatomic, assign, getter = isEmbedded) BOOL embedded;
@@ -102,6 +105,8 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 
 - (void) startVideo:(XCDYouTubeVideo *)video streamURL:(NSURL *)streamURL
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	NSMutableDictionary *userInfo = [NSMutableDictionary new];
 	if (video.title)
 		userInfo[XCDMetadataKeyTitle] = video.title;
@@ -113,6 +118,9 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 		userInfo[XCDMetadataKeyLargeThumbnailURL] = video.largeThumbnailURL;
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:self userInfo:userInfo];
+#pragma clang diagnostic pop
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:self userInfo:@{ XCDYouTubeVideoUserInfoKey: video }];
 	
 	self.moviePlayer.contentURL = streamURL;
 }

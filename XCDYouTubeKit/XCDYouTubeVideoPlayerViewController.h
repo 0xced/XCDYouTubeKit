@@ -11,12 +11,14 @@
 // in MPMoviePlayerController.h but since it doesn't exist, here is a convenient constant key.
 MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey;
 
-MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification;
-// Metadata notification userInfo keys, they are all optional
-MP_EXTERN NSString *const XCDMetadataKeyTitle;
-MP_EXTERN NSString *const XCDMetadataKeySmallThumbnailURL;
-MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL;
-MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL;
+MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification;
+MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey; // XCDYouTubeVideo
+
+MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification DEPRECATED_MSG_ATTRIBUTE("Use XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification instead.");
+MP_EXTERN NSString *const XCDMetadataKeyTitle DEPRECATED_MSG_ATTRIBUTE("Use XCDYouTubeVideoUserInfoKey instead.");
+MP_EXTERN NSString *const XCDMetadataKeySmallThumbnailURL DEPRECATED_MSG_ATTRIBUTE("Use XCDYouTubeVideoUserInfoKey instead.");
+MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL DEPRECATED_MSG_ATTRIBUTE("Use XCDYouTubeVideoUserInfoKey instead.");
+MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL DEPRECATED_MSG_ATTRIBUTE("Use XCDYouTubeVideoUserInfoKey instead.");
 
 @interface XCDYouTubeVideoPlayerViewController : MPMoviePlayerViewController
 

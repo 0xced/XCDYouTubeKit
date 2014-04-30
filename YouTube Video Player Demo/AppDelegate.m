@@ -26,7 +26,7 @@
 	}
 	
 	NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-	[defaultCenter addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveMetadata:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:nil];
+	[defaultCenter addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveVideo:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:nil];
 	[defaultCenter addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 	[defaultCenter addObserver:self selector:@selector(moviePlayerPlaybackStateDidChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
 	[defaultCenter addObserver:self selector:@selector(moviePlayerLoadStateDidChange:) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
@@ -106,16 +106,16 @@
 	NSLog(@"Load State: %@", loadState.length > 0 ? [loadState substringFromIndex:3] : @"N/A");
 }
 
-- (void) videoPlayerViewControllerDidReceiveMetadata:(NSNotification *)notification
+- (void) videoPlayerViewControllerDidReceiveVideo:(NSNotification *)notification
 {
-	NSDictionary *metadata = notification.userInfo;
-	NSLog(@"Metadata: %@", metadata);
+	XCDYouTubeVideo *video = notification.userInfo[XCDYouTubeVideoUserInfoKey];
+	NSLog(@"Video: [%@] %@ (%@)", video.identifier, video.title, video.mediumThumbnailURL);
 	
-	NSString *title = metadata[XCDMetadataKeyTitle];
+	NSString *title = video.title;
 	if (title)
 		[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{ MPMediaItemPropertyTitle: title };
 	
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:metadata[XCDMetadataKeyMediumThumbnailURL]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:video.mediumThumbnailURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 		if (data)
 		{
 			UIImage *image = [UIImage imageWithData:data];

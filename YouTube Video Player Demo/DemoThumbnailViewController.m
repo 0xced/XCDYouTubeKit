@@ -21,7 +21,7 @@
 	self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"VpZmIiIXuZ0"];
 	
 	NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-	[defaultCenter addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveMetadata:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:self.videoPlayerViewController];
+	[defaultCenter addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveVideo:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:self.videoPlayerViewController];
 	[defaultCenter addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.videoPlayerViewController.moviePlayer];
 }
 
@@ -33,11 +33,12 @@
 
 #pragma mark - Notifications
 
-- (void) videoPlayerViewControllerDidReceiveMetadata:(NSNotification *)notification
+- (void) videoPlayerViewControllerDidReceiveVideo:(NSNotification *)notification
 {
-	self.titleLabel.text = notification.userInfo[XCDMetadataKeyTitle];
+	XCDYouTubeVideo *video = notification.userInfo[XCDYouTubeVideoUserInfoKey];
+	self.titleLabel.text = video.title;
 	
-	NSURL *thumbnailURL = notification.userInfo[XCDMetadataKeyMediumThumbnailURL] ?: notification.userInfo[XCDMetadataKeySmallThumbnailURL];
+	NSURL *thumbnailURL = video.mediumThumbnailURL ?: video.smallThumbnailURL;
 	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:thumbnailURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		self.thumbnailImageView.image = [UIImage imageWithData:data];
 		
