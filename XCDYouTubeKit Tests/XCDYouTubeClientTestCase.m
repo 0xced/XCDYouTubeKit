@@ -130,6 +130,20 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
+- (void) testConnectionError
+{
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNetwork);
+		NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
+		XCTAssertEqualObjects(underlyingError.domain, NSURLErrorDomain);
+		[monitor signal];
+	}];
+	XCTAssertTrue([monitor waitWithTimeout:10]);
+}
+
 - (void) testUsingClientOnNonMainThread
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];

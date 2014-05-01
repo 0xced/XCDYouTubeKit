@@ -1,0 +1,14 @@
+[
+  {
+    "body" : "",
+    "error" : {
+      "domain" : "NSURLErrorDomain",
+      "code" : -1009,
+      "userInfo" : "YnBsaXN0MDDUAQIDBAUITE1UJHRvcFgkb2JqZWN0c1gkdmVyc2lvblkkYXJjaGl2ZXLRBgdUcm9vdIABrxASCQoZGhscHR4kKyw0NT9AQUJHVSRudWxs0wsMDQ4TFFpOUy5vYmplY3RzViRjbGFzc1dOUy5rZXlzpA8QERKABoAHgAmACoAQpBUWFxiAAoADgASABV8QGk5TRXJyb3JGYWlsaW5nVVJMU3RyaW5nS2V5XxAUTlNFcnJvckZhaWxpbmdVUkxLZXlfEBZOU0xvY2FsaXplZERlc2NyaXB0aW9uXxARTlNVbmRlcmx5aW5nRXJyb3JfEGRodHRwczovL3d3dy55b3V0dWJlLmNvbS9nZXRfdmlkZW9faW5mbz92aWRlb19pZD1FZGVWYVQtelp0NCZlbD1lbWJlZGRlZCZwcz1kZWZhdWx0JmV1cmw9JmdsPVVTJmhsPWVu0x8gDA8iI1tOUy5yZWxhdGl2ZVdOUy5iYXNlgAaAAIAI0iUmJypYJGNsYXNzZXNaJGNsYXNzbmFtZaIoKVVOU1VSTFhOU09iamVjdFVOU1VSTF8QLlRoZSBJbnRlcm5ldCBjb25uZWN0aW9uIGFwcGVhcnMgdG8gYmUgb2ZmbGluZS7ULS4MLzAxMjNYTlNEb21haW5WTlNDb2RlWk5TVXNlckluZm+ACxP\/\/\/\/\/\/\/\/8D4ARgAxfEBdrQ0ZFcnJvckRvbWFpbkNGTmV0d29ya9MLDA02EzujEA8RgAeABoAJgBCjPD0+gA2ADoAPXxAUTlNFcnJvckZhaWxpbmdVUkxLZXlfEBpOU0Vycm9yRmFpbGluZ1VSTFN0cmluZ0tleV8QFk5TTG9jYWxpemVkRGVzY3JpcHRpb27SJSZDRqJERVxOU0RpY3Rpb25hcnlYTlNPYmplY3RcTlNEaWN0aW9uYXJ50iUmSEuiSUpXTlNFcnJvclhOU09iamVjdFdOU0Vycm9yEgABhqBfEA9OU0tleWVkQXJjaGl2ZXIACAARABYAHwAoADIANQA6ADwAUQBXAF4AaQBwAHgAfQB\/AIEAgwCFAIcAjACOAJAAkgCUALEAyADhAPUBXAFjAW8BdwF5AXsBfQGCAYsBlgGZAZ8BqAGuAd8B6AHxAfgCAwIFAg4CEAISAiwCMwI3AjkCOwI9Aj8CQwJFAkcCSQJgAn0ClgKbAp4CqwK0AsECxgLJAtEC2gLiAucAAAAAAAACAQAAAAAAAABOAAAAAAAAAAAAAAAAAAAC+Q==",
+      "localizedDescription" : "The Internet connection appears to be offline."
+    },
+    "method" : "GET",
+    "status" : 0,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=EdeVaT-zZt4&el=embedded&ps=default&eurl=&gl=US&hl=en"
+  }
+]
