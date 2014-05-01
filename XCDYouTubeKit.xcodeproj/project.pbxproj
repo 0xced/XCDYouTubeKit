@@ -27,6 +27,7 @@
 		C2C3569818FD2CB400F8D744 /* XCDYouTubeVideoPlayerViewControllerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3569718FD2CB400F8D744 /* XCDYouTubeVideoPlayerViewControllerTestCase.m */; };
 		C2D0CBAD19122B3B00DA8CD4 /* XCDYouTubeKit.h in Copy Files */ = {isa = PBXBuildFile; fileRef = C2D0CBAC19122A8F00DA8CD4 /* XCDYouTubeKit.h */; };
 		C2D0CBAE19122B4800DA8CD4 /* XCDYouTubeVideoOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = C24C162C18E9A139005E92E9 /* XCDYouTubeVideoOperation.h */; };
+		C2D0CBB01912334400DA8CD4 /* XCDYouTubeVideoTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CBAF1912334400DA8CD4 /* XCDYouTubeVideoTestCase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		C2A3F2D717F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewController.m; sourceTree = "<group>"; };
 		C2C3569718FD2CB400F8D744 /* XCDYouTubeVideoPlayerViewControllerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewControllerTestCase.m; sourceTree = "<group>"; };
 		C2D0CBAC19122A8F00DA8CD4 /* XCDYouTubeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeKit.h; sourceTree = "<group>"; };
+		C2D0CBAF1912334400DA8CD4 /* XCDYouTubeVideoTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoTestCase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				C276638218849FC000241DDE /* TRVSMonitor */,
 				C20F57A718817D5400EDBFB0 /* XCDYouTubeClientTestCase.m */,
 				C2C3569718FD2CB400F8D744 /* XCDYouTubeVideoPlayerViewControllerTestCase.m */,
+				C2D0CBAF1912334400DA8CD4 /* XCDYouTubeVideoTestCase.m */,
 			);
 			path = "XCDYouTubeKit Tests";
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2D0CBB01912334400DA8CD4 /* XCDYouTubeVideoTestCase.m in Sources */,
 				C276638518849FC000241DDE /* TRVSMonitor.m in Sources */,
 				C20F57A818817D5400EDBFB0 /* XCDYouTubeClientTestCase.m in Sources */,
 				C2C3569818FD2CB400F8D744 /* XCDYouTubeVideoPlayerViewControllerTestCase.m in Sources */,
