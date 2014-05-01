@@ -60,16 +60,9 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 		{
 			NSDictionary *stream = DictionaryWithQueryString(streamQuery, queryEncoding);
 			NSString *urlString = stream[@"url"];
-			if (urlString)
-			{
-				NSURL *streamURL = [NSURL URLWithString:urlString];
-				NSString *signature = stream[@"sig"];
-				if (signature)
-					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, signature]];
-				
-				if ([[DictionaryWithQueryString(streamURL.query, queryEncoding) allKeys] containsObject:@"signature"])
-					streamURLs[@([stream[@"itag"] integerValue])] = streamURL;
-			}
+			NSString *itag = stream[@"itag"];
+			if (urlString && itag)
+				streamURLs[@([itag integerValue])] = [NSURL URLWithString:urlString];
 		}
 		_streamURLs = [streamURLs copy];
 		
