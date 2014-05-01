@@ -39,6 +39,7 @@
 		C2D0CC581912673500DA8CD4 /* VCRReplayingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4D1912673500DA8CD4 /* VCRReplayingURLProtocol.m */; };
 		C2D0CC591912673500DA8CD4 /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4F1912673500DA8CD4 /* VCRRequestKey.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-method-signatures"; }; };
 		C2D0CC5B1912693400DA8CD4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D0CC5A1912693400DA8CD4 /* MobileCoreServices.framework */; };
+		C2D0CC5D19126E1200DA8CD4 /* Cassettes in Resources */ = {isa = PBXBuildFile; fileRef = C2D0CC5C19126E1200DA8CD4 /* Cassettes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		C2D0CC4E1912673500DA8CD4 /* VCRRequestKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRequestKey.h; sourceTree = "<group>"; };
 		C2D0CC4F1912673500DA8CD4 /* VCRRequestKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRRequestKey.m; sourceTree = "<group>"; };
 		C2D0CC5A1912693400DA8CD4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C2D0CC5C19126E1200DA8CD4 /* Cassettes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cassettes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		C20F57A118817D5400EDBFB0 /* XCDYouTubeKit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C2D0CC5C19126E1200DA8CD4 /* Cassettes */,
 				C276638218849FC000241DDE /* TRVSMonitor */,
 				C2D0CC3A1912673500DA8CD4 /* VCRURLConnection */,
 				C20F57A718817D5400EDBFB0 /* XCDYouTubeClientTestCase.m */,
@@ -321,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2D0CC5D19126E1200DA8CD4 /* Cassettes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

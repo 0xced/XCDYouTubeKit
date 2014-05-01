@@ -1,0 +1,82 @@
+[
+  {
+    "body" : "errorcode=150&status=fail&c=WEB&eventid=hEZiU_G9HoPi8QPU7IHgCg&reason=This+video+contains+content+from+Youtube+test+content+owner%2C+who+has+blocked+it+on+copyright+grounds.&enablecsi=1&errordetail=0&csi_page_type=watch%2Cwatch7",
+    "headers" : {
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "X-Content-Type-Options" : "nosniff",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Server" : "gwiseguy\/2.0",
+      "Transfer-Encoding" : "Identity",
+      "Alternate-Protocol" : "443:quic",
+      "Date" : "Thu, 01 May 2014 13:05:08 GMT",
+      "Cache-Control" : "no-store"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=1kIsylLeHHU&el=detailpage&ps=default&eurl=&gl=US&hl=en"
+  },
+  {
+    "body" : "csi_page_type=embed&c=WEB&enablecsi=1&eventid=hEZiU-nrNdPT8QO78IBo&errorcode=150&errordetail=0&status=fail&reason=This+video+contains+content+from+Youtube+test+content+owner%2C+who+has+blocked+it+on+copyright+grounds.",
+    "headers" : {
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "Cache-Control" : "no-store",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "X-Content-Type-Options" : "nosniff",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Server" : "gwiseguy\/2.0",
+      "Transfer-Encoding" : "Identity",
+      "Alternate-Protocol" : "443:quic",
+      "Date" : "Thu, 01 May 2014 13:05:08 GMT",
+      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=1kIsylLeHHU&ps=default&eurl=&gl=US&hl=en"
+  },
+  {
+    "body" : "c=WEB&errordetail=0&eventid=hEZiU_f9MMKj8AP5nIGQCA&status=fail&reason=This+video+contains+content+from+Youtube+test+content+owner%2C+who+has+blocked+it+on+copyright+grounds.&errorcode=150",
+    "headers" : {
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "X-Content-Type-Options" : "nosniff",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Server" : "gwiseguy\/2.0",
+      "Transfer-Encoding" : "Identity",
+      "Alternate-Protocol" : "443:quic",
+      "Date" : "Thu, 01 May 2014 13:05:08 GMT",
+      "Cache-Control" : "no-store"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=1kIsylLeHHU&el=vevo&ps=default&eurl=&gl=US&hl=en"
+  },
+  {
+    "body" : "enablecsi=1&reason=This+video+contains+content+from+Youtube+test+content+owner%2C+who+has+blocked+it+on+copyright+grounds.&eventid=hEZiU_y2GcSy8AO234L4DQ&c=WEB&status=fail&errorcode=150&csi_page_type=embed&errordetail=0&atc=a%3D3%26b%3DafMUvKN7YUmqTjRtSoLt8I3ynZQ%26c%3D1398949508%26d%3D1%26e%3D1kIsylLeHHU%26c3a%3D17%26hh%3DXtvlbM18NqXxH9wFZfBXYUF6N6A",
+    "headers" : {
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "X-Content-Type-Options" : "nosniff",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Server" : "gwiseguy\/2.0",
+      "Transfer-Encoding" : "Identity",
+      "Alternate-Protocol" : "443:quic",
+      "Date" : "Thu, 01 May 2014 13:05:08 GMT",
+      "Cache-Control" : "no-store"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=1kIsylLeHHU&el=embedded&ps=default&eurl=&gl=US&hl=en"
+  }
+]
