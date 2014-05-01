@@ -1,0 +1,51 @@
+[
+  {
+    "body" : "<!doctype html>\n<html>\n<head>\n    <title>Example Domain<\/title>\n\n    <meta charset=\"utf-8\" \/>\n    <meta http-equiv=\"Content-type\" content=\"text\/html; charset=utf-8\" \/>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" \/>\n    <style type=\"text\/css\">\n    body {\n        background-color: #f0f0f2;\n        margin: 0;\n        padding: 0;\n        font-family: \"Open Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n        \n    }\n    div {\n        width: 600px;\n        margin: 5em auto;\n        padding: 50px;\n        background-color: #fff;\n        border-radius: 1em;\n    }\n    a:link, a:visited {\n        color: #38488f;\n        text-decoration: none;\n    }\n    @media (max-width: 700px) {\n        body {\n            background-color: #fff;\n        }\n        div {\n            width: auto;\n            margin: 0 auto;\n            border-radius: 0;\n            padding: 1em;\n        }\n    }\n    <\/style>    \n<\/head>\n\n<body>\n<div>\n    <h1>Example Domain<\/h1>\n    <p>This domain is established to be used for illustrative examples in documents. You may use this\n    domain in examples without prior coordination or asking for permission.<\/p>\n    <p><a href=\"http:\/\/www.iana.org\/domains\/example\">More information...<\/a><\/p>\n<\/div>\n<\/body>\n<\/html>\n",
+    "headers" : {
+      "Etag" : "\"359670651\"",
+      "Expires" : "Thu, 26 Dec 2013 06:26:50 GMT",
+      "Last-Modified" : "Fri, 09 Aug 2013 23:54:35 GMT",
+      "Server" : "ECS (ewr\/1590)",
+      "X-Cache" : "HIT",
+      "Content-Type" : "text\/html",
+      "Content-Length" : "1270",
+      "Date" : "Thu, 19 Dec 2013 06:26:50 GMT",
+      "Cache-Control" : "max-age=604800",
+      "Accept-Ranges" : "bytes",
+      "x-ec-custom-error" : "1"
+    },
+    "method" : "GET",
+    "status" : 0,
+    "uri" : "http:\/\/example.com"
+  },
+  {
+    "body" : "",
+    "error" : {
+      "domain" : "NSURLErrorDomain",
+      "code" : -1003,
+      "userInfo" : "YnBsaXN0MDDUAQIDBAUITE1UJHRvcFgkb2JqZWN0c1gkdmVyc2lvblkkYXJjaGl2\r\nZXLRBgdUcm9vdIABrxASCQoZGhscHR4kKyw0NT9AQUJHVSRudWxs0wsMDQ4TFFpO\r\nUy5vYmplY3RzViRjbGFzc1dOUy5rZXlzpA8QERKABoAHgAmACoAQpBUWFxiAAoAD\r\ngASABV8QGk5TRXJyb3JGYWlsaW5nVVJMU3RyaW5nS2V5XxAUTlNFcnJvckZhaWxp\r\nbmdVUkxLZXlfEBZOU0xvY2FsaXplZERlc2NyaXB0aW9uXxARTlNVbmRlcmx5aW5n\r\nRXJyb3JbaHR0cDovL3p6ei\/THyAMDyIjW05TLnJlbGF0aXZlV05TLmJhc2WABoAA\r\ngAjSJSYnKlgkY2xhc3Nlc1okY2xhc3NuYW1loigpVU5TVVJMWE5TT2JqZWN0VU5T\r\nVVJMXxA4QSBzZXJ2ZXIgd2l0aCB0aGUgc3BlY2lmaWVkIGhvc3RuYW1lIGNvdWxk\r\nIG5vdCBiZSBmb3VuZC7ULS4MLzAxMjNYTlNEb21haW5WTlNDb2RlWk5TVXNlcklu\r\nZm+ACxP\/\/\/\/\/\/\/\/8FYARgAxfEBdrQ0ZFcnJvckRvbWFpbkNGTmV0d29ya9MLDA02\r\nEzujEA8RgAeABoAJgBCjPD0+gA2ADoAPXxAUTlNFcnJvckZhaWxpbmdVUkxLZXlf\r\nEBpOU0Vycm9yRmFpbGluZ1VSTFN0cmluZ0tleV8QFk5TTG9jYWxpemVkRGVzY3Jp\r\ncHRpb27SJSZDRqJERVxOU0RpY3Rpb25hcnlYTlNPYmplY3RcTlNEaWN0aW9uYXJ5\r\n0iUmSEuiSUpXTlNFcnJvclhOU09iamVjdFdOU0Vycm9yEgABhqBfEA9OU0tleWVk\r\nQXJjaGl2ZXIACAARABYAHwAoADIANQA6ADwAUQBXAF4AaQBwAHgAfQB\/AIEAgwCF\r\nAIcAjACOAJAAkgCUALEAyADhAPUBAQEIARQBHAEeASABIgEnATABOwE+AUQBTQFT\r\nAY4BlwGgAacBsgG0Ab0BvwHBAdsB4gHmAegB6gHsAe4B8gH0AfYB+AIPAiwCRQJK\r\nAk0CWgJjAnACdQJ4AoACiQKRApYAAAAAAAACAQAAAAAAAABOAAAAAAAAAAAAAAAA\r\nAAACqA==",
+      "localizedDescription" : "A server with the specified hostname could not be found."
+    },
+    "method" : "GET",
+    "status" : 0,
+    "uri" : "http:\/\/zzz"
+  },
+  {
+    "body" : "Foo Bar Baz",
+    "headers" : {
+
+    },
+    "method" : "GET",
+    "status" : 0,
+    "uri" : "http:\/\/foo"
+  },
+  {
+    "body" : "iVBORw0KGgoAAAANSUhEUgAAAqAAAAH4CAYAAACVCV\/CAAAABmJLR0QA\/wD\/AP+g\r\nvaeTAAAJ9UlEQVR4nO3YsW0bQRRFUdJQxHQrcA1uYAtQpjJcmQNHbmAqEeAClDKl\r\nqtj7gzmngXlYDBYXc19rvW4MOqcHbO28rekJmzunB2xtnWt6wubO6QFb8\/+f9WN6\r\nAAAAexGgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQE\r\nKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqA\r\nAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQo\r\nAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoAC\r\nAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgA\r\nACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIA\r\nkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAA\r\nKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQ\r\nEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAAp\r\nAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJAS\r\noAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkB\r\nCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKg\r\nAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEK\r\nAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAA\r\nAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoA\r\nQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAA\r\npAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBA\r\nSoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACk\r\nBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBK\r\ngAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQE\r\nKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqA\r\nAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQo\r\nAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoAC\r\nAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgA\r\nACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIA\r\nkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAA\r\nKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQ\r\nEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAAp\r\nAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJAS\r\noAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkB\r\nCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKg\r\nAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEK\r\nAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAA\r\nAKQEKAAAqbfznJ6wt+M4pidsbX1NL9jbh\/s\/6lzTC\/Z2fLj\/k9bf6QV78wIKAEBK\r\ngAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqAAgCQEqAAAKQE\r\nKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQoAAApAQoAQEqA\r\nAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBASoACAJASoAAApAQo\r\nAAApAQoAQEqAAgCQEqAAAKQEKAAAKQEKAEBKgAIAkBKgAACkBCgAACkBCgBA6n77\r\n+f6aHsF1Xp\/\/pidwoV\/339MTuND\/48\/0BC70fD5Hz388HlufP\/39d+cFFACAlAAF\r\nACAlQAEASAlQAABSAhQAgJQABQAgJUABAEgJUAAAUgIUAICUAAUAICVAAQBICVAA\r\nAFICFACAlAAFACAlQAEASAlQAABSAhQAgJQABQAgJUABAEgJUAAAUgIUAICUAAUA\r\nICVAAQBICVAAAFICFACAlAAFACAlQAEASAlQAABSAhQAgJQABQAgJUABAEgJUAAA\r\nUgIUAICUAAUAICVAAQBICVAAAFICFACAlAAFACAlQAEASAlQAABSAhQAgJQABQAg\r\nJUABAEgJUAAAUgIUAICUAAUAICVAAQBICVAAAFICFACAlAAFACAlQAEASAlQAABS\r\nAhQAgJQABQAgJUABAEgJUAAAUgIUAICUAAUAICVAAQBICVAAAFICFACAlAAFACAl\r\nQAEASAlQAABSAhQAgJQABQAgJUABAEgJUAAAUgIUAICUAAUAICVAAQBICVAAAFIC\r\nFACAlAAFACAlQAEASAlQAABSAhQAgJQABQAgJUABAEgJUAAAUgIUAICUAAUAICVA\r\nAQBICVAAAFICFACAlAAFACAlQAEASAlQAABSAhQAgJQABQAgJUABAEgJUAAAUgIU\r\nAICUAAUAICVAAQBICVAAAFICFACAlAAFACAlQAEASAlQAABSAhQAgJQABQAgJUAB\r\nAEgJUAAAUgIUAICUAAUAICVAAQBICVAAAFICFACAlAAFACAlQAEASAlQAABSAhQA\r\ngJQABQAgJUABAEgJUAAAUgIUAICUAAUAICVAAQBICVAAAFICFACAlAAFACAlQAEA\r\nSAlQAABSAhQAgNQ3KEodreY7oZYAAAAASUVORK5CYII=",
+    "headers" : {
+      "Content-Type" : "image\/png"
+    },
+    "method" : "GET",
+    "status" : 0,
+    "uri" : "http:\/\/foo\/test.png"
+  }
+]

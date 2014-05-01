@@ -1,0 +1,8 @@
+[
+    {
+        "method": "get",
+        "uri": "http://foo",
+        "body": "Cassette One Response for http://foo"
+    },
+]
+
