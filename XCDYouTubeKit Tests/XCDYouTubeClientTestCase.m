@@ -16,7 +16,7 @@
 - (void) testThatVideoIsAvailalbeOnDetailPageEventLabel
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient new] getVideoWithIdentifier:@"dQw4w9WgXcQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(error);
 		XCTAssertNotNil(video);
 		[monitor signal];
