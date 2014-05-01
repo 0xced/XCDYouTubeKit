@@ -39,6 +39,8 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 	NSStringEncoding queryEncoding = NSUTF8StringEncoding;
 	NSDictionary *video = DictionaryWithQueryString(videoQuery, queryEncoding);
 	
+	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: response.URL } mutableCopy] : [NSMutableDictionary new];
+	
 	if ([video[@"status"] isEqualToString:@"ok"])
 	{
 		NSMutableArray *streamQueries = [[video[@"url_encoded_fmt_stream_map"] componentsSeparatedByString:@","] mutableCopy];
@@ -70,13 +72,21 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 			}
 		}
 		_streamURLs = [streamURLs copy];
+		
+		if (_streamURLs.count == 0)
+		{
+			if (error)
+				*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:userInfo];
+			
+			return nil;
+		}
+		
 		return self;
 	}
 	else
 	{
 		if (error)
 		{
-			NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: response.URL } mutableCopy] : [NSMutableDictionary new];
 			NSString *reason = video[@"reason"];
 			if (reason)
 			{
@@ -88,7 +98,8 @@ static NSDictionary *DictionaryWithQueryString(NSString *string, NSStringEncodin
 				userInfo[NSLocalizedDescriptionKey] = reason;
 			}
 			
-			NSInteger code = [video[@"errorcode"] integerValue];
+			NSString *errorcode = video[@"errorcode"];
+			NSInteger code = errorcode ? [errorcode integerValue] : XCDYouTubeErrorNoStreamAvailable;
 			*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:code userInfo:userInfo];
 		}
 		return nil;
