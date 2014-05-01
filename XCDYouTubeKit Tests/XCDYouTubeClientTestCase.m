@@ -58,7 +58,7 @@
 - (void) testThatVideoIsAvailalbeOnDetailPageEventLabel
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient new] getVideoWithIdentifier:@"dQw4w9WgXcQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"dQw4w9WgXcQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(error);
 		XCTAssertNotNil(video);
 		[monitor signal];
@@ -69,7 +69,7 @@
 - (void) testThatVideoHasMetadata
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient new] getVideoWithIdentifier:@"9TTioMbNT9I" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"9TTioMbNT9I" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(error);
 		XCTAssertEqualObjects(video.identifier, @"9TTioMbNT9I");
 		XCTAssertEqualObjects(video.title, @"Super Mario Bros Theme Song on Wine Glasses and a Frying Pan (슈퍼 마리오 브라더스 - スーパーマリオブラザーズ - 超級瑪莉)");
@@ -85,7 +85,7 @@
 - (void) testRestrictedVideo
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient new] getVideoWithIdentifier:@"1kIsylLeHHU" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"1kIsylLeHHU" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
@@ -97,7 +97,7 @@
 - (void) testRemovedVideo
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient new] getVideoWithIdentifier:@"BXnA9FjvLSU" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"BXnA9FjvLSU" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRemovedVideo);
@@ -109,7 +109,7 @@
 - (void) testInvalidVideoIdentifier
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient new] getVideoWithIdentifier:@"tooShort" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"tooShort" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
@@ -121,7 +121,7 @@
 - (void) testNilVideoIdentifier
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient new] getVideoWithIdentifier:nil completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:nil completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
@@ -135,7 +135,7 @@
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		XCTAssertFalse([NSThread isMainThread]);
-		[[XCDYouTubeClient new] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 			XCTAssertTrue([NSThread isMainThread]);
 			[monitor signal];
 		}];
@@ -146,7 +146,7 @@
 - (void) testCancelingOperation
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	id<XCDYouTubeOperation> operation = [[XCDYouTubeClient new] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	id<XCDYouTubeOperation> operation = [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTFail();
 	}];
 	[operation cancel];
@@ -157,7 +157,7 @@
 {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wnonnull"
-	XCTAssertThrowsSpecificNamed([[XCDYouTubeClient new] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:nil], NSException, NSInvalidArgumentException);
+	XCTAssertThrowsSpecificNamed([[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:nil], NSException, NSInvalidArgumentException);
 #pragma clang diagnostic pop
 }
 
