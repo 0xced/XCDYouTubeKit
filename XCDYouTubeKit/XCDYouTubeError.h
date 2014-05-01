@@ -14,6 +14,11 @@ extern NSString *const XCDYouTubeVideoErrorDomain;
  */
 typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {
 	/**
+	 *  Returned if no suitable video stream is available.
+	 */
+	XCDYouTubeErrorNoStreamAvailable      = -2,
+	
+	/**
 	 *  Returned when a network error occurs. See `NSUnderlyingErrorKey` in the userInfo dictionary for more information.
 	 */
 	XCDYouTubeErrorNetwork                = -1,

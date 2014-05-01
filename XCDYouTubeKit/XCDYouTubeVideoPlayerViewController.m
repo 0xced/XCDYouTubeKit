@@ -91,8 +91,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 			
 			if (!streamURL)
 			{
-				// TODO: real error
-				NSError *noStreamError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:0 userInfo:nil];
+				NSError *noStreamError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:nil];
 				[self stopWithError:noStreamError];
 			}
 		}
