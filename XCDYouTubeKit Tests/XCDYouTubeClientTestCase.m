@@ -139,6 +139,7 @@
 		XCTAssertEqual(error.code, XCDYouTubeErrorNetwork);
 		NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
 		XCTAssertEqualObjects(underlyingError.domain, NSURLErrorDomain);
+		XCTAssertEqual(underlyingError.code, NSURLErrorNotConnectedToInternet);
 		[monitor signal];
 	}];
 	XCTAssertTrue([monitor waitWithTimeout:10]);
