@@ -150,7 +150,7 @@
 		XCTFail();
 	}];
 	[operation cancel];
-	XCTAssertFalse([monitor waitWithTimeout:1]);
+	XCTAssertFalse([monitor waitWithTimeout:0.2]);
 }
 
 - (void) testNilCompletionHandler

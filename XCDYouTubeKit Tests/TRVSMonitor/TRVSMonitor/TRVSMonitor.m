@@ -54,7 +54,7 @@
 
   while (self.signalsRemaining > 0) {
     [[NSRunLoop currentRunLoop]
-        runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
 
     if ([self didTimeOut:timeout fromStartDate:start]) {
       [self reset];
