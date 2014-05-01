@@ -24,13 +24,13 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
-- (void) testThatGangnamStyleVideoHasMetadata
+- (void) testThatVideoHasMetadata
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient new] getVideoWithIdentifier:@"9bZkp7q19f0" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient new] getVideoWithIdentifier:@"9TTioMbNT9I" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(error);
-		XCTAssertEqualObjects(video.identifier, @"9bZkp7q19f0");
-		XCTAssertEqualObjects(video.title, @"PSY - GANGNAM STYLE (\U0000ac15\U0000b0a8\U0000c2a4\U0000d0c0\U0000c77c) M/V");
+		XCTAssertEqualObjects(video.identifier, @"9TTioMbNT9I");
+		XCTAssertEqualObjects(video.title, @"Super Mario Bros Theme Song on Wine Glasses and a Frying Pan (슈퍼 마리오 브라더스 - スーパーマリオブラザーズ - 超級瑪莉)");
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
