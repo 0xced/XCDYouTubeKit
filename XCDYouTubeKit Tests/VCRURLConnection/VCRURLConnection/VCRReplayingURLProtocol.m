@@ -44,14 +44,19 @@
 
 - (void)startLoading {
     VCRRecording *recording = [[self class] recordingForRequest:self.request];
-    NSURL *url = [NSURL URLWithString:recording.URI];
-    NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
-                                                              statusCode:recording.statusCode
-                                                             HTTPVersion:@"HTTP/1.1"
-                                                            headerFields:recording.headerFields];
-    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-    [self.client URLProtocol:self didLoadData:recording.data];
-    [self.client URLProtocolDidFinishLoading:self];
+    NSError *error = recording.error;
+    if (!error) {
+        NSURL *url = [NSURL URLWithString:recording.URI];
+        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
+                                                                  statusCode:recording.statusCode
+                                                                 HTTPVersion:@"HTTP/1.1"
+                                                                headerFields:recording.headerFields];
+        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+        [self.client URLProtocol:self didLoadData:recording.data];
+        [self.client URLProtocolDidFinishLoading:self];
+    } else {
+        [self.client URLProtocol:self didFailWithError:error];
+    }
 }
 
 - (void)stopLoading {
