@@ -501,6 +501,72 @@
 			};
 			name = Release;
 		};
+		C2D0CC5E191283A400DA8CD4 /* Code Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1.1.2;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-gnu",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-pedantic",
+					"-Wno-unused-parameter",
+				);
+			};
+			name = "Code Coverage";
+		};
+		C2D0CC5F191283A400DA8CD4 /* Code Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = XCDYouTubeKit;
+			};
+			name = "Code Coverage";
+		};
+		C2D0CC60191283A400DA8CD4 /* Code Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				PRODUCT_NAME = "XCDYouTubeKit Tests";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = "Code Coverage";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -508,6 +574,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C20F57AC18817D5400EDBFB0 /* Debug */,
+				C2D0CC60191283A400DA8CD4 /* Code Coverage */,
 				C20F57AD18817D5400EDBFB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -517,6 +584,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2A3F2D917F4827800AC1C3B /* Debug */,
+				C2D0CC5E191283A400DA8CD4 /* Code Coverage */,
 				C2A3F2DA17F4827800AC1C3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -526,6 +594,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2A3F2DC17F4827800AC1C3B /* Debug */,
+				C2D0CC5F191283A400DA8CD4 /* Code Coverage */,
 				C2A3F2DD17F4827800AC1C3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
