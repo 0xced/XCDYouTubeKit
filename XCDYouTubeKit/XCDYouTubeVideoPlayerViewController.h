@@ -4,8 +4,6 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-#import <XCDYouTubeKit/XCDYouTubeVideo.h>
-
 /**
  *  -------------------
  *  @name Notifications
