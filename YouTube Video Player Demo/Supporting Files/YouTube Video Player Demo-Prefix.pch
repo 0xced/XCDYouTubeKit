@@ -12,5 +12,5 @@
 	#import <UIKit/UIKit.h>
 	#import <Foundation/Foundation.h>
 	#import <AVFoundation/AVFoundation.h>
-	#import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
+	#import <XCDYouTubeKit/XCDYouTubeKit.h>
 #endif

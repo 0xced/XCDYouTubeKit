@@ -25,6 +25,8 @@
 		C2A7E8B718EE1F09005B8B5F /* XCDYouTubeOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = C24C163318E9FECE005E92E9 /* XCDYouTubeOperation.h */; };
 		C2A7E8B818EE205D005B8B5F /* XCDYouTubeVideo.h in Copy Files */ = {isa = PBXBuildFile; fileRef = C25308C618D739EB00132734 /* XCDYouTubeVideo.h */; };
 		C2C3569818FD2CB400F8D744 /* XCDYouTubeVideoPlayerViewControllerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3569718FD2CB400F8D744 /* XCDYouTubeVideoPlayerViewControllerTestCase.m */; };
+		C2D0CBAD19122B3B00DA8CD4 /* XCDYouTubeKit.h in Copy Files */ = {isa = PBXBuildFile; fileRef = C2D0CBAC19122A8F00DA8CD4 /* XCDYouTubeKit.h */; };
+		C2D0CBAE19122B4800DA8CD4 /* XCDYouTubeVideoOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = C24C162C18E9A139005E92E9 /* XCDYouTubeVideoOperation.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +46,12 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				C2D0CBAD19122B3B00DA8CD4 /* XCDYouTubeKit.h in Copy Files */,
 				C2A7E8B518EE1EFC005B8B5F /* XCDYouTubeClient.h in Copy Files */,
 				C2A7E8B618EE1F00005B8B5F /* XCDYouTubeError.h in Copy Files */,
 				C2A7E8B718EE1F09005B8B5F /* XCDYouTubeOperation.h in Copy Files */,
 				C2A7E8B818EE205D005B8B5F /* XCDYouTubeVideo.h in Copy Files */,
+				C2D0CBAE19122B4800DA8CD4 /* XCDYouTubeVideoOperation.h in Copy Files */,
 				C2A3F2D617F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h in Copy Files */,
 			);
 			name = "Copy Files";
@@ -76,6 +80,7 @@
 		C2A3F2D517F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideoPlayerViewController.h; sourceTree = "<group>"; };
 		C2A3F2D717F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewController.m; sourceTree = "<group>"; };
 		C2C3569718FD2CB400F8D744 /* XCDYouTubeVideoPlayerViewControllerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoPlayerViewControllerTestCase.m; sourceTree = "<group>"; };
+		C2D0CBAC19122A8F00DA8CD4 /* XCDYouTubeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeKit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +165,7 @@
 				C25308C318D7392500132734 /* XCDYouTubeClient.h */,
 				C25308C418D7392500132734 /* XCDYouTubeClient.m */,
 				C24C162918E4DA6E005E92E9 /* XCDYouTubeError.h */,
+				C2D0CBAC19122A8F00DA8CD4 /* XCDYouTubeKit.h */,
 				C24C163318E9FECE005E92E9 /* XCDYouTubeOperation.h */,
 				C26DF31518D8544D002248A9 /* XCDYouTubeVideo+Private.h */,
 				C25308C618D739EB00132734 /* XCDYouTubeVideo.h */,
