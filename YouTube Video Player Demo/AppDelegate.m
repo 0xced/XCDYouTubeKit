@@ -14,7 +14,7 @@
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"9bZkp7q19f0" }];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"EdeVaT-zZt4" }];
 	
 	NSString *category = [[NSUserDefaults standardUserDefaults] objectForKey:@"AudioSessionCategory"];
 	if (category)
