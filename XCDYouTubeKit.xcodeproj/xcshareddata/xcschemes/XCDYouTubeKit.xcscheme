@@ -25,7 +25,7 @@
    <TestAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldUseLaunchSchemeArgsEnv = "NO"
       buildConfiguration = "Code Coverage">
       <Testables>
          <TestableReference
@@ -39,6 +39,22 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
+            BuildableName = "XCDYouTubeKit Tests.xctest"
+            BlueprintName = "XCDYouTubeKit Tests"
+            ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "VCR_CASSETTES_DIRECTORY"
+            value = "$(SRCROOT)/XCDYouTubeKit Tests/Cassettes"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
