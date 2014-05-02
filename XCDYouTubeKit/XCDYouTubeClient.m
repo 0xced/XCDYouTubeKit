@@ -4,7 +4,6 @@
 
 #import "XCDYouTubeClient.h"
 
-#import "XCDYouTubeVideo+Private.h"
 #import "XCDYouTubeVideoOperation.h"
 
 @interface XCDYouTubeClient ()

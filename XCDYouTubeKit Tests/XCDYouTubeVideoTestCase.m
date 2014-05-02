@@ -12,37 +12,36 @@
 
 @implementation XCDYouTubeVideoTestCase
 
-- (void) testNilData
+- (void) testNilInfo
 {
 	NSError *error;
 	NSURL *url = [NSURL URLWithString:@"https://www.youtube.com/get_video_info"];
 	NSURLResponse *response = [[NSURLResponse alloc] initWithURL:url MIMEType:@"application/x-www-form-urlencoded" expectedContentLength:NSURLResponseUnknownLength textEncodingName:nil];
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil response:response data:nil error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil info:nil signatureFunction:nil response:response error:&error];
 	XCTAssertNil(video);
 	XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 	XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 	XCTAssertEqualObjects(url, error.userInfo[NSURLErrorKey]);
 }
 
-- (void) testEmptyData
+- (void) testEmptyInfo
 {
 	NSError *error;
 	NSURL *url = [NSURL URLWithString:@"https://www.youtube.com/get_video_info"];
 	NSURLResponse *response = [[NSURLResponse alloc] initWithURL:url MIMEType:@"application/x-www-form-urlencoded" expectedContentLength:NSURLResponseUnknownLength textEncodingName:nil];
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil response:response data:[NSData data] error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil info:@{} signatureFunction:nil response:response error:&error];
 	XCTAssertNil(video);
 	XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 	XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 	XCTAssertEqualObjects(url, error.userInfo[NSURLErrorKey]);
 }
 
-- (void) testInvalidData
+- (void) testInvalidInfo
 {
 	NSError *error;
-	NSData *data = [@"status=ok" dataUsingEncoding:NSASCIIStringEncoding];
 	NSURL *url = [NSURL URLWithString:@"https://www.youtube.com/get_video_info"];
 	NSURLResponse *response = [[NSURLResponse alloc] initWithURL:url MIMEType:@"application/x-www-form-urlencoded" expectedContentLength:NSURLResponseUnknownLength textEncodingName:nil];
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil response:response data:data error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil info:@{ @"url_encoded_fmt_stream_map": @"" } signatureFunction:nil response:response error:&error];
 	XCTAssertNil(video);
 	XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 	XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
