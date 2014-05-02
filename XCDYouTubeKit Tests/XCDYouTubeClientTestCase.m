@@ -88,6 +88,9 @@
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.smallThumbnailURL);
+		XCTAssertNotNil(video.mediumThumbnailURL);
+		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
 			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);

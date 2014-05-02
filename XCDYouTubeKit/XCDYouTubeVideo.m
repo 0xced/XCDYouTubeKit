@@ -6,7 +6,10 @@
 
 #import "XCDYouTubeError.h"
 
+#import <objc/runtime.h>
+
 NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
+NSString *const XCDYouTubeNoStreamVideoUserInfoKey = @"NoStreamVideo";
 
 NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding encoding)
 {
@@ -42,15 +45,6 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 	
 	if (streamMap)
 	{
-		NSString *useCipherSignature = info[@"use_cipher_signature"];
-		if ([useCipherSignature respondsToSelector:@selector(boolValue)] && [useCipherSignature boolValue] && !signatureFunction)
-		{
-			if (error)
-				*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorUseCipherSignature userInfo:userInfo];
-			
-			return nil;
-		}
-		
 		NSMutableArray *streamQueries = [[streamMap componentsSeparatedByString:@","] mutableCopy];
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
 		
@@ -62,6 +56,16 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 		_smallThumbnailURL = smallThumbnail ? [NSURL URLWithString:smallThumbnail] : nil;
 		_mediumThumbnailURL = mediumThumbnail ? [NSURL URLWithString:mediumThumbnail] : nil;
 		_largeThumbnailURL = largeThumbnail ? [NSURL URLWithString:largeThumbnail] : nil;
+		
+		NSString *useCipherSignature = info[@"use_cipher_signature"];
+		if ([useCipherSignature respondsToSelector:@selector(boolValue)] && [useCipherSignature boolValue] && !signatureFunction)
+		{
+			userInfo[XCDYouTubeNoStreamVideoUserInfoKey] = self;
+			if (error)
+				*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorUseCipherSignature userInfo:userInfo];
+			
+			return nil;
+		}
 		
 		NSMutableDictionary *streamURLs = [NSMutableDictionary new];
 		for (NSString *streamQuery in streamQueries)
@@ -121,6 +125,19 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 		}
 		return nil;
 	}
+}
+
+- (void) mergeVideo:(XCDYouTubeVideo *)video
+{
+	unsigned int count;
+	objc_property_t *properties = class_copyPropertyList(self.class, &count);
+	for (unsigned int i = 0; i < count; i++)
+	{
+		NSString *propertyName = @(property_getName(properties[i]));
+		if (![self valueForKey:propertyName])
+			[self setValue:[video valueForKey:propertyName] forKeyPath:propertyName];
+	}
+	free(properties);
 }
 
 #pragma mark - NSObject

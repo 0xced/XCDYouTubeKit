@@ -32,9 +32,10 @@ static BOOL IsJavaScriptCoreAvailable()
 @property (atomic, assign) BOOL isExecuting;
 @property (atomic, assign) BOOL isFinished;
 
-@property (atomic, strong, readwrite) NSDictionary *info;
-@property (atomic, strong, readwrite) NSError *lastError;
-@property (atomic, strong, readwrite) NSError *youTubeError; // Error actually coming from the YouTube API, i.e. explicit and localized error
+@property (atomic, strong) NSDictionary *info;
+@property (atomic, strong) XCDYouTubeVideo *noStreamVideo;
+@property (atomic, strong) NSError *lastError;
+@property (atomic, strong) NSError *youTubeError; // Error actually coming from the YouTube API, i.e. explicit and localized error
 
 @property (atomic, strong, readwrite) NSError *error;
 @property (atomic, strong, readwrite) XCDYouTubeVideo *video;
@@ -96,12 +97,14 @@ static BOOL IsJavaScriptCoreAvailable()
 	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info signatureFunction:signatureFunction response:self.response error:&error];
 	if (video)
 	{
+		[video mergeVideo:self.noStreamVideo];
 		[self finishWithVideo:video];
 	}
 	else
 	{
 		if (error.code == XCDYouTubeErrorUseCipherSignature && IsJavaScriptCoreAvailable())
 		{
+			self.noStreamVideo = error.userInfo[XCDYouTubeNoStreamVideoUserInfoKey];
 			NSURL *webpageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@&gl=US&hl=%@&has_verified=1", self.videoIdentifier, self.languageIdentifier]];
 			[self startRequestWithURL:webpageURL];
 		}
