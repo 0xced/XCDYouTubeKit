@@ -127,7 +127,7 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 
 - (BOOL) isEqual:(id)object
 {
-	return [object isKindOfClass:[XCDYouTubeVideo class]] ? [((XCDYouTubeVideo *)object).identifier isEqual:self.identifier] : NO;
+	return [object isKindOfClass:[XCDYouTubeVideo class]] && [((XCDYouTubeVideo *)object).identifier isEqual:self.identifier];
 }
 
 - (NSUInteger) hash

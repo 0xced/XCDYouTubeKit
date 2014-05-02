@@ -192,7 +192,7 @@ static BOOL IsJavaScriptCoreAvailable()
 + (BOOL) automaticallyNotifiesObserversForKey:(NSString *)key
 {
 	SEL selector = NSSelectorFromString(key);
-	return selector == @selector(isExecuting) || selector == @selector(isFinished) ? YES : [super automaticallyNotifiesObserversForKey:key];
+	return selector == @selector(isExecuting) || selector == @selector(isFinished) || [super automaticallyNotifiesObserversForKey:key];
 }
 
 - (BOOL) isConcurrent
