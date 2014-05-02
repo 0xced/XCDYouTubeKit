@@ -137,12 +137,13 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 
 - (NSString *) description
 {
-	return self.title;
+	return [NSString stringWithFormat:@"[%@] %@", self.identifier, self.title];
 }
 
 - (NSString *) debugDescription
 {
-	return [NSString stringWithFormat:@"<%@: %p> [%@] %@\n%@", self.class, self, self.identifier, self.title, self.streamURLs];
+	NSString *thumbnailDescription = [NSString stringWithFormat:@"Small  thumbnail: %@\nMedium thumbnail: %@\nLarge  thumbnail: %@", self.smallThumbnailURL, self.mediumThumbnailURL, self.largeThumbnailURL];
+	return [NSString stringWithFormat:@"<%@: %p> %@\n%@\nVideo Streams: %@", self.class, self, self.description, thumbnailDescription, self.streamURLs];
 }
 
 #pragma mark - NSCopying

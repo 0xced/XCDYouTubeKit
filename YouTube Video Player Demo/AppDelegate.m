@@ -109,7 +109,7 @@
 - (void) videoPlayerViewControllerDidReceiveVideo:(NSNotification *)notification
 {
 	XCDYouTubeVideo *video = notification.userInfo[XCDYouTubeVideoUserInfoKey];
-	NSLog(@"Video: [%@] %@ (%@)", video.identifier, video.title, video.mediumThumbnailURL);
+	NSLog(@"Video: %@", video);
 	
 	NSString *title = video.title;
 	if (title)
