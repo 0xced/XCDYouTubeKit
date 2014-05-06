@@ -30,17 +30,17 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 
 static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerViewControllerKey;
 
-- (id) init
+- (instancetype) init
 {
 	return [self initWithVideoIdentifier:nil];
 }
 
-- (id) initWithContentURL:(NSURL *)contentURL
+- (instancetype) initWithContentURL:(NSURL *)contentURL
 {
 	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:` method instead." userInfo:nil];
 }
 
-- (id) initWithVideoIdentifier:(NSString *)videoIdentifier
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier
 {
 	if (!(self = [super init]))
 		return nil;
