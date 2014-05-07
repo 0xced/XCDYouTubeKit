@@ -8,7 +8,7 @@
 
 @interface XCDYouTubePlayerScript ()
 @property (nonatomic, assign) JSGlobalContextRef context;
-@property (nonatomic, assign) JSValueRef signatureFunction;
+@property (nonatomic, assign) JSObjectRef signatureFunction;
 @end
 
 @implementation XCDYouTubePlayerScript
@@ -41,10 +41,12 @@
 	JSStringRelease(scriptRef);
 	
 	JSStringRef signatureFunctionNameRef = JSStringCreateWithCFString((__bridge CFStringRef)signatureFunctionName);
-	_signatureFunction = JSEvaluateScript(_context, signatureFunctionNameRef, NULL, NULL, 0, NULL);
+	JSValueRef signatureFunction = JSEvaluateScript(_context, signatureFunctionNameRef, NULL, NULL, 0, NULL);
 	JSStringRelease(signatureFunctionNameRef);
+	if (JSValueIsObject(_context, signatureFunction))
+		_signatureFunction = (JSObjectRef)signatureFunction;
 	
-	if (!_signatureFunction)
+	if (!JSObjectIsFunction(_context, _signatureFunction))
 		return nil;
 	
 	return self;
@@ -64,7 +66,7 @@
 	JSValueRef scrambledSignatureValue = JSValueMakeString(self.context, scrambledSignatureRef);
 	JSStringRelease(scrambledSignatureRef);
 	
-	JSValueRef unscrambledSignatureValue = JSObjectCallAsFunction(self.context, (JSObjectRef)self.signatureFunction, NULL, 1, &scrambledSignatureValue, NULL);
+	JSValueRef unscrambledSignatureValue = JSObjectCallAsFunction(self.context, self.signatureFunction, NULL, 1, &scrambledSignatureValue, NULL);
 	if (JSValueIsString(self.context, unscrambledSignatureValue))
 	{
 		JSStringRef unscrambledSignatureRef = JSValueToStringCopy(self.context, unscrambledSignatureValue, NULL);
