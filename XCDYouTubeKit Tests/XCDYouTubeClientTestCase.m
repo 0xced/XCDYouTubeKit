@@ -2,58 +2,14 @@
 //  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "XCDYouTubeKitTestCase.h"
 
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
 
-#import "TRVSMonitor.h"
-#import "VCR.h"
-#import "VCRCassetteManager.h"
-
-@interface XCTest (Private)
-- (void) setUpTestWithSelector:(SEL)selector;
-@end
-
-@interface XCDYouTubeClientTestCase : XCTestCase
-@property NSURL *cassetteURL;
+@interface XCDYouTubeClientTestCase : XCDYouTubeKitTestCase
 @end
 
 @implementation XCDYouTubeClientTestCase
-
-- (void) setUpTestWithSelector:(SEL)selector
-{
-	[super setUpTestWithSelector:selector];
-	
-	NSString *cassettesDirectory = [[[NSProcessInfo processInfo] environment] objectForKey:@"VCR_CASSETTES_DIRECTORY"];
-	if ([[NSFileManager defaultManager] fileExistsAtPath:cassettesDirectory])
-	{
-		self.cassetteURL = [NSURL fileURLWithPath:[[cassettesDirectory stringByAppendingPathComponent:NSStringFromSelector(selector)] stringByAppendingPathExtension:@"json"]];
-		[[NSFileManager defaultManager] removeItemAtURL:self.cassetteURL error:NULL];
-		[VCR setRecording:YES];
-	}
-	else
-	{
-		self.cassetteURL = [[NSBundle bundleForClass:self.class] URLForResource:NSStringFromSelector(selector) withExtension:@"json" subdirectory:@"Cassettes"];
-		XCTAssertNotNil(self.cassetteURL);
-		[VCR loadCassetteWithContentsOfURL:self.cassetteURL];
-		[VCR setReplaying:YES];
-	}
-}
-
-- (void) tearDown
-{
-	if ([VCR isRecording])
-	{
-		[VCR save:self.cassetteURL.path];
-		if (![[NSFileManager defaultManager] fileExistsAtPath:self.cassetteURL.path])
-			[@"[]" writeToURL:self.cassetteURL atomically:YES encoding:NSASCIIStringEncoding error:NULL];
-	}
-	
-	[VCR stop];
-	[[VCRCassetteManager defaultManager] setCurrentCassette:nil];
-	
-	[super tearDown];
-}
 
 - (void) testThatVideoIsAvailalbeOnDetailPageEventLabel
 {
