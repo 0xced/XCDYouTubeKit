@@ -17,7 +17,7 @@
 	NSError *error;
 	NSURL *url = [NSURL URLWithString:@"https://www.youtube.com/get_video_info"];
 	NSURLResponse *response = [[NSURLResponse alloc] initWithURL:url MIMEType:@"application/x-www-form-urlencoded" expectedContentLength:NSURLResponseUnknownLength textEncodingName:nil];
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil info:nil signatureFunction:nil response:response error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil info:nil playerScript:nil response:response error:&error];
 	XCTAssertNil(video);
 	XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 	XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
@@ -29,7 +29,7 @@
 	NSError *error;
 	NSURL *url = [NSURL URLWithString:@"https://www.youtube.com/get_video_info"];
 	NSURLResponse *response = [[NSURLResponse alloc] initWithURL:url MIMEType:@"application/x-www-form-urlencoded" expectedContentLength:NSURLResponseUnknownLength textEncodingName:nil];
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil info:@{} signatureFunction:nil response:response error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil info:@{} playerScript:nil response:response error:&error];
 	XCTAssertNil(video);
 	XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 	XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
@@ -41,7 +41,7 @@
 	NSError *error;
 	NSURL *url = [NSURL URLWithString:@"https://www.youtube.com/get_video_info"];
 	NSURLResponse *response = [[NSURLResponse alloc] initWithURL:url MIMEType:@"application/x-www-form-urlencoded" expectedContentLength:NSURLResponseUnknownLength textEncodingName:nil];
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil info:@{ @"url_encoded_fmt_stream_map": @"" } signatureFunction:nil response:response error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:nil info:@{ @"url_encoded_fmt_stream_map": @"" } playerScript:nil response:response error:&error];
 	XCTAssertNil(video);
 	XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 	XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);

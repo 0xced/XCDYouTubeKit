@@ -31,7 +31,7 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 
 @implementation XCDYouTubeVideo
 
-- (instancetype) initWithIdentifier:(NSString *)identifier info:(NSDictionary *)info signatureFunction:(JSValue *)signatureFunction response:(NSURLResponse *)response error:(NSError * __autoreleasing *)error
+- (instancetype) initWithIdentifier:(NSString *)identifier info:(NSDictionary *)info playerScript:(XCDYouTubePlayerScript *)playerScript response:(NSURLResponse *)response error:(NSError * __autoreleasing *)error
 {
 	if (!(self = [super init]))
 		return nil;
@@ -58,7 +58,7 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 		_largeThumbnailURL = largeThumbnail ? [NSURL URLWithString:largeThumbnail] : nil;
 		
 		NSString *useCipherSignature = info[@"use_cipher_signature"];
-		if ([useCipherSignature respondsToSelector:@selector(boolValue)] && [useCipherSignature boolValue] && !signatureFunction)
+		if ([useCipherSignature respondsToSelector:@selector(boolValue)] && [useCipherSignature boolValue] && !playerScript)
 		{
 			userInfo[XCDYouTubeNoStreamVideoUserInfoKey] = self;
 			if (error)
@@ -72,14 +72,8 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 		{
 			NSDictionary *stream = XCDDictionaryWithQueryString(streamQuery, NSUTF8StringEncoding);
 			
-			NSString *signature = nil;
 			NSString *scrambledSignature = stream[@"s"];
-			if (signatureFunction && scrambledSignature)
-			{
-				JSValue *unscrambledSignature = [signatureFunction callWithArguments:@[ scrambledSignature ]];
-				if ([unscrambledSignature isString])
-					signature = [unscrambledSignature toString];
-			}
+			NSString *signature = [playerScript unscrambleSignature:scrambledSignature];
 			
 			NSString *urlString = stream[@"url"];
 			NSString *itag = stream[@"itag"];

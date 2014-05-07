@@ -4,7 +4,7 @@
 
 #import <XCDYouTubeKit/XCDYouTubeVideo.h>
 
-#import <JavaScriptCore/JavaScriptCore.h>
+#import "XCDYouTubePlayerScript.h"
 
 #define XCDYouTubeErrorUseCipherSignature -1000
 
@@ -14,7 +14,7 @@ extern NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEnco
 
 @interface XCDYouTubeVideo ()
 
-- (instancetype) initWithIdentifier:(NSString *)identifier info:(NSDictionary *)info signatureFunction:(JSValue *)signatureFunction response:(NSURLResponse *)response error:(NSError **)error;
+- (instancetype) initWithIdentifier:(NSString *)identifier info:(NSDictionary *)info playerScript:(XCDYouTubePlayerScript *)playerScript response:(NSURLResponse *)response error:(NSError **)error;
 
 - (void) mergeVideo:(XCDYouTubeVideo *)video;
 

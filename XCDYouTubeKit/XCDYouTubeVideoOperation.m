@@ -6,19 +6,7 @@
 
 #import "XCDYouTubeVideo+Private.h"
 #import "XCDYouTubeError.h"
-
-static BOOL IsJavaScriptCoreAvailable()
-{
-	NSURL *javaScriptCoreFrameworkURL = [NSURL fileURLWithPath:@"/System/Library/Frameworks/JavaScriptCore.framework"];
-	NSBundle *javaScriptCoreFramework = [NSBundle bundleWithURL:javaScriptCoreFrameworkURL];
-	BOOL isJavaScriptCoreAvailable = [javaScriptCoreFramework isLoaded];
-	if (!isJavaScriptCoreAvailable)
-	{
-		NSError *loadError = nil;
-		isJavaScriptCoreAvailable = [javaScriptCoreFramework loadAndReturnError:&loadError] && NSClassFromString(@"JSContext");
-	}
-	return isJavaScriptCoreAvailable;
-}
+#import "XCDYouTubePlayerScript.h"
 
 @interface XCDYouTubeVideoOperation () <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 @property (atomic, copy, readonly) NSString *videoIdentifier;
@@ -91,10 +79,10 @@ static BOOL IsJavaScriptCoreAvailable()
 	self.connection = connection;
 }
 
-- (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info signatureFunction:(JSValue *)signatureFunction
+- (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info playerScript:(XCDYouTubePlayerScript *)playerScript
 {
 	NSError *error = nil;
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info signatureFunction:signatureFunction response:self.response error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:playerScript response:self.response error:&error];
 	if (video)
 	{
 		[video mergeVideo:self.noStreamVideo];
@@ -102,7 +90,7 @@ static BOOL IsJavaScriptCoreAvailable()
 	}
 	else
 	{
-		if (error.code == XCDYouTubeErrorUseCipherSignature && IsJavaScriptCoreAvailable())
+		if ([error.domain isEqual:XCDYouTubeVideoErrorDomain] && error.code == XCDYouTubeErrorUseCipherSignature)
 		{
 			self.noStreamVideo = error.userInfo[XCDYouTubeNoStreamVideoUserInfoKey];
 			NSURL *webpageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@&gl=US&hl=%@&has_verified=1", self.videoIdentifier, self.languageIdentifier]];
@@ -157,23 +145,10 @@ static BOOL IsJavaScriptCoreAvailable()
 - (void) handleJavaScriptPlayerResponse
 {
 	NSString *script = [[[NSString alloc] initWithData:self.connectionData encoding:NSISOLatin1StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	static NSString *jsPrologue = @"(function()";
-	static NSString *jsEpilogue = @")();";
-	if ([script hasPrefix:jsPrologue] && [script hasSuffix:jsEpilogue])
-		script = [script substringWithRange:NSMakeRange(jsPrologue.length, script.length - (jsPrologue.length + jsEpilogue.length))];
+	XCDYouTubePlayerScript *playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
-	JSContext *context = [NSClassFromString(@"JSContext") new];
-	[context evaluateScript:script];
-	__block NSString *signatureFunctionName = nil;
-	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"signature\\s*=\\s*([a-zA-Z]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
-	[signatureRegularExpression enumerateMatchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-		signatureFunctionName = [script substringWithRange:[result rangeAtIndex:1]];
-		*stop = YES;
-	}];
-	JSValue *signatureFunction = signatureFunctionName ? context[signatureFunctionName] : nil;
-	
-	if (signatureFunction)
-		[self handleVideoInfoResponseWithInfo:self.info signatureFunction:signatureFunction];
+	if (playerScript)
+		[self handleVideoInfoResponseWithInfo:self.info playerScript:playerScript];
 	else
 		[self startNextVideoInfoRequest];
 }
@@ -254,7 +229,7 @@ static BOOL IsJavaScriptCoreAvailable()
 	{
 		NSString *videoQuery = [[NSString alloc] initWithData:self.connectionData encoding:NSASCIIStringEncoding];
 		NSDictionary *info = XCDDictionaryWithQueryString(videoQuery, NSUTF8StringEncoding);
-		[self handleVideoInfoResponseWithInfo:info signatureFunction:nil];
+		[self handleVideoInfoResponseWithInfo:info playerScript:nil];
 	}
 	else if ([requestURL.path isEqualToString:@"/watch"])
 	{
