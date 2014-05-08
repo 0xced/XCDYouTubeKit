@@ -26,8 +26,6 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 
 @implementation XCDYouTubeVideoPlayerViewController
 
-static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerViewControllerKey;
-
 - (instancetype) init
 {
 	return [self initWithVideoIdentifier:nil];
@@ -48,6 +46,8 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	
 	return self;
 }
+
+#pragma mark - Public
 
 - (NSArray *) preferredVideoQualities
 {
@@ -92,6 +92,22 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	}];
 }
 
+- (void) presentInView:(UIView *)view
+{
+	static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerViewControllerKey;
+	
+	self.embedded = YES;
+	
+	self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
+	self.moviePlayer.view.frame = CGRectMake(0.f, 0.f, view.bounds.size.width, view.bounds.size.height);
+	self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	if (![view.subviews containsObject:self.moviePlayer.view])
+		[view addSubview:self.moviePlayer.view];
+	objc_setAssociatedObject(view, XCDYouTubeVideoPlayerViewControllerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+#pragma mark - Private
+
 - (void) startVideo:(XCDYouTubeVideo *)video streamURL:(NSURL *)streamURL
 {
 #pragma clang diagnostic push
@@ -124,18 +140,6 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 		[self.moviePlayer.view removeFromSuperview];
 	else
 		[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
-}
-
-- (void) presentInView:(UIView *)view
-{
-	self.embedded = YES;
-	
-	self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
-	self.moviePlayer.view.frame = CGRectMake(0.f, 0.f, view.bounds.size.width, view.bounds.size.height);
-	self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	if (![view.subviews containsObject:self.moviePlayer.view])
-		[view addSubview:self.moviePlayer.view];
-	objc_setAssociatedObject(view, XCDYouTubeVideoPlayerViewControllerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - UIViewController
