@@ -22,8 +22,6 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 @interface XCDYouTubeVideoPlayerViewController ()
 @property (nonatomic, weak) id<XCDYouTubeOperation> videoOperation;
 @property (nonatomic, assign, getter = isEmbedded) BOOL embedded;
-@property (nonatomic, assign) BOOL statusBarHidden;
-@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 @end
 
 @implementation XCDYouTubeVideoPlayerViewController
@@ -48,15 +46,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	if (videoIdentifier)
 		self.videoIdentifier = videoIdentifier;
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerWillEnterFullscreen:) name:MPMoviePlayerWillEnterFullscreenNotification object:self.moviePlayer];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerWillExitFullscreen:) name:MPMoviePlayerWillExitFullscreenNotification object:self.moviePlayer];
-	
 	return self;
-}
-
-- (void) dealloc
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (NSArray *) preferredVideoQualities
@@ -169,22 +159,6 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 		return;
 	
 	[self.videoOperation cancel];
-}
-
-#pragma mark - Notifications
-
-- (void) moviePlayerWillEnterFullscreen:(NSNotification *)notification
-{
-	UIApplication *application = [UIApplication sharedApplication];
-	self.statusBarHidden = application.statusBarHidden;
-	self.statusBarStyle = application.statusBarStyle;
-}
-
-- (void) moviePlayerWillExitFullscreen:(NSNotification *)notification
-{
-	UIApplication *application = [UIApplication sharedApplication];
-	[application setStatusBarHidden:self.statusBarHidden withAnimation:UIStatusBarAnimationFade];
-	[application setStatusBarStyle:self.statusBarStyle animated:YES];
 }
 
 @end
