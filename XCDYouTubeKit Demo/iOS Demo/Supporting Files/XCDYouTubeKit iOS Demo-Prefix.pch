@@ -1,7 +1,3 @@
-//
-// Prefix header for all source files of the 'YouTube Video Player Demo' target in the 'YouTube Video Player Demo' project
-//
-
 #import <Availability.h>
 
 #ifndef __IPHONE_5_0

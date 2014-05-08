@@ -1,8 +1,4 @@
 //
-//  SettingsViewController.m
-//  YouTube Video Player Demo
-//
-//  Created by Cédric Luthi on 31.12.13.
 //  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
 //
 
