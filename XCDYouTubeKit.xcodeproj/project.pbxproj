@@ -400,6 +400,10 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/include",
+				);
 				PRODUCT_NAME = "XCDYouTubeKit Tests";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -412,6 +416,10 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/include",
 				);
 				PRODUCT_NAME = "XCDYouTubeKit Tests";
 				WRAPPER_EXTENSION = xctest;
@@ -579,6 +587,10 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/include",
 				);
 				PRODUCT_NAME = "XCDYouTubeKit Tests";
 				WRAPPER_EXTENSION = xctest;
