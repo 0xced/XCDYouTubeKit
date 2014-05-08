@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:YouTube Video Player Demo/YouTube Video Player Demo.xcodeproj">
+      location = "group:XCDYouTubeKit Demo/XCDYouTubeKit Demo.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:XCDYouTubeKit.xcodeproj">

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C274159D17F491230026834B"
-               BuildableName = "YouTube Video Player Demo.app"
-               BlueprintName = "YouTube Video Player Demo"
-               ReferencedContainer = "container:YouTube Video Player Demo.xcodeproj">
+               BuildableName = "XCDYouTubeKit iOS Demo.app"
+               BlueprintName = "XCDYouTubeKit iOS Demo"
+               ReferencedContainer = "container:XCDYouTubeKit Demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C274159D17F491230026834B"
-            BuildableName = "YouTube Video Player Demo.app"
-            BlueprintName = "YouTube Video Player Demo"
-            ReferencedContainer = "container:YouTube Video Player Demo.xcodeproj">
+            BuildableName = "XCDYouTubeKit iOS Demo.app"
+            BlueprintName = "XCDYouTubeKit iOS Demo"
+            ReferencedContainer = "container:XCDYouTubeKit Demo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C274159D17F491230026834B"
-            BuildableName = "YouTube Video Player Demo.app"
-            BlueprintName = "YouTube Video Player Demo"
-            ReferencedContainer = "container:YouTube Video Player Demo.xcodeproj">
+            BuildableName = "XCDYouTubeKit iOS Demo.app"
+            BlueprintName = "XCDYouTubeKit iOS Demo"
+            ReferencedContainer = "container:XCDYouTubeKit Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C274159D17F491230026834B"
-            BuildableName = "YouTube Video Player Demo.app"
-            BlueprintName = "YouTube Video Player Demo"
-            ReferencedContainer = "container:YouTube Video Player Demo.xcodeproj">
+            BuildableName = "XCDYouTubeKit iOS Demo.app"
+            BlueprintName = "XCDYouTubeKit iOS Demo"
+            ReferencedContainer = "container:XCDYouTubeKit Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

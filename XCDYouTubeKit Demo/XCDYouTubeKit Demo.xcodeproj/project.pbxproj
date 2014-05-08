@@ -30,7 +30,7 @@
 
 /* Begin PBXFileReference section */
 		C2478E9C17FF739100BCE94D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		C274159E17F491230026834B /* YouTube Video Player Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Video Player Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C274159E17F491230026834B /* XCDYouTubeKit iOS Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XCDYouTubeKit iOS Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C27415A117F491230026834B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C27415A317F491230026834B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C27415A517F491230026834B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -49,8 +49,8 @@
 		C27415CD17F4CDD80026834B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C27415CE17F4CDD80026834B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C27415D117F4CDD80026834B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C27415DD17F4CE4A0026834B /* YouTube Video Player Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "YouTube Video Player Demo-Info.plist"; sourceTree = "<group>"; };
-		C27415DE17F4CE4A0026834B /* YouTube Video Player Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YouTube Video Player Demo-Prefix.pch"; sourceTree = "<group>"; };
+		C27415DD17F4CE4A0026834B /* XCDYouTubeKit iOS Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "XCDYouTubeKit iOS Demo-Info.plist"; sourceTree = "<group>"; };
+		C27415DE17F4CE4A0026834B /* XCDYouTubeKit iOS Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCDYouTubeKit iOS Demo-Prefix.pch"; sourceTree = "<group>"; };
 		C27415E217F4D02E0026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C27415E417F4D0330026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXCDYouTubeKit.a; path = "../build/Debug-iphoneos/libXCDYouTubeKit.a"; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		C274159517F491230026834B = {
 			isa = PBXGroup;
 			children = (
-				C27415BE17F4CDD80026834B /* YouTube Video Player Demo */,
+				C27415BE17F4CDD80026834B /* iOS Demo */,
 				C27415A017F491230026834B /* Frameworks */,
 				C274159F17F491230026834B /* Products */,
 			);
@@ -92,7 +92,7 @@
 		C274159F17F491230026834B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C274159E17F491230026834B /* YouTube Video Player Demo.app */,
+				C274159E17F491230026834B /* XCDYouTubeKit iOS Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,7 +111,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C27415BE17F4CDD80026834B /* YouTube Video Player Demo */ = {
+		C27415BE17F4CDD80026834B /* iOS Demo */ = {
 			isa = PBXGroup;
 			children = (
 				C27415BF17F4CDD80026834B /* AppDelegate.h */,
@@ -129,7 +129,7 @@
 				C27415C917F4CDD80026834B /* MainStoryboard.storyboard */,
 				C27415CB17F4CDD80026834B /* Supporting Files */,
 			);
-			name = "YouTube Video Player Demo";
+			path = "iOS Demo";
 			sourceTree = "<group>";
 		};
 		C27415CB17F4CDD80026834B /* Supporting Files */ = {
@@ -140,8 +140,8 @@
 				C27415CC17F4CDD80026834B /* Default-568h@2x.png */,
 				C2478E9C17FF739100BCE94D /* Icon@2x.png */,
 				C27415D117F4CDD80026834B /* main.m */,
-				C27415DD17F4CE4A0026834B /* YouTube Video Player Demo-Info.plist */,
-				C27415DE17F4CE4A0026834B /* YouTube Video Player Demo-Prefix.pch */,
+				C27415DD17F4CE4A0026834B /* XCDYouTubeKit iOS Demo-Info.plist */,
+				C27415DE17F4CE4A0026834B /* XCDYouTubeKit iOS Demo-Prefix.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -149,9 +149,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C274159D17F491230026834B /* YouTube Video Player Demo */ = {
+		C274159D17F491230026834B /* XCDYouTubeKit iOS Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C27415BB17F491230026834B /* Build configuration list for PBXNativeTarget "YouTube Video Player Demo" */;
+			buildConfigurationList = C27415BB17F491230026834B /* Build configuration list for PBXNativeTarget "XCDYouTubeKit iOS Demo" */;
 			buildPhases = (
 				C274159A17F491230026834B /* Sources */,
 				C274159B17F491230026834B /* Frameworks */,
@@ -161,9 +161,9 @@
 			);
 			dependencies = (
 			);
-			name = "YouTube Video Player Demo";
-			productName = "YouTube Video Player Demo";
-			productReference = C274159E17F491230026834B /* YouTube Video Player Demo.app */;
+			name = "XCDYouTubeKit iOS Demo";
+			productName = "XCDYouTubeKit Demo";
+			productReference = C274159E17F491230026834B /* XCDYouTubeKit iOS Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -175,7 +175,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Cédric Luthi";
 			};
-			buildConfigurationList = C274159917F491230026834B /* Build configuration list for PBXProject "YouTube Video Player Demo" */;
+			buildConfigurationList = C274159917F491230026834B /* Build configuration list for PBXProject "XCDYouTubeKit Demo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -187,7 +187,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C274159D17F491230026834B /* YouTube Video Player Demo */,
+				C274159D17F491230026834B /* XCDYouTubeKit iOS Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -298,9 +298,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Supporting Files/YouTube Video Player Demo-Prefix.pch";
+				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/include";
-				INFOPLIST_FILE = "Supporting Files/YouTube Video Player Demo-Info.plist";
+				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -310,9 +310,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Supporting Files/YouTube Video Player Demo-Prefix.pch";
+				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/include";
-				INFOPLIST_FILE = "Supporting Files/YouTube Video Player Demo-Info.plist";
+				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -321,7 +321,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C274159917F491230026834B /* Build configuration list for PBXProject "YouTube Video Player Demo" */ = {
+		C274159917F491230026834B /* Build configuration list for PBXProject "XCDYouTubeKit Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C27415B917F491230026834B /* Debug */,
@@ -330,7 +330,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C27415BB17F491230026834B /* Build configuration list for PBXNativeTarget "YouTube Video Player Demo" */ = {
+		C27415BB17F491230026834B /* Build configuration list for PBXNativeTarget "XCDYouTubeKit iOS Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C27415BC17F491230026834B /* Debug */,
