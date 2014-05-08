@@ -1,3 +1,12 @@
+#### Version 2.0
+
+* Project renamed to `XCDYouTubeKit`.
+* Support for protected video. (#6, #11, #12, #21, #27, #31, #33)
+* OS X compatibility thanks to the new `XCDYouTubeClient` class. (#14, #18)
+* Unit tested.
+* Fully documented.
+* Demo project improved.
+
 #### Version 1.1.2
 
 * Adaptation to YouTube API change. (#19)
