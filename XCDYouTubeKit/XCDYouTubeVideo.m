@@ -81,7 +81,7 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 			{
 				NSURL *streamURL = [NSURL URLWithString:urlString];
 				if (signature)
-					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, signature]];
+					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, [signature stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 				
 				streamURLs[@([itag integerValue])] = streamURL;
 			}

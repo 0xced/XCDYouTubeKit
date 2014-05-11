@@ -41,8 +41,8 @@
 	if (!(self = [super init]))
 		return nil;
 	
-	_videoIdentifier = videoIdentifier ?: @"";
-	_languageIdentifier = languageIdentifier ?: @"en";
+	_videoIdentifier = [videoIdentifier stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ?: @"";
+	_languageIdentifier = [languageIdentifier stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ?: @"en";
 	
 	return self;
 }

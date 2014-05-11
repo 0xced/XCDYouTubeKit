@@ -104,6 +104,18 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
+- (void) testSpaceVideoIdentifier
+{
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@" " completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
+		[monitor signal];
+	}];
+	XCTAssertTrue([monitor waitWithTimeout:10]);
+}
+
 - (void) testConnectionError
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];

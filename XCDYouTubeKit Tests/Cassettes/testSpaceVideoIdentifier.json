@@ -1,0 +1,82 @@
+[
+  {
+    "body" : "status=fail&reason=Invalid+parameters.&errorcode=2",
+    "headers" : {
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "Alternate-Protocol" : "443:quic",
+      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
+      "Server" : "gwiseguy\/2.0",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "Cache-Control" : "no-store",
+      "Date" : "Fri, 09 May 2014 22:20:54 GMT",
+      "Content-Length" : "50",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=%20&el=vevo&ps=default&eurl=&gl=US&hl=en"
+  },
+  {
+    "body" : "reason=Invalid+parameters.&status=fail&errorcode=2",
+    "headers" : {
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "Alternate-Protocol" : "443:quic",
+      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
+      "Server" : "gwiseguy\/2.0",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "Cache-Control" : "no-store",
+      "Date" : "Fri, 09 May 2014 22:20:54 GMT",
+      "Content-Length" : "50",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=%20&el=detailpage&ps=default&eurl=&gl=US&hl=en"
+  },
+  {
+    "body" : "reason=Invalid+parameters.&errorcode=2&status=fail",
+    "headers" : {
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "Alternate-Protocol" : "443:quic",
+      "Set-Cookie" : "YSC=7H_0Dcy18c8; path=\/; domain=.youtube.com; httponly, s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
+      "Server" : "gwiseguy\/2.0",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "Cache-Control" : "no-store",
+      "Date" : "Fri, 09 May 2014 22:20:54 GMT",
+      "Content-Length" : "50",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=%20&el=embedded&ps=default&eurl=&gl=US&hl=en"
+  },
+  {
+    "body" : "reason=Invalid+parameters.&errorcode=2&status=fail",
+    "headers" : {
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "Alternate-Protocol" : "443:quic",
+      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
+      "Server" : "gwiseguy\/2.0",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "Cache-Control" : "no-store",
+      "Date" : "Fri, 09 May 2014 22:20:54 GMT",
+      "Content-Length" : "50",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=%20&ps=default&eurl=&gl=US&hl=en"
+  }
+]
