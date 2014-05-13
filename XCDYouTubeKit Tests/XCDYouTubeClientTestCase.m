@@ -56,6 +56,24 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
+- (void) testMobileRestrictedVideo
+{
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"JHaA9bKi-xs" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.smallThumbnailURL);
+		XCTAssertNotNil(video.mediumThumbnailURL);
+		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+		}];
+		[monitor signal];
+	}];
+	XCTAssertTrue([monitor waitWithTimeout:10]);
+}
+
 - (void) testLiveVideo
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
