@@ -63,6 +63,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from Youtube test content owner, who has blocked it on copyright grounds.");
 		[monitor signal];
 	}];
 	XCTAssertTrue([monitor waitWithTimeout:10]);
@@ -75,6 +76,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRemovedVideo);
+		XCTAssertEqualObjects(error.localizedDescription, @"\"9/11 The F...\" This video is no longer available due to a copyright claim by Digital Rights Group Ltd.");
 		[monitor signal];
 	}];
 	XCTAssertTrue([monitor waitWithTimeout:10]);
@@ -87,6 +89,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
+		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[monitor signal];
 	}];
 	XCTAssertTrue([monitor waitWithTimeout:10]);
@@ -99,6 +102,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRemovedVideo);
+		XCTAssertEqualObjects(error.localizedDescription, @"This video does not exist.");
 		[monitor signal];
 	}];
 	XCTAssertTrue([monitor waitWithTimeout:10]);
@@ -111,6 +115,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
+		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[monitor signal];
 	}];
 	XCTAssertTrue([monitor waitWithTimeout:10]);
@@ -123,6 +128,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
+		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[monitor signal];
 	}];
 	XCTAssertTrue([monitor waitWithTimeout:10]);
@@ -135,6 +141,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorNetwork);
+		XCTAssertEqualObjects(error.localizedDescription, @"The Internet connection appears to be offline.");
 		NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
 		XCTAssertEqualObjects(underlyingError.domain, NSURLErrorDomain);
 		XCTAssertEqual(underlyingError.code, NSURLErrorNotConnectedToInternet);
