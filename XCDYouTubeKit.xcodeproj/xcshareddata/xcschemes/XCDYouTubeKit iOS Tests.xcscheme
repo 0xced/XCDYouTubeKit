@@ -17,8 +17,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
-               BuildableName = "XCDYouTubeKit Tests.xctest"
-               BlueprintName = "XCDYouTubeKit Tests"
+               BuildableName = "XCDYouTubeKit iOS Tests.xctest"
+               BlueprintName = "XCDYouTubeKit iOS Tests"
                ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
             </BuildableReference>
          </TestableReference>

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C2A3F2CC17F4827800AC1C3B"
-               BuildableName = "libXCDYouTubeKit.a"
-               BlueprintName = "XCDYouTubeKit"
+               BlueprintIdentifier = "C2623179191D741700D23900"
+               BuildableName = "XCDYouTubeKit.framework"
+               BlueprintName = "XCDYouTubeKit OS X"
                ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,15 +26,25 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "NO"
-      buildConfiguration = "Code Coverage">
+      buildConfiguration = "Debug">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
-               BuildableName = "XCDYouTubeKit Tests.xctest"
-               BlueprintName = "XCDYouTubeKit Tests"
+               BlueprintIdentifier = "C262318E191D741700D23900"
+               BuildableName = "XCDYouTubeKitTests.xctest"
+               BlueprintName = "XCDYouTubeKitTests"
+               ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C2DD4DA1191FFDE100AF6F85"
+               BuildableName = "XCDYouTubeKit OS X Tests.xctest"
+               BlueprintName = "XCDYouTubeKit OS X Tests"
                ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +52,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
-            BuildableName = "XCDYouTubeKit Tests.xctest"
-            BlueprintName = "XCDYouTubeKit Tests"
+            BlueprintIdentifier = "C2623179191D741700D23900"
+            BuildableName = "XCDYouTubeKit.framework"
+            BlueprintName = "XCDYouTubeKit OS X"
             ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
