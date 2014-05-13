@@ -78,7 +78,7 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
 /**
  *  A dictionary of video stream URLs.
  *
- *  The keys are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_codecs) values as `NSNumber` objects. The values are the video URLs as `NSURL` objects.
+ *  The keys are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_codecs) values as `NSNumber` objects. The values are the video URLs as `NSURL` objects. There is also the special `XCDYouTubeVideoQualityHTTPLiveStreaming` key for live videos.
  *
  *  You must not store the URLs for later use since they have a limited lifetime.
  *
