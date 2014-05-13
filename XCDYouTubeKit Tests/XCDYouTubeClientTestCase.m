@@ -92,6 +92,18 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
+- (void) testNonExistentVideoIdentifier
+{
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"xxxxxxxxxxx" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorRemovedVideo);
+		[monitor signal];
+	}];
+	XCTAssertTrue([monitor waitWithTimeout:10]);
+}
+
 - (void) testNilVideoIdentifier
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];

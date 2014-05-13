@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {
 	XCDYouTubeErrorInvalidVideoIdentifier = 2,
 	
 	/**
-	 *  Returned when the video has been removed as a violation of YouTube's policy.
+	 *  Returned when the video has been removed as a violation of YouTube's policy or if the video does not exist.
 	 */
 	XCDYouTubeErrorRemovedVideo           = 100,
 	
