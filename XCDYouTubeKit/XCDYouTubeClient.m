@@ -48,7 +48,7 @@
 		_languageIdentifier = @"en";
 		NSArray *preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
 		if (preferredLocalizations.count > 0)
-			_languageIdentifier = [NSLocale canonicalLanguageIdentifierFromString:preferredLocalizations[0]] ?: _languageIdentifier;
+			_languageIdentifier = [NSLocale canonicalLanguageIdentifierFromString:preferredLocalizations[0]];
 	}
 	return _languageIdentifier;
 }
