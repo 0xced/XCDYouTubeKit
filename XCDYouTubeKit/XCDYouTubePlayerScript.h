@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
+__attribute__((visibility("hidden")))
 @interface XCDYouTubePlayerScript : NSObject
 
 - (instancetype) initWithString:(NSString *)string;
