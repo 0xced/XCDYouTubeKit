@@ -10,6 +10,7 @@
 
 NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
 NSString *const XCDYouTubeNoStreamVideoUserInfoKey = @"NoStreamVideo";
+NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming = @"HTTPLiveStreaming";
 
 NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding encoding)
 {
@@ -39,11 +40,12 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 	_identifier = identifier;
 
 	NSString *streamMap = info[@"url_encoded_fmt_stream_map"];
+	NSString *httpLiveStream = info[@"hlsvp"];
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
 	
 	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: response.URL } mutableCopy] : [NSMutableDictionary new];
 	
-	if (streamMap)
+	if (streamMap.length > 0 || httpLiveStream.length > 0)
 	{
 		NSMutableArray *streamQueries = [[streamMap componentsSeparatedByString:@","] mutableCopy];
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
@@ -68,6 +70,10 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 		}
 		
 		NSMutableDictionary *streamURLs = [NSMutableDictionary new];
+		
+		if (httpLiveStream)
+			streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] = [NSURL URLWithString:httpLiveStream];
+		
 		for (NSString *streamQuery in streamQueries)
 		{
 			NSDictionary *stream = XCDDictionaryWithQueryString(streamQuery, NSUTF8StringEncoding);

@@ -38,6 +38,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 };
 
 /**
+ *  Used as a key in the `streamURLs` property of the `XCDYouTubeVideo` class for live videos.
+ */
+extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
+
+/**
  *  Represents a YouTube video. Use the `-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]` method to obtain a `XCDYouTubeVideo` object.
  */
 @interface XCDYouTubeVideo : NSObject <NSCopying>

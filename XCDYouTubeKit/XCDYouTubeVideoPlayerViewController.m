@@ -52,7 +52,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 - (NSArray *) preferredVideoQualities
 {
 	if (!_preferredVideoQualities)
-		_preferredVideoQualities = @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
+		_preferredVideoQualities = @[ XCDYouTubeVideoQualityHTTPLiveStreaming, @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ];
 	
 	return _preferredVideoQualities;
 }

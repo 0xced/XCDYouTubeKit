@@ -72,7 +72,7 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
 /**
  *  The preferred order for the quality of the video to play. Plays the first match when multiple video streams are available.
  *
- *  Defaults to @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
+ *  Defaults to @[ XCDYouTubeVideoQualityHTTPLiveStreaming, @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
  *
  *  You should set this property right after calling the `initWithVideoIdentifier:` method. Setting this property to nil restores its default values.
  *
