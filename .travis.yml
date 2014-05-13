@@ -3,4 +3,4 @@ install: gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
     - export LC_CTYPE=en_US.UTF-8
     - set -o pipefail
-    - xcodebuild test -project XCDYouTubeKit.xcodeproj -scheme XCDYouTubeKit -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
+    - xcodebuild test -project XCDYouTubeKit.xcodeproj -scheme 'XCDYouTubeKit iOS' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
