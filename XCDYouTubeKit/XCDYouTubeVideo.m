@@ -106,6 +106,7 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 			if (reason)
 			{
 				reason = [reason stringByReplacingOccurrencesOfString:@"<br\\s*/?>" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, reason.length)];
+				reason = [reason stringByReplacingOccurrencesOfString:@"\n" withString:@" " options:(NSStringCompareOptions)0 range:NSMakeRange(0, reason.length)];
 				NSRange range;
 				while ((range = [reason rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
 					reason = [reason stringByReplacingCharactersInRange:range withString:@""];
