@@ -108,6 +108,19 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
+- (void) testFrenchClient
+{
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	[[[XCDYouTubeClient alloc] initWithLanguageIdentifier:@"fr"] getVideoWithIdentifier:@"xxxxxxxxxxx" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorRemovedVideo);
+		XCTAssertEqualObjects(error.localizedDescription, @"Cette vidéo n'existe pas.");
+		[monitor signal];
+	}];
+	XCTAssertTrue([monitor waitWithTimeout:10]);
+}
+
 - (void) testNilVideoIdentifier
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
