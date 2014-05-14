@@ -11,6 +11,7 @@
 extern NSString *const XCDYouTubeNoStreamVideoUserInfoKey;
 
 extern NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding encoding);
+extern NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncoding encoding);
 
 @interface XCDYouTubeVideo ()
 

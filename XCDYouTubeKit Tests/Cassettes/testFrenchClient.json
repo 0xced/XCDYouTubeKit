@@ -1,82 +1,58 @@
 [
   {
-    "body" : "reason=Cette+vid%C3%A9o+n%27existe+pas.&eventid=chpyU72SPIqt8wOd_YL4BQ&status=fail&cos=Mac&c=WEB&errorcode=100",
+    "body" : "status=fail&c=WEB&reason=Cette+vid%C3%A9o+n%27existe+pas.&eventid=_B5zU7egOoX58gPtgYHgCA&errorcode=100",
     "headers" : {
-      "Content-Type" : "application\/x-www-form-urlencoded",
-      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
-      "Alternate-Protocol" : "443:quic",
-      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
-      "Server" : "gwiseguy\/2.0",
       "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
       "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Content-Length" : "102",
+      "Alternate-Protocol" : "443:quic",
+      "Date" : "Wed, 14 May 2014 07:45:00 GMT",
       "Cache-Control" : "no-store",
-      "Date" : "Tue, 13 May 2014 13:13:23 GMT",
-      "Content-Length" : "110",
-      "X-Content-Type-Options" : "nosniff",
-      "X-Frame-Options" : "SAMEORIGIN"
+      "X-Content-Type-Options" : "nosniff"
     },
     "method" : "GET",
     "status" : 200,
-    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=xxxxxxxxxxx&el=vevo&ps=default&eurl=&gl=US&hl=fr"
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=xxxxxxxxxxx&hl=fr&el=vevo&ps=default"
   },
   {
-    "body" : "enablecsi=1&eventid=chpyU_OyKoOE8wOukoCwBw&cos=Mac&reason=Cette+vid%C3%A9o+n%27existe+pas.&c=WEB&atc=a%3D3%26b%3Dl1aUiFqywJEOyFLDpScmrrmqpGE%26c%3D1399986802%26d%3D1%26e%3Dxxxxxxxxxxx%26c3a%3D22%26hh%3DTHOr45SjO6iHeE1aaEkAHonq5ys&csi_page_type=embed&status=fail&errorcode=100",
+    "body" : "csi_page_type=watch%2Cwatch7&enablecsi=1&c=WEB&errorcode=100&eventid=_B5zU-2kMYGR8gO8sICoBQ&status=fail&reason=Cette+vid%C3%A9o+n%27existe+pas.",
     "headers" : {
-      "Content-Type" : "application\/x-www-form-urlencoded",
-      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
-      "Alternate-Protocol" : "443:quic",
-      "Set-Cookie" : "YSC=BB5tInEvoSM; path=\/; domain=.youtube.com; httponly, s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
-      "Server" : "gwiseguy\/2.0",
       "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Content-Length" : "143",
+      "Alternate-Protocol" : "443:quic",
+      "X-Content-Type-Options" : "nosniff",
+      "Cache-Control" : "no-store",
+      "Date" : "Wed, 14 May 2014 07:45:00 GMT"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=xxxxxxxxxxx&hl=fr&el=detailpage&ps=default"
+  },
+  {
+    "body" : "csi_page_type=embed&atc=a%3D3%26b%3DWP04XXyJblT9MozTvGpLhN7EEMk%26c%3D1400053500%26d%3D1%26e%3Dxxxxxxxxxxx%26c3a%3D18%26hh%3D9RIGH0H0RItROzFQuFiZYsBYpu0&c=WEB&eventid=_B5zU62JKMSy8QPH3YHYDA&status=fail&errorcode=100&reason=Cette+vid%C3%A9o+n%27existe+pas.&enablecsi=1",
+    "headers" : {
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "Set-Cookie" : "YSC=5NzZggnakeE; path=\/; domain=.youtube.com; httponly",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "X-Content-Type-Options" : "nosniff",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Server" : "gwiseguy\/2.0",
       "Transfer-Encoding" : "Identity",
-      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
-      "Cache-Control" : "no-store",
-      "Date" : "Tue, 13 May 2014 13:13:22 GMT",
-      "X-Content-Type-Options" : "nosniff",
-      "X-Frame-Options" : "SAMEORIGIN"
-    },
-    "method" : "GET",
-    "status" : 200,
-    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=xxxxxxxxxxx&el=embedded&ps=default&eurl=&gl=US&hl=fr"
-  },
-  {
-    "body" : "csi_page_type=watch%2Cwatch7&enablecsi=1&c=WEB&reason=Cette+vid%C3%A9o+n%27existe+pas.&status=fail&cos=Mac&errorcode=100&eventid=chpyU_2tM4Tl8APx44GABg",
-    "headers" : {
-      "Content-Type" : "application\/x-www-form-urlencoded",
-      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
       "Alternate-Protocol" : "443:quic",
-      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
-      "Server" : "gwiseguy\/2.0",
-      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
-      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
-      "Cache-Control" : "no-store",
-      "Date" : "Tue, 13 May 2014 13:13:22 GMT",
-      "Content-Length" : "151",
-      "X-Content-Type-Options" : "nosniff",
-      "X-Frame-Options" : "SAMEORIGIN"
+      "Date" : "Wed, 14 May 2014 07:45:00 GMT",
+      "Cache-Control" : "no-store"
     },
     "method" : "GET",
     "status" : 200,
-    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=xxxxxxxxxxx&el=detailpage&ps=default&eurl=&gl=US&hl=fr"
-  },
-  {
-    "body" : "enablecsi=1&eventid=cxpyU6nUCdO08AOz64D4Dg&cos=Mac&c=WEB&reason=Cette+vid%C3%A9o+n%27existe+pas.&csi_page_type=embed&status=fail&errorcode=100",
-    "headers" : {
-      "Content-Type" : "application\/x-www-form-urlencoded",
-      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
-      "Alternate-Protocol" : "443:quic",
-      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
-      "Server" : "gwiseguy\/2.0",
-      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
-      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
-      "Cache-Control" : "no-store",
-      "Date" : "Tue, 13 May 2014 13:13:23 GMT",
-      "Content-Length" : "142",
-      "X-Content-Type-Options" : "nosniff",
-      "X-Frame-Options" : "SAMEORIGIN"
-    },
-    "method" : "GET",
-    "status" : 200,
-    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=xxxxxxxxxxx&ps=default&eurl=&gl=US&hl=fr"
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=xxxxxxxxxxx&hl=fr&el=embedded&ps=default"
   }
 ]

@@ -41,8 +41,8 @@
 	if (!(self = [super init]))
 		return nil;
 	
-	_videoIdentifier = [videoIdentifier stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ?: @"";
-	_languageIdentifier = [languageIdentifier stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ?: @"en";
+	_videoIdentifier = videoIdentifier ?: @"";
+	_languageIdentifier = languageIdentifier ?: @"en";
 	
 	return self;
 }
@@ -57,10 +57,10 @@
 	{
 		NSString *eventLabel = [self.eventLabels objectAtIndex:0];
 		[self.eventLabels removeObjectAtIndex:0];
-		if (eventLabel.length > 0)
-			eventLabel = [@"&el=" stringByAppendingString:eventLabel];
 		
-		NSURL *videoInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/get_video_info?video_id=%@%@&ps=default&eurl=&gl=US&hl=%@", self.videoIdentifier, eventLabel, self.languageIdentifier]];
+		NSDictionary *query = @{ @"video_id": self.videoIdentifier, @"hl": self.languageIdentifier, @"el": eventLabel, @"ps": @"default" };
+		NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
+		NSURL *videoInfoURL = [NSURL URLWithString:[@"https://www.youtube.com/get_video_info?" stringByAppendingString:queryString]];
 		[self startRequestWithURL:videoInfoURL];
 	}
 }
@@ -93,7 +93,10 @@
 		if ([error.domain isEqual:XCDYouTubeVideoErrorDomain] && error.code == XCDYouTubeErrorUseCipherSignature)
 		{
 			self.noStreamVideo = error.userInfo[XCDYouTubeNoStreamVideoUserInfoKey];
-			NSURL *webpageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@&gl=US&hl=%@&has_verified=1", self.videoIdentifier, self.languageIdentifier]];
+			
+			NSDictionary *query = @{ @"v": self.videoIdentifier, @"hl": self.languageIdentifier, @"has_verified": @"1" };
+			NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
+			NSURL *webpageURL = [NSURL URLWithString:[@"https://www.youtube.com/watch?" stringByAppendingString:queryString]];
 			[self startRequestWithURL:webpageURL];
 		}
 		else
@@ -188,7 +191,7 @@
 	
 	self.isExecuting = YES;
 	
-	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage", @"vevo", @"" ]];
+	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage", @"vevo" ]];
 	[self startNextVideoInfoRequest];
 }
 

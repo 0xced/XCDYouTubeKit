@@ -27,7 +27,26 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 			dictionary[key] = value;
 		}
 	}
-	return dictionary;
+	return [dictionary copy];
+}
+
+static NSString *XCDURLEncodedStringUsingEncoding(NSString *string, NSStringEncoding encoding)
+{
+	return CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)string, NULL, CFSTR("!*'();:@&=+$,/?%#[]"), CFStringConvertNSStringEncodingToEncoding(encoding)));
+}
+
+NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncoding encoding)
+{
+	NSMutableString *query = [NSMutableString new];
+	[dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+		if (query.length > 0)
+			[query appendString:@"&"];
+		
+		[query appendString:XCDURLEncodedStringUsingEncoding([key description], encoding)];
+		[query appendString:@"="];
+		[query appendString:XCDURLEncodedStringUsingEncoding([value description], encoding)];
+	}];
+	return [query copy];
 }
 
 @implementation XCDYouTubeVideo

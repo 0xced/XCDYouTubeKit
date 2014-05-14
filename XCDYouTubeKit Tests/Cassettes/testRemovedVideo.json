@@ -1,82 +1,56 @@
 [
   {
-    "body" : "errorcode=100&enablecsi=1&csi_page_type=embed&status=fail&c=WEB&eventid=hEZiU6HpBIWH8wOwroD4AQ&atc=a%3D3%26b%3D0vQwdZufP0tpEnHs4pr9RpAwWCQ%26c%3D1398949508%26d%3D1%26e%3DBXnA9FjvLSU%26c3a%3D11%26hh%3DG-t5lTgOIypAzYTKmlrWecyTRgo&reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.",
+    "body" : "reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.&status=fail&enablecsi=1&c=WEB&eventid=_x5zU6TYN8bO8QOA5oDYCQ&atc=a%3D3%26b%3DtVX8Kg5rqmWhr4kf3DB5GtXP3sQ%26c%3D1400053503%26d%3D1%26e%3DBXnA9FjvLSU%26c3a%3D20%26hh%3DbOgRiBDL90ZFRXZyHZYITm3U24M&errorcode=100&csi_page_type=embed",
     "headers" : {
-      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Transfer-Encoding" : "Identity",
+      "Alternate-Protocol" : "443:quic",
+      "Date" : "Wed, 14 May 2014 07:45:03 GMT",
       "Cache-Control" : "no-store",
-      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
-      "Content-Type" : "application\/x-www-form-urlencoded",
-      "X-Content-Type-Options" : "nosniff",
-      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
-      "X-Frame-Options" : "SAMEORIGIN",
-      "Server" : "gwiseguy\/2.0",
-      "Transfer-Encoding" : "Identity",
-      "Alternate-Protocol" : "443:quic",
-      "Date" : "Thu, 01 May 2014 13:05:08 GMT",
-      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com"
+      "X-Content-Type-Options" : "nosniff"
     },
     "method" : "GET",
     "status" : 200,
-    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=BXnA9FjvLSU&el=embedded&ps=default&eurl=&gl=US&hl=en"
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=BXnA9FjvLSU&hl=en&el=embedded&ps=default"
   },
   {
-    "body" : "eventid=hEZiU5S_D8rQ8gOl1ID4CQ&status=fail&reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.&errorcode=100&c=WEB",
+    "body" : "c=WEB&status=fail&eventid=AB9zU4_1BYGR8gPO84CoCQ&reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.&errorcode=100",
     "headers" : {
-      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
-      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
       "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
-      "Content-Type" : "application\/x-www-form-urlencoded",
-      "X-Content-Type-Options" : "nosniff",
       "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
       "X-Frame-Options" : "SAMEORIGIN",
       "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
       "Transfer-Encoding" : "Identity",
       "Alternate-Protocol" : "443:quic",
-      "Date" : "Thu, 01 May 2014 13:05:08 GMT",
-      "Cache-Control" : "no-store"
-    },
-    "method" : "GET",
-    "status" : 200,
-    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=BXnA9FjvLSU&el=vevo&ps=default&eurl=&gl=US&hl=en"
-  },
-  {
-    "body" : "csi_page_type=embed&status=fail&enablecsi=1&eventid=hEZiU9qdFJL28QOMlICQBA&errorcode=100&reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.&c=WEB",
-    "headers" : {
-      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
+      "X-Content-Type-Options" : "nosniff",
       "Cache-Control" : "no-store",
-      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
-      "Content-Type" : "application\/x-www-form-urlencoded",
-      "X-Content-Type-Options" : "nosniff",
-      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
-      "X-Frame-Options" : "SAMEORIGIN",
-      "Server" : "gwiseguy\/2.0",
-      "Transfer-Encoding" : "Identity",
-      "Alternate-Protocol" : "443:quic",
-      "Date" : "Thu, 01 May 2014 13:05:08 GMT",
-      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com"
+      "Date" : "Wed, 14 May 2014 07:45:04 GMT"
     },
     "method" : "GET",
     "status" : 200,
-    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=BXnA9FjvLSU&ps=default&eurl=&gl=US&hl=en"
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=BXnA9FjvLSU&hl=en&el=vevo&ps=default"
   },
   {
-    "body" : "errorcode=100&eventid=hEZiU-THCYKC8AOA74DgBw&status=fail&csi_page_type=watch%2Cwatch7&c=WEB&reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.&enablecsi=1",
+    "body" : "status=fail&c=WEB&csi_page_type=watch%2Cwatch7&reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.&enablecsi=1&eventid=AB9zU9ENxt7yA_GVgbAE&errorcode=100",
     "headers" : {
-      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
-      "Set-Cookie" : "s_gl=1d69aac621b2f9c0a25dade722d6e24bcwIAAABVUw==; path=\/; domain=.youtube.com",
       "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
-      "Content-Type" : "application\/x-www-form-urlencoded",
-      "X-Content-Type-Options" : "nosniff",
       "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
       "X-Frame-Options" : "SAMEORIGIN",
       "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
       "Transfer-Encoding" : "Identity",
       "Alternate-Protocol" : "443:quic",
-      "Date" : "Thu, 01 May 2014 13:05:08 GMT",
-      "Cache-Control" : "no-store"
+      "Date" : "Wed, 14 May 2014 07:45:04 GMT",
+      "Cache-Control" : "no-store",
+      "X-Content-Type-Options" : "nosniff"
     },
     "method" : "GET",
     "status" : 200,
-    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=BXnA9FjvLSU&el=detailpage&ps=default&eurl=&gl=US&hl=en"
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?video_id=BXnA9FjvLSU&hl=en&el=detailpage&ps=default"
   }
 ]
