@@ -37,15 +37,20 @@ static NSString *XCDURLEncodedStringUsingEncoding(NSString *string, NSStringEnco
 
 NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncoding encoding)
 {
+	NSArray *keys = [[dictionary allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+		return [evaluatedObject isKindOfClass:[NSString class]];
+	}]];
+	
 	NSMutableString *query = [NSMutableString new];
-	[dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+	for (NSString *key in [keys sortedArrayUsingSelector:@selector(compare:)])
+	{
 		if (query.length > 0)
 			[query appendString:@"&"];
 		
-		[query appendString:XCDURLEncodedStringUsingEncoding([key description], encoding)];
+		[query appendString:XCDURLEncodedStringUsingEncoding(key, encoding)];
 		[query appendString:@"="];
-		[query appendString:XCDURLEncodedStringUsingEncoding([value description], encoding)];
-	}];
+		[query appendString:XCDURLEncodedStringUsingEncoding([dictionary[key] description], encoding)];
+	}
 	return [query copy];
 }
 
