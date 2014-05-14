@@ -1,3 +1,6 @@
 #ifdef __OBJC__
 	#import <Cocoa/Cocoa.h>
+	#import <AVFoundation/AVFoundation.h>
+	#import <AVKit/AVKit.h>
+	#import <XCDYouTubeKit/XCDYouTubeKit.h>
 #endif

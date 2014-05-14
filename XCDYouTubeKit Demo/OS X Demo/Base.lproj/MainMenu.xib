@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <plugIn identifier="com.apple.AVKitIBPlugin" version="5056"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
@@ -13,6 +14,8 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="playerView" destination="RLu-Rh-Nir" id="5o6-eQ-dlI"/>
+                <outlet property="progressIndicator" destination="SO3-xf-1sf" id="Ohx-VY-XM3"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -666,14 +669,67 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="XCDYouTubeKit Demo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+        <window title="XCDYouTubeKit Demo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
+            <rect key="contentRect" x="335" y="390" width="480" height="315"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <value key="minSize" type="size" width="480" height="315"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="315"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <avPlayerView controlsStyle="floating" translatesAutoresizingMaskIntoConstraints="NO" id="RLu-Rh-Nir">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </avPlayerView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="3Ti-hx-6zd">
+                        <rect key="frame" x="55" y="282" width="370" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sne-eH-5TO">
+                                <rect key="frame" x="0.0" y="2" width="168" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="YouTube Video Identifier:" id="lX0-jm-7GA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ISA-uQ-Y9T">
+                                <rect key="frame" x="174" y="0.0" width="164" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="Y6N-pz-daO">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="playVideo:" target="Voe-Tx-rLC" id="ZSO-RE-pTp"/>
+                                    <binding destination="4NX-h0-LSt" name="value" keyPath="values.VideoIdentifier" id="pms-74-RCp"/>
+                                    <outlet property="delegate" destination="Voe-Tx-rLC" id="k2E-yh-hyc"/>
+                                </connections>
+                            </textField>
+                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="SO3-xf-1sf">
+                                <rect key="frame" x="346" y="3" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="370" id="mUr-id-ECh"/>
+                            <constraint firstAttribute="height" constant="22" id="nmU-YV-9SM"/>
+                        </constraints>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="RLu-Rh-Nir" secondAttribute="trailing" id="8Qh-ru-h35"/>
+                    <constraint firstItem="RLu-Rh-Nir" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="45" id="HFd-aG-SGu"/>
+                    <constraint firstAttribute="bottom" secondItem="RLu-Rh-Nir" secondAttribute="bottom" id="IOn-JK-9GI"/>
+                    <constraint firstItem="RLu-Rh-Nir" firstAttribute="top" secondItem="3Ti-hx-6zd" secondAttribute="bottom" constant="12" id="hJ8-3o-WfB"/>
+                    <constraint firstAttribute="centerX" secondItem="3Ti-hx-6zd" secondAttribute="centerX" id="iak-7l-sut"/>
+                    <constraint firstItem="RLu-Rh-Nir" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="k1u-xQ-Az3"/>
+                </constraints>
             </view>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="4NX-h0-LSt"/>
     </objects>
 </document>
