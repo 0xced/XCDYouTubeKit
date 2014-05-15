@@ -78,6 +78,7 @@
 	{
 		JSStringRef unscrambledSignatureRef = JSValueToStringCopy(self.context, unscrambledSignatureValue, NULL);
 		CFStringRef unscrambledSignature = unscrambledSignatureRef ? JSStringCopyCFString(kCFAllocatorDefault, unscrambledSignatureRef) : NULL;
+		JSStringRelease(unscrambledSignatureRef);
 		return CFBridgingRelease(unscrambledSignature);
 	}
 	
