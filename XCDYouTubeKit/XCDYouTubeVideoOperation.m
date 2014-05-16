@@ -189,10 +189,7 @@
 - (void) start
 {
 	if ([self isCancelled])
-	{
-		self.isFinished = YES;
 		return;
-	}
 	
 	self.isExecuting = YES;
 	
