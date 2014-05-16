@@ -84,7 +84,7 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncodin
 		_largeThumbnailURL = largeThumbnail ? [NSURL URLWithString:largeThumbnail] : nil;
 		
 		NSString *useCipherSignature = info[@"use_cipher_signature"];
-		if ([useCipherSignature respondsToSelector:@selector(boolValue)] && [useCipherSignature boolValue] && !playerScript)
+		if ([useCipherSignature boolValue] && !playerScript)
 		{
 			userInfo[XCDYouTubeNoStreamVideoUserInfoKey] = self;
 			if (error)

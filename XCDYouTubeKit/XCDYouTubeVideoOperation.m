@@ -124,7 +124,12 @@
 			NSDictionary *args = playerConfiguration[@"args"];
 			if ([args isKindOfClass:[NSDictionary class]])
 			{
-				self.info = args;
+				NSMutableDictionary *info = [NSMutableDictionary new];
+				[args enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *argsStop) {
+					if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])
+						info[key] = [value description];
+				}];
+				self.info = [info copy];
 				NSString *jsAssets = [playerConfiguration valueForKeyPath:@"assets.js"];
 				if ([jsAssets isKindOfClass:[NSString class]])
 				{
