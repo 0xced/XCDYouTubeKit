@@ -116,7 +116,7 @@
 	CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
 	NSString *html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, [self.connectionData bytes], (CFIndex)[self.connectionData length], encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
 	NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});" options:NSRegularExpressionCaseInsensitive error:NULL];
-	[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+	[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *regexpStop) {
 		NSString *configString = [html substringWithRange:[result rangeAtIndex:1]];
 		NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:[configString dataUsingEncoding:NSUTF8StringEncoding] options:(NSJSONReadingOptions)0 error:NULL];
 		if ([playerConfiguration isKindOfClass:[NSDictionary class]])
@@ -125,15 +125,15 @@
 			if ([args isKindOfClass:[NSDictionary class]])
 			{
 				self.info = args;
-				NSString *assets = [playerConfiguration valueForKeyPath:@"assets.js"];
-				if ([assets isKindOfClass:[NSString class]])
+				NSString *jsAssets = [playerConfiguration valueForKeyPath:@"assets.js"];
+				if ([jsAssets isKindOfClass:[NSString class]])
 				{
-					NSString *javaScriptPlayerURLString = assets;
-					if ([assets hasPrefix:@"//"])
-						javaScriptPlayerURLString = [@"https:" stringByAppendingString:assets];
+					NSString *javaScriptPlayerURLString = jsAssets;
+					if ([jsAssets hasPrefix:@"//"])
+						javaScriptPlayerURLString = [@"https:" stringByAppendingString:jsAssets];
 					
 					javaScriptPlayerURL = [NSURL URLWithString:javaScriptPlayerURLString];
-					*stop = YES;
+					*regexpStop = YES;
 				}
 			}
 		}
