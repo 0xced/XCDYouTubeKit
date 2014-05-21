@@ -18,7 +18,6 @@ Except for live videos, the player uses progressive download. Remember that some
 
 - Runs on iOS 5.0 and later
 - Runs on OS X 10.7 and later
-- Must be compiled with ARC
 
 ## Installation
 
