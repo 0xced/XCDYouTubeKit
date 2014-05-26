@@ -9,6 +9,7 @@
 - (IBAction) play:(id)sender
 {
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
+	videoPlayerViewController.moviePlayer.backgroundPlaybackEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"PlayVideoInBackground"];
 	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 	
 	// https://developers.google.com/youtube/2.0/developers_guide_protocol_video_feeds#Standard_feeds

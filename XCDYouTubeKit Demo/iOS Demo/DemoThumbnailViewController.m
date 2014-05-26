@@ -15,6 +15,7 @@
 - (IBAction) loadThumbnail:(id)sender
 {
 	self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"VpZmIiIXuZ0"];
+	self.videoPlayerViewController.moviePlayer.backgroundPlaybackEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"PlayVideoInBackground"];
 	
 	NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
 	[defaultCenter addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveVideo:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:self.videoPlayerViewController];

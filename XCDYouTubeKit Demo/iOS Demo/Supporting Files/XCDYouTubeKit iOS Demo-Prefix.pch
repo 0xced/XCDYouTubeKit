@@ -9,4 +9,5 @@
 	#import <Foundation/Foundation.h>
 	#import <AVFoundation/AVFoundation.h>
 	#import <XCDYouTubeKit/XCDYouTubeKit.h>
+	#import "MPMoviePlayerController+BackgroundPlayback.h"
 #endif

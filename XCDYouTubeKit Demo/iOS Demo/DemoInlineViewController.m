@@ -24,7 +24,7 @@
 	[self.videoContainerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 	
 	self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"VpZmIiIXuZ0"];
-	
+	self.videoPlayerViewController.moviePlayer.backgroundPlaybackEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"PlayVideoInBackground"];
 	[self.videoPlayerViewController presentInView:self.videoContainerView];
 	
 	if (self.prepareToPlaySwitch.on)

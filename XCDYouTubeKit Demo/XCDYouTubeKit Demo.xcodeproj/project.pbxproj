@@ -31,6 +31,7 @@
 		C27415DC17F4CDD80026834B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415D117F4CDD80026834B /* main.m */; };
 		C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E217F4D02E0026834B /* AVFoundation.framework */; };
 		C27415E517F4D0330026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E417F4D0330026834B /* MediaPlayer.framework */; };
+		C2BA376D192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */; };
 		C2EDD2ED1805917900BEA32B /* libXCDYouTubeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */; };
 		C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EFB48618730A2B0046B1FE /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,8 @@
 		C27415DE17F4CE4A0026834B /* XCDYouTubeKit iOS Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCDYouTubeKit iOS Demo-Prefix.pch"; sourceTree = "<group>"; };
 		C27415E217F4D02E0026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C27415E417F4D0330026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		C2BA376B192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMoviePlayerController+BackgroundPlayback.h"; sourceTree = "<group>"; };
+		C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMoviePlayerController+BackgroundPlayback.m"; sourceTree = "<group>"; };
 		C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libXCDYouTubeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2EFB48518730A2B0046B1FE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C2EFB48618730A2B0046B1FE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -194,6 +197,8 @@
 				C27415C217F4CDD80026834B /* DemoAsynchronousViewController.m */,
 				C2EFB48518730A2B0046B1FE /* SettingsViewController.h */,
 				C2EFB48618730A2B0046B1FE /* SettingsViewController.m */,
+				C2BA376B192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.h */,
+				C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */,
 				C27415C917F4CDD80026834B /* MainStoryboard.storyboard */,
 				C27415CB17F4CDD80026834B /* Supporting Files */,
 			);
@@ -325,6 +330,7 @@
 				C27415D617F4CDD80026834B /* DemoThumbnailViewController.m in Sources */,
 				C27415DC17F4CDD80026834B /* main.m in Sources */,
 				C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */,
+				C2BA376D192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
