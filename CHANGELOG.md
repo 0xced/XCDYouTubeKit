@@ -6,7 +6,10 @@
 * Support for live videos. (#34)
 * Unit tested.
 * Fully documented.
-* Demo project improved.
+* Improved demo projects.
+  * New OS X demo project.
+  * New settings screen on iOS for background playback and audio session category.
+  * Demonstrates how to use the notifications to fill the *Now Playing Info Center*.
 
 #### Version 1.1.2
 
