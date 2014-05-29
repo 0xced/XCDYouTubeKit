@@ -61,6 +61,10 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
  *  The title of the video.
  */
 @property (nonatomic, readonly) NSString *title;
+/**
+ *  The duration of the video in seconds.
+ */
+@property (nonatomic, readonly) NSTimeInterval duration;
 
 /**
  *  A thumbnail URL for an image of small size, i.e. 120×90. May be nil.

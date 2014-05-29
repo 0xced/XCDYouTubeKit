@@ -33,6 +33,7 @@
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
 		[monitor signal];
 	}];
 	XCTAssertTrue([monitor waitWithTimeout:10]);
@@ -48,6 +49,7 @@
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
 			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
 		}];
@@ -66,6 +68,7 @@
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
 			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
 		}];
@@ -84,6 +87,7 @@
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertEqual(video.streamURLs.count, 1U);
+		XCTAssertTrue(video.duration > 0);
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[monitor signal];
 	}];
@@ -100,6 +104,7 @@
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertEqual(video.streamURLs.count, 1U);
+		XCTAssertTrue(video.duration > 0);
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[monitor signal];
 	}];

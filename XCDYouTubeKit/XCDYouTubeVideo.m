@@ -75,6 +75,7 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncodin
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
 		
 		_title = info[@"title"];
+		_duration = [info[@"length_seconds"] doubleValue];
 		
 		NSString *smallThumbnail = info[@"thumbnail_url"];
 		NSString *mediumThumbnail = info[@"iurlsd"] ?: info[@"iurl"];
@@ -185,7 +186,7 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncodin
 - (NSString *) debugDescription
 {
 	NSString *thumbnailDescription = [NSString stringWithFormat:@"Small  thumbnail: %@\nMedium thumbnail: %@\nLarge  thumbnail: %@", self.smallThumbnailURL, self.mediumThumbnailURL, self.largeThumbnailURL];
-	return [NSString stringWithFormat:@"<%@: %p> %@\n%@\nVideo Streams: %@", self.class, self, self.description, thumbnailDescription, self.streamURLs];
+	return [NSString stringWithFormat:@"<%@: %p> %@\nDuration: %@ seconds\n%@\nVideo Streams: %@", self.class, self, self.description, @(self.duration), thumbnailDescription, self.streamURLs];
 }
 
 #pragma mark - NSCopying
