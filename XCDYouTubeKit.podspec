@@ -13,7 +13,8 @@ Pod::Spec.new do |s|
   s.source_files          = "XCDYouTubeKit"
   s.public_header_files   = "XCDYouTubeKit/XCDYouTube{Client,Error,Operation,Video,VideoOperation,VideoPlayerViewController}.h"
   s.osx.exclude_files     = "XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.{h,m}"
-  s.ios.frameworks        = "JavaScriptCore", "MediaPlayer"
+  s.ios.frameworks        = "MediaPlayer"
+  s.ios.xcconfig          = { "OTHER_LDFLAGS" => "-Wl,-U,_JSEvaluateScript -Wl,-U,_JSGlobalContextCreate -Wl,-U,_JSGlobalContextRelease -Wl,-U,_JSObjectCallAsFunction -Wl,-U,_JSObjectIsFunction -Wl,-U,_JSStringCopyCFString -Wl,-U,_JSStringCreateWithCFString -Wl,-U,_JSStringRelease -Wl,-U,_JSValueIsObject -Wl,-U,_JSValueIsString -Wl,-U,_JSValueMakeString -Wl,-U,_JSValueToStringCopy" }
   s.osx.frameworks        = "JavaScriptCore"
   s.requires_arc          = true
 end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C224EB62191922C40038186E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FB52DF1918F89A00B2CBE6 /* JavaScriptCore.framework */; };
 		C2428AE5191C3C1400065504 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2428AE4191C3C1400065504 /* AppDelegate.m */; };
 		C2428AE8191C3C1400065504 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2428AE6191C3C1400065504 /* MainMenu.xib */; };
 		C2428AEA191C3C1400065504 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2428AE9191C3C1400065504 /* Images.xcassets */; };
@@ -115,7 +114,6 @@
 				C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */,
 				C27415A617F491230026834B /* CoreGraphics.framework in Frameworks */,
 				C27415A417F491230026834B /* Foundation.framework in Frameworks */,
-				C224EB62191922C40038186E /* JavaScriptCore.framework in Frameworks */,
 				C27415E517F4D0330026834B /* MediaPlayer.framework in Frameworks */,
 				C27415A217F491230026834B /* UIKit.framework in Frameworks */,
 			);
@@ -492,6 +490,20 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
+				OTHER_LDFLAGS = (
+					"-Wl,-U,_JSEvaluateScript",
+					"-Wl,-U,_JSGlobalContextCreate",
+					"-Wl,-U,_JSGlobalContextRelease",
+					"-Wl,-U,_JSObjectCallAsFunction",
+					"-Wl,-U,_JSObjectIsFunction",
+					"-Wl,-U,_JSStringCopyCFString",
+					"-Wl,-U,_JSStringCreateWithCFString",
+					"-Wl,-U,_JSStringRelease",
+					"-Wl,-U,_JSValueIsObject",
+					"-Wl,-U,_JSValueIsString",
+					"-Wl,-U,_JSValueMakeString",
+					"-Wl,-U,_JSValueToStringCopy",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -503,6 +515,20 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
+				OTHER_LDFLAGS = (
+					"-Wl,-U,_JSEvaluateScript",
+					"-Wl,-U,_JSGlobalContextCreate",
+					"-Wl,-U,_JSGlobalContextRelease",
+					"-Wl,-U,_JSObjectCallAsFunction",
+					"-Wl,-U,_JSObjectIsFunction",
+					"-Wl,-U,_JSStringCopyCFString",
+					"-Wl,-U,_JSStringCreateWithCFString",
+					"-Wl,-U,_JSStringRelease",
+					"-Wl,-U,_JSValueIsObject",
+					"-Wl,-U,_JSValueIsString",
+					"-Wl,-U,_JSValueMakeString",
+					"-Wl,-U,_JSValueToStringCopy",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

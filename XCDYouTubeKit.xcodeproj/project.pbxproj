@@ -12,7 +12,6 @@
 		C20F57AF1881804D00EDBFB0 /* libXCDYouTubeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeKit.a */; };
 		C20F57B01881806000EDBFB0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158817F48AD10026834B /* MediaPlayer.framework */; };
 		C20F57B11881806700EDBFB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158917F48AD10026834B /* UIKit.framework */; };
-		C224EB651919241B0038186E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C224EB641919241B0038186E /* JavaScriptCore.framework */; };
 		C224EB661919241B0038186E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C224EB641919241B0038186E /* JavaScriptCore.framework */; };
 		C224EB75191AF0370038186E /* XCDYouTubeKitTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C224EB74191AF0370038186E /* XCDYouTubeKitTestCase.m */; };
 		C24C162E18E9A139005E92E9 /* XCDYouTubeVideoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C162D18E9A139005E92E9 /* XCDYouTubeVideoOperation.m */; };
@@ -195,7 +194,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C224EB651919241B0038186E /* JavaScriptCore.framework in Frameworks */,
 				C274158E17F48B100026834B /* MediaPlayer.framework in Frameworks */,
 				C274158F17F48B100026834B /* UIKit.framework in Frameworks */,
 			);
