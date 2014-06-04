@@ -1,0 +1,56 @@
+[
+  {
+    "body" : "errorcode=2&status=fail&reason=Invalid+parameters.",
+    "headers" : {
+      "X-Content-Type-Options" : "nosniff",
+      "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Date" : "Wed, 14 May 2014 10:25:41 GMT",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Alternate-Protocol" : "443:quic",
+      "Content-Length" : "50",
+      "Cache-Control" : "no-store",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=detailpage&hl=en&ps=default&video_id=%20"
+  },
+  {
+    "body" : "status=fail&reason=Invalid+parameters.&errorcode=2",
+    "headers" : {
+      "X-Content-Type-Options" : "nosniff",
+      "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Date" : "Wed, 14 May 2014 10:25:41 GMT",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Alternate-Protocol" : "443:quic",
+      "Content-Length" : "50",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "Cache-Control" : "no-store"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=vevo&hl=en&ps=default&video_id=%20"
+  },
+  {
+    "body" : "reason=Invalid+parameters.&errorcode=2&status=fail",
+    "headers" : {
+      "X-Content-Type-Options" : "nosniff",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Server" : "gwiseguy\/2.0",
+      "Date" : "Wed, 14 May 2014 10:25:41 GMT",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Alternate-Protocol" : "443:quic",
+      "Content-Length" : "50",
+      "Cache-Control" : "no-store",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=embedded&hl=en&ps=default&video_id=%20"
+  }
+]

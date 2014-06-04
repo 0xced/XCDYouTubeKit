@@ -1,0 +1,56 @@
+[
+  {
+    "body" : "c=WEB&errorcode=100&reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.&eventid=pkRzU8GhA8Ks8wOi_oHICw&enablecsi=1&status=fail&csi_page_type=watch%2Cwatch7",
+    "headers" : {
+      "Server" : "gwiseguy\/2.0",
+      "X-Content-Type-Options" : "nosniff",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Transfer-Encoding" : "Identity",
+      "Date" : "Wed, 14 May 2014 10:25:42 GMT",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Alternate-Protocol" : "443:quic",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "Cache-Control" : "no-store"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=detailpage&hl=en&ps=default&video_id=BXnA9FjvLSU"
+  },
+  {
+    "body" : "eventid=pkRzU7SiDMza8QONmoHAAw&status=fail&c=WEB&reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.&errorcode=100",
+    "headers" : {
+      "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "X-Content-Type-Options" : "nosniff",
+      "Transfer-Encoding" : "Identity",
+      "Date" : "Wed, 14 May 2014 10:25:42 GMT",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Alternate-Protocol" : "443:quic",
+      "Cache-Control" : "no-store",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=vevo&hl=en&ps=default&video_id=BXnA9FjvLSU"
+  },
+  {
+    "body" : "errorcode=100&status=fail&enablecsi=1&csi_page_type=embed&atc=a%3D3%26b%3DZ2OvBTxzba6fU1nD21c2O3RnSh0%26c%3D1400063142%26d%3D1%26e%3DBXnA9FjvLSU%26c3a%3D21%26hh%3DobmWfk1TMmicsMIl_BhK7Wy1ZJI&eventid=pURzU8ylO8GW8wOuuYDgDw&c=WEB&reason=%229%2F11+The+F...%22%0AThis+video+is+no+longer+available+due+to+a+copyright+claim+by+Digital+Rights+Group+Ltd.",
+    "headers" : {
+      "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "X-Content-Type-Options" : "nosniff",
+      "Transfer-Encoding" : "Identity",
+      "Date" : "Wed, 14 May 2014 10:25:42 GMT",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Alternate-Protocol" : "443:quic",
+      "Cache-Control" : "no-store",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=embedded&hl=en&ps=default&video_id=BXnA9FjvLSU"
+  }
+]

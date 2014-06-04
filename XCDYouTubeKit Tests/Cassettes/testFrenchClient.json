@@ -1,0 +1,56 @@
+[
+  {
+    "body" : "status=fail&enablecsi=1&errorcode=100&c=WEB&reason=Cette+vid%C3%A9o+n%27existe+pas.&eventid=o0RzU5-lDYOD8gOi54GQAQ&csi_page_type=embed&atc=a%3D3%26b%3DKIXFPriPDr51K_vlyQhN4TVQ-7o%26c%3D1400063139%26d%3D1%26e%3Dxxxxxxxxxxx%26c3a%3D15%26hh%3DhVV7p36WRH4Vd07atkvWVoDixlo",
+    "headers" : {
+      "X-Content-Type-Options" : "nosniff",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Server" : "gwiseguy\/2.0",
+      "Transfer-Encoding" : "Identity",
+      "Date" : "Wed, 14 May 2014 10:25:39 GMT",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Alternate-Protocol" : "443:quic",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
+      "Cache-Control" : "no-store"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=embedded&hl=fr&ps=default&video_id=xxxxxxxxxxx"
+  },
+  {
+    "body" : "errorcode=100&eventid=o0RzU7P-E8jA8APtwYAY&status=fail&csi_page_type=watch%2Cwatch7&reason=Cette+vid%C3%A9o+n%27existe+pas.&c=WEB&enablecsi=1",
+    "headers" : {
+      "X-Content-Type-Options" : "nosniff",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Server" : "gwiseguy\/2.0",
+      "Date" : "Wed, 14 May 2014 10:25:39 GMT",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Alternate-Protocol" : "443:quic",
+      "Content-Length" : "141",
+      "Cache-Control" : "no-store",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=detailpage&hl=fr&ps=default&video_id=xxxxxxxxxxx"
+  },
+  {
+    "body" : "reason=Cette+vid%C3%A9o+n%27existe+pas.&eventid=o0RzU7OiG4eU8AP8soGYBA&c=WEB&status=fail&errorcode=100",
+    "headers" : {
+      "X-Content-Type-Options" : "nosniff",
+      "Server" : "gwiseguy\/2.0",
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "Date" : "Wed, 14 May 2014 10:25:39 GMT",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Alternate-Protocol" : "443:quic",
+      "Content-Length" : "102",
+      "Cache-Control" : "no-store",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=vevo&hl=fr&ps=default&video_id=xxxxxxxxxxx"
+  }
+]
