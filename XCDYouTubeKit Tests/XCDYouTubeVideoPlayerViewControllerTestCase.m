@@ -28,6 +28,20 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
+- (void) testAsynchronousVideoNotification
+{
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		videoPlayerViewController.videoIdentifier = @"EdeVaT-zZt4";
+	}];
+	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:videoPlayerViewController queue:nil usingBlock:^(NSNotification *notification) {
+		XCTAssertNotNil(notification.userInfo[XCDYouTubeVideoUserInfoKey]);
+		[monitor signal];
+	}];
+	XCTAssertTrue([monitor waitWithTimeout:10]);
+}
+
 - (void) testNoStreamAvailableErrorNotification
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
