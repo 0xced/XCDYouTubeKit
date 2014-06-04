@@ -38,7 +38,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier
 {
-	if (!(self = [super init]))
+	if (!(self = [super initWithContentURL:nil]))
 		return nil;
 	
 	if (videoIdentifier)
