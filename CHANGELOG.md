@@ -1,11 +1,13 @@
-#### Version 2.0
+#### Version 2.0.0
 
 * Project renamed to `XCDYouTubeKit`.
 * Support for protected video. (#6, #11, #12, #21, #27, #31, #33)
 * OS X compatibility thanks to the new `XCDYouTubeClient` class. (#14, #18)
+* OS X dynamic framework target
 * Support for live videos. (#34)
 * Unit tested.
-* Fully documented.
+* [Fully documented](http://cocoadocs.org/docsets/XCDYouTubeKit/).
+* Support for iOS 8 beta.
 * Improved demo projects.
   * New OS X demo project.
   * New settings screen on iOS for background playback and audio session category.
@@ -31,6 +33,6 @@
 * Error reporting is more accurate, especially for VEVO videos. (#6)
 * `prepareToPlay` is not automatically called, it’s the programmer responsibility to call it if appropriate.
 
-#### Version 1.0
+#### Version 1.0.0
 
 * Initial version
