@@ -566,6 +566,10 @@
 					"$(BUILT_PRODUCTS_DIR)/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"$(inherited)",
+					"-Wno-documentation-unknown-command",
+				);
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -583,6 +587,10 @@
 					"$(BUILT_PRODUCTS_DIR)/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"$(inherited)",
+					"-Wno-documentation-unknown-command",
+				);
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -819,6 +827,10 @@
 					"$(BUILT_PRODUCTS_DIR)/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"$(inherited)",
+					"-Wno-documentation-unknown-command",
+				);
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = "Code Coverage";
@@ -837,6 +849,10 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				WARNING_CFLAGS = (
+					"$(inherited)",
+					"-Wno-documentation-unknown-command",
+				);
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -855,6 +871,10 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				WARNING_CFLAGS = (
+					"$(inherited)",
+					"-Wno-documentation-unknown-command",
+				);
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = "Code Coverage";
@@ -873,6 +893,10 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				WARNING_CFLAGS = (
+					"$(inherited)",
+					"-Wno-documentation-unknown-command",
+				);
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
