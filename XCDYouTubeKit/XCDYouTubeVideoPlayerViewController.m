@@ -26,9 +26,27 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 
 @implementation XCDYouTubeVideoPlayerViewController
 
+/*
+ * MPMoviePlayerViewController on iOS 7 and earlier
+ * - (id) init
+ *        `-- [super init]
+ *
+ * - (id) initWithContentURL:(NSURL *)contentURL
+ *        |-- [self init]
+ *        `-- [self.moviePlayer setContentURL:contentURL]
+ *
+ * MPMoviePlayerViewController on iOS 8 and later
+ * - (id) init
+ *        `-- [self initWithContentURL:nil]
+ *
+ * - (id) initWithContentURL:(NSURL *)contentURL
+ *        |-- [super init]
+ *        `-- [self.moviePlayer setContentURL:contentURL]
+ */
+
 - (instancetype) init
 {
-	return [self initWithVideoIdentifier:nil];
+	return [[[UIDevice currentDevice] systemVersion] integerValue] >= 8 ? [self initWithVideoIdentifier:nil] : [super init];
 }
 
 - (instancetype) initWithContentURL:(NSURL *)contentURL

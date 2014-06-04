@@ -1,6 +1,6 @@
 ## About
 
-[![build status](https://travis-ci.org/0xced/XCDYouTubeVideoPlayerViewController.svg)](https://travis-ci.org/0xced/XCDYouTubeVideoPlayerViewController)
+[![build status](https://travis-ci.org/0xced/XCDYouTubeKit.svg)](https://travis-ci.org/0xced/XCDYouTubeKit)
 
 **XCDYouTubeKit** is a YouTube video player for iOS and OS X.
 
