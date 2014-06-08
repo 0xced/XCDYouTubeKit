@@ -32,8 +32,9 @@
 		C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E217F4D02E0026834B /* AVFoundation.framework */; };
 		C27415E517F4D0330026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E417F4D0330026834B /* MediaPlayer.framework */; };
 		C2BA376D192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */; };
-		C2EDD2ED1805917900BEA32B /* libXCDYouTubeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */; };
 		C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EFB48618730A2B0046B1FE /* SettingsViewController.m */; };
+		C2F0E59F1945065C00D8EBA8 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */; };
+		C2F0E5A11945069300D8EBA8 /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				C26231B7191D7F8500D23900 /* XCDYouTubeKit.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2F0E5A01945068200D8EBA8 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C2F0E5A11945069300D8EBA8 /* XCDYouTubeKit.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +105,7 @@
 		C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libXCDYouTubeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2EFB48518730A2B0046B1FE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C2EFB48618730A2B0046B1FE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCDYouTubeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2FB52DF1918F89A00B2CBE6 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -110,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2EDD2ED1805917900BEA32B /* libXCDYouTubeKit.a in Frameworks */,
+				C2F0E59F1945065C00D8EBA8 /* XCDYouTubeKit.framework in Frameworks */,
 				C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */,
 				C27415A617F491230026834B /* CoreGraphics.framework in Frameworks */,
 				C27415A417F491230026834B /* Foundation.framework in Frameworks */,
@@ -170,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */,
+				C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */,
 				C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */,
 				C27415E217F4D02E0026834B /* AVFoundation.framework */,
 				C2428B0B191C415300065504 /* AVKit.framework */,
@@ -250,6 +264,7 @@
 				C274159A17F491230026834B /* Sources */,
 				C274159B17F491230026834B /* Frameworks */,
 				C274159C17F491230026834B /* Resources */,
+				C2F0E5A01945068200D8EBA8 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -450,10 +465,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(BUILT_PRODUCTS_DIR)/include",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -482,10 +493,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(BUILT_PRODUCTS_DIR)/include",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = iphoneos;
@@ -500,6 +507,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-Wl,-U,_JSContextGetGlobalObject",
 					"-Wl,-U,_JSEvaluateScript",
@@ -527,6 +535,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-Wl,-U,_JSContextGetGlobalObject",
 					"-Wl,-U,_JSEvaluateScript",
