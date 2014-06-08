@@ -14,7 +14,7 @@
 		C2428B0C191C415300065504 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2428B0B191C415300065504 /* AVKit.framework */; };
 		C2478E9D17FF739100BCE94D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2478E9C17FF739100BCE94D /* Icon@2x.png */; };
 		C26231B5191D7E0600D23900 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; };
-		C26231B7191D7F8500D23900 /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; };
+		C26231B7191D7F8500D23900 /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C2630D3E1935C449000D3917 /* PlayerEventLogger.m */; };
 		C27415A217F491230026834B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415A117F491230026834B /* UIKit.framework */; };
 		C27415A417F491230026834B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415A317F491230026834B /* Foundation.framework */; };
@@ -266,7 +266,7 @@
 		C274159617F491230026834B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Cédric Luthi";
 			};
 			buildConfigurationList = C274159917F491230026834B /* Build configuration list for PBXProject "XCDYouTubeKit Demo" */;
