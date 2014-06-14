@@ -46,17 +46,25 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 
 - (instancetype) init
 {
-	return [[[UIDevice currentDevice] systemVersion] integerValue] >= 8 ? [self initWithVideoIdentifier:nil] : [super init];
+	return [self initWithVideoIdentifier:nil];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (instancetype) initWithContentURL:(NSURL *)contentURL
 {
 	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:` method instead." userInfo:nil];
 }
+#pragma clang diagnostic pop
 
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier
 {
-	if (!(self = [super initWithContentURL:nil]))
+	if ([[[UIDevice currentDevice] systemVersion] integerValue] >= 8)
+		self = [super initWithContentURL:nil];
+	else
+		self = [super init];
+	
+	if (!self)
 		return nil;
 	
 	if (videoIdentifier)
