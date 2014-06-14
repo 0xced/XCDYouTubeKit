@@ -41,8 +41,8 @@ static void *BackgroundPlaybackEnabledKey = &BackgroundPlaybackEnabledKey;
 	if (backgroundPlaybackEnabled)
 	{
 		NSArray *backgroundModes = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UIBackgroundModes"];
-		if ([backgroundModes isKindOfClass:[NSArray class]] && ![backgroundModes containsObject:@"audio"])
-			NSLog(@"ERROR: The `UIBackgroundModes` array in the application Info.plist file must contain the `audio` element.");
+		if (!backgroundModes || ([backgroundModes isKindOfClass:[NSArray class]] && ![backgroundModes containsObject:@"audio"]))
+			NSLog(@"ERROR: The `UIBackgroundModes` array in the application Info.plist file must contain the `audio` element for background playback.");
 	}
 	
 	objc_setAssociatedObject(self, BackgroundPlaybackEnabledKey, @(backgroundPlaybackEnabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
