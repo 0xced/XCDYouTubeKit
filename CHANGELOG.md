@@ -1,3 +1,7 @@
+#### Version 2.0.1
+
+* Ensure that the video doesn’t disappear after locking the device. (#36)
+
 #### Version 2.0.0
 
 * Project renamed to `XCDYouTubeKit`.

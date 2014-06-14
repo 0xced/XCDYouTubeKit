@@ -67,6 +67,8 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	if (!self)
 		return nil;
 	
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+	
 	if (videoIdentifier)
 		self.videoIdentifier = videoIdentifier;
 	
