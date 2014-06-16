@@ -55,7 +55,6 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 {
 	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:` method instead." userInfo:nil];
 }
-#pragma clang diagnostic pop
 
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier
 {
@@ -74,6 +73,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	
 	return self;
 }
+#pragma clang diagnostic pop
 
 #pragma mark - Public
 
