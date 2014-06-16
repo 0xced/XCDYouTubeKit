@@ -14,6 +14,8 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
+	[super viewWillDisappear:animated];
+	
 	// Beware, viewWillDisappear: is called when the player view enters full screen on iOS 6+
 	if ([self isMovingFromParentViewController])
 		[self.videoPlayerViewController.moviePlayer stop];
