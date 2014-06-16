@@ -93,6 +93,9 @@ static void *PlayerKey = &PlayerKey;
 
 + (void) backgroundPlayback_applicationWillResignActive:(NSNotification *)notification
 {
+	if (!currentMoviePlayerController)
+		return;
+	
 	AVPlayerLayer *playerLayer = PlayerLayer();
 	objc_setAssociatedObject(currentMoviePlayerController, PlayerKey, playerLayer.player, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 	if (currentMoviePlayerController.isBackgroundPlaybackEnabled)
