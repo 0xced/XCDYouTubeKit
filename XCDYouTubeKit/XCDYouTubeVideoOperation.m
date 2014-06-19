@@ -152,7 +152,7 @@
 
 - (void) handleJavaScriptPlayerResponse
 {
-	NSString *script = [[[NSString alloc] initWithData:self.connectionData encoding:NSISOLatin1StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSString *script = [[NSString alloc] initWithData:self.connectionData encoding:NSISOLatin1StringEncoding];
 	XCDYouTubePlayerScript *playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
 	if (playerScript)

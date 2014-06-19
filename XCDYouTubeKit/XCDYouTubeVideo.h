@@ -71,7 +71,7 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
  */
 @property (nonatomic, readonly) NSURL *smallThumbnailURL;
 /**
- *  A thumbnail URL for an image of medium size, i.e. 480×360 or 640×480. May be nil.
+ *  A thumbnail URL for an image of medium size, i.e. 320×180, 480×360 or 640×480. May be nil.
  */
 @property (nonatomic, readonly) NSURL *mediumThumbnailURL;
 /**

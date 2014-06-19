@@ -22,8 +22,8 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		// Register for these notifications as early as possible in order to be called before -[MPAVController _applicationWillResignActive:] which calls `_pausePlaybackIfNecessary`.
 		NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-		[defaultCenter addObserver:self selector:@selector(backgroundPlayback_moviePlayerNowPlayingMovieDidChangeNotification:) name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:nil];
-		[defaultCenter addObserver:self selector:@selector(backgroundPlayback_moviePlayerPlaybackDidFinishNotification:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+		[defaultCenter addObserver:self selector:@selector(backgroundPlayback_moviePlayerNowPlayingMovieDidChange:) name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:nil];
+		[defaultCenter addObserver:self selector:@selector(backgroundPlayback_moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 		[defaultCenter addObserver:self selector:@selector(backgroundPlayback_applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
 		[defaultCenter addObserver:self selector:@selector(backgroundPlayback_applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 	});
@@ -41,8 +41,8 @@ static void *BackgroundPlaybackEnabledKey = &BackgroundPlaybackEnabledKey;
 	if (backgroundPlaybackEnabled)
 	{
 		NSArray *backgroundModes = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UIBackgroundModes"];
-		if ([backgroundModes isKindOfClass:[NSArray class]] && ![backgroundModes containsObject:@"audio"])
-			NSLog(@"ERROR: The `UIBackgroundModes` array in the application Info.plist file must contain the `audio` element.");
+		if (!backgroundModes || ([backgroundModes isKindOfClass:[NSArray class]] && ![backgroundModes containsObject:@"audio"]))
+			NSLog(@"ERROR: The `UIBackgroundModes` array in the application Info.plist file must contain the `audio` element for background playback.");
 	}
 	
 	objc_setAssociatedObject(self, BackgroundPlaybackEnabledKey, @(backgroundPlaybackEnabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -50,12 +50,12 @@ static void *BackgroundPlaybackEnabledKey = &BackgroundPlaybackEnabledKey;
 
 static __weak MPMoviePlayerController *currentMoviePlayerController;
 
-+ (void) backgroundPlayback_moviePlayerNowPlayingMovieDidChangeNotification:(NSNotification *)notification
++ (void) backgroundPlayback_moviePlayerNowPlayingMovieDidChange:(NSNotification *)notification
 {
 	currentMoviePlayerController = notification.object;
 }
 
-+ (void) backgroundPlayback_moviePlayerPlaybackDidFinishNotification:(NSNotification *)notification
++ (void) backgroundPlayback_moviePlayerPlaybackDidFinish:(NSNotification *)notification
 {
 	currentMoviePlayerController = nil;
 }
@@ -93,6 +93,9 @@ static void *PlayerKey = &PlayerKey;
 
 + (void) backgroundPlayback_applicationWillResignActive:(NSNotification *)notification
 {
+	if (!currentMoviePlayerController)
+		return;
+	
 	AVPlayerLayer *playerLayer = PlayerLayer();
 	objc_setAssociatedObject(currentMoviePlayerController, PlayerKey, playerLayer.player, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 	if (currentMoviePlayerController.isBackgroundPlaybackEnabled)

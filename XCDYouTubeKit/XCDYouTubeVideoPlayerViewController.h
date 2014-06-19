@@ -50,7 +50,7 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
  *
  *  @discussion You pass a nil videoIdentifier and set the `videoIdentifier` property later.
  */
-- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier;
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier __attribute__((objc_designated_initializer));
 
 /**
  *  ------------------------------------

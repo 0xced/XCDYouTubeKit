@@ -77,8 +77,8 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncodin
 		_title = info[@"title"];
 		_duration = [info[@"length_seconds"] doubleValue];
 		
-		NSString *smallThumbnail = info[@"thumbnail_url"];
-		NSString *mediumThumbnail = info[@"iurlsd"] ?: info[@"iurl"];
+		NSString *smallThumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
+		NSString *mediumThumbnail = info[@"iurlsd"] ?: info[@"iurlhq"] ?: info[@"iurlmq"];
 		NSString *largeThumbnail = info[@"iurlmaxres"];
 		_smallThumbnailURL = smallThumbnail ? [NSURL URLWithString:smallThumbnail] : nil;
 		_mediumThumbnailURL = mediumThumbnail ? [NSURL URLWithString:mediumThumbnail] : nil;

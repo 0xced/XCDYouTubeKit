@@ -1,3 +1,9 @@
+#### Version 2.0.1
+
+* Fixed crash on protected videos. (#46)
+* Ensure that the video doesn’t disappear after locking the device. (#36)
+* Demo app: do not crash when going to background very quickly after presenting a video. (#44)
+
 #### Version 2.0.0
 
 * Project renamed to `XCDYouTubeKit`.
