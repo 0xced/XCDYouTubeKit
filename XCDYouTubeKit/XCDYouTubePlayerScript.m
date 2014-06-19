@@ -32,7 +32,7 @@
 		script = [script substringWithRange:NSMakeRange(jsPrologue.length, script.length - (jsPrologue.length + jsEpilogue.length))];
 	
 	__block NSString *signatureFunctionName = nil;
-	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"signature\\s*=\\s*([a-zA-Z]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
+	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"signature\\s*=\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
 	[signatureRegularExpression enumerateMatchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
 		signatureFunctionName = [script substringWithRange:[result rangeAtIndex:1]];
 		*stop = YES;
