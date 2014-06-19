@@ -61,7 +61,8 @@
 
 - (void) dealloc
 {
-	JSGlobalContextRelease(_context);
+	if (_context)
+		JSGlobalContextRelease(_context);
 }
 
 - (NSString *) unscrambleSignature:(NSString *)scrambledSignature
