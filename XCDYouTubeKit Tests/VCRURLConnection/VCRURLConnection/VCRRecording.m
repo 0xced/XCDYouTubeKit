@@ -68,6 +68,24 @@
            [self.body isEqualToString:recording.body];
 }
 
+static NSDictionary *SerializableUserInfo(NSDictionary *userInfo) {
+    NSMutableDictionary *serializableUserInfo = [NSMutableDictionary new];
+    for (id<NSCopying> key in userInfo) {
+        id value = userInfo[key];
+        if ([value isKindOfClass:[NSError class]]) {
+            NSError *error = (NSError *)value;
+            serializableUserInfo[key] = [NSError errorWithDomain:error.domain code:error.code userInfo:SerializableUserInfo(error.userInfo)];
+        } else if ([value conformsToProtocol:@protocol(NSCoding)]) {
+            serializableUserInfo[key] = value;
+        }
+    }
+    return [serializableUserInfo copy];
+}
+
+- (void)setError:(NSError *)error {
+    _error = [NSError errorWithDomain:error.domain code:error.code userInfo:SerializableUserInfo(error.userInfo)];
+}
+
 - (BOOL)isText {
     NSString *type = [[self HTTPURLResponse] MIMEType] ?: @"text/plain";
     if ([@[ @"application/x-www-form-urlencoded" ] containsObject:type]) {
