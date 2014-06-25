@@ -59,4 +59,10 @@
 	XCTAssertNotEqualObjects(videoA, [NSDate date]);
 }
 
+- (void) testVideoAsKeyInDictionary
+{
+	XCDYouTubeVideo *videoA = [[XCDYouTubeVideo alloc] initWithIdentifier:@"videoA" info:@{ @"url_encoded_fmt_stream_map": @"url=http://www.youtube.com/videoA.mp4&itag=123"} playerScript:nil response:nil error:NULL];
+	XCTAssertNoThrow(@{ videoA: @5 });
+}
+
 @end
