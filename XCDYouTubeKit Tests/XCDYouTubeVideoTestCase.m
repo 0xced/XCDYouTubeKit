@@ -48,4 +48,15 @@
 	XCTAssertEqualObjects(url, error.userInfo[NSURLErrorKey]);
 }
 
+- (void) testVideoEquality
+{
+	XCDYouTubeVideo *videoA = [[XCDYouTubeVideo alloc] initWithIdentifier:@"videoA" info:@{ @"url_encoded_fmt_stream_map": @"url=http://www.youtube.com/videoA.mp4&itag=123"} playerScript:nil response:nil error:NULL];
+	XCDYouTubeVideo *videoB = [[XCDYouTubeVideo alloc] initWithIdentifier:@"videoB" info:@{ @"url_encoded_fmt_stream_map": @"url=http://www.youtube.com/videoB.mp4&itag=123"} playerScript:nil response:nil error:NULL];
+	
+	XCTAssertEqualObjects(videoA.identifier, @"videoA");
+	XCTAssertEqualObjects(videoB.identifier, @"videoB");
+	XCTAssertNotEqualObjects(videoA, videoB);
+	XCTAssertNotEqualObjects(videoA, [NSDate date]);
+}
+
 @end
