@@ -394,6 +394,7 @@
 				C2A3F2CB17F4827800AC1C3B /* Copy Files */,
 				C2A3F2C917F4827800AC1C3B /* Sources */,
 				C2A3F2CA17F4827800AC1C3B /* Frameworks */,
+				C214EBAB195D8F8D00804C00 /* Create Coveralls Script */,
 			);
 			buildRules = (
 			);
@@ -477,6 +478,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C214EBAB195D8F8D00804C00 /* Create Coveralls Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create Coveralls Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/Scripts/create-coveralls-script.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C20F579718817D5400EDBFB0 /* Sources */ = {
