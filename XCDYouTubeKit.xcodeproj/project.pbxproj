@@ -12,6 +12,7 @@
 		C20F57AF1881804D00EDBFB0 /* libXCDYouTubeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeKit.a */; };
 		C20F57B01881806000EDBFB0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158817F48AD10026834B /* MediaPlayer.framework */; };
 		C20F57B11881806700EDBFB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158917F48AD10026834B /* UIKit.framework */; };
+		C2142F2A19644779000FA9C0 /* XCDYouTubeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C2D0CBAC19122A8F00DA8CD4 /* XCDYouTubeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C224EB661919241B0038186E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C224EB641919241B0038186E /* JavaScriptCore.framework */; };
 		C224EB75191AF0370038186E /* XCDYouTubeKitTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C224EB74191AF0370038186E /* XCDYouTubeKitTestCase.m */; };
 		C2386B1E1974036300646123 /* XCDYouTubeVideoWebpage.h in Headers */ = {isa = PBXBuildFile; fileRef = C2386B1C1974036300646123 /* XCDYouTubeVideoWebpage.h */; };
@@ -80,7 +81,6 @@
 		C2DD4DC11920034400AF6F85 /* XCDYouTubeVideoTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CBAF1912334400DA8CD4 /* XCDYouTubeVideoTestCase.m */; };
 		C2DD4DC2192003CA00AF6F85 /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC401912673500DA8CD4 /* VCRCassette.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-method-signatures -Wno-assign-enum"; }; };
 		C2DD4DC4192004B700AF6F85 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C262317A191D741700D23900 /* XCDYouTubeKit.framework */; };
-		C2F0E5781944F10E00D8EBA8 /* XCDYouTubeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C2F0E5771944F10E00D8EBA8 /* XCDYouTubeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2F0E58E1944F82600D8EBA8 /* XCDYouTubeClient.h in Headers */ = {isa = PBXBuildFile; fileRef = C25308C318D7392500132734 /* XCDYouTubeClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2F0E58F1944F82600D8EBA8 /* XCDYouTubeError.h in Headers */ = {isa = PBXBuildFile; fileRef = C24C162918E4DA6E005E92E9 /* XCDYouTubeError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2F0E5901944F83E00D8EBA8 /* XCDYouTubeOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = C24C163318E9FECE005E92E9 /* XCDYouTubeOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -194,8 +194,6 @@
 		C2D0CC5C19126E1200DA8CD4 /* Cassettes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cassettes; sourceTree = "<group>"; };
 		C2DD4DA2191FFDE100AF6F85 /* XCDYouTubeKit OS X Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCDYouTubeKit OS X Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2F0E5731944F10E00D8EBA8 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XCDYouTubeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2F0E5761944F10E00D8EBA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C2F0E5771944F10E00D8EBA8 /* XCDYouTubeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeKit.h; sourceTree = "<group>"; };
 		C2FB52DC1918F88C00B2CBE6 /* XCDYouTubePlayerScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubePlayerScript.h; sourceTree = "<group>"; };
 		C2FB52DD1918F88C00B2CBE6 /* XCDYouTubePlayerScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubePlayerScript.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -285,7 +283,6 @@
 			children = (
 				C2A3F2D217F4827800AC1C3B /* XCDYouTubeKit */,
 				C20F57A118817D5400EDBFB0 /* XCDYouTubeKit Tests */,
-				C2F0E5741944F10E00D8EBA8 /* XCDYouTubeKit */,
 				C2A3F2CF17F4827800AC1C3B /* Frameworks */,
 				C2A3F2CE17F4827800AC1C3B /* Products */,
 			);
@@ -371,23 +368,6 @@
 			path = VCRURLConnection/VCRURLConnection;
 			sourceTree = "<group>";
 		};
-		C2F0E5741944F10E00D8EBA8 /* XCDYouTubeKit */ = {
-			isa = PBXGroup;
-			children = (
-				C2F0E5771944F10E00D8EBA8 /* XCDYouTubeKit.h */,
-				C2F0E5751944F10E00D8EBA8 /* Supporting Files */,
-			);
-			path = XCDYouTubeKit;
-			sourceTree = "<group>";
-		};
-		C2F0E5751944F10E00D8EBA8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C2F0E5761944F10E00D8EBA8 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -413,7 +393,7 @@
 			files = (
 				C2F0E58E1944F82600D8EBA8 /* XCDYouTubeClient.h in Headers */,
 				C2F0E58F1944F82600D8EBA8 /* XCDYouTubeError.h in Headers */,
-				C2F0E5781944F10E00D8EBA8 /* XCDYouTubeKit.h in Headers */,
+				C2142F2A19644779000FA9C0 /* XCDYouTubeKit.h in Headers */,
 				C2F0E5901944F83E00D8EBA8 /* XCDYouTubeOperation.h in Headers */,
 				C2F0E5931944F84700D8EBA8 /* XCDYouTubeVideo.h in Headers */,
 				C2F0E5941944F84A00D8EBA8 /* XCDYouTubeVideoOperation.h in Headers */,
