@@ -501,11 +501,13 @@
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				OTHER_LDFLAGS = (
+					"-Wl,-U,_JSContextGetGlobalObject",
 					"-Wl,-U,_JSEvaluateScript",
 					"-Wl,-U,_JSGlobalContextCreate",
 					"-Wl,-U,_JSGlobalContextRelease",
 					"-Wl,-U,_JSObjectCallAsFunction",
 					"-Wl,-U,_JSObjectIsFunction",
+					"-Wl,-U,_JSObjectSetProperty",
 					"-Wl,-U,_JSStringCopyCFString",
 					"-Wl,-U,_JSStringCreateWithCFString",
 					"-Wl,-U,_JSStringRelease",
@@ -526,11 +528,13 @@
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				OTHER_LDFLAGS = (
+					"-Wl,-U,_JSContextGetGlobalObject",
 					"-Wl,-U,_JSEvaluateScript",
 					"-Wl,-U,_JSGlobalContextCreate",
 					"-Wl,-U,_JSGlobalContextRelease",
 					"-Wl,-U,_JSObjectCallAsFunction",
 					"-Wl,-U,_JSObjectIsFunction",
+					"-Wl,-U,_JSObjectSetProperty",
 					"-Wl,-U,_JSStringCopyCFString",
 					"-Wl,-U,_JSStringCreateWithCFString",
 					"-Wl,-U,_JSStringRelease",
