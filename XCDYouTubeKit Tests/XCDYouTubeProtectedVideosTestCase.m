@@ -132,6 +132,20 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
+// Edit testProtectedVideoWithBrokenSignatureFunction.json by returning null in the signature function
+- (void) testProtectedVideoWithBrokenSignatureFunction
+{
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from WMG. It is restricted from playback on certain sites. Watch on YouTube");
+		[monitor signal];
+	}];
+	XCTAssertTrue([monitor waitWithTimeout:10]);
+}
+
 // Edit testProtectedVideoWithoutJavaScriptPlayerURL.json by replacing `\"js\":` with `\"xs\":`
 - (void) testProtectedVideoWithoutJavaScriptPlayerURL
 {
