@@ -1,6 +1,7 @@
 ## About
 
-[![build status](https://travis-ci.org/0xced/XCDYouTubeKit.svg)](https://travis-ci.org/0xced/XCDYouTubeKit)
+[![Build Status](https://img.shields.io/travis/0xced/XCDYouTubeKit/develop.svg?style=flat)](https://travis-ci.org/0xced/XCDYouTubeKit)
+[![Coverage Status](https://img.shields.io/coveralls/0xced/XCDYouTubeKit/develop.svg?style=flat)](https://coveralls.io/r/0xced/XCDYouTubeKit?branch=develop)
 
 **XCDYouTubeKit** is a YouTube video player for iOS and OS X.
 
