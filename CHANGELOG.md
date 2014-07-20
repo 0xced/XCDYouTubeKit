@@ -1,3 +1,9 @@
+#### Version 2.0.2
+
+* Fixed errors on protected videos. (#52)
+* Better error reporting if a protected video is not available.
+* Updated README about YouTube Terms of Service.
+
 #### Version 2.0.1
 
 * Fixed crash on protected videos. (#46)
