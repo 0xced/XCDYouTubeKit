@@ -6,6 +6,7 @@
 
 #import "XCDYouTubeVideo+Private.h"
 #import "XCDYouTubeError.h"
+#import "XCDYouTubeVideoWebpage.h"
 #import "XCDYouTubePlayerScript.h"
 
 @interface XCDYouTubeVideoOperation () <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
@@ -20,7 +21,7 @@
 @property (atomic, assign) BOOL isExecuting;
 @property (atomic, assign) BOOL isFinished;
 
-@property (atomic, strong) NSDictionary *info;
+@property (atomic, strong) XCDYouTubeVideoWebpage *webpage;
 @property (atomic, strong) XCDYouTubeVideo *noStreamVideo;
 @property (atomic, strong) NSError *lastError;
 @property (atomic, strong) NSError *youTubeError; // Error actually coming from the YouTube API, i.e. explicit and localized error
@@ -112,40 +113,10 @@
 
 - (void) handleWebPageResponse
 {
-	__block NSURL *javaScriptPlayerURL = nil;
-	CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
-	NSString *html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, [self.connectionData bytes], (CFIndex)[self.connectionData length], encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
-	NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});" options:NSRegularExpressionCaseInsensitive error:NULL];
-	[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *regexpStop) {
-		NSString *configString = [html substringWithRange:[result rangeAtIndex:1]];
-		NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:[configString dataUsingEncoding:NSUTF8StringEncoding] options:(NSJSONReadingOptions)0 error:NULL];
-		if ([playerConfiguration isKindOfClass:[NSDictionary class]])
-		{
-			NSDictionary *args = playerConfiguration[@"args"];
-			if ([args isKindOfClass:[NSDictionary class]])
-			{
-				NSMutableDictionary *info = [NSMutableDictionary new];
-				[args enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *argsStop) {
-					if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])
-						info[key] = [value description];
-				}];
-				self.info = [info copy];
-				NSString *jsAssets = [playerConfiguration valueForKeyPath:@"assets.js"];
-				if ([jsAssets isKindOfClass:[NSString class]])
-				{
-					NSString *javaScriptPlayerURLString = jsAssets;
-					if ([jsAssets hasPrefix:@"//"])
-						javaScriptPlayerURLString = [@"https:" stringByAppendingString:jsAssets];
-					
-					javaScriptPlayerURL = [NSURL URLWithString:javaScriptPlayerURLString];
-					*regexpStop = YES;
-				}
-			}
-		}
-	}];
+	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
 	
-	if (javaScriptPlayerURL)
-		[self startRequestWithURL:javaScriptPlayerURL];
+	if (self.webpage.javaScriptPlayerURL)
+		[self startRequestWithURL:self.webpage.javaScriptPlayerURL];
 	else
 		[self startNextVideoInfoRequest];
 }
@@ -156,7 +127,7 @@
 	XCDYouTubePlayerScript *playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
 	if (playerScript)
-		[self handleVideoInfoResponseWithInfo:self.info playerScript:playerScript];
+		[self handleVideoInfoResponseWithInfo:self.webpage.videoInfo playerScript:playerScript];
 	else
 		[self startNextVideoInfoRequest];
 }

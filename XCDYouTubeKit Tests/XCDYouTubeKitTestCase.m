@@ -19,6 +19,7 @@
 	[super setUpTestWithSelector:selector];
 	
 	NSString *cassettesDirectory = [[[NSProcessInfo processInfo] environment] objectForKey:@"VCR_CASSETTES_DIRECTORY"];
+	cassettesDirectory = [cassettesDirectory stringByAppendingPathComponent:NSStringFromClass(self.class)];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:cassettesDirectory])
 	{
 		self.cassetteURL = [NSURL fileURLWithPath:[[cassettesDirectory stringByAppendingPathComponent:NSStringFromSelector(selector)] stringByAppendingPathExtension:@"json"]];
@@ -27,7 +28,7 @@
 	}
 	else
 	{
-		self.cassetteURL = [[NSBundle bundleForClass:self.class] URLForResource:NSStringFromSelector(selector) withExtension:@"json" subdirectory:@"Cassettes"];
+		self.cassetteURL = [[NSBundle bundleForClass:self.class] URLForResource:NSStringFromSelector(selector) withExtension:@"json" subdirectory:[@"Cassettes" stringByAppendingPathComponent:NSStringFromClass(self.class)]];
 		XCTAssertNotNil(self.cassetteURL);
 		[VCR loadCassetteWithContentsOfURL:self.cassetteURL];
 		[VCR setReplaying:YES];

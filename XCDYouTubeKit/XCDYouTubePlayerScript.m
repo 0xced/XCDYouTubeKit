@@ -43,6 +43,14 @@
 	
 	_context = JSGlobalContextCreate(NULL);
 	
+	for (NSString *propertyName in @[ @"window", @"document" ])
+	{
+		JSStringRef propertyNameRef = JSStringCreateWithCFString((__bridge CFStringRef)propertyName);
+		JSValueRef dummyValueRef = JSValueMakeString(_context, propertyNameRef); // can be anything but undefined or null
+		JSObjectSetProperty(_context, JSContextGetGlobalObject(_context), propertyNameRef, dummyValueRef, 0, NULL);
+		JSStringRelease(propertyNameRef);
+	}
+	
 	JSStringRef scriptRef = JSStringCreateWithCFString((__bridge CFStringRef)script);
 	JSEvaluateScript(_context, scriptRef, NULL, NULL, 0, NULL);
 	JSStringRelease(scriptRef);
