@@ -500,7 +500,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/Scripts/create-coveralls-script.sh";
+			shellScript = "\"${SRCROOT}/Scripts/create-coveralls-script.sh\" ";
 		};
 /* End PBXShellScriptBuildPhase section */
 
