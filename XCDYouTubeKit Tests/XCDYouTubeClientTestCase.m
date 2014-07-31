@@ -118,6 +118,19 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
+- (void) testGeoblockedVideo
+{
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"j4GAs9TJVjM" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqualObjects(error.localizedDescription, @"The uploader has not made this video available in your country.");
+		[monitor signal];
+	}];
+	XCTAssertTrue([monitor waitWithTimeout:10]);
+}
+
 - (void) testInvalidVideoIdentifier
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
