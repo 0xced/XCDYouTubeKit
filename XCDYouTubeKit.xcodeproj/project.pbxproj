@@ -36,7 +36,6 @@
 		C26231B3191D780B00D23900 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C224EB641919241B0038186E /* JavaScriptCore.framework */; };
 		C274158E17F48B100026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158817F48AD10026834B /* MediaPlayer.framework */; };
 		C274158F17F48B100026834B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C274158917F48AD10026834B /* UIKit.framework */; };
-		C276638518849FC000241DDE /* TRVSMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C276638418849FC000241DDE /* TRVSMonitor.m */; };
 		C27CF88419584F8A0063701F /* XCDYouTubeProtectedVideosTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CF88319584F8A0063701F /* XCDYouTubeProtectedVideosTestCase.m */; };
 		C27CF88519584F8A0063701F /* XCDYouTubeProtectedVideosTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CF88319584F8A0063701F /* XCDYouTubeProtectedVideosTestCase.m */; };
 		C27CF8881958F2940063701F /* XCDYouTubeVideoOperationTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C27CF8871958F2940063701F /* XCDYouTubeVideoOperationTestCase.m */; };
@@ -66,7 +65,6 @@
 		C2D0CC5D19126E1200DA8CD4 /* Cassettes in Resources */ = {isa = PBXBuildFile; fileRef = C2D0CC5C19126E1200DA8CD4 /* Cassettes */; };
 		C2DD4DA3191FFDE100AF6F85 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20F579C18817D5400EDBFB0 /* XCTest.framework */; };
 		C2DD4DB31920032600AF6F85 /* Cassettes in Resources */ = {isa = PBXBuildFile; fileRef = C2D0CC5C19126E1200DA8CD4 /* Cassettes */; };
-		C2DD4DB41920032B00AF6F85 /* TRVSMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C276638418849FC000241DDE /* TRVSMonitor.m */; };
 		C2DD4DB51920033A00AF6F85 /* VCR+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC3C1912673500DA8CD4 /* VCR+NSURLSessionConfiguration.m */; settings = {COMPILER_FLAGS = "-Wno-missing-prototypes -Wno-undef"; }; };
 		C2DD4DB61920033A00AF6F85 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC3E1912673500DA8CD4 /* VCR.m */; };
 		C2DD4DB71920033A00AF6F85 /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC431912673500DA8CD4 /* VCRCassetteManager.m */; };
@@ -159,8 +157,6 @@
 		C26DF31518D8544D002248A9 /* XCDYouTubeVideo+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XCDYouTubeVideo+Private.h"; sourceTree = "<group>"; };
 		C274158817F48AD10026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C274158917F48AD10026834B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		C276638318849FC000241DDE /* TRVSMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRVSMonitor.h; sourceTree = "<group>"; };
-		C276638418849FC000241DDE /* TRVSMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRVSMonitor.m; sourceTree = "<group>"; };
 		C27CF88319584F8A0063701F /* XCDYouTubeProtectedVideosTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeProtectedVideosTestCase.m; sourceTree = "<group>"; };
 		C27CF8871958F2940063701F /* XCDYouTubeVideoOperationTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoOperationTestCase.m; sourceTree = "<group>"; };
 		C2A3F2CD17F4827800AC1C3B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXCDYouTubeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				C2D0CC5C19126E1200DA8CD4 /* Cassettes */,
-				C276638218849FC000241DDE /* TRVSMonitor */,
 				C2D0CC3A1912673500DA8CD4 /* VCRURLConnection */,
 				C20F57A718817D5400EDBFB0 /* XCDYouTubeClientTestCase.m */,
 				C224EB76191AF0570038186E /* XCDYouTubeKitTestCase.h */,
@@ -266,16 +261,6 @@
 				C2D0CBAF1912334400DA8CD4 /* XCDYouTubeVideoTestCase.m */,
 			);
 			path = "XCDYouTubeKit Tests";
-			sourceTree = "<group>";
-		};
-		C276638218849FC000241DDE /* TRVSMonitor */ = {
-			isa = PBXGroup;
-			children = (
-				C276638318849FC000241DDE /* TRVSMonitor.h */,
-				C276638418849FC000241DDE /* TRVSMonitor.m */,
-			);
-			name = TRVSMonitor;
-			path = TRVSMonitor/TRVSMonitor;
 			sourceTree = "<group>";
 		};
 		C2A3F2C417F4827800AC1C3B = {
@@ -645,7 +630,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C276638518849FC000241DDE /* TRVSMonitor.m in Sources */,
 				C2D0CC501912673500DA8CD4 /* VCR+NSURLSessionConfiguration.m in Sources */,
 				C2D0CC511912673500DA8CD4 /* VCR.m in Sources */,
 				C2D0CC521912673500DA8CD4 /* VCRCassette.m in Sources */,
@@ -694,7 +678,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2DD4DB41920032B00AF6F85 /* TRVSMonitor.m in Sources */,
 				C27CF8891958F2940063701F /* XCDYouTubeVideoOperationTestCase.m in Sources */,
 				C2DD4DB51920033A00AF6F85 /* VCR+NSURLSessionConfiguration.m in Sources */,
 				C2DD4DB61920033A00AF6F85 /* VCR.m in Sources */,
