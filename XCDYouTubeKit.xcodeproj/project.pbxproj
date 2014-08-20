@@ -437,6 +437,7 @@
 		C2A3F2C517F4827800AC1C3B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = XCD;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Cédric Luthi";
 				TargetAttributes = {
