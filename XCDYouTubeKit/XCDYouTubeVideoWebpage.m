@@ -37,7 +37,8 @@
 		CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
 		NSString *html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, [self.data bytes], (CFIndex)[self.data length], encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
 		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});" options:NSRegularExpressionCaseInsensitive error:NULL];
-		[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+		[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+		{
 			NSString *configString = [html substringWithRange:[result rangeAtIndex:1]];
 			NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:[configString dataUsingEncoding:NSUTF8StringEncoding] options:(NSJSONReadingOptions)0 error:NULL];
 			if ([playerConfiguration isKindOfClass:[NSDictionary class]])
@@ -59,7 +60,8 @@
 		if ([args isKindOfClass:[NSDictionary class]])
 		{
 			NSMutableDictionary *info = [NSMutableDictionary new];
-			[args enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+			[args enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop)
+			{
 				if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])
 					info[key] = [value description];
 			}];

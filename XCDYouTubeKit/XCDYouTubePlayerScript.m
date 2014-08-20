@@ -33,7 +33,8 @@
 	
 	__block NSString *signatureFunctionName = nil;
 	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"signature\\s*=\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
-	[signatureRegularExpression enumerateMatchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+	[signatureRegularExpression enumerateMatchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+	{
 		signatureFunctionName = [script substringWithRange:[result rangeAtIndex:1]];
 		*stop = YES;
 	}];

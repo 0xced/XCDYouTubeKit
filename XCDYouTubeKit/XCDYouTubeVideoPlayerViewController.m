@@ -93,7 +93,8 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	_videoIdentifier = [videoIdentifier copy];
 	
 	[self.videoOperation cancel];
-	self.videoOperation = [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	self.videoOperation = [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		if (video)
 		{
 			NSURL *streamURL = nil;

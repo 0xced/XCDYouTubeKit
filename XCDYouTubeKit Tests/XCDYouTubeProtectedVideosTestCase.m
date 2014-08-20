@@ -34,7 +34,8 @@
 - (void) testProtectedVEVOVideo
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.smallThumbnailURL);
@@ -42,7 +43,8 @@
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
-		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		{
 			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
 		}];
 		[monitor signal];
@@ -53,7 +55,8 @@
 - (void) testProtectedVideoWithDollarSignature
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.smallThumbnailURL);
@@ -61,7 +64,8 @@
 		XCTAssertNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
-		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		{
 			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
 		}];
 		[monitor signal];
@@ -72,7 +76,8 @@
 - (void) testProtectedVideoWithJavaScriptFunctionsInVarScope
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Ntn1-SocNiY" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Ntn1-SocNiY" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.smallThumbnailURL);
@@ -80,7 +85,8 @@
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
-		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		{
 			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
 		}];
 		[monitor signal];
@@ -94,7 +100,8 @@
 - (void) testProtectedVideoWithWebPageConnectionError
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
@@ -108,7 +115,8 @@
 - (void) testProtectedVideoWithPlayerScriptConnectionError
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
@@ -122,7 +130,8 @@
 - (void) testProtectedVideoWithoutSignatureFunction
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
@@ -136,7 +145,8 @@
 - (void) testProtectedVideoWithBrokenSignatureFunction
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
@@ -150,7 +160,8 @@
 - (void) testProtectedVideoWithoutJavaScriptPlayerURL
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
