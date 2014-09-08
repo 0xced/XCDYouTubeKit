@@ -128,7 +128,7 @@
 - (void) testGeoblockedVideo
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"j4GAs9TJVjM" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vwkFTztnl7Y" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
