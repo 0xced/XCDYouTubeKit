@@ -105,7 +105,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from Youtube test content owner, who has blocked it on copyright grounds.");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video is currently unavailable. We are working to bring it back.");
 		[monitor signal];
 	}];
 	XCTAssertTrue([monitor waitWithTimeout:10]);

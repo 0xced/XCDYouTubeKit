@@ -1,53 +1,55 @@
 [
   {
-    "body" : "errorcode=150&status=fail&reason=This+video+contains+content+from+Youtube+test+content+owner%2C+who+has+blocked+it+on+copyright+grounds.&eventid=p0RzU-WjIoOu8wOtnoGgAw&enablecsi=1&errordetail=0&csi_page_type=watch%2Cwatch7&c=WEB",
+    "body" : "enablecsi=1&csi_page_type=watch%2Cwatch7&errordetail=0&eventid=ynkNVLmhJoqI8QOfiIGIDA&status=fail&c=WEB&reason=This+video+is+currently+unavailable.+We+are+working+to+bring+it+back.&errorcode=150",
     "headers" : {
       "X-Content-Type-Options" : "nosniff",
-      "Server" : "gwiseguy\/2.0",
       "Content-Type" : "application\/x-www-form-urlencoded",
+      "Server" : "gwiseguy\/2.0",
       "Transfer-Encoding" : "Identity",
-      "Date" : "Wed, 14 May 2014 10:25:43 GMT",
+      "Date" : "Mon, 08 Sep 2014 09:41:30 GMT",
       "X-Frame-Options" : "SAMEORIGIN",
       "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
       "Alternate-Protocol" : "443:quic",
-      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
-      "Cache-Control" : "no-store"
+      "Cache-Control" : "no-store",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST"
     },
     "method" : "GET",
     "status" : 200,
     "uri" : "https:\/\/www.youtube.com\/get_video_info?el=detailpage&hl=en&ps=default&video_id=1kIsylLeHHU"
   },
   {
-    "body" : "c=WEB&errorcode=150&errordetail=0&reason=This+video+contains+content+from+Youtube+test+content+owner%2C+who+has+blocked+it+on+copyright+grounds.&eventid=p0RzU-ykMNPx8QO-24DgAg&status=fail",
+    "body" : "reason=This+video+is+currently+unavailable.+We+are+working+to+bring+it+back.&eventid=ynkNVKmeLIeH8APpt4GwDw&errordetail=0&c=WEB&errorcode=150&status=fail",
     "headers" : {
       "X-Content-Type-Options" : "nosniff",
       "Content-Type" : "application\/x-www-form-urlencoded",
       "Server" : "gwiseguy\/2.0",
       "Transfer-Encoding" : "Identity",
-      "Date" : "Wed, 14 May 2014 10:25:43 GMT",
+      "Date" : "Mon, 08 Sep 2014 09:41:30 GMT",
       "X-Frame-Options" : "SAMEORIGIN",
       "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
       "Alternate-Protocol" : "443:quic",
-      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
-      "Cache-Control" : "no-store"
+      "Cache-Control" : "no-store",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 EST"
     },
     "method" : "GET",
     "status" : 200,
     "uri" : "https:\/\/www.youtube.com\/get_video_info?el=vevo&hl=en&ps=default&video_id=1kIsylLeHHU"
   },
   {
-    "body" : "status=fail&enablecsi=1&errordetail=0&eventid=p0RzU42RGYGY8wPWuIC4Aw&errorcode=150&c=WEB&reason=This+video+contains+content+from+Youtube+test+content+owner%2C+who+has+blocked+it+on+copyright+grounds.&csi_page_type=embed&atc=a%3D3%26b%3DNT5sJxCYIijuRcwzJK8Z668dHYA%26c%3D1400063143%26d%3D1%26e%3D1kIsylLeHHU%26c3a%3D16%26hh%3DnUwRo0ZePbPax9ksLWBmXOPZzyI",
+    "body" : "errorcode=150&csi_page_type=embed&errordetail=0&c=WEB&atc=a%3D3%26b%3DMvHQUdPztUgFDpy5wx2zfWwgPRw%26c%3D1410169290%26d%3D1%26e%3D1kIsylLeHHU%26c3a%3D22%26hh%3DAh1pUdYFgkIdL0dIQKdof-F6uik&status=fail&enablecsi=1&reason=This+video+is+currently+unavailable.+We+are+working+to+bring+it+back.&eventid=ynkNVKawINTH8gPNpICwBQ",
     "headers" : {
-      "Server" : "gwiseguy\/2.0",
       "Content-Type" : "application\/x-www-form-urlencoded",
-      "X-Content-Type-Options" : "nosniff",
-      "Transfer-Encoding" : "Identity",
-      "Date" : "Wed, 14 May 2014 10:25:43 GMT",
-      "X-Frame-Options" : "SAMEORIGIN",
-      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/bin\/answer.py?answer=151657&hl=en for more info.\"",
       "Alternate-Protocol" : "443:quic",
+      "Set-Cookie" : "YSC=LMiN8XaKfNg; path=\/; domain=.youtube.com; httponly",
+      "Server" : "gwiseguy\/2.0",
+      "X-XSS-Protection" : "1; mode=block; report=https:\/\/www.google.com\/appserve\/security-bugs\/log\/youtube",
+      "Transfer-Encoding" : "Identity",
       "Expires" : "Tue, 27 Apr 1971 19:44:06 EST",
-      "Cache-Control" : "no-store"
+      "Cache-Control" : "no-store",
+      "Date" : "Mon, 08 Sep 2014 09:41:30 GMT",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN"
     },
     "method" : "GET",
     "status" : 200,
