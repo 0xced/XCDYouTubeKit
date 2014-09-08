@@ -97,7 +97,7 @@
 // With Charles
 //   * Enable SSL proxying for *.youtube.com
 //   * Tools -> Black List... -> Add host:www.youtube.com and path:watch to simulate connection error on the web page
-- (void) testProtectedVideoWithWebPageConnectionError
+- (void) testProtectedVideoWithWebPageConnectionError_offline
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
@@ -112,7 +112,7 @@
 }
 
 // With Charles: Tools -> Black List... -> Add `s.ytimg.com` to simulate connection error on the player script
-- (void) testProtectedVideoWithPlayerScriptConnectionError
+- (void) testProtectedVideoWithPlayerScriptConnectionError_offline
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
@@ -127,7 +127,7 @@
 }
 
 // Edit testProtectedVideoWithoutSignatureFunction.json by replacing `signature=` with `signaturX=`
-- (void) testProtectedVideoWithoutSignatureFunction
+- (void) testProtectedVideoWithoutSignatureFunction_offline
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
@@ -142,7 +142,7 @@
 }
 
 // Edit testProtectedVideoWithBrokenSignatureFunction.json by returning null in the signature function
-- (void) testProtectedVideoWithBrokenSignatureFunction
+- (void) testProtectedVideoWithBrokenSignatureFunction_offline
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
@@ -157,7 +157,7 @@
 }
 
 // Edit testProtectedVideoWithoutJavaScriptPlayerURL.json by replacing `\"js\":` with `\"xs\":`
-- (void) testProtectedVideoWithoutJavaScriptPlayerURL
+- (void) testProtectedVideoWithoutJavaScriptPlayerURL_offline
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)

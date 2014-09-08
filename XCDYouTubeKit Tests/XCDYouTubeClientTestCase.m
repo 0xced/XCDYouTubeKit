@@ -61,7 +61,7 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
-- (void) testLiveVideo
+- (void) testLiveVideo_offline
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"xrM34fdmloc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
@@ -208,7 +208,8 @@
 	XCTAssertTrue([monitor waitWithTimeout:10]);
 }
 
-- (void) testConnectionError
+// Disable internet connection before running
+- (void) testConnectionError_offline
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
