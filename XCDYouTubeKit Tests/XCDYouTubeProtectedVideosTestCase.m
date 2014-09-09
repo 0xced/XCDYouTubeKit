@@ -31,6 +31,26 @@
 		[NSURLRequest setAllowsAnyHTTPSCertificate:NO forHost:@"www.youtube.com"];
 }
 
+- (void) testAgeRestrictedVideo
+{
+	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"zKovmts2KSk" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.smallThumbnailURL);
+		XCTAssertNotNil(video.mediumThumbnailURL);
+		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+		}];
+		[monitor signal];
+	}];
+	XCTAssertTrue([monitor waitWithTimeout:10]);
+}
+
 - (void) testProtectedVEVOVideo
 {
 	TRVSMonitor *monitor = [TRVSMonitor monitor];
