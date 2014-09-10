@@ -26,18 +26,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "NO"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Code Coverage">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C262318E191D741700D23900"
-               BuildableName = "XCDYouTubeKitTests.xctest"
-               BlueprintName = "XCDYouTubeKitTests"
-               ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -52,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C2623179191D741700D23900"
-            BuildableName = "XCDYouTubeKit.framework"
-            BlueprintName = "XCDYouTubeKit OS X"
+            BlueprintIdentifier = "C2DD4DA1191FFDE100AF6F85"
+            BuildableName = "XCDYouTubeKit OS X Tests.xctest"
+            BlueprintName = "XCDYouTubeKit OS X Tests"
             ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -62,6 +52,11 @@
          <EnvironmentVariable
             key = "VCR_CASSETTES_DIRECTORY"
             value = "$(SRCROOT)/XCDYouTubeKit Tests/Cassettes"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "ONLINE_TESTS"
+            value = "YES"
             isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
