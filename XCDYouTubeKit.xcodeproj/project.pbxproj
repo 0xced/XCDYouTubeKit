@@ -386,6 +386,7 @@
 				C2623177191D741700D23900 /* Headers */,
 				C2623175191D741700D23900 /* Sources */,
 				C2623176191D741700D23900 /* Frameworks */,
+				C249AAA819C091DE00BA17AE /* Export Environment for XcodeCoverage */,
 			);
 			buildRules = (
 			);
@@ -404,6 +405,7 @@
 				C2A3F2C917F4827800AC1C3B /* Sources */,
 				C2A3F2CA17F4827800AC1C3B /* Frameworks */,
 				C214EBAB195D8F8D00804C00 /* Create Coveralls Script */,
+				C249AAA719C0872400BA17AE /* Export Environment for XcodeCoverage */,
 			);
 			buildRules = (
 			);
@@ -532,6 +534,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "find \"${CONFIGURATION_TEMP_DIR}\" -name \"*.gcda\" -delete";
+		};
+		C249AAA719C0872400BA17AE /* Export Environment for XcodeCoverage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Export Environment for XcodeCoverage";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find -L . -name exportenv.sh -exec {} \\;";
+		};
+		C249AAA819C091DE00BA17AE /* Export Environment for XcodeCoverage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Export Environment for XcodeCoverage";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find -L . -name exportenv.sh -exec {} \\;";
 		};
 /* End PBXShellScriptBuildPhase section */
 
