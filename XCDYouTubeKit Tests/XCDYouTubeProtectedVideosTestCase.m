@@ -6,30 +6,10 @@
 
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
 
-@interface NSURLRequest (Private)
-+ (void) setAllowsAnyHTTPSCertificate:(BOOL)allowsAnyHTTPSCertificate forHost:(NSString *)host;
-@end
-
 @interface XCDYouTubeProtectedVideosTestCase : XCDYouTubeKitTestCase
 @end
 
 @implementation XCDYouTubeProtectedVideosTestCase
-
-- (void) setUp
-{
-	[super setUp];
-	
-	if (NSProcessInfo.processInfo.environment[@"VCR_CASSETTES_DIRECTORY"])
-		[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:@"www.youtube.com"];
-}
-
-- (void) tearDown
-{
-	[super tearDown];
-	
-	if (NSProcessInfo.processInfo.environment[@"VCR_CASSETTES_DIRECTORY"])
-		[NSURLRequest setAllowsAnyHTTPSCertificate:NO forHost:@"www.youtube.com"];
-}
 
 - (void) testAgeRestrictedVideo
 {
