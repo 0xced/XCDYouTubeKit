@@ -367,6 +367,7 @@
 				C20F579718817D5400EDBFB0 /* Sources */,
 				C20F579818817D5400EDBFB0 /* Frameworks */,
 				C20F579918817D5400EDBFB0 /* Resources */,
+				C249AAA519C045C400BA17AE /* Delete *.gcda files */,
 			);
 			buildRules = (
 			);
@@ -420,6 +421,7 @@
 				C2DD4D9E191FFDE100AF6F85 /* Sources */,
 				C2DD4D9F191FFDE100AF6F85 /* Frameworks */,
 				C2DD4DA0191FFDE100AF6F85 /* Resources */,
+				C249AAA619C0462700BA17AE /* Delete *.gcda files */,
 			);
 			buildRules = (
 			);
@@ -502,6 +504,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Scripts/create-coveralls-script.sh\" ";
+		};
+		C249AAA519C045C400BA17AE /* Delete *.gcda files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Delete *.gcda files";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find \"${CONFIGURATION_TEMP_DIR}\" -name \"*.gcda\" -delete";
+		};
+		C249AAA619C0462700BA17AE /* Delete *.gcda files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Delete *.gcda files";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find \"${CONFIGURATION_TEMP_DIR}\" -name \"*.gcda\" -delete";
 		};
 /* End PBXShellScriptBuildPhase section */
 
