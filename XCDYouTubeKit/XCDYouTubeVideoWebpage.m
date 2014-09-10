@@ -14,6 +14,7 @@
 	NSDictionary *_playerConfiguration;
 	NSDictionary *_videoInfo;
 	NSURL *_javaScriptPlayerURL;
+	BOOL _isAgeRestricted;
 }
 
 - (instancetype) initWithData:(NSData *)data response:(NSURLResponse *)response
@@ -86,6 +87,18 @@
 		}
 	}
 	return _javaScriptPlayerURL;
+}
+
+- (BOOL) isAgeRestricted
+{
+	if (!_isAgeRestricted)
+	{
+		NSData *playerAgeGateContent = [@"player-age-gate-content" dataUsingEncoding:NSUTF8StringEncoding];
+		NSDataSearchOptions options = (NSDataSearchOptions)0;
+		NSRange range = NSMakeRange(0, self.data.length);
+		_isAgeRestricted = [self.data rangeOfData:playerAgeGateContent options:options range:range].location != NSNotFound;
+	}
+	return _isAgeRestricted;
 }
 
 @end

@@ -1,3 +1,7 @@
+#### Version 2.0.3
+
+* Support for age restricted videos.
+
 #### Version 2.0.2
 
 * Fixed errors on protected videos. (#52)

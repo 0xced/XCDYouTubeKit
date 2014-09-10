@@ -9,7 +9,9 @@ __attribute__((visibility("hidden")))
 
 - (instancetype) initWithData:(NSData *)data response:(NSURLResponse *)response;
 
+@property (nonatomic, readonly) NSDictionary *playerConfiguration;
 @property (nonatomic, readonly) NSDictionary *videoInfo;
 @property (nonatomic, readonly) NSURL *javaScriptPlayerURL;
+@property (nonatomic, readonly) BOOL isAgeRestricted;
 
 @end
