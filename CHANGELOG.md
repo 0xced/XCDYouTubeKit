@@ -13,7 +13,7 @@
 #### Version 2.0.0
 
 * Project renamed to `XCDYouTubeKit`.
-* Support for protected video. (#6, #11, #12, #21, #27, #31, #33)
+* Support for protected videos. (#6, #11, #12, #21, #27, #31, #33)
 * OS X compatibility thanks to the new `XCDYouTubeClient` class. (#14, #18)
 * OS X dynamic framework target
 * Support for live videos. (#34)
