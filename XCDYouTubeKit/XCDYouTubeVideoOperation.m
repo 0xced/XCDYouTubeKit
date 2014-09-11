@@ -181,7 +181,7 @@
 	
 	self.isExecuting = YES;
 	
-	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage", @"vevo" ]];
+	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage" ]];
 	[self startNextVideoInfoRequest];
 }
 
