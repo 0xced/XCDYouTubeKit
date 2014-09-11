@@ -93,10 +93,10 @@
 {
 	if (!_isAgeRestricted)
 	{
-		NSData *playerAgeGateContent = [@"player-age-gate-content" dataUsingEncoding:NSUTF8StringEncoding];
+		NSData *openGraphAgeRestriction = [@"og:restrictions:age" dataUsingEncoding:NSUTF8StringEncoding];
 		NSDataSearchOptions options = (NSDataSearchOptions)0;
 		NSRange range = NSMakeRange(0, self.data.length);
-		_isAgeRestricted = [self.data rangeOfData:playerAgeGateContent options:options range:range].location != NSNotFound;
+		_isAgeRestricted = [self.data rangeOfData:openGraphAgeRestriction options:options range:range].location != NSNotFound;
 	}
 	return _isAgeRestricted;
 }
