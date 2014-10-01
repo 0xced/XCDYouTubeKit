@@ -4,7 +4,6 @@
 
 #import <XCTest/XCTest.h>
 
-#import "TRVSMonitor.h"
 #import "VCR.h"
 #import "VCRCassetteManager.h"
 
