@@ -13,6 +13,7 @@
 		C2428B07191C3DE400065504 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2428B04191C3DE400065504 /* main.m */; };
 		C2428B0C191C415300065504 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2428B0B191C415300065504 /* AVKit.framework */; };
 		C2478E9D17FF739100BCE94D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2478E9C17FF739100BCE94D /* Icon@2x.png */; };
+		C2570B861A02415F00127127 /* NowPlayingInfoCenterProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */; };
 		C26231B5191D7E0600D23900 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; };
 		C26231B7191D7F8500D23900 /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C2630D3E1935C449000D3917 /* PlayerEventLogger.m */; };
@@ -75,6 +76,8 @@
 		C2428B06191C3DE400065504 /* XCDYouTubeKit OS X Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCDYouTubeKit OS X Demo-Prefix.pch"; sourceTree = "<group>"; };
 		C2428B0B191C415300065504 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		C2478E9C17FF739100BCE94D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		C2570B841A02415F00127127 /* NowPlayingInfoCenterProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingInfoCenterProvider.h; sourceTree = "<group>"; };
+		C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingInfoCenterProvider.m; sourceTree = "<group>"; };
 		C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = ../Debug/XCDYouTubeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2630D3D1935C449000D3917 /* PlayerEventLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerEventLogger.h; sourceTree = "<group>"; };
 		C2630D3E1935C449000D3917 /* PlayerEventLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerEventLogger.m; sourceTree = "<group>"; };
@@ -206,6 +209,8 @@
 				C27415C017F4CDD80026834B /* AppDelegate.m */,
 				C2630D3D1935C449000D3917 /* PlayerEventLogger.h */,
 				C2630D3E1935C449000D3917 /* PlayerEventLogger.m */,
+				C2570B841A02415F00127127 /* NowPlayingInfoCenterProvider.h */,
+				C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */,
 				C27415C317F4CDD80026834B /* DemoFullScreenViewController.h */,
 				C27415C417F4CDD80026834B /* DemoFullScreenViewController.m */,
 				C27415C517F4CDD80026834B /* DemoInlineViewController.h */,
@@ -346,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C27415D217F4CDD80026834B /* AppDelegate.m in Sources */,
+				C2570B861A02415F00127127 /* NowPlayingInfoCenterProvider.m in Sources */,
 				C27415D317F4CDD80026834B /* DemoAsynchronousViewController.m in Sources */,
 				C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */,
 				C27415D417F4CDD80026834B /* DemoFullScreenViewController.m in Sources */,

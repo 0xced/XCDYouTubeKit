@@ -5,10 +5,12 @@
 #import "AppDelegate.h"
 
 #import "PlayerEventLogger.h"
+#import "NowPlayingInfoCenterProvider.h"
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong) PlayerEventLogger *playerEventLogger;
+@property (nonatomic, strong) NowPlayingInfoCenterProvider *nowPlayingInfoCenterProvider;
 
 @end
 
@@ -35,32 +37,10 @@
 	UIBarButtonItem *settingsButtonItem = navigationController.topViewController.navigationItem.rightBarButtonItem;
 	[settingsButtonItem setTitleTextAttributes:@{ UITextAttributeFont: [UIFont boldSystemFontOfSize:26] } forState:UIControlStateNormal];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveVideo:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:nil];
-	
 	self.playerEventLogger = [PlayerEventLogger new];
+	self.nowPlayingInfoCenterProvider = [NowPlayingInfoCenterProvider new];
 	
 	return YES;
-}
-
-#pragma mark - Notifications
-
-- (void) videoPlayerViewControllerDidReceiveVideo:(NSNotification *)notification
-{
-	XCDYouTubeVideo *video = notification.userInfo[XCDYouTubeVideoUserInfoKey];
-	NSString *title = video.title;
-	if (title)
-		[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{ MPMediaItemPropertyTitle: title };
-	
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:video.mediumThumbnailURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-	{
-		if (data)
-		{
-			UIImage *image = [UIImage imageWithData:data];
-			MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:image];
-			if (title && artwork)
-				[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{ MPMediaItemPropertyTitle: title, MPMediaItemPropertyArtwork: artwork };
-		}
-	}];
 }
 
 @end
