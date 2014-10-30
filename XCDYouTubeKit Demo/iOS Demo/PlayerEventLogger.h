@@ -4,8 +4,6 @@
 
 @interface PlayerEventLogger : NSObject
 
-+ (instancetype) sharedLogger;
-
-@property (nonatomic, assign, getter = isEnabled) BOOL enabled; // defaults to `NO`
+@property (nonatomic, assign, getter = isEnabled) BOOL enabled; // defaults to `YES`
 
 @end

@@ -6,6 +6,12 @@
 
 #import "PlayerEventLogger.h"
 
+@interface AppDelegate ()
+
+@property (nonatomic, strong) PlayerEventLogger *playerEventLogger;
+
+@end
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -31,7 +37,7 @@
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveVideo:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:nil];
 	
-	[[PlayerEventLogger sharedLogger] setEnabled:YES];
+	self.playerEventLogger = [PlayerEventLogger new];
 	
 	return YES;
 }
