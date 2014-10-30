@@ -4,19 +4,20 @@
 
 #import "AppDelegate.h"
 
-#import "PlayerEventLogger.h"
-#import "NowPlayingInfoCenterProvider.h"
-
-@interface AppDelegate ()
-
-@property (nonatomic, strong) PlayerEventLogger *playerEventLogger;
-@property (nonatomic, strong) NowPlayingInfoCenterProvider *nowPlayingInfoCenterProvider;
-
-@end
-
 @implementation AppDelegate
 
 @synthesize window = _window;
+
+- (instancetype) init
+{
+	if (!(self = [super init]))
+		return nil;
+	
+	_playerEventLogger = [PlayerEventLogger new];
+	_nowPlayingInfoCenterProvider = [NowPlayingInfoCenterProvider new];
+	
+	return self;
+}
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -36,9 +37,6 @@
 	UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
 	UIBarButtonItem *settingsButtonItem = navigationController.topViewController.navigationItem.rightBarButtonItem;
 	[settingsButtonItem setTitleTextAttributes:@{ UITextAttributeFont: [UIFont boldSystemFontOfSize:26] } forState:UIControlStateNormal];
-	
-	self.playerEventLogger = [PlayerEventLogger new];
-	self.nowPlayingInfoCenterProvider = [NowPlayingInfoCenterProvider new];
 	
 	return YES;
 }
