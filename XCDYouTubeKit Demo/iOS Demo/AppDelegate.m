@@ -15,6 +15,7 @@
 	
 	_playerEventLogger = [PlayerEventLogger new];
 	_nowPlayingInfoCenterProvider = [NowPlayingInfoCenterProvider new];
+	_moviePlayerOverlayViewProvider = [MoviePlayerOverlayViewProvider new];
 	
 	return self;
 }

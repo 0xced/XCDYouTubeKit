@@ -69,6 +69,10 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	// See https://github.com/0xced/XCDYouTubeKit/commit/cadec1c3857d6a302f71b9ce7d1ae48e389e6890
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
 	
+	// MPMoviePlayerViewController initializes its moviePlayer's controlStyle to MPMovieControlStyleFullscreen
+	// We do it later anyway in viewWillAppear: but this is required to play nice with MPMoviePlayerController+OverlayView
+	self.moviePlayer.controlStyle = MPMovieControlStyleDefault;
+	
 	if (videoIdentifier)
 		self.videoIdentifier = videoIdentifier;
 	
