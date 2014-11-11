@@ -13,8 +13,6 @@
 		C2428B07191C3DE400065504 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2428B04191C3DE400065504 /* main.m */; };
 		C2428B0C191C415300065504 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2428B0B191C415300065504 /* AVKit.framework */; };
 		C2570B861A02415F00127127 /* NowPlayingInfoCenterProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */; };
-		C2570B891A024F4B00127127 /* MPMoviePlayerController+OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2570B881A024F4B00127127 /* MPMoviePlayerController+OverlayView.m */; };
-		C2570B8C1A024FA600127127 /* MoviePlayerOverlayViewProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C2570B8B1A024FA600127127 /* MoviePlayerOverlayViewProvider.m */; };
 		C26231B5191D7E0600D23900 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; };
 		C26231B7191D7F8500D23900 /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C2630D3E1935C449000D3917 /* PlayerEventLogger.m */; };
@@ -76,10 +74,6 @@
 		C2428B0B191C415300065504 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		C2570B841A02415F00127127 /* NowPlayingInfoCenterProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingInfoCenterProvider.h; sourceTree = "<group>"; };
 		C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingInfoCenterProvider.m; sourceTree = "<group>"; };
-		C2570B871A024F4B00127127 /* MPMoviePlayerController+OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMoviePlayerController+OverlayView.h"; sourceTree = "<group>"; };
-		C2570B881A024F4B00127127 /* MPMoviePlayerController+OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMoviePlayerController+OverlayView.m"; sourceTree = "<group>"; };
-		C2570B8A1A024FA600127127 /* MoviePlayerOverlayViewProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviePlayerOverlayViewProvider.h; sourceTree = "<group>"; };
-		C2570B8B1A024FA600127127 /* MoviePlayerOverlayViewProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviePlayerOverlayViewProvider.m; sourceTree = "<group>"; };
 		C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = ../Debug/XCDYouTubeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2630D3D1935C449000D3917 /* PlayerEventLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerEventLogger.h; sourceTree = "<group>"; };
 		C2630D3E1935C449000D3917 /* PlayerEventLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerEventLogger.m; sourceTree = "<group>"; };
@@ -211,8 +205,6 @@
 				C2630D3E1935C449000D3917 /* PlayerEventLogger.m */,
 				C2570B841A02415F00127127 /* NowPlayingInfoCenterProvider.h */,
 				C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */,
-				C2570B8A1A024FA600127127 /* MoviePlayerOverlayViewProvider.h */,
-				C2570B8B1A024FA600127127 /* MoviePlayerOverlayViewProvider.m */,
 				C27415C317F4CDD80026834B /* DemoFullScreenViewController.h */,
 				C27415C417F4CDD80026834B /* DemoFullScreenViewController.m */,
 				C27415C517F4CDD80026834B /* DemoInlineViewController.h */,
@@ -225,8 +217,6 @@
 				C2EFB48618730A2B0046B1FE /* SettingsViewController.m */,
 				C2BA376B192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.h */,
 				C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */,
-				C2570B871A024F4B00127127 /* MPMoviePlayerController+OverlayView.h */,
-				C2570B881A024F4B00127127 /* MPMoviePlayerController+OverlayView.m */,
 				C27415C917F4CDD80026834B /* MainStoryboard.storyboard */,
 				C27415CB17F4CDD80026834B /* Supporting Files */,
 			);
@@ -350,9 +340,7 @@
 			files = (
 				C27415D217F4CDD80026834B /* AppDelegate.m in Sources */,
 				C2570B861A02415F00127127 /* NowPlayingInfoCenterProvider.m in Sources */,
-				C2570B891A024F4B00127127 /* MPMoviePlayerController+OverlayView.m in Sources */,
 				C27415D317F4CDD80026834B /* DemoAsynchronousViewController.m in Sources */,
-				C2570B8C1A024FA600127127 /* MoviePlayerOverlayViewProvider.m in Sources */,
 				C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */,
 				C27415D417F4CDD80026834B /* DemoFullScreenViewController.m in Sources */,
 				C27415D517F4CDD80026834B /* DemoInlineViewController.m in Sources */,

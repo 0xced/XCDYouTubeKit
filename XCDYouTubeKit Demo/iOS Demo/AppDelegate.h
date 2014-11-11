@@ -4,12 +4,10 @@
 
 #import "PlayerEventLogger.h"
 #import "NowPlayingInfoCenterProvider.h"
-#import "MoviePlayerOverlayViewProvider.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, readonly) PlayerEventLogger *playerEventLogger;
 @property (nonatomic, readonly) NowPlayingInfoCenterProvider *nowPlayingInfoCenterProvider;
-@property (nonatomic, readonly) MoviePlayerOverlayViewProvider *moviePlayerOverlayViewProvider;
 
 @end
