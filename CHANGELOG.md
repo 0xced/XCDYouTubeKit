@@ -1,6 +1,8 @@
 #### Version 2.0.3
 
+* Adaptation to YouTube API change. (#94)
 * Support for age restricted videos.
+* Project upgraded to Xcode 6.
 
 #### Version 2.0.2
 
