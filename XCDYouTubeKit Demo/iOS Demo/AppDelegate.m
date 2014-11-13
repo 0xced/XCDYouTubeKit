@@ -4,11 +4,20 @@
 
 #import "AppDelegate.h"
 
-#import "PlayerEventLogger.h"
-
 @implementation AppDelegate
 
 @synthesize window = _window;
+
+- (instancetype) init
+{
+	if (!(self = [super init]))
+		return nil;
+	
+	_playerEventLogger = [PlayerEventLogger new];
+	_nowPlayingInfoCenterProvider = [NowPlayingInfoCenterProvider new];
+	
+	return self;
+}
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -29,31 +38,7 @@
 	UIBarButtonItem *settingsButtonItem = navigationController.topViewController.navigationItem.rightBarButtonItem;
 	[settingsButtonItem setTitleTextAttributes:@{ UITextAttributeFont: [UIFont boldSystemFontOfSize:26] } forState:UIControlStateNormal];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveVideo:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:nil];
-	
-	[[PlayerEventLogger sharedLogger] setEnabled:YES];
-	
 	return YES;
-}
-
-#pragma mark - Notifications
-
-- (void) videoPlayerViewControllerDidReceiveVideo:(NSNotification *)notification
-{
-	XCDYouTubeVideo *video = notification.userInfo[XCDYouTubeVideoUserInfoKey];
-	NSString *title = video.title;
-	if (title)
-		[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{ MPMediaItemPropertyTitle: title };
-	
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:video.mediumThumbnailURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-		if (data)
-		{
-			UIImage *image = [UIImage imageWithData:data];
-			MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:image];
-			if (title && artwork)
-				[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{ MPMediaItemPropertyTitle: title, MPMediaItemPropertyArtwork: artwork };
-		}
-	}];
 }
 
 @end

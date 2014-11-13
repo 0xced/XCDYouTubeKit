@@ -36,7 +36,8 @@
 	self.titleLabel.text = video.title;
 	
 	NSURL *thumbnailURL = video.mediumThumbnailURL ?: video.smallThumbnailURL;
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:thumbnailURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:thumbnailURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+	{
 		self.thumbnailImageView.image = [UIImage imageWithData:data];
 		
 		[self.actionButton setTitle:NSLocalizedString(@"Play Video", nil) forState:UIControlStateNormal];

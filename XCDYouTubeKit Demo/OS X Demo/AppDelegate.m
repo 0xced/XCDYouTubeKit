@@ -16,7 +16,8 @@
 	self.playerView.player = nil;
 	
 	[self.progressIndicator startAnimation:sender];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:[sender stringValue] completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:[sender stringValue] completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
 		[self.progressIndicator stopAnimation:sender];
 		
 		if (video)

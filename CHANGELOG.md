@@ -1,3 +1,9 @@
+#### Version 2.0.3
+
+* Adaptation to YouTube API change. (#94)
+* Support for age restricted videos.
+* Project upgraded to Xcode 6.
+
 #### Version 2.0.2
 
 * Fixed errors on protected videos. (#52)
@@ -13,7 +19,7 @@
 #### Version 2.0.0
 
 * Project renamed to `XCDYouTubeKit`.
-* Support for protected video. (#6, #11, #12, #21, #27, #31, #33)
+* Support for protected videos. (#6, #11, #12, #21, #27, #31, #33)
 * OS X compatibility thanks to the new `XCDYouTubeClient` class. (#14, #18)
 * OS X dynamic framework target
 * Support for live videos. (#34)

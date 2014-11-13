@@ -2,7 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/0xced/XCDYouTubeKit/master.svg?style=flat)](https://travis-ci.org/0xced/XCDYouTubeKit)
 [![Coverage Status](https://img.shields.io/coveralls/0xced/XCDYouTubeKit/master.svg?style=flat)](https://coveralls.io/r/0xced/XCDYouTubeKit?branch=master)
-![Platform](https://img.shields.io/cocoapods/p/XCDYouTubeKit.svg?style=flat)
+[![Platform](https://img.shields.io/cocoapods/p/XCDYouTubeKit.svg?style=flat)](http://cocoadocs.org/docsets/XCDYouTubeKit/)
 [![Pod Version](https://img.shields.io/cocoapods/v/XCDYouTubeKit.svg?style=flat)](http://cocoadocs.org/docsets/XCDYouTubeKit/)
 [![License](https://img.shields.io/cocoapods/l/XCDYouTubeKit.svg?style=flat)](LICENSE)
 
@@ -33,9 +33,20 @@ Are you enjoying XCDYouTubeKit? You can say thank you with [a tweet](https://twi
 
 XCDYouTubeKit is available through CocoaPods.
 
-Alternatively, you can manually use the provided static library on iOS or dynamic framework on OS X.
+```ruby
+pod "XCDYouTubeKit", "~> 2.0.3"
+```
 
-If you use the iOS static library and you are targeting iOS 7, add the JavaScriptCore framework. If you are targeting iOS 5 or 6, you must add the following *Other Linker Flags* instead to your app:
+Alternatively, you can manually use the provided static library on iOS or dynamic framework on OS X. In order to use the iOS static library, you must:
+
+1. Create a workspace (File → New → Workspace…)
+2. Add your project to the workspace
+3. Add the XCDYouTubeKit project to the workspace
+4. Drag and drop the `libXCDYouTubeKit.a` file referenced from XCDYouTubeKit → Products → libXCDYouTubeKit.a into the *Link Binary With Libraries* build phase of your app’s target.
+
+These steps will ensure that `#import <XCDYouTubeKit/XCDYouTubeKit.h>` will work properly in your project.
+
+**Warning**: If you use the iOS static library and you are targeting iOS 7, add the JavaScriptCore framework. If you are targeting iOS 5 or 6, you must add the following *Other Linker Flags* instead to your app:
 
 ```
 -Wl,-U,_JSContextGetGlobalObject -Wl,-U,_JSEvaluateScript -Wl,-U,_JSGlobalContextCreate -Wl,-U,_JSGlobalContextRelease -Wl,-U,_JSObjectCallAsFunction -Wl,-U,_JSObjectIsFunction -Wl,-U,_JSObjectSetProperty -Wl,-U,_JSStringCopyCFString -Wl,-U,_JSStringCreateWithCFString -Wl,-U,_JSStringRelease -Wl,-U,_JSValueIsObject -Wl,-U,_JSValueIsString -Wl,-U,_JSValueMakeString -Wl,-U,_JSValueToStringCopy
@@ -47,10 +58,6 @@ See my [JavaScriptCore framework availability on iOS](http://stackoverflow.com/q
 ## Usage
 
 XCDYouTubeKit is [fully documented](http://cocoadocs.org/docsets/XCDYouTubeKit/).
-
-```
-#import <XCDYouTubeKit/XCDYouTubeKit.h>`
-```
 
 ### iOS and OS X
 

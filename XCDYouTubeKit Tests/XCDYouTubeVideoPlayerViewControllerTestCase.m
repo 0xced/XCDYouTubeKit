@@ -19,58 +19,62 @@
 
 - (void) testVideoNotification
 {
-	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"EdeVaT-zZt4"];
-	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:videoPlayerViewController queue:nil usingBlock:^(NSNotification *notification) {
+	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:videoPlayerViewController queue:nil usingBlock:^(NSNotification *notification)
+	{
 		XCTAssertNotNil(notification.userInfo[XCDYouTubeVideoUserInfoKey]);
-		[monitor signal];
+		[expectation fulfill];
 	}];
-	XCTAssertTrue([monitor waitWithTimeout:10]);
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testAsynchronousVideoNotification
 {
-	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 		videoPlayerViewController.videoIdentifier = @"EdeVaT-zZt4";
 	}];
-	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:videoPlayerViewController queue:nil usingBlock:^(NSNotification *notification) {
+	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:videoPlayerViewController queue:nil usingBlock:^(NSNotification *notification)
+	{
 		XCTAssertNotNil(notification.userInfo[XCDYouTubeVideoUserInfoKey]);
-		[monitor signal];
+		[expectation fulfill];
 	}];
-	XCTAssertTrue([monitor waitWithTimeout:10]);
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testNoStreamAvailableErrorNotification
 {
-	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"EdeVaT-zZt4"];
 	videoPlayerViewController.preferredVideoQualities = @[];
-	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification)
+	{
 		NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
 		MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
 		XCTAssertEqual(finishReason, MPMovieFinishReasonPlaybackError);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
-		[monitor signal];
+		[expectation fulfill];
 	}];
-	XCTAssertTrue([monitor waitWithTimeout:10]);
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testRestrictedPlaybackErrorNotification
 {
-	TRVSMonitor *monitor = [TRVSMonitor monitor];
+	XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"1kIsylLeHHU"];
-	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification) {
+	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification)
+	{
 		NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
 		MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
 		XCTAssertEqual(finishReason, MPMovieFinishReasonPlaybackError);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		[monitor signal];
+		[expectation fulfill];
 	}];
-	XCTAssertTrue([monitor waitWithTimeout:10]);
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 @end

@@ -6,14 +6,14 @@
 
 @implementation PlayerEventLogger
 
-+ (instancetype) sharedLogger
+- (instancetype) init
 {
-	static PlayerEventLogger *sharedLogger;
-	static dispatch_once_t once;
-	dispatch_once(&once, ^{
-		sharedLogger = [self new];
-	});
-	return sharedLogger;
+	if (!(self = [super init]))
+		return nil;
+	
+	self.enabled = YES;
+	
+	return self;
 }
 
 - (void) setEnabled:(BOOL)enabled

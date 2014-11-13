@@ -12,9 +12,9 @@
 		C2428AEA191C3C1400065504 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2428AE9191C3C1400065504 /* Images.xcassets */; };
 		C2428B07191C3DE400065504 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2428B04191C3DE400065504 /* main.m */; };
 		C2428B0C191C415300065504 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2428B0B191C415300065504 /* AVKit.framework */; };
-		C2478E9D17FF739100BCE94D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2478E9C17FF739100BCE94D /* Icon@2x.png */; };
+		C2570B861A02415F00127127 /* NowPlayingInfoCenterProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */; };
 		C26231B5191D7E0600D23900 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; };
-		C26231B7191D7F8500D23900 /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; };
+		C26231B7191D7F8500D23900 /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C2630D3E1935C449000D3917 /* PlayerEventLogger.m */; };
 		C27415A217F491230026834B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415A117F491230026834B /* UIKit.framework */; };
 		C27415A417F491230026834B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415A317F491230026834B /* Foundation.framework */; };
@@ -25,15 +25,15 @@
 		C27415D517F4CDD80026834B /* DemoInlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415C617F4CDD80026834B /* DemoInlineViewController.m */; };
 		C27415D617F4CDD80026834B /* DemoThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415C817F4CDD80026834B /* DemoThumbnailViewController.m */; };
 		C27415D717F4CDD80026834B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C27415C917F4CDD80026834B /* MainStoryboard.storyboard */; };
-		C27415D817F4CDD80026834B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C27415CC17F4CDD80026834B /* Default-568h@2x.png */; };
-		C27415D917F4CDD80026834B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C27415CD17F4CDD80026834B /* Default.png */; };
-		C27415DA17F4CDD80026834B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C27415CE17F4CDD80026834B /* Default@2x.png */; };
 		C27415DC17F4CDD80026834B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415D117F4CDD80026834B /* main.m */; };
 		C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E217F4D02E0026834B /* AVFoundation.framework */; };
 		C27415E517F4D0330026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E417F4D0330026834B /* MediaPlayer.framework */; };
+		C27AD2A11A0791F000866050 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C27AD2A01A0791F000866050 /* Images.xcassets */; };
 		C2BA376D192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */; };
-		C2EDD2ED1805917900BEA32B /* libXCDYouTubeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */; };
+		C2DDFAF419C2CEB000E7DB66 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DDFAF319C2CEB000E7DB66 /* LaunchScreen.xib */; };
 		C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EFB48618730A2B0046B1FE /* SettingsViewController.m */; };
+		C2F0E59F1945065C00D8EBA8 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */; };
+		C2F0E5A11945069300D8EBA8 /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +44,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				C26231B7191D7F8500D23900 /* XCDYouTubeKit.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2F0E5A01945068200D8EBA8 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C2F0E5A11945069300D8EBA8 /* XCDYouTubeKit.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,7 +72,8 @@
 		C2428B05191C3DE400065504 /* XCDYouTubeKit OS X Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "XCDYouTubeKit OS X Demo-Info.plist"; sourceTree = "<group>"; };
 		C2428B06191C3DE400065504 /* XCDYouTubeKit OS X Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCDYouTubeKit OS X Demo-Prefix.pch"; sourceTree = "<group>"; };
 		C2428B0B191C415300065504 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
-		C2478E9C17FF739100BCE94D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		C2570B841A02415F00127127 /* NowPlayingInfoCenterProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingInfoCenterProvider.h; sourceTree = "<group>"; };
+		C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingInfoCenterProvider.m; sourceTree = "<group>"; };
 		C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = ../Debug/XCDYouTubeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2630D3D1935C449000D3917 /* PlayerEventLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerEventLogger.h; sourceTree = "<group>"; };
 		C2630D3E1935C449000D3917 /* PlayerEventLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerEventLogger.m; sourceTree = "<group>"; };
@@ -80,19 +92,19 @@
 		C27415C717F4CDD80026834B /* DemoThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoThumbnailViewController.h; sourceTree = "<group>"; };
 		C27415C817F4CDD80026834B /* DemoThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoThumbnailViewController.m; sourceTree = "<group>"; };
 		C27415CA17F4CDD80026834B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		C27415CC17F4CDD80026834B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C27415CD17F4CDD80026834B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		C27415CE17F4CDD80026834B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C27415D117F4CDD80026834B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C27415DD17F4CE4A0026834B /* XCDYouTubeKit iOS Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "XCDYouTubeKit iOS Demo-Info.plist"; sourceTree = "<group>"; };
 		C27415DE17F4CE4A0026834B /* XCDYouTubeKit iOS Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCDYouTubeKit iOS Demo-Prefix.pch"; sourceTree = "<group>"; };
 		C27415E217F4D02E0026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C27415E417F4D0330026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		C27AD2A01A0791F000866050 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C2BA376B192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMoviePlayerController+BackgroundPlayback.h"; sourceTree = "<group>"; };
 		C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMoviePlayerController+BackgroundPlayback.m"; sourceTree = "<group>"; };
+		C2DDFAF319C2CEB000E7DB66 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libXCDYouTubeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2EFB48518730A2B0046B1FE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C2EFB48618730A2B0046B1FE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCDYouTubeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2FB52DF1918F89A00B2CBE6 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -110,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2EDD2ED1805917900BEA32B /* libXCDYouTubeKit.a in Frameworks */,
+				C2F0E59F1945065C00D8EBA8 /* XCDYouTubeKit.framework in Frameworks */,
 				C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */,
 				C27415A617F491230026834B /* CoreGraphics.framework in Frameworks */,
 				C27415A417F491230026834B /* Foundation.framework in Frameworks */,
@@ -128,7 +140,6 @@
 				C2428AE3191C3C1400065504 /* AppDelegate.h */,
 				C2428AE4191C3C1400065504 /* AppDelegate.m */,
 				C2428AE6191C3C1400065504 /* MainMenu.xib */,
-				C2428AE9191C3C1400065504 /* Images.xcassets */,
 				C2428B03191C3DE400065504 /* Supporting Files */,
 			);
 			path = "OS X Demo";
@@ -137,6 +148,7 @@
 		C2428B03191C3DE400065504 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C2428AE9191C3C1400065504 /* Images.xcassets */,
 				C2428B04191C3DE400065504 /* main.m */,
 				C2428B05191C3DE400065504 /* XCDYouTubeKit OS X Demo-Info.plist */,
 				C2428B06191C3DE400065504 /* XCDYouTubeKit OS X Demo-Prefix.pch */,
@@ -170,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */,
+				C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */,
 				C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */,
 				C27415E217F4D02E0026834B /* AVFoundation.framework */,
 				C2428B0B191C415300065504 /* AVKit.framework */,
@@ -190,6 +203,8 @@
 				C27415C017F4CDD80026834B /* AppDelegate.m */,
 				C2630D3D1935C449000D3917 /* PlayerEventLogger.h */,
 				C2630D3E1935C449000D3917 /* PlayerEventLogger.m */,
+				C2570B841A02415F00127127 /* NowPlayingInfoCenterProvider.h */,
+				C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */,
 				C27415C317F4CDD80026834B /* DemoFullScreenViewController.h */,
 				C27415C417F4CDD80026834B /* DemoFullScreenViewController.m */,
 				C27415C517F4CDD80026834B /* DemoInlineViewController.h */,
@@ -211,10 +226,8 @@
 		C27415CB17F4CDD80026834B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C27415CD17F4CDD80026834B /* Default.png */,
-				C27415CE17F4CDD80026834B /* Default@2x.png */,
-				C27415CC17F4CDD80026834B /* Default-568h@2x.png */,
-				C2478E9C17FF739100BCE94D /* Icon@2x.png */,
+				C27AD2A01A0791F000866050 /* Images.xcassets */,
+				C2DDFAF319C2CEB000E7DB66 /* LaunchScreen.xib */,
 				C27415D117F4CDD80026834B /* main.m */,
 				C27415DD17F4CE4A0026834B /* XCDYouTubeKit iOS Demo-Info.plist */,
 				C27415DE17F4CE4A0026834B /* XCDYouTubeKit iOS Demo-Prefix.pch */,
@@ -250,6 +263,7 @@
 				C274159A17F491230026834B /* Sources */,
 				C274159B17F491230026834B /* Frameworks */,
 				C274159C17F491230026834B /* Resources */,
+				C2F0E5A01945068200D8EBA8 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -266,7 +280,7 @@
 		C274159617F491230026834B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Cédric Luthi";
 			};
 			buildConfigurationList = C274159917F491230026834B /* Build configuration list for PBXProject "XCDYouTubeKit Demo" */;
@@ -302,11 +316,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C27AD2A11A0791F000866050 /* Images.xcassets in Resources */,
 				C27415D717F4CDD80026834B /* MainStoryboard.storyboard in Resources */,
-				C27415D917F4CDD80026834B /* Default.png in Resources */,
-				C27415DA17F4CDD80026834B /* Default@2x.png in Resources */,
-				C27415D817F4CDD80026834B /* Default-568h@2x.png in Resources */,
-				C2478E9D17FF739100BCE94D /* Icon@2x.png in Resources */,
+				C2DDFAF419C2CEB000E7DB66 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C27415D217F4CDD80026834B /* AppDelegate.m in Sources */,
+				C2570B861A02415F00127127 /* NowPlayingInfoCenterProvider.m in Sources */,
 				C27415D317F4CDD80026834B /* DemoAsynchronousViewController.m in Sources */,
 				C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */,
 				C27415D417F4CDD80026834B /* DemoFullScreenViewController.m in Sources */,
@@ -438,7 +451,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2.0.2;
+				CURRENT_PROJECT_VERSION = 2.0.3;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -450,10 +463,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(BUILT_PRODUCTS_DIR)/include",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -476,16 +485,12 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 2.0.2;
+				CURRENT_PROJECT_VERSION = 2.0.3;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "NS_BLOCK_ASSERTIONS=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(BUILT_PRODUCTS_DIR)/include",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = iphoneos;
@@ -497,9 +502,12 @@
 		C27415BC17F491230026834B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-Wl,-U,_JSContextGetGlobalObject",
 					"-Wl,-U,_JSEvaluateScript",
@@ -524,9 +532,12 @@
 		C27415BD17F491230026834B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-Wl,-U,_JSContextGetGlobalObject",
 					"-Wl,-U,_JSEvaluateScript",
