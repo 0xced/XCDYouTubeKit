@@ -14,10 +14,12 @@ set -v
 xcproj -p "XCDYouTubeKit.xcodeproj" write-build-setting DYLIB_CURRENT_VERSION "${VERSION}"
 xcproj -p "XCDYouTubeKit Demo/XCDYouTubeKit Demo.xcodeproj" write-build-setting CURRENT_PROJECT_VERSION "${VERSION}"
 sed -i "" "s/^\(.*s.version.*=.*\)\".*\"/\1\"${VERSION}\"/" "XCDYouTubeKit.podspec"
+sed -i "" "s/\"~> .*\"/\"~> ${VERSION}\"/g" "README.md"
 set +v
 git add "XCDYouTubeKit.xcodeproj"
 git add "XCDYouTubeKit Demo/XCDYouTubeKit Demo.xcodeproj"
 git add "XCDYouTubeKit.podspec"
+git add "README.md"
 git commit -m "Update version to ${VERSION}"
 
 echo "Updating badges"
