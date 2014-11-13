@@ -32,7 +32,7 @@ static NSString *const offlineSuffix = @"_offline";
 
 // When running tests with the `ONLINE_TESTS` environment variable, tests whose
 // selector ends with `_offline` are not executed.
-// Also, VCR is not used at all, neither for recording nor for replaying.
+// Also, VCR is not used for replaying when `ONLINE_TESTS` is true.
 + (NSArray *) testInvocations
 {
 	BOOL onlineTests = [[[[NSProcessInfo processInfo] environment] objectForKey:@"ONLINE_TESTS"] boolValue];
@@ -53,8 +53,6 @@ static NSString *const offlineSuffix = @"_offline";
 	[super setUpTestWithSelector:selector];
 	
 	BOOL onlineTests = [[[[NSProcessInfo processInfo] environment] objectForKey:@"ONLINE_TESTS"] boolValue];
-	if (onlineTests)
-		return;
 	
 	NSString *cassettesDirectory = [[[NSProcessInfo processInfo] environment] objectForKey:@"VCR_CASSETTES_DIRECTORY"];
 	cassettesDirectory = [cassettesDirectory stringByAppendingPathComponent:NSStringFromClass(self.class)];
@@ -66,6 +64,9 @@ static NSString *const offlineSuffix = @"_offline";
 	}
 	else
 	{
+		if (onlineTests)
+			return;
+		
 		NSString *testName = NSStringFromSelector(selector);
 		if ([testName hasSuffix:offlineSuffix])
 			testName = [testName substringToIndex:testName.length - offlineSuffix.length];
