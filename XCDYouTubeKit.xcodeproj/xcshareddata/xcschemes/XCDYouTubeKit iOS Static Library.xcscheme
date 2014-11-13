@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
-            BuildableName = "XCDYouTubeKit iOS Tests.xctest"
-            BlueprintName = "XCDYouTubeKit iOS Tests"
+            BlueprintIdentifier = "C2A3F2CC17F4827800AC1C3B"
+            BuildableName = "libXCDYouTubeKit.a"
+            BlueprintName = "XCDYouTubeKit iOS Static Library"
             ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -70,6 +70,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C2A3F2CC17F4827800AC1C3B"
+            BuildableName = "libXCDYouTubeKit.a"
+            BlueprintName = "XCDYouTubeKit iOS Static Library"
+            ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
