@@ -34,7 +34,7 @@ Are you enjoying XCDYouTubeKit? You can say thank you with [a tweet](https://twi
 XCDYouTubeKit is available through CocoaPods.
 
 ```ruby
-pod "XCDYouTubeKit", "~> 2.0.2"
+pod "XCDYouTubeKit", "~> 2.0.3"
 ```
 
 Alternatively, you can manually use the provided static library on iOS or dynamic framework on OS X. In order to use the iOS static library, you must:
