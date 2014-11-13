@@ -23,7 +23,8 @@
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
-		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		{
 			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
 		}];
 		[expectation fulfill];
@@ -31,10 +32,52 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void) testProtectedVEVOVideo
+- (void) testProtectedVEVOVideo1
 {
 	XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.smallThumbnailURL);
+		XCTAssertNotNil(video.mediumThumbnailURL);
+		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		{
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+		}];
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testProtectedVEVOVideo2
+{
+	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.smallThumbnailURL);
+		XCTAssertNotNil(video.mediumThumbnailURL);
+		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		{
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+		}];
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testProtectedVEVOVideo3
+{
+	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Ntn1-SocNiY" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
@@ -56,47 +99,6 @@
 {
 	XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	{
-		XCTAssertNil(error);
-		XCTAssertNotNil(video.title);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
-		XCTAssertTrue(video.streamURLs.count > 0);
-		XCTAssertTrue(video.duration > 0);
-		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
-			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
-		}];
-		[expectation fulfill];
-	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
-}
-
-- (void) testProtectedVideoWithDollarSignature
-{
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	{
-		XCTAssertNil(error);
-		XCTAssertNotNil(video.title);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNil(video.largeThumbnailURL);
-		XCTAssertTrue(video.streamURLs.count > 0);
-		XCTAssertTrue(video.duration > 0);
-		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
-		{
-			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
-		}];
-		[expectation fulfill];
-	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
-}
-
-- (void) testProtectedVideoWithJavaScriptFunctionsInVarScope
-{
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Ntn1-SocNiY" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
