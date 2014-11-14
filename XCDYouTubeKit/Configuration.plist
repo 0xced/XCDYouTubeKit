@@ -2,7 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>PlayerScriptSignatureRegularExpressionPattern</key>
-	<string>["']signature["']\s*,\s*([^\(]+)</string>
+	<key>PlayerScriptSignatureRegularExpression</key>
+	<dict>
+		<key>Pattern</key>
+		<string>["']signature["']\s*,\s*([^\(]+)</string>
+		<key>Options</key>
+		<!-- NSRegularExpressionCaseInsensitive -->
+		<integer>1</integer>
+	</dict>
 </dict>
 </plist>
