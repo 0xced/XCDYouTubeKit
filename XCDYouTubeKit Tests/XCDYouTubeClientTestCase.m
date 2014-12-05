@@ -48,6 +48,7 @@
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -67,6 +68,7 @@
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"xrM34fdmloc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
+		XCTAssertNil(video.expirationDate);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
@@ -85,6 +87,7 @@
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"H7iQ4sAf0OE" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
+		XCTAssertNil(video.expirationDate);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);

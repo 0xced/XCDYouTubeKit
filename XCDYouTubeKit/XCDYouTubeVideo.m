@@ -56,6 +56,13 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncodin
 
 @implementation XCDYouTubeVideo
 
+static NSDate * ExpirationDate(NSURL *streamURL)
+{
+	NSDictionary *query = XCDDictionaryWithQueryString(streamURL.query, NSUTF8StringEncoding);
+	NSTimeInterval expire = [query[@"expire"] doubleValue];
+	return expire > 0 ? [NSDate dateWithTimeIntervalSince1970:expire] : nil;
+}
+
 - (instancetype) initWithIdentifier:(NSString *)identifier info:(NSDictionary *)info playerScript:(XCDYouTubePlayerScript *)playerScript response:(NSURLResponse *)response error:(NSError * __autoreleasing *)error
 {
 	if (!(self = [super init]))
@@ -113,6 +120,9 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncodin
 			if (urlString && itag)
 			{
 				NSURL *streamURL = [NSURL URLWithString:urlString];
+				if (!_expirationDate)
+					_expirationDate = ExpirationDate(streamURL);
+				
 				if (signature)
 					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, [signature stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 				
@@ -188,7 +198,7 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncodin
 - (NSString *) debugDescription
 {
 	NSString *thumbnailDescription = [NSString stringWithFormat:@"Small  thumbnail: %@\nMedium thumbnail: %@\nLarge  thumbnail: %@", self.smallThumbnailURL, self.mediumThumbnailURL, self.largeThumbnailURL];
-	return [NSString stringWithFormat:@"<%@: %p> %@\nDuration: %@ seconds\n%@\nVideo Streams: %@", self.class, self, self.description, @(self.duration), thumbnailDescription, self.streamURLs];
+	return [NSString stringWithFormat:@"<%@: %p> %@\nDuration: %@ seconds\nExpiration date: %@\n%@\nVideo Streams: %@", self.class, self, self.description, @(self.duration), self.expirationDate, thumbnailDescription, self.streamURLs];
 }
 
 #pragma mark - NSCopying

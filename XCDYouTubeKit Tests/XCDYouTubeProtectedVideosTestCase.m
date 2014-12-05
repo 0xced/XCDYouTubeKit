@@ -18,6 +18,7 @@
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -39,6 +40,7 @@
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -60,6 +62,7 @@
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -81,6 +84,7 @@
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -102,6 +106,7 @@
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
