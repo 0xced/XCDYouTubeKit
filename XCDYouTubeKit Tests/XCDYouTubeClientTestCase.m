@@ -13,7 +13,7 @@
 
 - (void) testThatVideoIsAvailalbeOnDetailPageEventLabel
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"dQw4w9WgXcQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -25,7 +25,7 @@
 
 - (void) testThatVideoHasMetadata
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"9TTioMbNT9I" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -43,7 +43,7 @@
 
 - (void) testMobileRestrictedVideo
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"JHaA9bKi-xs" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -64,7 +64,7 @@
 
 - (void) testLiveVideo_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"xrM34fdmloc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -83,7 +83,7 @@
 
 - (void) testDVRVideo
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"H7iQ4sAf0OE" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -102,7 +102,7 @@
 
 - (void) testRestrictedVideo
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"1kIsylLeHHU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -116,7 +116,7 @@
 
 - (void) testRemovedVideo
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"BXnA9FjvLSU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -130,7 +130,7 @@
 
 - (void) testGeoblockedVideo
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vwkFTztnl7Y" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -144,7 +144,7 @@
 
 - (void) testInvalidVideoIdentifier
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"tooShort" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -158,7 +158,7 @@
 
 - (void) testNonExistentVideoIdentifier
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"xxxxxxxxxxx" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -172,7 +172,7 @@
 
 - (void) testFrenchClient
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[[XCDYouTubeClient alloc] initWithLanguageIdentifier:@"fr"] getVideoWithIdentifier:@"xxxxxxxxxxx" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -186,7 +186,7 @@
 
 - (void) testNilVideoIdentifier
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:nil completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -200,7 +200,7 @@
 
 - (void) testSpaceVideoIdentifier
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@" " completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -215,7 +215,7 @@
 // Disable internet connection before running
 - (void) testConnectionError_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -232,7 +232,7 @@
 
 - (void) testUsingClientOnNonMainThread
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		XCTAssertFalse([NSThread isMainThread]);
 		[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
@@ -246,7 +246,7 @@
 
 - (void) testCancelingOperation
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	id<XCDYouTubeOperation> operation = [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"EdeVaT-zZt4" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTFail();

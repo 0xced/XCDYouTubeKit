@@ -13,7 +13,7 @@
 
 - (void) testAgeRestrictedVideo
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"zKovmts2KSk" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -35,7 +35,7 @@
 
 - (void) testProtectedVEVOVideo1
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -57,7 +57,7 @@
 
 - (void) testProtectedVEVOVideo2
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -79,7 +79,7 @@
 
 - (void) testProtectedVEVOVideo3
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Ntn1-SocNiY" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -101,7 +101,7 @@
 
 - (void) testAgeRestrictedVEVOVideo
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
@@ -126,7 +126,7 @@
 //   * Tools -> Black List... -> Add host:www.youtube.com and path:watch to simulate connection error on the web page
 - (void) testProtectedVideoWithWebPageConnectionError_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -141,7 +141,7 @@
 // With Charles: Tools -> Black List... -> Add `s.ytimg.com` to simulate connection error on the player script
 - (void) testProtectedVideoWithPlayerScriptConnectionError_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -156,7 +156,7 @@
 // Edit testProtectedVideoWithoutSignatureFunction.json by replacing `signature=` with `signaturX=`
 - (void) testProtectedVideoWithoutSignatureFunction_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -171,7 +171,7 @@
 // Edit testProtectedVideoWithBrokenSignatureFunction.json by returning null in the signature function
 - (void) testProtectedVideoWithBrokenSignatureFunction_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -186,7 +186,7 @@
 // Edit testProtectedVideoWithoutJavaScriptPlayerURL.json by replacing `\"js\":` with `\"xs\":`
 - (void) testProtectedVideoWithoutJavaScriptPlayerURL_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
