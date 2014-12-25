@@ -7,7 +7,7 @@
 /**
  *  The quality of YouTube videos. These values are used as keys in the `streamURLs` property of the `XCDYouTubeVideo` class.
  *
- *  The constant numbers are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_codecs) values.
+ *  The constant numbers are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_formats) values.
  */
 typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 	/**
@@ -82,7 +82,7 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
 /**
  *  A dictionary of video stream URLs.
  *
- *  The keys are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_codecs) values as `NSNumber` objects. The values are the video URLs as `NSURL` objects. There is also the special `XCDYouTubeVideoQualityHTTPLiveStreaming` key for live videos.
+ *  The keys are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_formats) values as `NSNumber` objects. The values are the video URLs as `NSURL` objects. There is also the special `XCDYouTubeVideoQualityHTTPLiveStreaming` key for live videos.
  *
  *  You should not store the URLs for later use since they have a limited lifetime and are bound to an IP address.
  *
