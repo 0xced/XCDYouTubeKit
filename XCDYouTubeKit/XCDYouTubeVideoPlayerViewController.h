@@ -21,6 +21,11 @@ MP_EXTERN NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey;
  *  Posted when the video player has received the video information. The `object` of the notification is the `XCDYouTubeVideoPlayerViewController` instance. The `userInfo` dictionary contains the `XCDYouTubeVideo` object.
  */
 MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification;
+
+/**
+ *  Posted when the video player has received an error (most likely due to locale/platform restrictions). The `object` of the notification is the `XCDYouTubeVideoPlayerViewController` instance. The `userInfo` dictionary contains the `XCDYouTubeVideo` object.
+ */
+MP_EXTERN NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveErrorNotification;
 /**
  *  The key for the `XCDYouTubeVideo` object in the user info dictionary of `XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification`.
  */
