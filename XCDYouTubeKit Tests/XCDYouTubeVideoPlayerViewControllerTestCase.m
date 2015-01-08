@@ -49,7 +49,7 @@
 	XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"EdeVaT-zZt4"];
 	videoPlayerViewController.preferredVideoQualities = @[];
-	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification)
+	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveErrorNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification)
 	{
 		NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
 		MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
@@ -65,7 +65,7 @@
 {
 	XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"1kIsylLeHHU"];
-	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification)
+	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveErrorNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification)
 	{
 		NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
 		MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
