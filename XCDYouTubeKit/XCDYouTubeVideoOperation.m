@@ -4,10 +4,21 @@
 
 #import "XCDYouTubeVideoOperation.h"
 
+#import <objc/runtime.h>
+
 #import "XCDYouTubeVideo+Private.h"
 #import "XCDYouTubeError.h"
 #import "XCDYouTubeVideoWebpage.h"
 #import "XCDYouTubePlayerScript.h"
+
+static void * XCDYouTubeRequestTypeKey = &XCDYouTubeRequestTypeKey;
+
+typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
+	XCDYouTubeRequestTypeGetVideoInfo = 1,
+	XCDYouTubeRequestTypeWatchPage,
+	XCDYouTubeRequestTypeEmbedPage,
+	XCDYouTubeRequestTypeJavaScriptPlayer,
+};
 
 @interface XCDYouTubeVideoOperation () <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 @property (atomic, copy, readonly) NSString *videoIdentifier;
@@ -22,6 +33,7 @@
 @property (atomic, assign) BOOL isFinished;
 
 @property (atomic, strong) XCDYouTubeVideoWebpage *webpage;
+@property (atomic, strong) XCDYouTubeVideoWebpage *embedWebpage;
 @property (atomic, strong) XCDYouTubePlayerScript *playerScript;
 @property (atomic, strong) XCDYouTubeVideo *noStreamVideo;
 @property (atomic, strong) NSError *lastError;
@@ -63,11 +75,11 @@
 		NSDictionary *query = @{ @"video_id": self.videoIdentifier, @"hl": self.languageIdentifier, @"el": eventLabel, @"ps": @"default" };
 		NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
 		NSURL *videoInfoURL = [NSURL URLWithString:[@"https://www.youtube.com/get_video_info?" stringByAppendingString:queryString]];
-		[self startRequestWithURL:videoInfoURL];
+		[self startRequestWithURL:videoInfoURL type:XCDYouTubeRequestTypeGetVideoInfo];
 	}
 }
 
-- (void) startRequestWithURL:(NSURL *)url
+- (void) startRequestWithURL:(NSURL *)url type:(XCDYouTubeRequestType)requestType
 {
 	if ([self isCancelled])
 		return;
@@ -76,6 +88,7 @@
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
 	
 	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+	objc_setAssociatedObject(connection, XCDYouTubeRequestTypeKey, @(requestType), OBJC_ASSOCIATION_RETAIN);
 	[connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 	[connection start];
 	self.connection = connection;
@@ -99,7 +112,7 @@
 			NSDictionary *query = @{ @"v": self.videoIdentifier, @"hl": self.languageIdentifier, @"has_verified": @YES };
 			NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
 			NSURL *webpageURL = [NSURL URLWithString:[@"https://www.youtube.com/watch?" stringByAppendingString:queryString]];
-			[self startRequestWithURL:webpageURL];
+			[self startRequestWithURL:webpageURL type:XCDYouTubeRequestTypeWatchPage];
 		}
 		else
 		{
@@ -117,9 +130,35 @@
 	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
 	
 	if (self.webpage.javaScriptPlayerURL)
-		[self startRequestWithURL:self.webpage.javaScriptPlayerURL];
+	{
+		[self startRequestWithURL:self.webpage.javaScriptPlayerURL type:XCDYouTubeRequestTypeJavaScriptPlayer];
+	}
 	else
+	{
+		if (self.webpage.isAgeRestricted)
+		{
+			NSString *embedURLString = [NSString stringWithFormat:@"https://www.youtube.com/embed/%@", self.videoIdentifier];
+			[self startRequestWithURL:[NSURL URLWithString:embedURLString] type:XCDYouTubeRequestTypeEmbedPage];
+		}
+		else
+		{
+			[self startNextVideoInfoRequest];
+		}
+	}
+}
+
+- (void) handleEmbedWebPageResponse
+{
+	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
+	
+	if (self.embedWebpage.javaScriptPlayerURL)
+	{
+		[self startRequestWithURL:self.embedWebpage.javaScriptPlayerURL type:XCDYouTubeRequestTypeJavaScriptPlayer];
+	}
+	else
+	{
 		[self startNextVideoInfoRequest];
+	}
 }
 
 - (void) handleJavaScriptPlayerResponse
@@ -132,11 +171,11 @@
 		if (self.webpage.isAgeRestricted)
 		{
 			NSString *eurl = [@"https://youtube.googleapis.com/v/" stringByAppendingString:self.videoIdentifier];
-			NSString *sts = [self.webpage.playerConfiguration[@"sts"] description] ?: @"";
+			NSString *sts = [self.embedWebpage.playerConfiguration[@"sts"] description] ?: @"";
 			NSDictionary *query = @{ @"video_id": self.videoIdentifier, @"hl": self.languageIdentifier, @"eurl": eurl, @"sts": sts};
 			NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
 			NSURL *videoInfoURL = [NSURL URLWithString:[@"https://www.youtube.com/get_video_info?" stringByAppendingString:queryString]];
-			[self startRequestWithURL:videoInfoURL];
+			[self startRequestWithURL:videoInfoURL type:XCDYouTubeRequestTypeGetVideoInfo];
 		}
 		else
 		{
@@ -216,21 +255,25 @@
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	NSURL *requestURL = connection.originalRequest.URL;
-	
-	if ([requestURL.path isEqualToString:@"/get_video_info"])
+	XCDYouTubeRequestType requestType = [objc_getAssociatedObject(connection, XCDYouTubeRequestTypeKey) unsignedIntegerValue];
+	switch (requestType)
 	{
-		NSString *videoQuery = [[NSString alloc] initWithData:self.connectionData encoding:NSASCIIStringEncoding];
-		NSDictionary *info = XCDDictionaryWithQueryString(videoQuery, NSUTF8StringEncoding);
-		[self handleVideoInfoResponseWithInfo:info];
-	}
-	else if ([requestURL.path isEqualToString:@"/watch"])
-	{
-		[self handleWebPageResponse];
-	}
-	else // JavaScript Player
-	{
-		[self handleJavaScriptPlayerResponse];
+		case XCDYouTubeRequestTypeGetVideoInfo:
+		{
+			NSString *videoQuery = [[NSString alloc] initWithData:self.connectionData encoding:NSASCIIStringEncoding];
+			NSDictionary *info = XCDDictionaryWithQueryString(videoQuery, NSUTF8StringEncoding);
+			[self handleVideoInfoResponseWithInfo:info];
+		}
+			break;
+		case XCDYouTubeRequestTypeWatchPage:
+			[self handleWebPageResponse];
+			break;
+		case XCDYouTubeRequestTypeEmbedPage:
+			[self handleEmbedWebPageResponse];
+			break;
+		case XCDYouTubeRequestTypeJavaScriptPlayer:
+			[self handleJavaScriptPlayerResponse];
+			break;
 	}
 }
 
