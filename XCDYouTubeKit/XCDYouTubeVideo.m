@@ -105,9 +105,7 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncodin
 			
 			NSString *scrambledSignature = stream[@"s"];
 			NSString *signature = [playerScript unscrambleSignature:scrambledSignature];
-			if (playerScript && !signature)
-				continue;
-			
+
 			NSString *urlString = stream[@"url"];
 			NSString *itag = stream[@"itag"];
 			if (urlString && itag)

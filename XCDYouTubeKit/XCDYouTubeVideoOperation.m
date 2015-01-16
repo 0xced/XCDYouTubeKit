@@ -182,7 +182,11 @@
 	self.isExecuting = YES;
 	
 	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage" ]];
-	[self startNextVideoInfoRequest];
+
+	NSDictionary *query = @{ @"v": self.videoIdentifier, @"hl": self.languageIdentifier, @"has_verified": @YES };
+	NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
+	NSURL *webpageURL = [NSURL URLWithString:[@"https://www.youtube.com/watch?" stringByAppendingString:queryString]];
+	[self startRequestWithURL:webpageURL];
 }
 
 - (void) cancel
