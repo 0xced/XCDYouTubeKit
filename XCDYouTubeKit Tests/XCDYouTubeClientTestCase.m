@@ -177,8 +177,8 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRemovedVideo);
-		XCTAssertEqualObjects(error.localizedDescription, @"Cette vidéo n'existe pas.");
+		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqualObjects(error.localizedDescription, @"Cette vidéo n'est pas disponible.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
