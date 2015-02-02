@@ -121,7 +121,7 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRemovedVideo);
+		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
 		XCTAssertEqualObjects(error.localizedDescription, @"\"9/11 The F...\" This video is no longer available due to a copyright claim by Digital Rights Group Ltd.");
 		[expectation fulfill];
 	}];
