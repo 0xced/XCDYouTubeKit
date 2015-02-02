@@ -51,5 +51,48 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>YouTubeDemoVideos</key>
+	<array>
+		<dict>
+			<key>Standard</key>
+			<string>EdeVaT-zZt4</string>
+		</dict>
+		<dict>
+			<key>VEVO</key>
+			<string>rId6PKlDXeU</string>
+		</dict>
+		<dict>
+			<key>Age Restricted</key>
+			<string>zKovmts2KSk</string>
+		</dict>
+		<dict>
+			<key>VEVO + Age Restricted</key>
+			<string>07FYdnEawAQ</string>
+		</dict>
+		<dict>
+			<key>Mobile Restricted</key>
+			<string>JHaA9bKi-xs</string>
+		</dict>
+		<dict>
+			<key>Live Video</key>
+			<string>i2-MnWWoL6M</string>
+		</dict>
+		<dict>
+			<key>DVR Video</key>
+			<string>H7iQ4sAf0OE</string>
+		</dict>
+		<dict>
+			<key>Restricted Video</key>
+			<string>1kIsylLeHHU</string>
+		</dict>
+		<dict>
+			<key>Removed Video</key>
+			<string>BXnA9FjvLSU</string>
+		</dict>
+		<dict>
+			<key>Geo-Blocked Video</key>
+			<string>vwkFTztnl7Y</string>
+		</dict>
+	</array>
 </dict>
 </plist>

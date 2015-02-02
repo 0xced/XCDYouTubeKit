@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c2e-eq-eFt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c2e-eq-eFt">
     <dependencies>
         <deployment version="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -320,6 +320,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="hidePickerView:" destination="Pge-b2-Mp6" eventType="touchUpInside" id="Epb-Qv-uto"/>
                                             <action selector="play:" destination="Bbb-DM-erE" eventType="touchUpInside" id="GVD-SN-zR8"/>
                                         </connections>
                                     </button>
@@ -336,8 +337,21 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <pickerView contentMode="scaleToFill" id="ICt-gr-3aS">
+                                <rect key="frame" x="0.0" y="342" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Pge-b2-Mp6" id="lTV-QS-lDV"/>
+                                    <outlet property="delegate" destination="Pge-b2-Mp6" id="FNP-Va-cOW"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="xdl-hA-gjF" appends="YES" id="oOi-Wb-h09"/>
+                            <outletCollection property="gestureRecognizers" destination="0w1-sg-3Vf" appends="YES" id="Orn-Zz-pVd"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Full Screen Player" id="yeW-tG-zoL"/>
                     <connections>
@@ -346,6 +360,22 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efw-7b-J0g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Pge-b2-Mp6" customClass="VideoPickerController">
+                    <connections>
+                        <outlet property="delegate" destination="Bbb-DM-erE" id="LE2-G6-tnp"/>
+                        <outlet property="pickerView" destination="ICt-gr-3aS" id="t9m-F1-vis"/>
+                    </connections>
+                </customObject>
+                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="xdl-hA-gjF" userLabel="Double Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="togglePickerView:" destination="Pge-b2-Mp6" id="Epf-ih-0Dr"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="0w1-sg-3Vf" userLabel="Single Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="endEditing:" destination="Bbb-DM-erE" id="AEt-tm-uFo"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="809" y="143"/>
         </scene>

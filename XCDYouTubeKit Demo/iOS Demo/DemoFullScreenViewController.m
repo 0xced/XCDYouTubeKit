@@ -10,18 +10,26 @@
 {
 	[super viewDidLoad];
 	
+	[self restoreVideoIdentifier];
+}
+
+- (void) saveVideoIdentifier
+{
+	[[NSUserDefaults standardUserDefaults] setObject:self.videoIdentifierTextField.text forKey:@"VideoIdentifier"];
+}
+
+- (void) restoreVideoIdentifier
+{
 	self.videoIdentifierTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"VideoIdentifier"];
 }
 
-- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (IBAction) endEditing:(id)sender
 {
 	[self.view endEditing:YES];
 }
 
 - (IBAction) play:(id)sender
 {
-	[self.view endEditing:YES];
-	
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoIdentifierTextField.text];
 	videoPlayerViewController.moviePlayer.backgroundPlaybackEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"PlayVideoInBackground"];
 	videoPlayerViewController.preferredVideoQualities = self.lowQualitySwitch.on ? @[ @(XCDYouTubeVideoQualitySmall240), @(XCDYouTubeVideoQualityMedium360) ] : nil;
@@ -57,7 +65,15 @@
 
 - (void) textFieldDidEndEditing:(UITextField *)textField
 {
-	[[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:@"VideoIdentifier"];
+	[self saveVideoIdentifier];
+}
+
+#pragma mark - VideoPickerControllerDelegate
+
+- (void) videoPickerController:(VideoPickerController *)videoPickerController didSelectVideoWithIdentifier:(NSString *)videoIdentifier
+{
+	self.videoIdentifierTextField.text = videoIdentifier;
+	[self saveVideoIdentifier];
 }
 
 @end
