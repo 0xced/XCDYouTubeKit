@@ -91,16 +91,6 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		_mediumThumbnailURL = mediumThumbnail ? [NSURL URLWithString:mediumThumbnail] : nil;
 		_largeThumbnailURL = largeThumbnail ? [NSURL URLWithString:largeThumbnail] : nil;
 		
-		NSString *useCipherSignature = info[@"use_cipher_signature"];
-		if ([useCipherSignature boolValue] && !playerScript)
-		{
-			userInfo[XCDYouTubeNoStreamVideoUserInfoKey] = self;
-			if (error)
-				*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorUseCipherSignature userInfo:userInfo];
-			
-			return nil;
-		}
-		
 		NSMutableDictionary *streamURLs = [NSMutableDictionary new];
 		
 		if (httpLiveStream)
@@ -111,6 +101,14 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 			NSDictionary *stream = XCDDictionaryWithQueryString(streamQuery, NSUTF8StringEncoding);
 			
 			NSString *scrambledSignature = stream[@"s"];
+			if (scrambledSignature && !playerScript)
+			{
+				userInfo[XCDYouTubeNoStreamVideoUserInfoKey] = self;
+				if (error)
+					*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorUseCipherSignature userInfo:userInfo];
+				
+				return nil;
+			}
 			NSString *signature = [playerScript unscrambleSignature:scrambledSignature];
 			if (playerScript && !signature)
 				continue;
