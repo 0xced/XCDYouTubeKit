@@ -31,13 +31,6 @@
 	if ([script hasPrefix:jsPrologue] && [script hasSuffix:jsEpilogue])
 		script = [script substringWithRange:NSMakeRange(jsPrologue.length, script.length - (jsPrologue.length + jsEpilogue.length))];
 	
-	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[\"']signature[\"']\\s*,\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
-	NSTextCheckingResult *result = [signatureRegularExpression firstMatchInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
-	NSString *signatureFunctionName = result.numberOfRanges > 1 ? [script substringWithRange:[result rangeAtIndex:1]] : nil;
-	
-	if (!signatureFunctionName)
-		return nil;
-	
 	_context = JSGlobalContextCreate(NULL);
 	
 	for (NSString *propertyName in @[ @"window", @"document" ])
@@ -52,14 +45,18 @@
 	JSEvaluateScript(_context, scriptRef, NULL, NULL, 0, NULL);
 	JSStringRelease(scriptRef);
 	
-	JSStringRef signatureFunctionNameRef = JSStringCreateWithCFString((__bridge CFStringRef)signatureFunctionName);
-	JSValueRef signatureFunction = JSEvaluateScript(_context, signatureFunctionNameRef, NULL, NULL, 0, NULL);
-	JSStringRelease(signatureFunctionNameRef);
-	if (JSValueIsObject(_context, signatureFunction))
-		_signatureFunction = (JSObjectRef)signatureFunction;
+	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[\"']signature[\"']\\s*,\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
+	NSTextCheckingResult *result = [signatureRegularExpression firstMatchInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
+	NSString *signatureFunctionName = result.numberOfRanges > 1 ? [script substringWithRange:[result rangeAtIndex:1]] : nil;
 	
-	if (!JSObjectIsFunction(_context, _signatureFunction))
-		return nil;
+	if (signatureFunctionName)
+	{
+		JSStringRef signatureFunctionNameRef = JSStringCreateWithCFString((__bridge CFStringRef)signatureFunctionName);
+		JSValueRef signatureFunction = JSEvaluateScript(_context, signatureFunctionNameRef, NULL, NULL, 0, NULL);
+		JSStringRelease(signatureFunctionNameRef);
+		if (JSValueIsObject(_context, signatureFunction) && JSObjectIsFunction(_context, (JSObjectRef)signatureFunction))
+			_signatureFunction = (JSObjectRef)signatureFunction;
+	}
 	
 	return self;
 }
@@ -72,7 +69,7 @@
 
 - (NSString *) unscrambleSignature:(NSString *)scrambledSignature
 {
-	if (!scrambledSignature)
+	if (!self.signatureFunction || !scrambledSignature)
 		return nil;
 	
 	JSStringRef scrambledSignatureRef = JSStringCreateWithCFString((__bridge CFStringRef)scrambledSignature);
