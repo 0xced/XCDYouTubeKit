@@ -11,7 +11,7 @@
 #import "XCDYouTubeVideoWebpage.h"
 #import "XCDYouTubePlayerScript.h"
 
-static void * XCDYouTubeRequestTypeKey = &XCDYouTubeRequestTypeKey;
+static const void * const XCDYouTubeRequestTypeKey = &XCDYouTubeRequestTypeKey;
 
 typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	XCDYouTubeRequestTypeGetVideoInfo = 1,
