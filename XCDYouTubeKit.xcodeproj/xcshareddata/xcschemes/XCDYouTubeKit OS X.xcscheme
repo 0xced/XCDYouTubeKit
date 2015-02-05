@@ -37,6 +37,11 @@
                BlueprintName = "XCDYouTubeKit OS X Tests"
                ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "XCDYouTubeProtectedVideosTestCase/testAgeRestrictedVEVOVideo">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
