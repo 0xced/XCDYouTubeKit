@@ -110,7 +110,9 @@ static const void * const PlayerKey = &PlayerKey;
 + (void) backgroundPlayback_applicationDidBecomeActive:(NSNotification *)notification
 {
 	AVPlayerLayer *playerLayer = PlayerLayer();
-	playerLayer.player = objc_getAssociatedObject(currentMoviePlayerController, PlayerKey);
+	AVPlayer *player = objc_getAssociatedObject(currentMoviePlayerController, PlayerKey);
+	if (player)
+		playerLayer.player = player;
 }
 
 @end
