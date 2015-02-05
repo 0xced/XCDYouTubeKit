@@ -107,10 +107,12 @@ static void *PlayerKey = &PlayerKey;
 	}
 }
 
-+ (void) backgroundPlayback_applicationDidBecomeActive:(NSNotification *)notification
-{
-	AVPlayerLayer *playerLayer = PlayerLayer();
-	playerLayer.player = objc_getAssociatedObject(currentMoviePlayerController, PlayerKey);
++ (void)backgroundPlayback_applicationDidBecomeActive:(NSNotification *)notification {
+  AVPlayerLayer *playerLayer = PlayerLayer();
+  AVPlayer *player = objc_getAssociatedObject(currentMoviePlayerController, PlayerKey);
+  if (player) {
+    playerLayer.player = player;
+  }
 }
 
 @end
