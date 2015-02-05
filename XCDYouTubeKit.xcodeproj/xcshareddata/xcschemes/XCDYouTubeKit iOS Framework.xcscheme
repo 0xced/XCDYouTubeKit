@@ -40,6 +40,15 @@
       debugDocumentVersioning = "YES"
       debugXPCServices = "NO"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C2F0E5721944F10E00D8EBA8"
+            BuildableName = "XCDYouTubeKit.framework"
+            BlueprintName = "XCDYouTubeKit iOS Framework"
+            ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

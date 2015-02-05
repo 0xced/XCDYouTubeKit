@@ -70,6 +70,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C2623179191D741700D23900"
+            BuildableName = "XCDYouTubeKit.framework"
+            BlueprintName = "XCDYouTubeKit OS X"
+            ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
