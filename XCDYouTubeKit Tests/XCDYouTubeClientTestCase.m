@@ -62,10 +62,10 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void) testLiveVideo_offline
+- (void) testLiveVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"xrM34fdmloc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"i2-MnWWoL6M" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNil(video.expirationDate);
