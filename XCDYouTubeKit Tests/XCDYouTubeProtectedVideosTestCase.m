@@ -198,4 +198,19 @@
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
+// With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page
+- (void) testAgeRestrictedVEVOVideoWithEmbedWebPageConnectionError_offline
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqualObjects(error.localizedDescription, @"Sign in to confirm your age");
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
 @end
