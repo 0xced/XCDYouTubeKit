@@ -61,11 +61,15 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	return self;
 }
 
-- (void) startNextVideoInfoRequest
+- (void) startNextRequest
 {
 	if (self.eventLabels.count == 0)
 	{
-		[self finishWithError:self.youTubeError ?: self.lastError];
+		XCDYouTubeRequestType requestType = [objc_getAssociatedObject(self.connection, XCDYouTubeRequestTypeKey) unsignedIntegerValue];
+		if (requestType == XCDYouTubeRequestTypeWatchPage || self.webpage)
+			[self finishWithError:self.youTubeError ?: self.lastError];
+		else
+			[self startWatchPageRequest];
 	}
 	else
 	{
@@ -77,6 +81,14 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		NSURL *videoInfoURL = [NSURL URLWithString:[@"https://www.youtube.com/get_video_info?" stringByAppendingString:queryString]];
 		[self startRequestWithURL:videoInfoURL type:XCDYouTubeRequestTypeGetVideoInfo];
 	}
+}
+
+- (void) startWatchPageRequest
+{
+	NSDictionary *query = @{ @"v": self.videoIdentifier, @"hl": self.languageIdentifier, @"has_verified": @YES };
+	NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
+	NSURL *webpageURL = [NSURL URLWithString:[@"https://www.youtube.com/watch?" stringByAppendingString:queryString]];
+	[self startRequestWithURL:webpageURL type:XCDYouTubeRequestTypeWatchPage];
 }
 
 - (void) startRequestWithURL:(NSURL *)url type:(XCDYouTubeRequestType)requestType
@@ -109,10 +121,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		{
 			self.noStreamVideo = error.userInfo[XCDYouTubeNoStreamVideoUserInfoKey];
 			
-			NSDictionary *query = @{ @"v": self.videoIdentifier, @"hl": self.languageIdentifier, @"has_verified": @YES };
-			NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
-			NSURL *webpageURL = [NSURL URLWithString:[@"https://www.youtube.com/watch?" stringByAppendingString:queryString]];
-			[self startRequestWithURL:webpageURL type:XCDYouTubeRequestTypeWatchPage];
+			[self startWatchPageRequest];
 		}
 		else
 		{
@@ -120,7 +129,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 			if (error.code > 0)
 				self.youTubeError = error;
 			
-			[self startNextVideoInfoRequest];
+			[self startNextRequest];
 		}
 	}
 }
@@ -142,7 +151,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		}
 		else
 		{
-			[self startNextVideoInfoRequest];
+			[self startNextRequest];
 		}
 	}
 }
@@ -157,7 +166,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 	else
 	{
-		[self startNextVideoInfoRequest];
+		[self startNextRequest];
 	}
 }
 
@@ -184,7 +193,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 	else
 	{
-		[self startNextVideoInfoRequest];
+		[self startNextRequest];
 	}
 }
 
@@ -221,7 +230,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	self.isExecuting = YES;
 	
 	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage" ]];
-	[self startNextVideoInfoRequest];
+	[self startNextRequest];
 }
 
 - (void) cancel
@@ -283,7 +292,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	                            NSUnderlyingErrorKey: connectionError };
 	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
 	
-	[self startNextVideoInfoRequest];
+	[self startNextRequest];
 }
 
 @end
