@@ -17,7 +17,7 @@
 
 @interface VideoPickerController : NSObject <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (nonatomic, strong) NSArray *videos;
+@property (nonatomic, copy) NSArray *videos;
 
 @property (nonatomic, weak) IBOutlet id<VideoPickerControllerDelegate> delegate;
 
