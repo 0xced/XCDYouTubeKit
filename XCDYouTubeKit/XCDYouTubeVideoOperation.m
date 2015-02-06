@@ -175,25 +175,18 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	NSString *script = [[NSString alloc] initWithData:self.connectionData encoding:NSISOLatin1StringEncoding];
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
-	if (self.playerScript)
+	if (self.webpage.isAgeRestricted)
 	{
-		if (self.webpage.isAgeRestricted)
-		{
-			NSString *eurl = [@"https://youtube.googleapis.com/v/" stringByAppendingString:self.videoIdentifier];
-			NSString *sts = [self.embedWebpage.playerConfiguration[@"sts"] description] ?: @"";
-			NSDictionary *query = @{ @"video_id": self.videoIdentifier, @"hl": self.languageIdentifier, @"eurl": eurl, @"sts": sts};
-			NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
-			NSURL *videoInfoURL = [NSURL URLWithString:[@"https://www.youtube.com/get_video_info?" stringByAppendingString:queryString]];
-			[self startRequestWithURL:videoInfoURL type:XCDYouTubeRequestTypeGetVideoInfo];
-		}
-		else
-		{
-			[self handleVideoInfoResponseWithInfo:self.webpage.videoInfo];
-		}
+		NSString *eurl = [@"https://youtube.googleapis.com/v/" stringByAppendingString:self.videoIdentifier];
+		NSString *sts = [self.embedWebpage.playerConfiguration[@"sts"] description] ?: @"";
+		NSDictionary *query = @{ @"video_id": self.videoIdentifier, @"hl": self.languageIdentifier, @"eurl": eurl, @"sts": sts};
+		NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
+		NSURL *videoInfoURL = [NSURL URLWithString:[@"https://www.youtube.com/get_video_info?" stringByAppendingString:queryString]];
+		[self startRequestWithURL:videoInfoURL type:XCDYouTubeRequestTypeGetVideoInfo];
 	}
 	else
 	{
-		[self startNextRequest];
+		[self handleVideoInfoResponseWithInfo:self.webpage.videoInfo];
 	}
 }
 
