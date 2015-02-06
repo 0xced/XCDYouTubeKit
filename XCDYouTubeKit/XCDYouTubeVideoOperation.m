@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, copy, readonly) NSString *videoIdentifier;
 @property (atomic, copy, readonly) NSString *languageIdentifier;
 
+@property (atomic, assign) NSInteger requestCount;
 @property (atomic, strong) NSURLConnection *connection;
 @property (atomic, strong) NSURLResponse *response;
 @property (atomic, strong) NSMutableData *connectionData;
@@ -67,7 +68,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	{
 		XCDYouTubeRequestType requestType = [objc_getAssociatedObject(self.connection, XCDYouTubeRequestTypeKey) unsignedIntegerValue];
 		if (requestType == XCDYouTubeRequestTypeWatchPage || self.webpage)
-			[self finishWithError:self.youTubeError ?: self.lastError];
+			[self finishWithError];
 		else
 			[self startWatchPageRequest];
 	}
@@ -95,6 +96,14 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 {
 	if ([self isCancelled])
 		return;
+	
+	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo
+	if (++self.requestCount > 6)
+	{
+		// This condition should never happen but the request flow is quite complex so better abort here than go into an infinite loop of requests
+		[self finishWithError];
+		return;
+	}
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
@@ -196,9 +205,9 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	[self finish];
 }
 
-- (void) finishWithError:(NSError *)error
+- (void) finishWithError
 {
-	self.error = error;
+	self.error = self.youTubeError ?: self.lastError;
 	[self finish];
 }
 
