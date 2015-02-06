@@ -54,11 +54,15 @@ static NSString *const offlineSuffix = @"_offline";
 	
 	BOOL onlineTests = [[[[NSProcessInfo processInfo] environment] objectForKey:@"ONLINE_TESTS"] boolValue];
 	
+	NSString *testName = NSStringFromSelector(selector);
+	if ([testName hasSuffix:offlineSuffix])
+		testName = [testName substringToIndex:testName.length - offlineSuffix.length];
+	
 	NSString *cassettesDirectory = [[[NSProcessInfo processInfo] environment] objectForKey:@"VCR_CASSETTES_DIRECTORY"];
 	cassettesDirectory = [cassettesDirectory stringByAppendingPathComponent:NSStringFromClass(self.class)];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:cassettesDirectory])
 	{
-		self.cassetteURL = [NSURL fileURLWithPath:[[cassettesDirectory stringByAppendingPathComponent:NSStringFromSelector(selector)] stringByAppendingPathExtension:@"json"]];
+		self.cassetteURL = [NSURL fileURLWithPath:[[cassettesDirectory stringByAppendingPathComponent:testName] stringByAppendingPathExtension:@"json"]];
 		[[NSFileManager defaultManager] removeItemAtURL:self.cassetteURL error:NULL];
 		[VCR setRecording:YES];
 	}
@@ -66,10 +70,6 @@ static NSString *const offlineSuffix = @"_offline";
 	{
 		if (onlineTests)
 			return;
-		
-		NSString *testName = NSStringFromSelector(selector);
-		if ([testName hasSuffix:offlineSuffix])
-			testName = [testName substringToIndex:testName.length - offlineSuffix.length];
 		
 		self.cassetteURL = [[NSBundle bundleForClass:self.class] URLForResource:testName withExtension:@"json" subdirectory:[@"Cassettes" stringByAppendingPathComponent:NSStringFromClass(self.class)]];
 		XCTAssertNotNil(self.cassetteURL);
