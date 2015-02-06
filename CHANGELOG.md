@@ -1,3 +1,10 @@
+#### Version 2.1.0
+
+* New `expirationDate` property on the `XCDYouTubeVideo` class. (#96)
+* Create proper (non generic) Xcode archives when integrated manually. (#102)
+* Adaptation to YouTube API change. (#105)
+* Fixed protected age restricted videos.
+
 #### Version 2.0.3
 
 * Adaptation to YouTube API change. (#94)

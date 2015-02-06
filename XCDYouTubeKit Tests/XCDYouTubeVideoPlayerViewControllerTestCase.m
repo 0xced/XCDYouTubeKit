@@ -19,7 +19,7 @@
 
 - (void) testVideoNotification
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"EdeVaT-zZt4"];
 	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:videoPlayerViewController queue:nil usingBlock:^(NSNotification *notification)
 	{
@@ -31,7 +31,7 @@
 
 - (void) testAsynchronousVideoNotification
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 		videoPlayerViewController.videoIdentifier = @"EdeVaT-zZt4";
@@ -46,7 +46,7 @@
 
 - (void) testNoStreamAvailableErrorNotification
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"EdeVaT-zZt4"];
 	videoPlayerViewController.preferredVideoQualities = @[];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification)
@@ -63,7 +63,7 @@
 
 - (void) testRestrictedPlaybackErrorNotification
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"1kIsylLeHHU"];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification)
 	{

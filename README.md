@@ -4,6 +4,7 @@
 [![Coverage Status](https://img.shields.io/coveralls/0xced/XCDYouTubeKit/master.svg?style=flat)](https://coveralls.io/r/0xced/XCDYouTubeKit?branch=master)
 [![Platform](https://img.shields.io/cocoapods/p/XCDYouTubeKit.svg?style=flat)](http://cocoadocs.org/docsets/XCDYouTubeKit/)
 [![Pod Version](https://img.shields.io/cocoapods/v/XCDYouTubeKit.svg?style=flat)](http://cocoadocs.org/docsets/XCDYouTubeKit/)
+[![Carthage Compatibility](https://img.shields.io/badge/carthage-✓-f2a77e.svg?style=flat)](https://github.com/Carthage/Carthage/)
 [![License](https://img.shields.io/cocoapods/l/XCDYouTubeKit.svg?style=flat)](LICENSE)
 
 **XCDYouTubeKit** is a YouTube video player for iOS and OS X.
@@ -19,22 +20,22 @@ Are you enjoying XCDYouTubeKit? You can say thank you with [a tweet](https://twi
 - Runs on iOS 5.0 and later
 - Runs on OS X 10.7 and later
 
-## Warnings
+## Warning
 
-* XCDYouTubeKit is against the YouTube [Terms of Service](https://www.youtube.com/t/terms). The only *official* way of playing a YouTube video inside an app is with a web view and the [iframe player API](https://developers.google.com/youtube/iframe_api_reference). Unfortunately, this is very slow and quite ugly, so I wrote this player to give users a better viewing experience.
-
-* Except for live videos, the player uses progressive download. Remember that some restrictions apply if you submit your app to the App Store, as stated in 
-[HTTP Live Streaming — Requirements for Apps](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/StreamingMediaGuide/UsingHTTPLiveStreaming/UsingHTTPLiveStreaming.html#//apple_ref/doc/uid/TP40008332-CH102-SW5):
-> **Warning**: iOS apps submitted for distribution in the App Store must conform to these requirements.
-> 
-> If your app delivers video over cellular networks, and the video exceeds either 10 minutes duration or 5 MB of data in a five minute period, you are required to use HTTP Live Streaming. (Progressive download may be used for smaller clips.)
+XCDYouTubeKit is against the YouTube [Terms of Service](https://www.youtube.com/t/terms). The only *official* way of playing a YouTube video inside an app is with a web view and the [iframe player API](https://developers.google.com/youtube/iframe_api_reference). Unfortunately, this is very slow and quite ugly, so I wrote this player to give users a better viewing experience.
 
 ## Installation
 
-XCDYouTubeKit is available through CocoaPods.
+XCDYouTubeKit is available through CocoaPods and Carthage.
 
+CocoaPods:
 ```ruby
-pod "XCDYouTubeKit", "~> 2.0.3"
+pod "XCDYouTubeKit", "~> 2.1.0"
+```
+
+Carthage:
+```objc
+github "0xced/XCDYouTubeKit" ~> 2.1.0
 ```
 
 Alternatively, you can manually use the provided static library on iOS or dynamic framework on OS X. In order to use the iOS static library, you must:

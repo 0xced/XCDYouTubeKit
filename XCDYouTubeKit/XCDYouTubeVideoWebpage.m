@@ -37,15 +37,22 @@
 		__block NSDictionary *playerConfigurationDictionary;
 		CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
 		NSString *html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, [self.data bytes], (CFIndex)[self.data length], encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
-		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});" options:NSRegularExpressionCaseInsensitive error:NULL];
+		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});|\\(\\s*'PLAYER_CONFIG',\\s*(\\{.*?\\})\\s*\\)" options:NSRegularExpressionCaseInsensitive error:NULL];
 		[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
 		{
-			NSString *configString = [html substringWithRange:[result rangeAtIndex:1]];
-			NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:[configString dataUsingEncoding:NSUTF8StringEncoding] options:(NSJSONReadingOptions)0 error:NULL];
-			if ([playerConfiguration isKindOfClass:[NSDictionary class]])
+			for (NSUInteger i = 1; i < [result numberOfRanges]; i++)
 			{
-				playerConfigurationDictionary = playerConfiguration;
-				*stop = YES;
+				NSRange range = [result rangeAtIndex:i];
+				if (range.length == 0)
+					continue;
+				
+				NSString *configString = [html substringWithRange:range];
+				NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:[configString dataUsingEncoding:NSUTF8StringEncoding] options:(NSJSONReadingOptions)0 error:NULL];
+				if ([playerConfiguration isKindOfClass:[NSDictionary class]])
+				{
+					playerConfigurationDictionary = playerConfiguration;
+					*stop = YES;
+				}
 			}
 		}];
 		_playerConfiguration = playerConfigurationDictionary;

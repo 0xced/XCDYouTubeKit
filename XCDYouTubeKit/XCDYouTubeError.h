@@ -29,9 +29,10 @@ typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {
 	XCDYouTubeErrorInvalidVideoIdentifier = 2,
 	
 	/**
-	 *  Returned when the video has been removed as a violation of YouTube's policy or when the video does not exist.
+	 *  Previously returned when the video was removed as a violation of YouTube's policy or when the video did not exist.
+	 *  Now replaced by code 150, i.e. `XCDYouTubeErrorRestrictedPlayback`.
 	 */
-	XCDYouTubeErrorRemovedVideo           = 100,
+	XCDYouTubeErrorRemovedVideo DEPRECATED_MSG_ATTRIBUTE("YouTube has stopped using error code 100.") = 100,
 	
 	/**
 	 *  Returned when the video is not playable because of legal reasons or when the video is private.

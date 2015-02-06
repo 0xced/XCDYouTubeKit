@@ -29,7 +29,7 @@
 	});
 }
 
-static void *BackgroundPlaybackEnabledKey = &BackgroundPlaybackEnabledKey;
+static const void * const BackgroundPlaybackEnabledKey = &BackgroundPlaybackEnabledKey;
 
 - (BOOL) isBackgroundPlaybackEnabled
 {
@@ -89,7 +89,7 @@ static AVPlayerLayer * PlayerLayer(UIView *view)
 	return playerLayer;
 }
 
-static void *PlayerKey = &PlayerKey;
+static const void * const PlayerKey = &PlayerKey;
 
 + (void) backgroundPlayback_applicationWillResignActive:(NSNotification *)notification
 {
@@ -110,7 +110,9 @@ static void *PlayerKey = &PlayerKey;
 + (void) backgroundPlayback_applicationDidBecomeActive:(NSNotification *)notification
 {
 	AVPlayerLayer *playerLayer = PlayerLayer();
-	playerLayer.player = objc_getAssociatedObject(currentMoviePlayerController, PlayerKey);
+	AVPlayer *player = objc_getAssociatedObject(currentMoviePlayerController, PlayerKey);
+	if (player)
+		playerLayer.player = player;
 }
 
 @end

@@ -124,7 +124,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 
 - (void) presentInView:(UIView *)view
 {
-	static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerViewControllerKey;
+	static const void * const XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerViewControllerKey;
 	
 	self.embedded = YES;
 	

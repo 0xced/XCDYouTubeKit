@@ -13,11 +13,12 @@
 
 - (void) testAgeRestrictedVideo
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"zKovmts2KSk" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -34,11 +35,12 @@
 
 - (void) testProtectedVEVOVideo1
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -55,11 +57,12 @@
 
 - (void) testProtectedVEVOVideo2
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -76,11 +79,12 @@
 
 - (void) testProtectedVEVOVideo3
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Ntn1-SocNiY" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -97,11 +101,12 @@
 
 - (void) testAgeRestrictedVEVOVideo
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
@@ -121,7 +126,7 @@
 //   * Tools -> Black List... -> Add host:www.youtube.com and path:watch to simulate connection error on the web page
 - (void) testProtectedVideoWithWebPageConnectionError_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -136,7 +141,7 @@
 // With Charles: Tools -> Black List... -> Add `s.ytimg.com` to simulate connection error on the player script
 - (void) testProtectedVideoWithPlayerScriptConnectionError_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -148,10 +153,10 @@
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
-// Edit testProtectedVideoWithoutSignatureFunction.json by replacing `signature=` with `signaturX=`
+// Edit testProtectedVideoWithoutSignatureFunction.json by replacing `\"signature\",` with `\"signaturX\",`
 - (void) testProtectedVideoWithoutSignatureFunction_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -166,7 +171,7 @@
 // Edit testProtectedVideoWithBrokenSignatureFunction.json by returning null in the signature function
 - (void) testProtectedVideoWithBrokenSignatureFunction_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
@@ -181,13 +186,28 @@
 // Edit testProtectedVideoWithoutJavaScriptPlayerURL.json by replacing `\"js\":` with `\"xs\":`
 - (void) testProtectedVideoWithoutJavaScriptPlayerURL_offline
 {
-	XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
 		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from WMG. It is restricted from playback on certain sites. Watch on YouTube");
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+// With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page
+- (void) testAgeRestrictedVEVOVideoWithEmbedWebPageConnectionError_offline
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqualObjects(error.localizedDescription, @"Sign in to confirm your age");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
