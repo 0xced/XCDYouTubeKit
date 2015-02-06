@@ -1,7 +1,7 @@
 language: objective-c
 install:
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-    - sudo easy_install cpp-coveralls==0.3.2
+    - sudo easy_install cpp-coveralls
 script:
     - export LC_CTYPE=en_US.UTF-8
     - set -o pipefail
