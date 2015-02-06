@@ -153,7 +153,7 @@
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
-// Edit testProtectedVideoWithoutSignatureFunction.json by replacing `signature=` with `signaturX=`
+// Edit testProtectedVideoWithoutSignatureFunction.json by replacing `\"signature\",` with `\"signaturX\",`
 - (void) testProtectedVideoWithoutSignatureFunction_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
