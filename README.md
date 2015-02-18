@@ -30,12 +30,12 @@ XCDYouTubeKit is available through CocoaPods and Carthage.
 
 CocoaPods:
 ```ruby
-pod "XCDYouTubeKit", "~> 2.1.0"
+pod "XCDYouTubeKit", "~> 2.1.1"
 ```
 
 Carthage:
 ```objc
-github "0xced/XCDYouTubeKit" ~> 2.1.0
+github "0xced/XCDYouTubeKit" ~> 2.1.1
 ```
 
 Alternatively, you can manually use the provided static library on iOS or dynamic framework on OS X. In order to use the iOS static library, you must:
