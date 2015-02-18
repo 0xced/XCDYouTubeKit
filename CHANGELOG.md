@@ -1,3 +1,7 @@
+#### Version 2.1.1
+
+* Adaptation to YouTube API change. (#116)
+
 #### Version 2.1.0
 
 * New `expirationDate` property on the `XCDYouTubeVideo` class. (#96)
