@@ -150,7 +150,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
-		XCTAssertEqualObjects(error.localizedDescription, @"invalid or missing video id");
+		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
@@ -192,7 +192,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
-		XCTAssertEqualObjects(error.localizedDescription, @"invalid or missing video id");
+		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
@@ -206,7 +206,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
-		XCTAssertEqualObjects(error.localizedDescription, @"invalid or missing video id");
+		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
