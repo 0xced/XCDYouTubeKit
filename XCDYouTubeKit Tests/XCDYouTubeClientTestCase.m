@@ -108,7 +108,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video is currently unavailable. We are working to bring it back.");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from Youtube test content owner, who has blocked it on copyright grounds.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
@@ -150,7 +150,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
-		XCTAssertEqualObjects(error.localizedDescription, @"invalid or missing video id");
+		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
@@ -192,7 +192,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
-		XCTAssertEqualObjects(error.localizedDescription, @"invalid or missing video id");
+		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
@@ -206,7 +206,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
-		XCTAssertEqualObjects(error.localizedDescription, @"invalid or missing video id");
+		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];

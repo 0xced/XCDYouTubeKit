@@ -30,6 +30,7 @@
 		[defaultCenter addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 		[defaultCenter addObserver:self selector:@selector(moviePlayerPlaybackStateDidChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
 		[defaultCenter addObserver:self selector:@selector(moviePlayerLoadStateDidChange:) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
+		[defaultCenter addObserver:self selector:@selector(moviePlayerNowPlayingMovieDidChange:) name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:nil];
 	}
 	else
 	{
@@ -37,6 +38,7 @@
 		[defaultCenter removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 		[defaultCenter removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
 		[defaultCenter removeObserver:self name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
+		[defaultCenter removeObserver:self name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:nil];
 	}
 }
 
@@ -102,6 +104,12 @@
 		[loadState appendString:@" | Stalled"];
 	
 	NSLog(@"Load State: %@", loadState.length > 0 ? [loadState substringFromIndex:3] : @"N/A");
+}
+
+- (void) moviePlayerNowPlayingMovieDidChange:(NSNotification *)notification
+{
+	MPMoviePlayerController *moviePlayerController = notification.object;
+	NSLog(@"Now Playing %@", moviePlayerController.contentURL);
 }
 
 - (void) videoPlayerViewControllerDidReceiveVideo:(NSNotification *)notification
