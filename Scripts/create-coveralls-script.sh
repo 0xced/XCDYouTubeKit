@@ -8,10 +8,11 @@ COVERALLS_SCRIPT_PATH="${SRCROOT}/Scripts/coveralls.sh"
 cat > "${COVERALLS_SCRIPT_PATH}" <<EOF
 #!/bin/bash -e
 
-cd "${OBJECT_FILE_DIR_normal}/${CURRENT_ARCH}"
+pushd "${OBJECT_FILE_DIR_normal}/${CURRENT_ARCH}"
 for file in *.gcda; do
     gcov "\${file}"
 done
+popd
 
 coveralls --no-gcov --extension ".m"
 EOF
