@@ -13,7 +13,7 @@ for file in *.gcda; do
     gcov "\${file}"
 done
 
-coveralls --root "${SRCROOT}/XCDYouTubeKit" --no-gcov --extension ".m"
+coveralls --no-gcov --extension ".m"
 EOF
 
 chmod +x "${COVERALLS_SCRIPT_PATH}"

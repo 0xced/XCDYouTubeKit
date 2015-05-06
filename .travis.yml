@@ -6,7 +6,7 @@ script:
     - export LC_CTYPE=en_US.UTF-8
     - set -o pipefail
     - xcodebuild test -project XCDYouTubeKit.xcodeproj -scheme 'XCDYouTubeKit iOS Static Library' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
-    - xcodebuild test -project XCDYouTubeKit.xcodeproj -scheme 'XCDYouTubeKit iOS Static Library' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch 64-bit)' OBJROOT=XCDYouTubeKit/build | xcpretty -c
+    - xcodebuild test -project XCDYouTubeKit.xcodeproj -scheme 'XCDYouTubeKit iOS Static Library' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch 64-bit)' OBJROOT=build | xcpretty -c
     - xcodebuild test -project XCDYouTubeKit.xcodeproj -scheme 'XCDYouTubeKit OS X' | xcpretty -c
 after_success:
     - ./Scripts/coveralls.sh
