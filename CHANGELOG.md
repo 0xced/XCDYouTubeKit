@@ -1,3 +1,7 @@
+#### Version 2.1.3
+
+* Adaptation to YouTube API change. (#144)
+
 #### Version 2.1.2
 
 * Fixed playback of some protected videos. (#122)
