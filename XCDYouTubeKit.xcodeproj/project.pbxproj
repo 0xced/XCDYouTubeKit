@@ -435,7 +435,6 @@
 				C2A3F2CB17F4827800AC1C3B /* Copy Files */,
 				C2A3F2C917F4827800AC1C3B /* Sources */,
 				C2A3F2CA17F4827800AC1C3B /* Frameworks */,
-				C214EBAB195D8F8D00804C00 /* Create Coveralls Script */,
 				C249AAA719C0872400BA17AE /* Export Environment for XcodeCoverage */,
 			);
 			buildRules = (
@@ -553,20 +552,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C214EBAB195D8F8D00804C00 /* Create Coveralls Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Create Coveralls Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/create-coveralls-script.sh\" ";
-		};
 		C249AAA519C045C400BA17AE /* Delete *.gcda files */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
