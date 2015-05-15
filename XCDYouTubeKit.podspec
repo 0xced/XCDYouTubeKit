@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "XCDYouTubeKit"
-  s.version               = "2.1.2"
+  s.version               = "2.1.3"
   s.summary               = "YouTube video player for iOS and OS X."
   s.homepage              = "https://github.com/0xced/XCDYouTubeKit"
   s.screenshot            = "https://raw.github.com/0xced/XCDYouTubeKit/#{s.version}/Screenshots/XCDYouTubeVideoPlayerViewController.png"
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.public_header_files   = "XCDYouTubeKit/XCDYouTube{Client,Error,Kit,Operation,Video,VideoOperation,VideoPlayerViewController}.h"
   s.osx.exclude_files     = "XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.{h,m}"
   s.ios.frameworks        = "MediaPlayer"
-  s.ios.xcconfig          = { "OTHER_LDFLAGS" => "-Wl,-U,_JSContextGetGlobalObject -Wl,-U,_JSEvaluateScript -Wl,-U,_JSGlobalContextCreate -Wl,-U,_JSGlobalContextRelease -Wl,-U,_JSObjectCallAsFunction -Wl,-U,_JSObjectGetPrototype -Wl,-U,_JSObjectIsFunction -Wl,-U,_JSObjectSetProperty -Wl,-U,_JSStringCopyCFString -Wl,-U,_JSStringCreateWithCFString -Wl,-U,_JSStringRelease -Wl,-U,_JSValueIsObject -Wl,-U,_JSValueIsString -Wl,-U,_JSValueMakeString -Wl,-U,_JSValueToStringCopy" }
+  s.ios.xcconfig          = { "OTHER_LDFLAGS" => "-Wl,-U,_JSContextGetGlobalObject -Wl,-U,_JSEvaluateScript -Wl,-U,_JSGlobalContextCreate -Wl,-U,_JSGlobalContextRelease -Wl,-U,_JSObjectCallAsFunction -Wl,-U,_JSObjectIsFunction -Wl,-U,_JSObjectMake -Wl,-U,_JSObjectSetProperty -Wl,-U,_JSStringCopyCFString -Wl,-U,_JSStringCreateWithCFString -Wl,-U,_JSStringRelease -Wl,-U,_JSValueIsObject -Wl,-U,_JSValueIsString -Wl,-U,_JSValueMakeString -Wl,-U,_JSValueToStringCopy" }
   s.osx.frameworks        = "JavaScriptCore"
   s.requires_arc          = true
 end
