@@ -502,6 +502,7 @@
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-Wl,-U,_JSContextGetGlobalObject",
 					"-Wl,-U,_JSEvaluateScript",
 					"-Wl,-U,_JSGlobalContextCreate",
@@ -533,6 +534,7 @@
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-Wl,-U,_JSContextGetGlobalObject",
 					"-Wl,-U,_JSEvaluateScript",
 					"-Wl,-U,_JSGlobalContextCreate",
