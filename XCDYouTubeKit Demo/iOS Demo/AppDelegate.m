@@ -4,6 +4,8 @@
 
 #import "AppDelegate.h"
 
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -23,6 +25,12 @@
 {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"EdeVaT-zZt4" }];
 	
+	DDTTYLogger *ttyLogger = [DDTTYLogger sharedInstance];
+	ttyLogger.colorsEnabled = YES;
+	char *logLevelString = getenv("DDTTYLoggerLevel");
+	DDLogLevel logLevel = logLevelString ? strtoul(logLevelString, NULL, 0) : DDLogLevelWarning;
+	[DDLog addLogger:ttyLogger withLevel:logLevel];
+	 
 	NSString *category = [[NSUserDefaults standardUserDefaults] objectForKey:@"AudioSessionCategory"];
 	if (category)
 	{
