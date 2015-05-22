@@ -10,6 +10,7 @@
 #import "XCDYouTubeError.h"
 #import "XCDYouTubeVideoWebpage.h"
 #import "XCDYouTubePlayerScript.h"
+#import "XCDYouTubeLogger.h"
 
 static const void * const XCDYouTubeRequestTypeKey = &XCDYouTubeRequestTypeKey;
 
@@ -202,12 +203,14 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 - (void) finishWithVideo:(XCDYouTubeVideo *)video
 {
 	self.video = video;
+	XCDYouTubeLogInfo(@"Video operation finished with success: %@", video);
 	[self finish];
 }
 
 - (void) finishWithError
 {
 	self.error = self.youTubeError ?: self.lastError;
+	XCDYouTubeLogError(@"Video operation finished with error: %@", self.error);
 	[self finish];
 }
 
@@ -229,6 +232,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	if ([self isCancelled])
 		return;
 	
+	XCDYouTubeLogInfo(@"Starting video operation: %@", self);
+	
 	self.isExecuting = YES;
 	
 	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage" ]];
@@ -237,6 +242,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) cancel
 {
+	XCDYouTubeLogInfo(@"Canceling video operation: %@", self);
+	
 	[super cancel];
 	
 	[self.connection cancel];
@@ -295,6 +302,13 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
 	
 	[self startNextRequest];
+}
+
+#pragma mark - NSObject
+
+- (NSString *) description
+{
+	return [NSString stringWithFormat:@"<%@: %p> %@ (%@)", self.class, self, self.videoIdentifier, self.languageIdentifier];
 }
 
 @end
