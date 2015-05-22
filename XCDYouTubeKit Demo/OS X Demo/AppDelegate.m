@@ -4,11 +4,15 @@
 
 #import "AppDelegate.h"
 
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
 @implementation AppDelegate
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"EdeVaT-zZt4" }];
+	
+	[DDLog addLogger:[DDASLLogger sharedInstance]];
 }
 
 - (IBAction) playVideo:(id)sender
