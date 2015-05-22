@@ -11,8 +11,8 @@
 + (void) log:(BOOL)asynchronous level:(NSUInteger)level flag:(DDLogFlag)flag context:(NSInteger)context file:(const char *)file function:(const char *)function line:(NSUInteger)line tag:(id)tag format:(NSString *)format, ...
 {
 	char *logLevelString = getenv("XCDYouTubeKitLogLevel");
-	DDLogFlag logLevel = logLevelString ? strtoul(logLevelString, NULL, 0) : DDLogFlagWarning;
-	if (flag > logLevel)
+	NSUInteger logLevel = logLevelString ? strtoul(logLevelString, NULL, 0) : DDLogFlagError | DDLogFlagWarning;
+	if (!(flag & logLevel))
 		return;
 	
 	va_list arguments;
