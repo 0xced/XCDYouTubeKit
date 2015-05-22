@@ -4,6 +4,8 @@
 
 #import "PlayerEventLogger.h"
 
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
 @implementation PlayerEventLogger
 
 - (instancetype) init
@@ -45,7 +47,6 @@
 - (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
 {
 	MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
-	NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
 	NSString *reason = @"Unknown";
 	switch (finishReason)
 	{
@@ -59,7 +60,7 @@
 			reason = @"User Exited";
 			break;
 	}
-	NSLog(@"Finish Reason: %@%@", reason, error ? [@"\n" stringByAppendingString:[error description]] : @"");
+	DDLogInfo(@"Finish Reason: %@", reason);
 }
 
 - (void) moviePlayerPlaybackStateDidChange:(NSNotification *)notification
@@ -87,7 +88,7 @@
 			playbackState = @"Seeking Backward";
 			break;
 	}
-	NSLog(@"Playback State: %@", playbackState);
+	DDLogInfo(@"Playback State: %@", playbackState);
 }
 
 - (void) moviePlayerLoadStateDidChange:(NSNotification *)notification
@@ -103,18 +104,18 @@
 	if (state & MPMovieLoadStateStalled)
 		[loadState appendString:@" | Stalled"];
 	
-	NSLog(@"Load State: %@", loadState.length > 0 ? [loadState substringFromIndex:3] : @"N/A");
+	DDLogInfo(@"Load State: %@", loadState.length > 0 ? [loadState substringFromIndex:3] : @"N/A");
 }
 
 - (void) moviePlayerNowPlayingMovieDidChange:(NSNotification *)notification
 {
 	MPMoviePlayerController *moviePlayerController = notification.object;
-	NSLog(@"Now Playing %@", moviePlayerController.contentURL);
+	DDLogInfo(@"Now Playing %@", moviePlayerController.contentURL);
 }
 
 - (void) videoPlayerViewControllerDidReceiveVideo:(NSNotification *)notification
 {
-	NSLog(@"Video: %@", notification.userInfo[XCDYouTubeVideoUserInfoKey]);
+	DDLogInfo(@"Video: %@", notification.userInfo[XCDYouTubeVideoUserInfoKey]);
 }
 
 @end
