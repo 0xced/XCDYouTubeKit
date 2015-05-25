@@ -4,6 +4,8 @@
 
 @interface DemoAsynchronousViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UITextField *apiKeyTextField;
+
 - (IBAction) play:(id)sender;
 
 @end
