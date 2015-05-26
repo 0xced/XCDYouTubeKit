@@ -37,6 +37,7 @@
 	_languageIdentifier = languageIdentifier;
 	_queue = [NSOperationQueue new];
 	_queue.maxConcurrentOperationCount = 6; // paul_irish: Chrome re-confirmed that the 6 connections-per-host limit is the right magic number: https://code.google.com/p/chromium/issues/detail?id=285567#c14 [https://twitter.com/paul_irish/status/422808635698212864]
+	_queue.name = NSStringFromClass(self.class);
 	
 	return self;
 }
