@@ -10,7 +10,9 @@
 /**
  *  XCDYouTubeVideoOperation is a subclass of `NSOperation` that connects to the YouTube API and parse the response.
  *
- *  Use this class only if you are very familiar with `NSOperation` and need to manage dependencies between operations. Else you should use the higher level class `XCDYouTubeClient`.
+ *  You should probably use the higher level class `XCDYouTubeClient`. Use this class only if you are very familiar with `NSOperation` and need to manage dependencies between operations.
+ *
+ *  Since version 2.2.0 this operation is synchronous and must not be started on the main thread. Starting the operation on the main thread throws an exception.
  */
 @interface XCDYouTubeVideoOperation : NSOperation <XCDYouTubeOperation>
 

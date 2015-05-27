@@ -31,8 +31,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, strong) NSMutableData *connectionData;
 @property (atomic, strong) NSMutableArray *eventLabels;
 
-@property (atomic, assign) BOOL isExecuting;
-@property (atomic, assign) BOOL isFinished;
+@property (atomic, assign) BOOL keepRunning;
 
 @property (atomic, strong) XCDYouTubeVideoWebpage *webpage;
 @property (atomic, strong) XCDYouTubeVideoWebpage *embedWebpage;
@@ -111,7 +110,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	
 	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
 	objc_setAssociatedObject(connection, XCDYouTubeRequestTypeKey, @(requestType), OBJC_ASSOCIATION_RETAIN);
-	[connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+	[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	[connection start];
 	self.connection = connection;
 }
@@ -216,28 +215,19 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 #pragma mark - NSOperation
 
-+ (BOOL) automaticallyNotifiesObserversForKey:(NSString *)key
+- (void) main
 {
-	SEL selector = NSSelectorFromString(key);
-	return selector == @selector(isExecuting) || selector == @selector(isFinished) || [super automaticallyNotifiesObserversForKey:key];
-}
-
-- (BOOL) isConcurrent
-{
-	return YES;
-}
-
-- (void) start
-{
-	if ([self isCancelled])
-		return;
+	if ([NSThread isMainThread])
+		@throw [NSException exceptionWithName:NSGenericException reason:@"XCDYouTubeVideoOperation must not be executed on the main thread." userInfo:nil];
 	
 	XCDYouTubeLogInfo(@"Starting video operation: %@", self);
 	
-	self.isExecuting = YES;
-	
 	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage" ]];
 	[self startNextRequest];
+	
+	self.keepRunning = YES;
+	while (self.keepRunning)
+		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
 }
 
 - (void) cancel
@@ -253,8 +243,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) finish
 {
-	self.isExecuting = NO;
-	self.isFinished = YES;
+	self.keepRunning = NO;
 }
 
 #pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate
