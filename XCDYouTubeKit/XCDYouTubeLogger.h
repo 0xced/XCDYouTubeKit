@@ -21,7 +21,7 @@ __attribute__((visibility("hidden")))
 
 extern Class XCDYouTubeLogClass(void);
 
-#define XCDYouTubeLog(_flag, _format, ...) [XCDYouTubeLogClass() log:YES level:NSUIntegerMax flag:(_flag) context:0x43445954 file:__FILE__ function:__PRETTY_FUNCTION__ line:__LINE__ tag:nil format:(_format), ##__VA_ARGS__]
+#define XCDYouTubeLog(_flag, _format, ...) [XCDYouTubeLogClass() log:YES level:NSUIntegerMax flag:(_flag) context:(NSInteger)0xced70676 file:__FILE__ function:__PRETTY_FUNCTION__ line:__LINE__ tag:nil format:(_format), ##__VA_ARGS__]
 
 #define XCDYouTubeLogError(format, ...)   XCDYouTubeLog(DDLogFlagError,   format, ##__VA_ARGS__)
 #define XCDYouTubeLogWarning(format, ...) XCDYouTubeLog(DDLogFlagWarning, format, ##__VA_ARGS__)
