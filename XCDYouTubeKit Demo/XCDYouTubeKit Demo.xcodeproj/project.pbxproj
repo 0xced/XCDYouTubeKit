@@ -33,6 +33,7 @@
 		C27AD2A11A0791F000866050 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C27AD2A01A0791F000866050 /* Images.xcassets */; };
 		C2BA376D192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */; };
 		C2C5D2981A6E5AB900F2B3F8 /* VideoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C5D2971A6E5AB900F2B3F8 /* VideoPickerController.m */; };
+		C2CF7CEE1B17737400C356EA /* ContextLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CF7CED1B17737400C356EA /* ContextLogFormatter.m */; };
 		C2DDFAF419C2CEB000E7DB66 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DDFAF319C2CEB000E7DB66 /* LaunchScreen.xib */; };
 		C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EFB48618730A2B0046B1FE /* SettingsViewController.m */; };
 		D6DA45E4DB3C53A40067B56D /* libPods-XCDYouTubeKit OS X Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E142D6E7DD428B9A92C81C /* libPods-XCDYouTubeKit OS X Demo.a */; };
@@ -99,6 +100,8 @@
 		C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMoviePlayerController+BackgroundPlayback.m"; sourceTree = "<group>"; };
 		C2C5D2961A6E5AB900F2B3F8 /* VideoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPickerController.h; sourceTree = "<group>"; };
 		C2C5D2971A6E5AB900F2B3F8 /* VideoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPickerController.m; sourceTree = "<group>"; };
+		C2CF7CEC1B17737400C356EA /* ContextLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextLogFormatter.h; sourceTree = "<group>"; };
+		C2CF7CED1B17737400C356EA /* ContextLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextLogFormatter.m; sourceTree = "<group>"; };
 		C2DDFAF319C2CEB000E7DB66 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libXCDYouTubeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2EFB48518730A2B0046B1FE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 			children = (
 				C27415BF17F4CDD80026834B /* AppDelegate.h */,
 				C27415C017F4CDD80026834B /* AppDelegate.m */,
+				C2CF7CEC1B17737400C356EA /* ContextLogFormatter.h */,
+				C2CF7CED1B17737400C356EA /* ContextLogFormatter.m */,
 				C2630D3D1935C449000D3917 /* PlayerEventLogger.h */,
 				C2630D3E1935C449000D3917 /* PlayerEventLogger.m */,
 				C2570B841A02415F00127127 /* NowPlayingInfoCenterProvider.h */,
@@ -425,6 +430,7 @@
 				C2570B861A02415F00127127 /* NowPlayingInfoCenterProvider.m in Sources */,
 				C27415D317F4CDD80026834B /* DemoAsynchronousViewController.m in Sources */,
 				C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */,
+				C2CF7CEE1B17737400C356EA /* ContextLogFormatter.m in Sources */,
 				C27415D417F4CDD80026834B /* DemoFullScreenViewController.m in Sources */,
 				C2C5D2981A6E5AB900F2B3F8 /* VideoPickerController.m in Sources */,
 				C27415D517F4CDD80026834B /* DemoInlineViewController.m in Sources */,

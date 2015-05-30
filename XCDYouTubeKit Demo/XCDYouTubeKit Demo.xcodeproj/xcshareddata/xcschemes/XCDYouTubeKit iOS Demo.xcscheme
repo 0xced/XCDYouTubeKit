@@ -65,7 +65,12 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "DDTTYLoggerLevel"
+            key = "DefaultLogLevel"
+            value = "3"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "XCDYouTubeLogLevel"
             value = "-1"
             isEnabled = "NO">
          </EnvironmentVariable>

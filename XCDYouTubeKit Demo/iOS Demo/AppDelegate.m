@@ -4,7 +4,7 @@
 
 #import "AppDelegate.h"
 
-#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "ContextLogFormatter.h"
 
 @implementation AppDelegate
 
@@ -21,15 +21,22 @@
 	return self;
 }
 
+static DDLogLevel LogLevelForEnvironmentVariable(NSString *levelEnvironment, DDLogLevel defaultLogLevel)
+{
+	NSString *logLevelString = [[[NSProcessInfo processInfo] environment] objectForKey:levelEnvironment];
+	return logLevelString ? strtoul(logLevelString.UTF8String, NULL, 0) : defaultLogLevel;
+}
+
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"EdeVaT-zZt4" }];
 	
 	DDTTYLogger *ttyLogger = [DDTTYLogger sharedInstance];
+	DDLogLevel defaultLogLevel = LogLevelForEnvironmentVariable(@"DefaultLogLevel", DDLogLevelInfo);
+	DDLogLevel youTubeLogLevel = LogLevelForEnvironmentVariable(@"XCDYouTubeLogLevel", DDLogLevelWarning);
+	ttyLogger.logFormatter = [[ContextLogFormatter alloc] initWithLevels:@{ @((NSInteger)0xced70676) : @(youTubeLogLevel) } defaultLevel:defaultLogLevel];
 	ttyLogger.colorsEnabled = YES;
-	char *logLevelString = getenv("DDTTYLoggerLevel");
-	DDLogLevel logLevel = logLevelString ? strtoul(logLevelString, NULL, 0) : DDLogLevelWarning;
-	[DDLog addLogger:ttyLogger withLevel:logLevel];
+	[DDLog addLogger:ttyLogger];
 	 
 	NSString *category = [[NSUserDefaults standardUserDefaults] objectForKey:@"AudioSessionCategory"];
 	if (category)
