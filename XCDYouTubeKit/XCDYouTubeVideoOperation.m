@@ -105,6 +105,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		return;
 	}
 	
+	XCDYouTubeLogDebug(@"Starting request: %@", url);
+	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
 	
@@ -117,6 +119,9 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info
 {
+	XCDYouTubeLogDebug(@"Handling video info response");
+	XCDYouTubeLogVerbose(@"Video info: %@", info);
+	
 	NSError *error = nil;
 	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:self.response error:&error];
 	if (video)
@@ -145,6 +150,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) handleWebPageResponse
 {
+	XCDYouTubeLogDebug(@"Handling web page response");
+	
 	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
 	
 	if (self.webpage.javaScriptPlayerURL)
@@ -167,6 +174,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) handleEmbedWebPageResponse
 {
+	XCDYouTubeLogDebug(@"Handling embed web page response");
+	
 	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
 	
 	if (self.embedWebpage.javaScriptPlayerURL)
@@ -181,6 +190,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) handleJavaScriptPlayerResponse
 {
+	XCDYouTubeLogDebug(@"Handling JavaScript player response");
+	
 	NSString *script = [[NSString alloc] initWithData:self.connectionData encoding:NSISOLatin1StringEncoding];
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
