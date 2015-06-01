@@ -13,12 +13,29 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
+#import "XCDYouTubeLogger.h"
+
 @interface XCDYouTubePlayerScript ()
 @property (nonatomic, assign) JSGlobalContextRef context;
 @property (nonatomic, assign) JSObjectRef signatureFunction;
 @end
 
 @implementation XCDYouTubePlayerScript
+
+static NSString * JSValueDescription(JSContextRef context, JSValueRef value)
+{
+	JSStringRef exceptionStringRef = JSValueToStringCopy(context, value, NULL);
+	if (exceptionStringRef)
+	{
+		CFStringRef exceptionString = JSStringCopyCFString(kCFAllocatorDefault, exceptionStringRef);
+		JSStringRelease(exceptionStringRef);
+		if (exceptionString)
+		{
+			return CFBridgingRelease(exceptionString);
+		}
+	}
+	return nil;
+}
 
 - (instancetype) initWithString:(NSString *)string
 {
@@ -30,6 +47,8 @@
 	static NSString *jsEpilogue = @")();";
 	if ([script hasPrefix:jsPrologue] && [script hasSuffix:jsEpilogue])
 		script = [script substringWithRange:NSMakeRange(jsPrologue.length, script.length - (jsPrologue.length + jsEpilogue.length))];
+	else
+		XCDYouTubeLogWarning(@"Unexpected player script (not an anonymous function)");
 	
 	_context = JSGlobalContextCreate(NULL);
 	
@@ -48,7 +67,10 @@
 	}
 	
 	JSStringRef scriptRef = JSStringCreateWithCFString((__bridge CFStringRef)script);
-	JSEvaluateScript(_context, scriptRef, NULL, NULL, 0, NULL);
+	JSValueRef exception;
+	JSValueRef scriptResult = JSEvaluateScript(_context, scriptRef, NULL, NULL, 0, &exception);
+	if (!scriptResult && exception)
+		XCDYouTubeLogWarning(@"JavaScript exception: %@", JSValueDescription(_context, exception));
 	JSStringRelease(scriptRef);
 	
 	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[\"']signature[\"']\\s*,\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
@@ -63,6 +85,9 @@
 		if (JSValueIsObject(_context, signatureFunction) && JSObjectIsFunction(_context, (JSObjectRef)signatureFunction))
 			_signatureFunction = (JSObjectRef)signatureFunction;
 	}
+	
+	if (!_signatureFunction)
+		XCDYouTubeLogWarning(@"No signature function in player script");
 	
 	return self;
 }
