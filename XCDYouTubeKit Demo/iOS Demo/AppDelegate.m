@@ -5,6 +5,7 @@
 #import "AppDelegate.h"
 
 #import "ContextLogFormatter.h"
+#import <XCDLumberjackNSLogger/XCDLumberjackNSLogger.h>
 
 @implementation AppDelegate
 
@@ -35,6 +36,11 @@ static void InitializeLoggers(void)
 	ttyLogger.logFormatter = [[ContextLogFormatter alloc] initWithLevels:@{ @((NSInteger)0xced70676) : @(youTubeLogLevel) } defaultLevel:defaultLogLevel];
 	ttyLogger.colorsEnabled = YES;
 	[DDLog addLogger:ttyLogger];
+	
+	NSString *bonjourServiceName = [[[NSProcessInfo processInfo] environment] objectForKey:@"NSLOGGER_BONJOUR_SERVICE_NAME"];
+	XCDLumberjackNSLogger *logger = [[XCDLumberjackNSLogger alloc] initWithBonjourServiceName:bonjourServiceName];
+	logger.tags = @{ @0: @"Movie Player", @((NSInteger)0xced70676) : @"XCDYouTubeKit" };
+	[DDLog addLogger:logger];
 }
 
 static void InitializeUserDefaults(void)
