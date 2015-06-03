@@ -43,6 +43,7 @@ static NSString * JSValueDescription(JSContextRef context, JSValueRef value)
 		return nil;
 	
 	NSString *script = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	XCDYouTubeLogTrace(@"%@", script);
 	static NSString *jsPrologue = @"(function()";
 	static NSString *jsEpilogue = @")();";
 	if ([script hasPrefix:jsPrologue] && [script hasSuffix:jsEpilogue])

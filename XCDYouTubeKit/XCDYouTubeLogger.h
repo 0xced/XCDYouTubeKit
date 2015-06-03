@@ -10,7 +10,8 @@ typedef NS_OPTIONS(NSUInteger, DDLogFlag) {
 	DDLogFlagWarning    = (1 << 1), // 0...00010
 	DDLogFlagInfo       = (1 << 2), // 0...00100
 	DDLogFlagDebug      = (1 << 3), // 0...01000
-	DDLogFlagVerbose    = (1 << 4)  // 0...10000
+	DDLogFlagVerbose    = (1 << 4), // 0...10000
+	DDLogFlagTrace      = (1 << 5)  // 0..100000 (custom level not present in DDLog.h)
 };
 
 __attribute__((visibility("hidden")))
@@ -28,3 +29,4 @@ extern Class XCDYouTubeLogClass(void);
 #define XCDYouTubeLogInfo(format, ...)    XCDYouTubeLog(DDLogFlagInfo,    format, ##__VA_ARGS__)
 #define XCDYouTubeLogDebug(format, ...)   XCDYouTubeLog(DDLogFlagDebug,   format, ##__VA_ARGS__)
 #define XCDYouTubeLogVerbose(format, ...) XCDYouTubeLog(DDLogFlagVerbose, format, ##__VA_ARGS__)
+#define XCDYouTubeLogTrace(format, ...)   XCDYouTubeLog(DDLogFlagTrace,   format, ##__VA_ARGS__)
