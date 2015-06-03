@@ -30,3 +30,21 @@
 #define COCOAPODS_VERSION_MINOR_CocoaLumberjack_Extensions 0
 #define COCOAPODS_VERSION_PATCH_CocoaLumberjack_Extensions 0
 
+// NSLogger
+#define COCOAPODS_POD_AVAILABLE_NSLogger
+#define COCOAPODS_VERSION_MAJOR_NSLogger 1
+#define COCOAPODS_VERSION_MINOR_NSLogger 5
+#define COCOAPODS_VERSION_PATCH_NSLogger 1
+
+// NSLogger/Standard
+#define COCOAPODS_POD_AVAILABLE_NSLogger_Standard
+#define COCOAPODS_VERSION_MAJOR_NSLogger_Standard 1
+#define COCOAPODS_VERSION_MINOR_NSLogger_Standard 5
+#define COCOAPODS_VERSION_PATCH_NSLogger_Standard 1
+
+// XCDLumberjackNSLogger
+#define COCOAPODS_POD_AVAILABLE_XCDLumberjackNSLogger
+#define COCOAPODS_VERSION_MAJOR_XCDLumberjackNSLogger 1
+#define COCOAPODS_VERSION_MINOR_XCDLumberjackNSLogger 0
+#define COCOAPODS_VERSION_PATCH_XCDLumberjackNSLogger 0
+

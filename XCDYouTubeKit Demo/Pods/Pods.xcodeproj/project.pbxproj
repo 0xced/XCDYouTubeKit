@@ -7,441 +7,667 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06F7A6E899CCDDCD6CD899B0 /* CocoaLumberjack.h in Headers */ = {isa = PBXBuildFile; fileRef = 811DE7165142D00C541B703C /* CocoaLumberjack.h */; };
-		083F44BEC37F538031E4B880 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7E866B796D2C5044DF7819 /* DDAbstractDatabaseLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		09FF25A6A1E06B91E5BB3F61 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B913D8012B986D986EB58E0 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m */; };
-		1364E80B1ED242B300CB0A2E /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = CD08CAA93E6342CD3997E23C /* DDASLLogger.h */; };
-		1AC75A1FACC413E3B951C353 /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = CD08CAA93E6342CD3997E23C /* DDASLLogger.h */; };
-		1D4EF03CADCFC501B4862234 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E225F6277CF4827033F8A5E /* DDTTYLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		21CB12FE570234180D662BC8 /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 73BDA2DDA321CE599B83A79A /* DDTTYLogger.h */; };
-		28AF30E460F8C092DA7F4C32 /* DDLog+LOGV.h in Headers */ = {isa = PBXBuildFile; fileRef = ABA99ACE9B02DC22E6E702A0 /* DDLog+LOGV.h */; };
-		2D922F7D3C4D23351DA575AB /* Pods-XCDYouTubeKit iOS Demo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FF4D5D50D0E9F3056DE332 /* Pods-XCDYouTubeKit iOS Demo-dummy.m */; };
-		2EF096547837E81C7DC92C5C /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 8256DFF6CC50EA397D11D40A /* DDAbstractDatabaseLogger.h */; };
-		32F2FC9D6EEC18F2448D3E3C /* DDMultiFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E0ABEE380BFAB3E28596D3A /* DDMultiFormatter.h */; };
-		33EB0DF435947BFC139242A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7ED9DE1826061CD863CFAD /* Foundation.framework */; };
-		40A62FB15BC9D6C500B5C6F8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B5E669389F517023ABC14A /* Cocoa.framework */; };
-		41607790FF43E4829D97A8BB /* DDDispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07192E08AA0692968A1DD8F8 /* DDDispatchQueueLogFormatter.h */; };
-		4186E7DF3671F2BB6CB748FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B5E669389F517023ABC14A /* Cocoa.framework */; };
-		448DA4D5FF76760F66D3D9C0 /* DDASLLogCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = E3866D8F2C48D21B128B11D7 /* DDASLLogCapture.h */; };
-		4D6EF19EFA01888474B323CC /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = DC85AAF476DD5BF21AC3128F /* DDLog.h */; };
-		6425212919C29FBA444B66CF /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7E866B796D2C5044DF7819 /* DDAbstractDatabaseLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		7277B35073820AF1268B5C19 /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 8256DFF6CC50EA397D11D40A /* DDAbstractDatabaseLogger.h */; };
-		7F4EBD2A2A177FFE6A9F16AF /* DDLogMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = C66980CDDF377174E3C8C78F /* DDLogMacros.h */; };
-		845D57C1A570FB31B0BCBD04 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E2FCB22998B10DA474F1E3 /* DDASLLogCapture.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		86A73CD74BB2A5D19A77BCCF /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42173D41118FD2EC0DAAC73B /* DDFileLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8F28BC1AF0F1C17DBE8329A5 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F5E13F65A73E04C8E92040 /* DDLog.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		9198C6A91878BBCBEBAF99D0 /* DDLog+LOGV.h in Headers */ = {isa = PBXBuildFile; fileRef = ABA99ACE9B02DC22E6E702A0 /* DDLog+LOGV.h */; };
-		95A41CD81ECF001F06D87E03 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 268850CBE7260158B26193CF /* DDMultiFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		98CB915D1B4373C834DCB41D /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E0BB88240DD237CE4F5309 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m */; };
-		9A5F1B2DF26AD0C7397440C7 /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 73BDA2DDA321CE599B83A79A /* DDTTYLogger.h */; };
-		9BA6C96FC98EABB83E482EE1 /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1969FBF6F700305800341896 /* DDFileLogger.h */; };
-		9D7E2322E2AB504E9EE44BED /* DDASLLogCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = E3866D8F2C48D21B128B11D7 /* DDASLLogCapture.h */; };
-		9EC49EBAEEE5251FA19CF6EA /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1969FBF6F700305800341896 /* DDFileLogger.h */; };
-		A5DDD74D65F40A6BF113C1C4 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E225F6277CF4827033F8A5E /* DDTTYLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		ACEFC72DC558C1FE6FE2591F /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = DC85AAF476DD5BF21AC3128F /* DDLog.h */; };
-		AFF8A359A35EB7562B89034C /* DDDispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07192E08AA0692968A1DD8F8 /* DDDispatchQueueLogFormatter.h */; };
-		B04459B2ED15FF50D9ACC69A /* DDContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 17508D583DCA180D8FCABAD3 /* DDContextFilterLogFormatter.h */; };
-		B5027BC014E50B35AAC3B1AC /* Pods-XCDYouTubeKit OS X Demo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE25C7966ED413F06431B6 /* Pods-XCDYouTubeKit OS X Demo-dummy.m */; };
-		BF3E21941D0D96CAD261E15E /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 268850CBE7260158B26193CF /* DDMultiFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		BFCD194B7EF736596F25B0BE /* DDMultiFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E0ABEE380BFAB3E28596D3A /* DDMultiFormatter.h */; };
-		C058050CDDA49CB7988235E1 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F5E13F65A73E04C8E92040 /* DDLog.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		C1A2DF6ECF45AF7C43DE7332 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F59752E70CEB6A500CBEB5 /* DDASLLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		C2E592746F6F9327667F5041 /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B63FD306AA5475ED2CCFBAD /* DDContextFilterLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		C873916BD5A918100A03277A /* DDAssertMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EB30A0F4B7BCA63661DEF727 /* DDAssertMacros.h */; };
-		CA370E51EF90C2A8497C0867 /* DDLegacyMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F575CDDE08D6187B03AA15 /* DDLegacyMacros.h */; };
-		CA3FAB19C53205F0581F93A7 /* DDLogMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = C66980CDDF377174E3C8C78F /* DDLogMacros.h */; };
-		D1405DB4D257778AB797AA39 /* CocoaLumberjack.h in Headers */ = {isa = PBXBuildFile; fileRef = 811DE7165142D00C541B703C /* CocoaLumberjack.h */; };
-		D686556421F63FF983402DE8 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F59752E70CEB6A500CBEB5 /* DDASLLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		D888CE33D73B5A107660391B /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 42173D41118FD2EC0DAAC73B /* DDFileLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E369BB764777FB4AED8C4F68 /* DDLegacyMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F575CDDE08D6187B03AA15 /* DDLegacyMacros.h */; };
-		E3EDE7154664F90BF53CAC6D /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A89AFC4932E0CBF29777BA /* DDDispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E89FABA63D058989C3C10981 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E2FCB22998B10DA474F1E3 /* DDASLLogCapture.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		EEB9220B1888F55A74537704 /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B63FD306AA5475ED2CCFBAD /* DDContextFilterLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		F1CD0267C546418EA4322934 /* DDContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 17508D583DCA180D8FCABAD3 /* DDContextFilterLogFormatter.h */; };
-		F7BF9E5251C7970471C43F53 /* DDAssertMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EB30A0F4B7BCA63661DEF727 /* DDAssertMacros.h */; };
-		FE8BCB0782DCDCB2FBC4422F /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A89AFC4932E0CBF29777BA /* DDDispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		FEDFF531F63D9DF8EC879040 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7ED9DE1826061CD863CFAD /* Foundation.framework */; };
+		0030D6B968B61C18BE611DED /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3016F4FC37578D4C2F1F00A9 /* DDContextFilterLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		01ED0E3C44AD6E1CDF36AA62 /* DDDispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B5A41DF096CFB0E9254FE7E /* DDDispatchQueueLogFormatter.h */; };
+		05E3CEEA637B64101C3D1685 /* DDASLLogCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A58C21B2D1F44668E43F603 /* DDASLLogCapture.h */; };
+		06AF7357CCB131BB72027522 /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D76865B8CADD12BC5ACD5677 /* LoggerClient.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		10F7342957D3C23121A2A34C /* Pods-XCDYouTubeKit OS X Demo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 657BBAEC7A4839DCC5816E9E /* Pods-XCDYouTubeKit OS X Demo-dummy.m */; };
+		11392E393FCF035C65EE7AB8 /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C87465C13DBD78BEDC56D2EE /* DDASLLogger.h */; };
+		13A7BB442D6B34AF55CDCF48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738948D8CC188C56F4CCEF40 /* Foundation.framework */; };
+		144909EB3A203175EB061D44 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F927F76FF9946AB7BD6F1F2 /* DDAbstractDatabaseLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1BF4DFA509C89BCA9F10D170 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC1115E39842C56554ECF52 /* DDTTYLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2331047F33EA4C318D449CDB /* Pods-XCDYouTubeKit OS X Demo-NSLogger-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F5E28237EB4A453EC26A5 /* Pods-XCDYouTubeKit OS X Demo-NSLogger-dummy.m */; };
+		278F4C2326049327022AE600 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B953CC174A83E5BC40F20291 /* DDLog.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2E39BBED8F5FCF332D960E6F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE690B5409B35CE0FD4EF49 /* CFNetwork.framework */; };
+		2ECA364B70E63DCE6BFC461E /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF77044A1FA2A63A36A51C2 /* DDFileLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		306D829DC1B3430A52253456 /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE75DA11E97E0A7AC81822B /* DDAbstractDatabaseLogger.h */; };
+		3084C4AC43C7AF3585F50072 /* DDLogMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = BED6854EC3D55C73F1FA681A /* DDLogMacros.h */; };
+		3552FAB7DC932C1E704C98A4 /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D718CEA9C7EBC84F8BBA6428 /* DDTTYLogger.h */; };
+		357FFE54D34522F21351ABA9 /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F62D57A1D6B509B0AB71AC07 /* DDDispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		362570A933EE75D2ECAF22C9 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F74C6287B392004E240D9397 /* DDASLLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		3D0B4CD354E64F1458656B8A /* XCDLumberjackNSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 2836F93EF0CB84FC6D99F3C8 /* XCDLumberjackNSLogger.h */; };
+		442DEEAB83EC15E5E64DD9BD /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D56C1B32F95F1FEF07ABB0 /* DDFileLogger.h */; };
+		4C368CB4CD703FA72EAD37FC /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE615D4C1625686BCCA0DEC /* DDASLLogCapture.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		4E4CCD23DB669F6B5C9B28D0 /* XCDLumberjackNSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 2836F93EF0CB84FC6D99F3C8 /* XCDLumberjackNSLogger.h */; };
+		51C053E77BAA0769F62F9878 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4443A423C2C1899936CABD28 /* CoreServices.framework */; };
+		52CF52B3D278A6976B4E3ACE /* DDMultiFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ABBDD53B27903391C1D9C87 /* DDMultiFormatter.h */; };
+		531235984821856B41A3929E /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A735442289ADF1C81FBB5807 /* DDMultiFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		545FCA45489B4CE63A9E0C0C /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F927F76FF9946AB7BD6F1F2 /* DDAbstractDatabaseLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		58F4DBA53D426AD1004D2882 /* LoggerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F07AE5705C15DF717BAEA8BC /* LoggerClient.h */; };
+		5A75D8BF533995F8D93D9A2D /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D76865B8CADD12BC5ACD5677 /* LoggerClient.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		5C323254D1617D16EE954884 /* DDContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = A12701E07F8900639A05F053 /* DDContextFilterLogFormatter.h */; };
+		5CADB9ECFC759B26B9F9535F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0C682A32499F8006C9294C /* Cocoa.framework */; };
+		601804193490E6CD8F3D9C24 /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 143C0041945C40DB537DECA2 /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-dummy.m */; };
+		685D91CE2654C6B73FD2D0DD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054B4FEC5ADAF120086EFCA6 /* SystemConfiguration.framework */; };
+		6DA597813FA2F6D42AC29FE5 /* DDDispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B5A41DF096CFB0E9254FE7E /* DDDispatchQueueLogFormatter.h */; };
+		6DBFF5453252D6BEC92A862F /* CocoaLumberjack.h in Headers */ = {isa = PBXBuildFile; fileRef = 6028E2D28B70F7CD4ADF22E1 /* CocoaLumberjack.h */; };
+		742D24404A0D2E94F0D197AB /* NSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = CECDF14C97837417A0A0D503 /* NSLogger.h */; };
+		7A98BBB7336192C240931740 /* DDLegacyMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DC7E48564512F1DAC4E4FBA /* DDLegacyMacros.h */; };
+		7F0A3BC638E309DE62CC0B4C /* XCDLumberjackNSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D21E8FB657D08F5ACC5646F3 /* XCDLumberjackNSLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		812CF5D54CF99CA219C53AB5 /* Pods-XCDYouTubeKit iOS Demo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B2824741DBC373A839996F3A /* Pods-XCDYouTubeKit iOS Demo-dummy.m */; };
+		83271101E23756B7343DBB3E /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 538954CF9C99B8DBF27B60A1 /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-dummy.m */; };
+		8510C70D9F4E5778E7F69454 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738948D8CC188C56F4CCEF40 /* Foundation.framework */; };
+		8754D3E74F337B804E20A59C /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A735442289ADF1C81FBB5807 /* DDMultiFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		87F57A6A440E705D04C3F06E /* DDLogMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = BED6854EC3D55C73F1FA681A /* DDLogMacros.h */; };
+		88D5F0292D291CB6AAC04719 /* CocoaLumberjack.h in Headers */ = {isa = PBXBuildFile; fileRef = 6028E2D28B70F7CD4ADF22E1 /* CocoaLumberjack.h */; };
+		88DC539DDE009261A1502E87 /* DDASLLogCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A58C21B2D1F44668E43F603 /* DDASLLogCapture.h */; };
+		892887CDE9C7D76A5EC1BB38 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B953CC174A83E5BC40F20291 /* DDLog.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		93F86CE15D885297C0B508F2 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 805FC53DF9F85A77477203B3 /* DDLog.h */; };
+		9ADDF45916F5889A6146AF5F /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F62D57A1D6B509B0AB71AC07 /* DDDispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9DF7F0243E23CD7671217D0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034AB8B66C0D2E42C621C01B /* SystemConfiguration.framework */; };
+		9F61E753411A9B7C7DFD7B42 /* DDLog+LOGV.h in Headers */ = {isa = PBXBuildFile; fileRef = FC56AA0A2F55FA062E254C81 /* DDLog+LOGV.h */; };
+		9F8C9E0690C8D7F8775EF801 /* LoggerCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 04FC4CA1C8F72DBE89F69D19 /* LoggerCommon.h */; };
+		A9AF591AEABFE5139676B140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0C682A32499F8006C9294C /* Cocoa.framework */; };
+		AB7217F41E8F3FAD1E90F573 /* DDLegacyMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DC7E48564512F1DAC4E4FBA /* DDLegacyMacros.h */; };
+		ABC39B60819DA0968609271C /* NSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = CECDF14C97837417A0A0D503 /* NSLogger.h */; };
+		AEE3E00BEC9DEB1330749CB1 /* XCDLumberjackNSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D21E8FB657D08F5ACC5646F3 /* XCDLumberjackNSLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B327675A3FB7904362322C2F /* DDContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = A12701E07F8900639A05F053 /* DDContextFilterLogFormatter.h */; };
+		B3A46F8F653A66BDF1280905 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC1115E39842C56554ECF52 /* DDTTYLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B695318538D6E3A1A3AE19F7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738948D8CC188C56F4CCEF40 /* Foundation.framework */; };
+		B9375795E7E3695141AEEF29 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF77044A1FA2A63A36A51C2 /* DDFileLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B995DBF836747525893A56C6 /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3016F4FC37578D4C2F1F00A9 /* DDContextFilterLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		BD8F9415E433F075A98A7CD6 /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE75DA11E97E0A7AC81822B /* DDAbstractDatabaseLogger.h */; };
+		C0DDA162637F6B0A0FE33498 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F74C6287B392004E240D9397 /* DDASLLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C1777D976D20820CA83D21B4 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE3A6ACD3E33CABA9641013 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m */; };
+		C4762FBD633D5C2DBA93A8E9 /* DDAssertMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 11C448DCD75BBA0E98B5E3CC /* DDAssertMacros.h */; };
+		C4C4C875A4C93B52D7B9F9A9 /* LoggerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F07AE5705C15DF717BAEA8BC /* LoggerClient.h */; };
+		D57964FB5E44C1DCC39AA04F /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D718CEA9C7EBC84F8BBA6428 /* DDTTYLogger.h */; };
+		DE11EEC6286B8553433EC784 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE615D4C1625686BCCA0DEC /* DDASLLogCapture.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E724B5F2BCC785F0873FB005 /* LoggerCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 04FC4CA1C8F72DBE89F69D19 /* LoggerCommon.h */; };
+		E917C2266ECEB43CFAA28A11 /* DDLog+LOGV.h in Headers */ = {isa = PBXBuildFile; fileRef = FC56AA0A2F55FA062E254C81 /* DDLog+LOGV.h */; };
+		EA30A3ABA91791D5A0AD07AB /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C87465C13DBD78BEDC56D2EE /* DDASLLogger.h */; };
+		ECD2CFC886412190A5B60DD5 /* Pods-XCDYouTubeKit iOS Demo-NSLogger-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F96B49343E861171E227FB /* Pods-XCDYouTubeKit iOS Demo-NSLogger-dummy.m */; };
+		F4E4DABCE54E3352DA333D6E /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 805FC53DF9F85A77477203B3 /* DDLog.h */; };
+		F52FB46C6A172A9302D7B9FB /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2F02D2500F4408785410EB /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m */; };
+		F644740EE5FD3948774A1609 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0C682A32499F8006C9294C /* Cocoa.framework */; };
+		F6C998855FA48DA3B42915B9 /* DDAssertMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 11C448DCD75BBA0E98B5E3CC /* DDAssertMacros.h */; };
+		F75C5540FFFDAFC8E00B8B72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738948D8CC188C56F4CCEF40 /* Foundation.framework */; };
+		F8212793031F8398CCCA0FF3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0C682A32499F8006C9294C /* Cocoa.framework */; };
+		FC9CA7EFE38AFB21A03DDAAE /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 52D56C1B32F95F1FEF07ABB0 /* DDFileLogger.h */; };
+		FFD06E60189F02A69FE1ADB5 /* DDMultiFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ABBDD53B27903391C1D9C87 /* DDMultiFormatter.h */; };
+		FFD28CD99714023DA1639DAF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DF08F8D4C0A6EF0FACE2D2 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		998C48AA85052C7D164EF082 /* PBXContainerItemProxy */ = {
+		08E00AA8746CE509E0196B27 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5B6E98D6DFC53A7051B84748 /* Project object */;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 27D14CAAD856EB509BEAB4C5;
+			remoteGlobalIDString = F927882359EEA63918E89463;
 			remoteInfo = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack";
 		};
-		E053C3646ACC94105D17F0D8 /* PBXContainerItemProxy */ = {
+		265160CBC7AD56B463C086C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5B6E98D6DFC53A7051B84748 /* Project object */;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E4B56136EA618545ADBF254A;
+			remoteGlobalIDString = 2BA62570900EC224FCACA9E8;
+			remoteInfo = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack";
+		};
+		6A08A35298259F91BC7FCA41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6FAB013E3D0672BE7F6ACA3A;
+			remoteInfo = "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger";
+		};
+		73904B1C4F0DFDA2E66A7D9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5EF7F2F013FF74643A226A09;
+			remoteInfo = "Pods-XCDYouTubeKit OS X Demo-NSLogger";
+		};
+		7B0070FF68E25F711EDE842C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5EF7F2F013FF74643A226A09;
+			remoteInfo = "Pods-XCDYouTubeKit OS X Demo-NSLogger";
+		};
+		BE439A7C61691C85BE98F5F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B792B70319002CDF454172FF;
+			remoteInfo = "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger";
+		};
+		DB92A6C81B9F403C02B8C869 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67DBCDBE3A53D4841D09885E;
+			remoteInfo = "Pods-XCDYouTubeKit iOS Demo-NSLogger";
+		};
+		DD1A7F13ECAFE99C3ED5ABB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F927882359EEA63918E89463;
+			remoteInfo = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack";
+		};
+		F5EA15F63B5C933D7EDC8D2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67DBCDBE3A53D4841D09885E;
+			remoteInfo = "Pods-XCDYouTubeKit iOS Demo-NSLogger";
+		};
+		F932534090A4583EF5D20087 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3D99A8127414F8EA2B00DCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BA62570900EC224FCACA9E8;
 			remoteInfo = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07192E08AA0692968A1DD8F8 /* DDDispatchQueueLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDDispatchQueueLogFormatter.h; path = Classes/Extensions/DDDispatchQueueLogFormatter.h; sourceTree = "<group>"; };
-		15F5E13F65A73E04C8E92040 /* DDLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDLog.m; path = Classes/DDLog.m; sourceTree = "<group>"; };
-		17508D583DCA180D8FCABAD3 /* DDContextFilterLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDContextFilterLogFormatter.h; path = Classes/Extensions/DDContextFilterLogFormatter.h; sourceTree = "<group>"; };
-		1969FBF6F700305800341896 /* DDFileLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDFileLogger.h; path = Classes/DDFileLogger.h; sourceTree = "<group>"; };
-		24DE25C7966ED413F06431B6 /* Pods-XCDYouTubeKit OS X Demo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-XCDYouTubeKit OS X Demo-dummy.m"; sourceTree = "<group>"; };
-		268850CBE7260158B26193CF /* DDMultiFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDMultiFormatter.m; path = Classes/Extensions/DDMultiFormatter.m; sourceTree = "<group>"; };
-		27FF4D5D50D0E9F3056DE332 /* Pods-XCDYouTubeKit iOS Demo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-XCDYouTubeKit iOS Demo-dummy.m"; sourceTree = "<group>"; };
-		290A0FF063F24DFE18A971B6 /* libPods-XCDYouTubeKit OS X Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit OS X Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D72B0E748FC39201A237A5F /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack.xcconfig"; path = "../Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack.xcconfig"; sourceTree = "<group>"; };
-		2E225F6277CF4827033F8A5E /* DDTTYLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDTTYLogger.m; path = Classes/DDTTYLogger.m; sourceTree = "<group>"; };
-		37F59752E70CEB6A500CBEB5 /* DDASLLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDASLLogger.m; path = Classes/DDASLLogger.m; sourceTree = "<group>"; };
-		3A3DA267914CEDD1C50F68EC /* Pods-XCDYouTubeKit OS X Demo-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-XCDYouTubeKit OS X Demo-environment.h"; sourceTree = "<group>"; };
-		3C40A9E9FDB7EDACEAEF2B86 /* Pods-XCDYouTubeKit iOS Demo-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-XCDYouTubeKit iOS Demo-environment.h"; sourceTree = "<group>"; };
-		3F58AB0CD2CE41E7283C11FF /* Pods-XCDYouTubeKit iOS Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit iOS Demo.release.xcconfig"; sourceTree = "<group>"; };
-		42173D41118FD2EC0DAAC73B /* DDFileLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDFileLogger.m; path = Classes/DDFileLogger.m; sourceTree = "<group>"; };
-		47E0BB88240DD237CE4F5309 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m"; path = "../Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m"; sourceTree = "<group>"; };
-		4E0ABEE380BFAB3E28596D3A /* DDMultiFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDMultiFormatter.h; path = Classes/Extensions/DDMultiFormatter.h; sourceTree = "<group>"; };
-		553C8D32F15676D4448ED258 /* Pods-XCDYouTubeKit iOS Demo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-XCDYouTubeKit iOS Demo-resources.sh"; sourceTree = "<group>"; };
-		581511892F89E1905B559C73 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-prefix.pch"; sourceTree = "<group>"; };
-		5D579AC23235E0F6596B62EE /* Pods-XCDYouTubeKit OS X Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo.release.xcconfig"; sourceTree = "<group>"; };
-		5DCBCE795422D7EB37A0C692 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack.xcconfig"; sourceTree = "<group>"; };
-		646BB9ABF48B98AFF442D724 /* libPods-XCDYouTubeKit OS X Demo-CocoaLumberjack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit OS X Demo-CocoaLumberjack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		73BDA2DDA321CE599B83A79A /* DDTTYLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDTTYLogger.h; path = Classes/DDTTYLogger.h; sourceTree = "<group>"; };
-		811DE7165142D00C541B703C /* CocoaLumberjack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CocoaLumberjack.h; path = Classes/CocoaLumberjack.h; sourceTree = "<group>"; };
-		8256DFF6CC50EA397D11D40A /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDAbstractDatabaseLogger.h; path = Classes/DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
-		95245F5D16CE5A558B1A3F73 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig"; path = "../Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig"; sourceTree = "<group>"; };
-		9ADF0757D612D90E48913EC4 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig"; sourceTree = "<group>"; };
-		9B63FD306AA5475ED2CCFBAD /* DDContextFilterLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDContextFilterLogFormatter.m; path = Classes/Extensions/DDContextFilterLogFormatter.m; sourceTree = "<group>"; };
-		9B913D8012B986D986EB58E0 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m"; sourceTree = "<group>"; };
-		9D0CD3D4D525D10405C4F1BA /* libPods-XCDYouTubeKit iOS Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit iOS Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3A89AFC4932E0CBF29777BA /* DDDispatchQueueLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDDispatchQueueLogFormatter.m; path = Classes/Extensions/DDDispatchQueueLogFormatter.m; sourceTree = "<group>"; };
-		A668E334FD07B6AC3FC9F6FB /* Pods-XCDYouTubeKit OS X Demo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-XCDYouTubeKit OS X Demo-resources.sh"; sourceTree = "<group>"; };
-		ABA99ACE9B02DC22E6E702A0 /* DDLog+LOGV.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "DDLog+LOGV.h"; path = "Classes/DDLog+LOGV.h"; sourceTree = "<group>"; };
-		AE097420B3688571582413BC /* libPods-XCDYouTubeKit iOS Demo-CocoaLumberjack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit iOS Demo-CocoaLumberjack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AEF12E049E40E8FAE8923118 /* Pods-XCDYouTubeKit OS X Demo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-XCDYouTubeKit OS X Demo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		AF0A4F3096342C3B75DFF780 /* Pods-XCDYouTubeKit iOS Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit iOS Demo.debug.xcconfig"; sourceTree = "<group>"; };
-		B85D3BD0E0DCF86DC07FA062 /* Pods-XCDYouTubeKit OS X Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo.debug.xcconfig"; sourceTree = "<group>"; };
-		B9F7F40C83201BC494DDDC15 /* Pods-XCDYouTubeKit iOS Demo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-XCDYouTubeKit iOS Demo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		BB9BB35F9A9898495F33842D /* Pods-XCDYouTubeKit OS X Demo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-XCDYouTubeKit OS X Demo-acknowledgements.plist"; sourceTree = "<group>"; };
-		C4B5E669389F517023ABC14A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		C66980CDDF377174E3C8C78F /* DDLogMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDLogMacros.h; path = Classes/DDLogMacros.h; sourceTree = "<group>"; };
-		CD08CAA93E6342CD3997E23C /* DDASLLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDASLLogger.h; path = Classes/DDASLLogger.h; sourceTree = "<group>"; };
-		D109AC5464C2B30FA4560065 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		D6BCBC97B6B7985EA58CB197 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch"; path = "../Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch"; sourceTree = "<group>"; };
-		DC85AAF476DD5BF21AC3128F /* DDLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDLog.h; path = Classes/DDLog.h; sourceTree = "<group>"; };
-		E0E2FCB22998B10DA474F1E3 /* DDASLLogCapture.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDASLLogCapture.m; path = Classes/DDASLLogCapture.m; sourceTree = "<group>"; };
-		E15416FCD9ACC26B0F1B613A /* Pods-XCDYouTubeKit iOS Demo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-XCDYouTubeKit iOS Demo-acknowledgements.plist"; sourceTree = "<group>"; };
-		E3866D8F2C48D21B128B11D7 /* DDASLLogCapture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDASLLogCapture.h; path = Classes/DDASLLogCapture.h; sourceTree = "<group>"; };
-		EB30A0F4B7BCA63661DEF727 /* DDAssertMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDAssertMacros.h; path = Classes/DDAssertMacros.h; sourceTree = "<group>"; };
-		F8F575CDDE08D6187B03AA15 /* DDLegacyMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDLegacyMacros.h; path = Classes/DDLegacyMacros.h; sourceTree = "<group>"; };
-		FB7E866B796D2C5044DF7819 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = Classes/DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
-		FF7ED9DE1826061CD863CFAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		034AB8B66C0D2E42C621C01B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		04FC4CA1C8F72DBE89F69D19 /* LoggerCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LoggerCommon.h; path = "Client Logger/iOS/LoggerCommon.h"; sourceTree = "<group>"; };
+		054B4FEC5ADAF120086EFCA6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		0CF7AD096A083726294529F2 /* Pods-XCDYouTubeKit OS X Demo-NSLogger-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-XCDYouTubeKit OS X Demo-NSLogger-prefix.pch"; sourceTree = "<group>"; };
+		11C448DCD75BBA0E98B5E3CC /* DDAssertMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDAssertMacros.h; path = Classes/DDAssertMacros.h; sourceTree = "<group>"; };
+		12F4C393102B79F860D82390 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		143C0041945C40DB537DECA2 /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-dummy.m"; path = "../Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger/Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-dummy.m"; sourceTree = "<group>"; };
+		1442A44223BC99E0E1C181EA /* Pods-XCDYouTubeKit iOS Demo-NSLogger.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo-NSLogger.xcconfig"; path = "../Pods-XCDYouTubeKit iOS Demo-NSLogger/Pods-XCDYouTubeKit iOS Demo-NSLogger.xcconfig"; sourceTree = "<group>"; };
+		1920317833A843BDA8204BEB /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-prefix.pch"; path = "../Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger/Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-prefix.pch"; sourceTree = "<group>"; };
+		1A58C21B2D1F44668E43F603 /* DDASLLogCapture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDASLLogCapture.h; path = Classes/DDASLLogCapture.h; sourceTree = "<group>"; };
+		1CD29EB6185AF2D7A94CBEE2 /* Pods-XCDYouTubeKit OS X Demo-NSLogger.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo-NSLogger.xcconfig"; sourceTree = "<group>"; };
+		1CDA941BBE02F90145B4E61C /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger.xcconfig"; path = "../Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger/Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger.xcconfig"; sourceTree = "<group>"; };
+		1D6C0F1DCB69927FF98D100C /* libPods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2836F93EF0CB84FC6D99F3C8 /* XCDLumberjackNSLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XCDLumberjackNSLogger.h; sourceTree = "<group>"; };
+		2B5A41DF096CFB0E9254FE7E /* DDDispatchQueueLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDDispatchQueueLogFormatter.h; path = Classes/Extensions/DDDispatchQueueLogFormatter.h; sourceTree = "<group>"; };
+		2F46D5C7D3442E13669D6A0A /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack.xcconfig"; sourceTree = "<group>"; };
+		3016F4FC37578D4C2F1F00A9 /* DDContextFilterLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDContextFilterLogFormatter.m; path = Classes/Extensions/DDContextFilterLogFormatter.m; sourceTree = "<group>"; };
+		3D0C682A32499F8006C9294C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		4443A423C2C1899936CABD28 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		4C55C93A657BE8A9A6B074BB /* Pods-XCDYouTubeKit OS X Demo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-XCDYouTubeKit OS X Demo-acknowledgements.plist"; sourceTree = "<group>"; };
+		4FE3A6ACD3E33CABA9641013 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m"; sourceTree = "<group>"; };
+		52D56C1B32F95F1FEF07ABB0 /* DDFileLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDFileLogger.h; path = Classes/DDFileLogger.h; sourceTree = "<group>"; };
+		538954CF9C99B8DBF27B60A1 /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-dummy.m"; sourceTree = "<group>"; };
+		5BEFD044D642A2E949AB59B5 /* Pods-XCDYouTubeKit iOS Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit iOS Demo.release.xcconfig"; sourceTree = "<group>"; };
+		6028E2D28B70F7CD4ADF22E1 /* CocoaLumberjack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CocoaLumberjack.h; path = Classes/CocoaLumberjack.h; sourceTree = "<group>"; };
+		63C803DDD34362F37C187676 /* Pods-XCDYouTubeKit OS X Demo-NSLogger-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo-NSLogger-Private.xcconfig"; sourceTree = "<group>"; };
+		657BBAEC7A4839DCC5816E9E /* Pods-XCDYouTubeKit OS X Demo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-XCDYouTubeKit OS X Demo-dummy.m"; sourceTree = "<group>"; };
+		67A813151E26375176A5EDFB /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-prefix.pch"; sourceTree = "<group>"; };
+		6ABBDD53B27903391C1D9C87 /* DDMultiFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDMultiFormatter.h; path = Classes/Extensions/DDMultiFormatter.h; sourceTree = "<group>"; };
+		706DD67BBA172CF2F39D975D /* libPods-XCDYouTubeKit OS X Demo-CocoaLumberjack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit OS X Demo-CocoaLumberjack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		71F96B49343E861171E227FB /* Pods-XCDYouTubeKit iOS Demo-NSLogger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-XCDYouTubeKit iOS Demo-NSLogger-dummy.m"; path = "../Pods-XCDYouTubeKit iOS Demo-NSLogger/Pods-XCDYouTubeKit iOS Demo-NSLogger-dummy.m"; sourceTree = "<group>"; };
+		72DE0EBC95807E1F2F3CB8FA /* Pods-XCDYouTubeKit iOS Demo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-XCDYouTubeKit iOS Demo-acknowledgements.plist"; sourceTree = "<group>"; };
+		738948D8CC188C56F4CCEF40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		767F9F44F1D2411061BC4DCE /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch"; path = "../Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch"; sourceTree = "<group>"; };
+		78250DD3C783E110AE65FE70 /* libPods-XCDYouTubeKit OS X Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit OS X Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EE75DA11E97E0A7AC81822B /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDAbstractDatabaseLogger.h; path = Classes/DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		805FC53DF9F85A77477203B3 /* DDLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDLog.h; path = Classes/DDLog.h; sourceTree = "<group>"; };
+		83020BFBEDB940463C871E1A /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig"; sourceTree = "<group>"; };
+		8CF77044A1FA2A63A36A51C2 /* DDFileLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDFileLogger.m; path = Classes/DDFileLogger.m; sourceTree = "<group>"; };
+		8DC7E48564512F1DAC4E4FBA /* DDLegacyMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDLegacyMacros.h; path = Classes/DDLegacyMacros.h; sourceTree = "<group>"; };
+		8EE615D4C1625686BCCA0DEC /* DDASLLogCapture.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDASLLogCapture.m; path = Classes/DDASLLogCapture.m; sourceTree = "<group>"; };
+		93D13405FA0EAAFD93AF1611 /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-Private.xcconfig"; path = "../Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger/Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-Private.xcconfig"; sourceTree = "<group>"; };
+		97D0FA2D17A8A549E5AC18D8 /* Pods-XCDYouTubeKit OS X Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo.release.xcconfig"; sourceTree = "<group>"; };
+		9F927F76FF9946AB7BD6F1F2 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = Classes/DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		A12701E07F8900639A05F053 /* DDContextFilterLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDContextFilterLogFormatter.h; path = Classes/Extensions/DDContextFilterLogFormatter.h; sourceTree = "<group>"; };
+		A735442289ADF1C81FBB5807 /* DDMultiFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDMultiFormatter.m; path = Classes/Extensions/DDMultiFormatter.m; sourceTree = "<group>"; };
+		A956CA8FD1C82A293E42757F /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig"; path = "../Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig"; sourceTree = "<group>"; };
+		AE2F02D2500F4408785410EB /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m"; path = "../Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m"; sourceTree = "<group>"; };
+		AEDBE1493CBA6F1FF7589C76 /* Pods-XCDYouTubeKit iOS Demo-NSLogger-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo-NSLogger-Private.xcconfig"; path = "../Pods-XCDYouTubeKit iOS Demo-NSLogger/Pods-XCDYouTubeKit iOS Demo-NSLogger-Private.xcconfig"; sourceTree = "<group>"; };
+		B0EB812BB0C85428E9D8D1F0 /* Pods-XCDYouTubeKit iOS Demo-NSLogger-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-XCDYouTubeKit iOS Demo-NSLogger-prefix.pch"; path = "../Pods-XCDYouTubeKit iOS Demo-NSLogger/Pods-XCDYouTubeKit iOS Demo-NSLogger-prefix.pch"; sourceTree = "<group>"; };
+		B2824741DBC373A839996F3A /* Pods-XCDYouTubeKit iOS Demo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-XCDYouTubeKit iOS Demo-dummy.m"; sourceTree = "<group>"; };
+		B7807946085BFDD013F40922 /* libPods-XCDYouTubeKit OS X Demo-NSLogger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit OS X Demo-NSLogger.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8FDB2FB60CD115ECB28D9DB /* Pods-XCDYouTubeKit OS X Demo-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-XCDYouTubeKit OS X Demo-environment.h"; sourceTree = "<group>"; };
+		B953CC174A83E5BC40F20291 /* DDLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDLog.m; path = Classes/DDLog.m; sourceTree = "<group>"; };
+		BED6854EC3D55C73F1FA681A /* DDLogMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDLogMacros.h; path = Classes/DDLogMacros.h; sourceTree = "<group>"; };
+		C0F3FFC3684A8ED80E9C1668 /* Pods-XCDYouTubeKit iOS Demo-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-XCDYouTubeKit iOS Demo-environment.h"; sourceTree = "<group>"; };
+		C0FC39B3283525F1FA8BAE8C /* Pods-XCDYouTubeKit iOS Demo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-XCDYouTubeKit iOS Demo-resources.sh"; sourceTree = "<group>"; };
+		C2D83B5F21AA2A9D10309E1C /* Pods-XCDYouTubeKit iOS Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit iOS Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		C42561E3324808FDF5C49040 /* Pods-XCDYouTubeKit OS X Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		C87465C13DBD78BEDC56D2EE /* DDASLLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDASLLogger.h; path = Classes/DDASLLogger.h; sourceTree = "<group>"; };
+		CECDF14C97837417A0A0D503 /* NSLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NSLogger.h; path = "Client Logger/iOS/NSLogger.h"; sourceTree = "<group>"; };
+		CFE690B5409B35CE0FD4EF49 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		D21E8FB657D08F5ACC5646F3 /* XCDLumberjackNSLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = XCDLumberjackNSLogger.m; sourceTree = "<group>"; };
+		D619D41900D065550572B9B6 /* libPods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D718CEA9C7EBC84F8BBA6428 /* DDTTYLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDTTYLogger.h; path = Classes/DDTTYLogger.h; sourceTree = "<group>"; };
+		D76865B8CADD12BC5ACD5677 /* LoggerClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LoggerClient.m; path = "Client Logger/iOS/LoggerClient.m"; sourceTree = "<group>"; };
+		D8E740EF78BC0053AFA37419 /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-Private.xcconfig"; sourceTree = "<group>"; };
+		DEC34C64D484546449A64062 /* libPods-XCDYouTubeKit iOS Demo-CocoaLumberjack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit iOS Demo-CocoaLumberjack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF4F5E28237EB4A453EC26A5 /* Pods-XCDYouTubeKit OS X Demo-NSLogger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-XCDYouTubeKit OS X Demo-NSLogger-dummy.m"; sourceTree = "<group>"; };
+		DFE088A4A0797136EA0BA32C /* libPods-XCDYouTubeKit iOS Demo-NSLogger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit iOS Demo-NSLogger.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2D224FF989A951ACB3554B9 /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger.xcconfig"; sourceTree = "<group>"; };
+		E2DF08F8D4C0A6EF0FACE2D2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		E4967E92673CBA329B30B684 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack.xcconfig"; path = "../Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack.xcconfig"; sourceTree = "<group>"; };
+		E95B0B57F384DE30D04DCB51 /* libPods-XCDYouTubeKit iOS Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit iOS Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBFF12273E1B04CE2AA79618 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-prefix.pch"; sourceTree = "<group>"; };
+		F07AE5705C15DF717BAEA8BC /* LoggerClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LoggerClient.h; path = "Client Logger/iOS/LoggerClient.h"; sourceTree = "<group>"; };
+		F19826F4B378060E8FA52336 /* Pods-XCDYouTubeKit iOS Demo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-XCDYouTubeKit iOS Demo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F2E9F52C2F25A36F2FCF4B14 /* Pods-XCDYouTubeKit OS X Demo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-XCDYouTubeKit OS X Demo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F62D57A1D6B509B0AB71AC07 /* DDDispatchQueueLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDDispatchQueueLogFormatter.m; path = Classes/Extensions/DDDispatchQueueLogFormatter.m; sourceTree = "<group>"; };
+		F6AEC9A7ACCF320A73DFF05B /* Pods-XCDYouTubeKit OS X Demo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-XCDYouTubeKit OS X Demo-resources.sh"; sourceTree = "<group>"; };
+		F74C6287B392004E240D9397 /* DDASLLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDASLLogger.m; path = Classes/DDASLLogger.m; sourceTree = "<group>"; };
+		FAC1115E39842C56554ECF52 /* DDTTYLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDTTYLogger.m; path = Classes/DDTTYLogger.m; sourceTree = "<group>"; };
+		FC56AA0A2F55FA062E254C81 /* DDLog+LOGV.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "DDLog+LOGV.h"; path = "Classes/DDLog+LOGV.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1691FFBA9479EDFFBF2AD55B /* Frameworks */ = {
+		1A91524C21CA42177F3C4BB3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEDFF531F63D9DF8EC879040 /* Foundation.framework in Frameworks */,
+				2E39BBED8F5FCF332D960E6F /* CFNetwork.framework in Frameworks */,
+				A9AF591AEABFE5139676B140 /* Cocoa.framework in Frameworks */,
+				51C053E77BAA0769F62F9878 /* CoreServices.framework in Frameworks */,
+				9DF7F0243E23CD7671217D0B /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A164D74C7401F57F8E6478B /* Frameworks */ = {
+		23C1CE14837A2ED1512E6BE6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40A62FB15BC9D6C500B5C6F8 /* Cocoa.framework in Frameworks */,
+				5CADB9ECFC759B26B9F9535F /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4BC2E9D1E9943792B254958 /* Frameworks */ = {
+		2D70F243162DE82E9038448A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4186E7DF3671F2BB6CB748FC /* Cocoa.framework in Frameworks */,
+				F644740EE5FD3948774A1609 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C0145C763EC6E33475D2E8B0 /* Frameworks */ = {
+		44803B9A638323D647770E59 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33EB0DF435947BFC139242A9 /* Foundation.framework in Frameworks */,
+				FFD28CD99714023DA1639DAF /* CFNetwork.framework in Frameworks */,
+				8510C70D9F4E5778E7F69454 /* Foundation.framework in Frameworks */,
+				685D91CE2654C6B73FD2D0DD /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61B7C3747E2A30CB2CF50B1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8212793031F8398CCCA0FF3 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87C91FD8F4DAD6AA8DD0F0C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B695318538D6E3A1A3AE19F7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94A64055A6F775E642B92191 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F75C5540FFFDAFC8E00B8B72 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8A998239BFE67494328C71D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13A7BB442D6B34AF55CDCF48 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01DEC1374FD10A2E1BD0E249 = {
+		02F544ACEE9B2ADCFBDD2903 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D109AC5464C2B30FA4560065 /* Podfile */,
-				B173CEDEEC17A2ED145193F6 /* Frameworks */,
-				6A806E564FEAFC3D6E164F3D /* Pods */,
-				E30C87A0A6C87F770AEEF4FB /* Products */,
-				9F26A5692E722616DCBEC7A8 /* Targets Support Files */,
+				A12701E07F8900639A05F053 /* DDContextFilterLogFormatter.h */,
+				3016F4FC37578D4C2F1F00A9 /* DDContextFilterLogFormatter.m */,
+				2B5A41DF096CFB0E9254FE7E /* DDDispatchQueueLogFormatter.h */,
+				F62D57A1D6B509B0AB71AC07 /* DDDispatchQueueLogFormatter.m */,
+				6ABBDD53B27903391C1D9C87 /* DDMultiFormatter.h */,
+				A735442289ADF1C81FBB5807 /* DDMultiFormatter.m */,
 			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
-		3876C599981C3807702B2E9C /* Default */ = {
+		03F00E744B7D3F577AACFF52 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				811DE7165142D00C541B703C /* CocoaLumberjack.h */,
+				E2D224FF989A951ACB3554B9 /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger.xcconfig */,
+				D8E740EF78BC0053AFA37419 /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-Private.xcconfig */,
+				538954CF9C99B8DBF27B60A1 /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-dummy.m */,
+				67A813151E26375176A5EDFB /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-prefix.pch */,
+				1CDA941BBE02F90145B4E61C /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger.xcconfig */,
+				93D13405FA0EAAFD93AF1611 /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-Private.xcconfig */,
+				143C0041945C40DB537DECA2 /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-dummy.m */,
+				1920317833A843BDA8204BEB /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger";
+			sourceTree = "<group>";
+		};
+		239646AB1D9B0A758840CBA4 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				CFE690B5409B35CE0FD4EF49 /* CFNetwork.framework */,
+				3D0C682A32499F8006C9294C /* Cocoa.framework */,
+				4443A423C2C1899936CABD28 /* CoreServices.framework */,
+				034AB8B66C0D2E42C621C01B /* SystemConfiguration.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		50FFAF6C760B4A67133A11C6 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DC5D68A05C8585E75C96E78B /* Pods-XCDYouTubeKit OS X Demo */,
+				9912A7721593A257D4280B05 /* Pods-XCDYouTubeKit iOS Demo */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		697A252E32057F63FBB509D4 /* XCDLumberjackNSLogger */ = {
+			isa = PBXGroup;
+			children = (
+				2836F93EF0CB84FC6D99F3C8 /* XCDLumberjackNSLogger.h */,
+				D21E8FB657D08F5ACC5646F3 /* XCDLumberjackNSLogger.m */,
+				03F00E744B7D3F577AACFF52 /* Support Files */,
+			);
+			path = XCDLumberjackNSLogger;
+			sourceTree = "<group>";
+		};
+		77BF88FEC45EFE92C395866A /* Standard */ = {
+			isa = PBXGroup;
+			children = (
+				F07AE5705C15DF717BAEA8BC /* LoggerClient.h */,
+				D76865B8CADD12BC5ACD5677 /* LoggerClient.m */,
+				04FC4CA1C8F72DBE89F69D19 /* LoggerCommon.h */,
+				CECDF14C97837417A0A0D503 /* NSLogger.h */,
+			);
+			name = Standard;
+			sourceTree = "<group>";
+		};
+		7F8693F10E73CE3D171923EF /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				6028E2D28B70F7CD4ADF22E1 /* CocoaLumberjack.h */,
 			);
 			name = Default;
 			sourceTree = "<group>";
 		};
-		3ADA49D973E2DDD1945F7C3B /* Pods-XCDYouTubeKit iOS Demo */ = {
+		879AB9825475382928794A9B = {
 			isa = PBXGroup;
 			children = (
-				B9F7F40C83201BC494DDDC15 /* Pods-XCDYouTubeKit iOS Demo-acknowledgements.markdown */,
-				E15416FCD9ACC26B0F1B613A /* Pods-XCDYouTubeKit iOS Demo-acknowledgements.plist */,
-				27FF4D5D50D0E9F3056DE332 /* Pods-XCDYouTubeKit iOS Demo-dummy.m */,
-				3C40A9E9FDB7EDACEAEF2B86 /* Pods-XCDYouTubeKit iOS Demo-environment.h */,
-				553C8D32F15676D4448ED258 /* Pods-XCDYouTubeKit iOS Demo-resources.sh */,
-				AF0A4F3096342C3B75DFF780 /* Pods-XCDYouTubeKit iOS Demo.debug.xcconfig */,
-				3F58AB0CD2CE41E7283C11FF /* Pods-XCDYouTubeKit iOS Demo.release.xcconfig */,
+				12F4C393102B79F860D82390 /* Podfile */,
+				B87DA940AE852165E3217E04 /* Frameworks */,
+				C5C22106DC16EEEF671F5C3B /* Pods */,
+				8BAE3CC0EDAF8A1B31448A0A /* Products */,
+				50FFAF6C760B4A67133A11C6 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8BAE3CC0EDAF8A1B31448A0A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				78250DD3C783E110AE65FE70 /* libPods-XCDYouTubeKit OS X Demo.a */,
+				706DD67BBA172CF2F39D975D /* libPods-XCDYouTubeKit OS X Demo-CocoaLumberjack.a */,
+				B7807946085BFDD013F40922 /* libPods-XCDYouTubeKit OS X Demo-NSLogger.a */,
+				1D6C0F1DCB69927FF98D100C /* libPods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger.a */,
+				E95B0B57F384DE30D04DCB51 /* libPods-XCDYouTubeKit iOS Demo.a */,
+				DEC34C64D484546449A64062 /* libPods-XCDYouTubeKit iOS Demo-CocoaLumberjack.a */,
+				DFE088A4A0797136EA0BA32C /* libPods-XCDYouTubeKit iOS Demo-NSLogger.a */,
+				D619D41900D065550572B9B6 /* libPods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CB9C841F2E38DA3F29FFFC5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1A58C21B2D1F44668E43F603 /* DDASLLogCapture.h */,
+				8EE615D4C1625686BCCA0DEC /* DDASLLogCapture.m */,
+				C87465C13DBD78BEDC56D2EE /* DDASLLogger.h */,
+				F74C6287B392004E240D9397 /* DDASLLogger.m */,
+				7EE75DA11E97E0A7AC81822B /* DDAbstractDatabaseLogger.h */,
+				9F927F76FF9946AB7BD6F1F2 /* DDAbstractDatabaseLogger.m */,
+				11C448DCD75BBA0E98B5E3CC /* DDAssertMacros.h */,
+				52D56C1B32F95F1FEF07ABB0 /* DDFileLogger.h */,
+				8CF77044A1FA2A63A36A51C2 /* DDFileLogger.m */,
+				8DC7E48564512F1DAC4E4FBA /* DDLegacyMacros.h */,
+				805FC53DF9F85A77477203B3 /* DDLog.h */,
+				B953CC174A83E5BC40F20291 /* DDLog.m */,
+				FC56AA0A2F55FA062E254C81 /* DDLog+LOGV.h */,
+				BED6854EC3D55C73F1FA681A /* DDLogMacros.h */,
+				D718CEA9C7EBC84F8BBA6428 /* DDTTYLogger.h */,
+				FAC1115E39842C56554ECF52 /* DDTTYLogger.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		9912A7721593A257D4280B05 /* Pods-XCDYouTubeKit iOS Demo */ = {
+			isa = PBXGroup;
+			children = (
+				F19826F4B378060E8FA52336 /* Pods-XCDYouTubeKit iOS Demo-acknowledgements.markdown */,
+				72DE0EBC95807E1F2F3CB8FA /* Pods-XCDYouTubeKit iOS Demo-acknowledgements.plist */,
+				B2824741DBC373A839996F3A /* Pods-XCDYouTubeKit iOS Demo-dummy.m */,
+				C0F3FFC3684A8ED80E9C1668 /* Pods-XCDYouTubeKit iOS Demo-environment.h */,
+				C0FC39B3283525F1FA8BAE8C /* Pods-XCDYouTubeKit iOS Demo-resources.sh */,
+				C2D83B5F21AA2A9D10309E1C /* Pods-XCDYouTubeKit iOS Demo.debug.xcconfig */,
+				5BEFD044D642A2E949AB59B5 /* Pods-XCDYouTubeKit iOS Demo.release.xcconfig */,
 			);
 			name = "Pods-XCDYouTubeKit iOS Demo";
 			path = "Target Support Files/Pods-XCDYouTubeKit iOS Demo";
 			sourceTree = "<group>";
 		};
-		3C19C254DB3DB95356501020 /* Core */ = {
+		B4A5A30869CC71A74253D6F2 /* CocoaLumberjack */ = {
 			isa = PBXGroup;
 			children = (
-				E3866D8F2C48D21B128B11D7 /* DDASLLogCapture.h */,
-				E0E2FCB22998B10DA474F1E3 /* DDASLLogCapture.m */,
-				CD08CAA93E6342CD3997E23C /* DDASLLogger.h */,
-				37F59752E70CEB6A500CBEB5 /* DDASLLogger.m */,
-				8256DFF6CC50EA397D11D40A /* DDAbstractDatabaseLogger.h */,
-				FB7E866B796D2C5044DF7819 /* DDAbstractDatabaseLogger.m */,
-				EB30A0F4B7BCA63661DEF727 /* DDAssertMacros.h */,
-				1969FBF6F700305800341896 /* DDFileLogger.h */,
-				42173D41118FD2EC0DAAC73B /* DDFileLogger.m */,
-				F8F575CDDE08D6187B03AA15 /* DDLegacyMacros.h */,
-				DC85AAF476DD5BF21AC3128F /* DDLog.h */,
-				15F5E13F65A73E04C8E92040 /* DDLog.m */,
-				ABA99ACE9B02DC22E6E702A0 /* DDLog+LOGV.h */,
-				C66980CDDF377174E3C8C78F /* DDLogMacros.h */,
-				73BDA2DDA321CE599B83A79A /* DDTTYLogger.h */,
-				2E225F6277CF4827033F8A5E /* DDTTYLogger.m */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		3CBBF42191AFCED60E4F8588 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				FF7ED9DE1826061CD863CFAD /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		664AF68A0412EF13D2F7AD13 /* Pods-XCDYouTubeKit OS X Demo */ = {
-			isa = PBXGroup;
-			children = (
-				AEF12E049E40E8FAE8923118 /* Pods-XCDYouTubeKit OS X Demo-acknowledgements.markdown */,
-				BB9BB35F9A9898495F33842D /* Pods-XCDYouTubeKit OS X Demo-acknowledgements.plist */,
-				24DE25C7966ED413F06431B6 /* Pods-XCDYouTubeKit OS X Demo-dummy.m */,
-				3A3DA267914CEDD1C50F68EC /* Pods-XCDYouTubeKit OS X Demo-environment.h */,
-				A668E334FD07B6AC3FC9F6FB /* Pods-XCDYouTubeKit OS X Demo-resources.sh */,
-				B85D3BD0E0DCF86DC07FA062 /* Pods-XCDYouTubeKit OS X Demo.debug.xcconfig */,
-				5D579AC23235E0F6596B62EE /* Pods-XCDYouTubeKit OS X Demo.release.xcconfig */,
-			);
-			name = "Pods-XCDYouTubeKit OS X Demo";
-			path = "Target Support Files/Pods-XCDYouTubeKit OS X Demo";
-			sourceTree = "<group>";
-		};
-		6A806E564FEAFC3D6E164F3D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EBA3FEE8B85A1279E45CC69F /* CocoaLumberjack */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		9F26A5692E722616DCBEC7A8 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				664AF68A0412EF13D2F7AD13 /* Pods-XCDYouTubeKit OS X Demo */,
-				3ADA49D973E2DDD1945F7C3B /* Pods-XCDYouTubeKit iOS Demo */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		B173CEDEEC17A2ED145193F6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DDFFC4DA9E27D081609E3E45 /* OS X */,
-				3CBBF42191AFCED60E4F8588 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DDFFC4DA9E27D081609E3E45 /* OS X */ = {
-			isa = PBXGroup;
-			children = (
-				C4B5E669389F517023ABC14A /* Cocoa.framework */,
-			);
-			name = "OS X";
-			sourceTree = "<group>";
-		};
-		E30C87A0A6C87F770AEEF4FB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				290A0FF063F24DFE18A971B6 /* libPods-XCDYouTubeKit OS X Demo.a */,
-				646BB9ABF48B98AFF442D724 /* libPods-XCDYouTubeKit OS X Demo-CocoaLumberjack.a */,
-				9D0CD3D4D525D10405C4F1BA /* libPods-XCDYouTubeKit iOS Demo.a */,
-				AE097420B3688571582413BC /* libPods-XCDYouTubeKit iOS Demo-CocoaLumberjack.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		EBA3FEE8B85A1279E45CC69F /* CocoaLumberjack */ = {
-			isa = PBXGroup;
-			children = (
-				3C19C254DB3DB95356501020 /* Core */,
-				3876C599981C3807702B2E9C /* Default */,
-				FB1BA713C17F651A61A072AA /* Extensions */,
-				F5A25252C8035F6D0133CA0A /* Support Files */,
+				8CB9C841F2E38DA3F29FFFC5 /* Core */,
+				7F8693F10E73CE3D171923EF /* Default */,
+				02F544ACEE9B2ADCFBDD2903 /* Extensions */,
+				DA6242FBBBD737A4C0DD6F85 /* Support Files */,
 			);
 			path = CocoaLumberjack;
 			sourceTree = "<group>";
 		};
-		F5A25252C8035F6D0133CA0A /* Support Files */ = {
+		B87DA940AE852165E3217E04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5DCBCE795422D7EB37A0C692 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack.xcconfig */,
-				9ADF0757D612D90E48913EC4 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig */,
-				9B913D8012B986D986EB58E0 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m */,
-				581511892F89E1905B559C73 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-prefix.pch */,
-				2D72B0E748FC39201A237A5F /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack.xcconfig */,
-				95245F5D16CE5A558B1A3F73 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig */,
-				47E0BB88240DD237CE4F5309 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m */,
-				D6BCBC97B6B7985EA58CB197 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch */,
+				239646AB1D9B0A758840CBA4 /* OS X */,
+				F8117334B8EB24C994587C9B /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5C22106DC16EEEF671F5C3B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4A5A30869CC71A74253D6F2 /* CocoaLumberjack */,
+				C6040E3A59B3F75779B7E682 /* NSLogger */,
+				697A252E32057F63FBB509D4 /* XCDLumberjackNSLogger */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C6040E3A59B3F75779B7E682 /* NSLogger */ = {
+			isa = PBXGroup;
+			children = (
+				77BF88FEC45EFE92C395866A /* Standard */,
+				E6D1FF047A4D808026E2AD5E /* Support Files */,
+			);
+			path = NSLogger;
+			sourceTree = "<group>";
+		};
+		DA6242FBBBD737A4C0DD6F85 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F46D5C7D3442E13669D6A0A /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack.xcconfig */,
+				83020BFBEDB940463C871E1A /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig */,
+				4FE3A6ACD3E33CABA9641013 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m */,
+				EBFF12273E1B04CE2AA79618 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-prefix.pch */,
+				E4967E92673CBA329B30B684 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack.xcconfig */,
+				A956CA8FD1C82A293E42757F /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig */,
+				AE2F02D2500F4408785410EB /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m */,
+				767F9F44F1D2411061BC4DCE /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack";
 			sourceTree = "<group>";
 		};
-		FB1BA713C17F651A61A072AA /* Extensions */ = {
+		DC5D68A05C8585E75C96E78B /* Pods-XCDYouTubeKit OS X Demo */ = {
 			isa = PBXGroup;
 			children = (
-				17508D583DCA180D8FCABAD3 /* DDContextFilterLogFormatter.h */,
-				9B63FD306AA5475ED2CCFBAD /* DDContextFilterLogFormatter.m */,
-				07192E08AA0692968A1DD8F8 /* DDDispatchQueueLogFormatter.h */,
-				A3A89AFC4932E0CBF29777BA /* DDDispatchQueueLogFormatter.m */,
-				4E0ABEE380BFAB3E28596D3A /* DDMultiFormatter.h */,
-				268850CBE7260158B26193CF /* DDMultiFormatter.m */,
+				F2E9F52C2F25A36F2FCF4B14 /* Pods-XCDYouTubeKit OS X Demo-acknowledgements.markdown */,
+				4C55C93A657BE8A9A6B074BB /* Pods-XCDYouTubeKit OS X Demo-acknowledgements.plist */,
+				657BBAEC7A4839DCC5816E9E /* Pods-XCDYouTubeKit OS X Demo-dummy.m */,
+				B8FDB2FB60CD115ECB28D9DB /* Pods-XCDYouTubeKit OS X Demo-environment.h */,
+				F6AEC9A7ACCF320A73DFF05B /* Pods-XCDYouTubeKit OS X Demo-resources.sh */,
+				C42561E3324808FDF5C49040 /* Pods-XCDYouTubeKit OS X Demo.debug.xcconfig */,
+				97D0FA2D17A8A549E5AC18D8 /* Pods-XCDYouTubeKit OS X Demo.release.xcconfig */,
 			);
-			name = Extensions;
+			name = "Pods-XCDYouTubeKit OS X Demo";
+			path = "Target Support Files/Pods-XCDYouTubeKit OS X Demo";
+			sourceTree = "<group>";
+		};
+		E6D1FF047A4D808026E2AD5E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1CD29EB6185AF2D7A94CBEE2 /* Pods-XCDYouTubeKit OS X Demo-NSLogger.xcconfig */,
+				63C803DDD34362F37C187676 /* Pods-XCDYouTubeKit OS X Demo-NSLogger-Private.xcconfig */,
+				DF4F5E28237EB4A453EC26A5 /* Pods-XCDYouTubeKit OS X Demo-NSLogger-dummy.m */,
+				0CF7AD096A083726294529F2 /* Pods-XCDYouTubeKit OS X Demo-NSLogger-prefix.pch */,
+				1442A44223BC99E0E1C181EA /* Pods-XCDYouTubeKit iOS Demo-NSLogger.xcconfig */,
+				AEDBE1493CBA6F1FF7589C76 /* Pods-XCDYouTubeKit iOS Demo-NSLogger-Private.xcconfig */,
+				71F96B49343E861171E227FB /* Pods-XCDYouTubeKit iOS Demo-NSLogger-dummy.m */,
+				B0EB812BB0C85428E9D8D1F0 /* Pods-XCDYouTubeKit iOS Demo-NSLogger-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-XCDYouTubeKit OS X Demo-NSLogger";
+			sourceTree = "<group>";
+		};
+		F8117334B8EB24C994587C9B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E2DF08F8D4C0A6EF0FACE2D2 /* CFNetwork.framework */,
+				738948D8CC188C56F4CCEF40 /* Foundation.framework */,
+				054B4FEC5ADAF120086EFCA6 /* SystemConfiguration.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		33AF8C515B07C6E53275F49A /* Headers */ = {
+		15F0E9D641DFE747CD96E306 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1405DB4D257778AB797AA39 /* CocoaLumberjack.h in Headers */,
-				448DA4D5FF76760F66D3D9C0 /* DDASLLogCapture.h in Headers */,
-				1AC75A1FACC413E3B951C353 /* DDASLLogger.h in Headers */,
-				2EF096547837E81C7DC92C5C /* DDAbstractDatabaseLogger.h in Headers */,
-				C873916BD5A918100A03277A /* DDAssertMacros.h in Headers */,
-				B04459B2ED15FF50D9ACC69A /* DDContextFilterLogFormatter.h in Headers */,
-				41607790FF43E4829D97A8BB /* DDDispatchQueueLogFormatter.h in Headers */,
-				9EC49EBAEEE5251FA19CF6EA /* DDFileLogger.h in Headers */,
-				CA370E51EF90C2A8497C0867 /* DDLegacyMacros.h in Headers */,
-				9198C6A91878BBCBEBAF99D0 /* DDLog+LOGV.h in Headers */,
-				ACEFC72DC558C1FE6FE2591F /* DDLog.h in Headers */,
-				CA3FAB19C53205F0581F93A7 /* DDLogMacros.h in Headers */,
-				32F2FC9D6EEC18F2448D3E3C /* DDMultiFormatter.h in Headers */,
-				9A5F1B2DF26AD0C7397440C7 /* DDTTYLogger.h in Headers */,
+				6DBFF5453252D6BEC92A862F /* CocoaLumberjack.h in Headers */,
+				05E3CEEA637B64101C3D1685 /* DDASLLogCapture.h in Headers */,
+				11392E393FCF035C65EE7AB8 /* DDASLLogger.h in Headers */,
+				BD8F9415E433F075A98A7CD6 /* DDAbstractDatabaseLogger.h in Headers */,
+				C4762FBD633D5C2DBA93A8E9 /* DDAssertMacros.h in Headers */,
+				B327675A3FB7904362322C2F /* DDContextFilterLogFormatter.h in Headers */,
+				6DA597813FA2F6D42AC29FE5 /* DDDispatchQueueLogFormatter.h in Headers */,
+				FC9CA7EFE38AFB21A03DDAAE /* DDFileLogger.h in Headers */,
+				AB7217F41E8F3FAD1E90F573 /* DDLegacyMacros.h in Headers */,
+				9F61E753411A9B7C7DFD7B42 /* DDLog+LOGV.h in Headers */,
+				93F86CE15D885297C0B508F2 /* DDLog.h in Headers */,
+				3084C4AC43C7AF3585F50072 /* DDLogMacros.h in Headers */,
+				52CF52B3D278A6976B4E3ACE /* DDMultiFormatter.h in Headers */,
+				3552FAB7DC932C1E704C98A4 /* DDTTYLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		80F0E6D6EB3F7D2533E4C38B /* Headers */ = {
+		2BE56F7A579A723E855B8765 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06F7A6E899CCDDCD6CD899B0 /* CocoaLumberjack.h in Headers */,
-				9D7E2322E2AB504E9EE44BED /* DDASLLogCapture.h in Headers */,
-				1364E80B1ED242B300CB0A2E /* DDASLLogger.h in Headers */,
-				7277B35073820AF1268B5C19 /* DDAbstractDatabaseLogger.h in Headers */,
-				F7BF9E5251C7970471C43F53 /* DDAssertMacros.h in Headers */,
-				F1CD0267C546418EA4322934 /* DDContextFilterLogFormatter.h in Headers */,
-				AFF8A359A35EB7562B89034C /* DDDispatchQueueLogFormatter.h in Headers */,
-				9BA6C96FC98EABB83E482EE1 /* DDFileLogger.h in Headers */,
-				E369BB764777FB4AED8C4F68 /* DDLegacyMacros.h in Headers */,
-				28AF30E460F8C092DA7F4C32 /* DDLog+LOGV.h in Headers */,
-				4D6EF19EFA01888474B323CC /* DDLog.h in Headers */,
-				7F4EBD2A2A177FFE6A9F16AF /* DDLogMacros.h in Headers */,
-				BFCD194B7EF736596F25B0BE /* DDMultiFormatter.h in Headers */,
-				21CB12FE570234180D662BC8 /* DDTTYLogger.h in Headers */,
+				3D0B4CD354E64F1458656B8A /* XCDLumberjackNSLogger.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40D64C10CACA6930B159B71C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4C4C875A4C93B52D7B9F9A9 /* LoggerClient.h in Headers */,
+				9F8C9E0690C8D7F8775EF801 /* LoggerCommon.h in Headers */,
+				742D24404A0D2E94F0D197AB /* NSLogger.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A314D6DF2B5A00E5470A3BC5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E4CCD23DB669F6B5C9B28D0 /* XCDLumberjackNSLogger.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6B2001C06FE40586B0AB0FF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58F4DBA53D426AD1004D2882 /* LoggerClient.h in Headers */,
+				E724B5F2BCC785F0873FB005 /* LoggerCommon.h in Headers */,
+				ABC39B60819DA0968609271C /* NSLogger.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D907E4D2FE3CB38CB1AF76B9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88D5F0292D291CB6AAC04719 /* CocoaLumberjack.h in Headers */,
+				88DC539DDE009261A1502E87 /* DDASLLogCapture.h in Headers */,
+				EA30A3ABA91791D5A0AD07AB /* DDASLLogger.h in Headers */,
+				306D829DC1B3430A52253456 /* DDAbstractDatabaseLogger.h in Headers */,
+				F6C998855FA48DA3B42915B9 /* DDAssertMacros.h in Headers */,
+				5C323254D1617D16EE954884 /* DDContextFilterLogFormatter.h in Headers */,
+				01ED0E3C44AD6E1CDF36AA62 /* DDDispatchQueueLogFormatter.h in Headers */,
+				442DEEAB83EC15E5E64DD9BD /* DDFileLogger.h in Headers */,
+				7A98BBB7336192C240931740 /* DDLegacyMacros.h in Headers */,
+				E917C2266ECEB43CFAA28A11 /* DDLog+LOGV.h in Headers */,
+				F4E4DABCE54E3352DA333D6E /* DDLog.h in Headers */,
+				87F57A6A440E705D04C3F06E /* DDLogMacros.h in Headers */,
+				FFD06E60189F02A69FE1ADB5 /* DDMultiFormatter.h in Headers */,
+				D57964FB5E44C1DCC39AA04F /* DDTTYLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		00199002C27C8F979DE426BF /* Pods-XCDYouTubeKit OS X Demo */ = {
+		1E0A6FC96E4B4F0400366D0B /* Pods-XCDYouTubeKit iOS Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FE76CEBE041AAB54CA8970A6 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo" */;
+			buildConfigurationList = BCF7BD78D4AD586B5D38CDB9 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo" */;
 			buildPhases = (
-				E43F9365E5B1BF8C2F1B600A /* Sources */,
-				B4BC2E9D1E9943792B254958 /* Frameworks */,
+				73FACC08EB8471BBB0C60664 /* Sources */,
+				94A64055A6F775E642B92191 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				712480431214EA79B2BB12C6 /* PBXTargetDependency */,
-			);
-			name = "Pods-XCDYouTubeKit OS X Demo";
-			productName = "Pods-XCDYouTubeKit OS X Demo";
-			productReference = 290A0FF063F24DFE18A971B6 /* libPods-XCDYouTubeKit OS X Demo.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		27D14CAAD856EB509BEAB4C5 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2EF3FED32FBABD9FF551E767 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack" */;
-			buildPhases = (
-				26FFE1EA8B26B142A70511B2 /* Sources */,
-				9A164D74C7401F57F8E6478B /* Frameworks */,
-				33AF8C515B07C6E53275F49A /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack";
-			productName = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack";
-			productReference = 646BB9ABF48B98AFF442D724 /* libPods-XCDYouTubeKit OS X Demo-CocoaLumberjack.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		8B2BFC2336070AFEDDB96B56 /* Pods-XCDYouTubeKit iOS Demo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EEA8CE6364078C8C549D2BDF /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo" */;
-			buildPhases = (
-				52EC5D6CF611DF6552A0FAA3 /* Sources */,
-				C0145C763EC6E33475D2E8B0 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0E2F48DF1F5598F50447744D /* PBXTargetDependency */,
+				E66DCF7ABC294DEA49B57730 /* PBXTargetDependency */,
+				C9C0840901D8E71BD5DEADBA /* PBXTargetDependency */,
+				729C7EEC814AC2BD6F887724 /* PBXTargetDependency */,
 			);
 			name = "Pods-XCDYouTubeKit iOS Demo";
 			productName = "Pods-XCDYouTubeKit iOS Demo";
-			productReference = 9D0CD3D4D525D10405C4F1BA /* libPods-XCDYouTubeKit iOS Demo.a */;
+			productReference = E95B0B57F384DE30D04DCB51 /* libPods-XCDYouTubeKit iOS Demo.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		E4B56136EA618545ADBF254A /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack */ = {
+		2BA62570900EC224FCACA9E8 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C69E977DDBB7C5E3E17E619C /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack" */;
+			buildConfigurationList = 4088418C875AB7076019E856 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack" */;
 			buildPhases = (
-				1198FF7D5102CB8169C667C8 /* Sources */,
-				1691FFBA9479EDFFBF2AD55B /* Frameworks */,
-				80F0E6D6EB3F7D2533E4C38B /* Headers */,
+				4F89AF9F9233D6531356232E /* Sources */,
+				87C91FD8F4DAD6AA8DD0F0C2 /* Frameworks */,
+				D907E4D2FE3CB38CB1AF76B9 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -449,166 +675,306 @@
 			);
 			name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack";
 			productName = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack";
-			productReference = AE097420B3688571582413BC /* libPods-XCDYouTubeKit iOS Demo-CocoaLumberjack.a */;
+			productReference = DEC34C64D484546449A64062 /* libPods-XCDYouTubeKit iOS Demo-CocoaLumberjack.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		5EF7F2F013FF74643A226A09 /* Pods-XCDYouTubeKit OS X Demo-NSLogger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 211F101A3F5CAB4FAB21CFB3 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo-NSLogger" */;
+			buildPhases = (
+				D3094669ECB523E1EFDF2562 /* Sources */,
+				1A91524C21CA42177F3C4BB3 /* Frameworks */,
+				40D64C10CACA6930B159B71C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-XCDYouTubeKit OS X Demo-NSLogger";
+			productName = "Pods-XCDYouTubeKit OS X Demo-NSLogger";
+			productReference = B7807946085BFDD013F40922 /* libPods-XCDYouTubeKit OS X Demo-NSLogger.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		67DBCDBE3A53D4841D09885E /* Pods-XCDYouTubeKit iOS Demo-NSLogger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FA3DF0B1174DD25F7B60A7F /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo-NSLogger" */;
+			buildPhases = (
+				CDF3A7FD4C3E74E8BD0AA5B5 /* Sources */,
+				44803B9A638323D647770E59 /* Frameworks */,
+				D6B2001C06FE40586B0AB0FF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-XCDYouTubeKit iOS Demo-NSLogger";
+			productName = "Pods-XCDYouTubeKit iOS Demo-NSLogger";
+			productReference = DFE088A4A0797136EA0BA32C /* libPods-XCDYouTubeKit iOS Demo-NSLogger.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		6FAB013E3D0672BE7F6ACA3A /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AB0B155A78EAD238929E812 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger" */;
+			buildPhases = (
+				0EE286C89D9C76B0DD4124FC /* Sources */,
+				C8A998239BFE67494328C71D /* Frameworks */,
+				A314D6DF2B5A00E5470A3BC5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F75036A8F278FDE83120161 /* PBXTargetDependency */,
+				FC86152F7A5AA30757B6B1D2 /* PBXTargetDependency */,
+			);
+			name = "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger";
+			productName = "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger";
+			productReference = D619D41900D065550572B9B6 /* libPods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B792B70319002CDF454172FF /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57EDA9EB6B1A9A37F45475A0 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger" */;
+			buildPhases = (
+				3B555B081563C15FECE1916A /* Sources */,
+				61B7C3747E2A30CB2CF50B1F /* Frameworks */,
+				2BE56F7A579A723E855B8765 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20FB7C4C05E780268C173053 /* PBXTargetDependency */,
+				28AE581F8C1ECDD2A5FF6830 /* PBXTargetDependency */,
+			);
+			name = "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger";
+			productName = "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger";
+			productReference = 1D6C0F1DCB69927FF98D100C /* libPods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		BA7A7EBC51DD2BFE0DA4BE86 /* Pods-XCDYouTubeKit OS X Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 179A0A54187722C5912451B4 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo" */;
+			buildPhases = (
+				42E70A9D5F0C2ED44C70DA8B /* Sources */,
+				2D70F243162DE82E9038448A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AAF6AED614E2B1F6ED310226 /* PBXTargetDependency */,
+				2C46B078011F780661361835 /* PBXTargetDependency */,
+				233ADF94690CC0F43F56F911 /* PBXTargetDependency */,
+			);
+			name = "Pods-XCDYouTubeKit OS X Demo";
+			productName = "Pods-XCDYouTubeKit OS X Demo";
+			productReference = 78250DD3C783E110AE65FE70 /* libPods-XCDYouTubeKit OS X Demo.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F927882359EEA63918E89463 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 347099674712F99963990233 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack" */;
+			buildPhases = (
+				18C8F4EE2132E8576131F275 /* Sources */,
+				23C1CE14837A2ED1512E6BE6 /* Frameworks */,
+				15F0E9D641DFE747CD96E306 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack";
+			productName = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack";
+			productReference = 706DD67BBA172CF2F39D975D /* libPods-XCDYouTubeKit OS X Demo-CocoaLumberjack.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5B6E98D6DFC53A7051B84748 /* Project object */ = {
+		C3D99A8127414F8EA2B00DCB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0640;
 			};
-			buildConfigurationList = 722A6BE7945234E341E61DFD /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 65F8E4C0C0BCC22DF1016197 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 01DEC1374FD10A2E1BD0E249;
-			productRefGroup = E30C87A0A6C87F770AEEF4FB /* Products */;
+			mainGroup = 879AB9825475382928794A9B;
+			productRefGroup = 8BAE3CC0EDAF8A1B31448A0A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00199002C27C8F979DE426BF /* Pods-XCDYouTubeKit OS X Demo */,
-				27D14CAAD856EB509BEAB4C5 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack */,
-				8B2BFC2336070AFEDDB96B56 /* Pods-XCDYouTubeKit iOS Demo */,
-				E4B56136EA618545ADBF254A /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack */,
+				BA7A7EBC51DD2BFE0DA4BE86 /* Pods-XCDYouTubeKit OS X Demo */,
+				F927882359EEA63918E89463 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack */,
+				5EF7F2F013FF74643A226A09 /* Pods-XCDYouTubeKit OS X Demo-NSLogger */,
+				B792B70319002CDF454172FF /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger */,
+				1E0A6FC96E4B4F0400366D0B /* Pods-XCDYouTubeKit iOS Demo */,
+				2BA62570900EC224FCACA9E8 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack */,
+				67DBCDBE3A53D4841D09885E /* Pods-XCDYouTubeKit iOS Demo-NSLogger */,
+				6FAB013E3D0672BE7F6ACA3A /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1198FF7D5102CB8169C667C8 /* Sources */ = {
+		0EE286C89D9C76B0DD4124FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E89FABA63D058989C3C10981 /* DDASLLogCapture.m in Sources */,
-				C1A2DF6ECF45AF7C43DE7332 /* DDASLLogger.m in Sources */,
-				083F44BEC37F538031E4B880 /* DDAbstractDatabaseLogger.m in Sources */,
-				C2E592746F6F9327667F5041 /* DDContextFilterLogFormatter.m in Sources */,
-				FE8BCB0782DCDCB2FBC4422F /* DDDispatchQueueLogFormatter.m in Sources */,
-				D888CE33D73B5A107660391B /* DDFileLogger.m in Sources */,
-				8F28BC1AF0F1C17DBE8329A5 /* DDLog.m in Sources */,
-				BF3E21941D0D96CAD261E15E /* DDMultiFormatter.m in Sources */,
-				A5DDD74D65F40A6BF113C1C4 /* DDTTYLogger.m in Sources */,
-				98CB915D1B4373C834DCB41D /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m in Sources */,
+				601804193490E6CD8F3D9C24 /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-dummy.m in Sources */,
+				7F0A3BC638E309DE62CC0B4C /* XCDLumberjackNSLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		26FFE1EA8B26B142A70511B2 /* Sources */ = {
+		18C8F4EE2132E8576131F275 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				845D57C1A570FB31B0BCBD04 /* DDASLLogCapture.m in Sources */,
-				D686556421F63FF983402DE8 /* DDASLLogger.m in Sources */,
-				6425212919C29FBA444B66CF /* DDAbstractDatabaseLogger.m in Sources */,
-				EEB9220B1888F55A74537704 /* DDContextFilterLogFormatter.m in Sources */,
-				E3EDE7154664F90BF53CAC6D /* DDDispatchQueueLogFormatter.m in Sources */,
-				86A73CD74BB2A5D19A77BCCF /* DDFileLogger.m in Sources */,
-				C058050CDDA49CB7988235E1 /* DDLog.m in Sources */,
-				95A41CD81ECF001F06D87E03 /* DDMultiFormatter.m in Sources */,
-				1D4EF03CADCFC501B4862234 /* DDTTYLogger.m in Sources */,
-				09FF25A6A1E06B91E5BB3F61 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m in Sources */,
+				DE11EEC6286B8553433EC784 /* DDASLLogCapture.m in Sources */,
+				362570A933EE75D2ECAF22C9 /* DDASLLogger.m in Sources */,
+				144909EB3A203175EB061D44 /* DDAbstractDatabaseLogger.m in Sources */,
+				B995DBF836747525893A56C6 /* DDContextFilterLogFormatter.m in Sources */,
+				9ADDF45916F5889A6146AF5F /* DDDispatchQueueLogFormatter.m in Sources */,
+				B9375795E7E3695141AEEF29 /* DDFileLogger.m in Sources */,
+				892887CDE9C7D76A5EC1BB38 /* DDLog.m in Sources */,
+				531235984821856B41A3929E /* DDMultiFormatter.m in Sources */,
+				B3A46F8F653A66BDF1280905 /* DDTTYLogger.m in Sources */,
+				C1777D976D20820CA83D21B4 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52EC5D6CF611DF6552A0FAA3 /* Sources */ = {
+		3B555B081563C15FECE1916A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D922F7D3C4D23351DA575AB /* Pods-XCDYouTubeKit iOS Demo-dummy.m in Sources */,
+				83271101E23756B7343DBB3E /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-dummy.m in Sources */,
+				AEE3E00BEC9DEB1330749CB1 /* XCDLumberjackNSLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E43F9365E5B1BF8C2F1B600A /* Sources */ = {
+		42E70A9D5F0C2ED44C70DA8B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5027BC014E50B35AAC3B1AC /* Pods-XCDYouTubeKit OS X Demo-dummy.m in Sources */,
+				10F7342957D3C23121A2A34C /* Pods-XCDYouTubeKit OS X Demo-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F89AF9F9233D6531356232E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C368CB4CD703FA72EAD37FC /* DDASLLogCapture.m in Sources */,
+				C0DDA162637F6B0A0FE33498 /* DDASLLogger.m in Sources */,
+				545FCA45489B4CE63A9E0C0C /* DDAbstractDatabaseLogger.m in Sources */,
+				0030D6B968B61C18BE611DED /* DDContextFilterLogFormatter.m in Sources */,
+				357FFE54D34522F21351ABA9 /* DDDispatchQueueLogFormatter.m in Sources */,
+				2ECA364B70E63DCE6BFC461E /* DDFileLogger.m in Sources */,
+				278F4C2326049327022AE600 /* DDLog.m in Sources */,
+				8754D3E74F337B804E20A59C /* DDMultiFormatter.m in Sources */,
+				1BF4DFA509C89BCA9F10D170 /* DDTTYLogger.m in Sources */,
+				F52FB46C6A172A9302D7B9FB /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73FACC08EB8471BBB0C60664 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				812CF5D54CF99CA219C53AB5 /* Pods-XCDYouTubeKit iOS Demo-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDF3A7FD4C3E74E8BD0AA5B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A75D8BF533995F8D93D9A2D /* LoggerClient.m in Sources */,
+				ECD2CFC886412190A5B60DD5 /* Pods-XCDYouTubeKit iOS Demo-NSLogger-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3094669ECB523E1EFDF2562 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06AF7357CCB131BB72027522 /* LoggerClient.m in Sources */,
+				2331047F33EA4C318D449CDB /* Pods-XCDYouTubeKit OS X Demo-NSLogger-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0E2F48DF1F5598F50447744D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack";
-			target = E4B56136EA618545ADBF254A /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack */;
-			targetProxy = E053C3646ACC94105D17F0D8 /* PBXContainerItemProxy */;
-		};
-		712480431214EA79B2BB12C6 /* PBXTargetDependency */ = {
+		20FB7C4C05E780268C173053 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack";
-			target = 27D14CAAD856EB509BEAB4C5 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack */;
-			targetProxy = 998C48AA85052C7D164EF082 /* PBXContainerItemProxy */;
+			target = F927882359EEA63918E89463 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack */;
+			targetProxy = 08E00AA8746CE509E0196B27 /* PBXContainerItemProxy */;
+		};
+		233ADF94690CC0F43F56F911 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger";
+			target = B792B70319002CDF454172FF /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger */;
+			targetProxy = BE439A7C61691C85BE98F5F6 /* PBXContainerItemProxy */;
+		};
+		28AE581F8C1ECDD2A5FF6830 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-XCDYouTubeKit OS X Demo-NSLogger";
+			target = 5EF7F2F013FF74643A226A09 /* Pods-XCDYouTubeKit OS X Demo-NSLogger */;
+			targetProxy = 7B0070FF68E25F711EDE842C /* PBXContainerItemProxy */;
+		};
+		2C46B078011F780661361835 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-XCDYouTubeKit OS X Demo-NSLogger";
+			target = 5EF7F2F013FF74643A226A09 /* Pods-XCDYouTubeKit OS X Demo-NSLogger */;
+			targetProxy = 73904B1C4F0DFDA2E66A7D9A /* PBXContainerItemProxy */;
+		};
+		4F75036A8F278FDE83120161 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack";
+			target = 2BA62570900EC224FCACA9E8 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack */;
+			targetProxy = F932534090A4583EF5D20087 /* PBXContainerItemProxy */;
+		};
+		729C7EEC814AC2BD6F887724 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger";
+			target = 6FAB013E3D0672BE7F6ACA3A /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger */;
+			targetProxy = 6A08A35298259F91BC7FCA41 /* PBXContainerItemProxy */;
+		};
+		AAF6AED614E2B1F6ED310226 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack";
+			target = F927882359EEA63918E89463 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack */;
+			targetProxy = DD1A7F13ECAFE99C3ED5ABB8 /* PBXContainerItemProxy */;
+		};
+		C9C0840901D8E71BD5DEADBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-XCDYouTubeKit iOS Demo-NSLogger";
+			target = 67DBCDBE3A53D4841D09885E /* Pods-XCDYouTubeKit iOS Demo-NSLogger */;
+			targetProxy = F5EA15F63B5C933D7EDC8D2B /* PBXContainerItemProxy */;
+		};
+		E66DCF7ABC294DEA49B57730 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack";
+			target = 2BA62570900EC224FCACA9E8 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack */;
+			targetProxy = 265160CBC7AD56B463C086C7 /* PBXContainerItemProxy */;
+		};
+		FC86152F7A5AA30757B6B1D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-XCDYouTubeKit iOS Demo-NSLogger";
+			target = 67DBCDBE3A53D4841D09885E /* Pods-XCDYouTubeKit iOS Demo-NSLogger */;
+			targetProxy = DB92A6C81B9F403C02B8C869 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		20C2D230059185390A17D0D6 /* Debug */ = {
+		0D68064ABCD932B1B464B5F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B85D3BD0E0DCF86DC07FA062 /* Pods-XCDYouTubeKit OS X Demo.debug.xcconfig */;
+			baseConfigurationReference = 83020BFBEDB940463C871E1A /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_PREFIX = lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		26EDA21967DBFC3D94E7C278 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9ADF0757D612D90E48913EC4 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_PREFIX = lib;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack/Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-prefix.pch";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		3BE9819F1E1DBF0EF68AA203 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D579AC23235E0F6596B62EE /* Pods-XCDYouTubeKit OS X Demo.release.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_PREFIX = lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		42561E4A543103E6A5B64547 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9ADF0757D612D90E48913EC4 /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack/Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-prefix.pch";
@@ -621,42 +987,106 @@
 			};
 			name = Debug;
 		};
-		5228FF4AE67F4FFB887BA180 /* Release */ = {
+		11A1276CEBFB284B406D2360 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BEFD044D642A2E949AB59B5 /* Pods-XCDYouTubeKit iOS Demo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		709E873045A0F1AC75050AF0 /* Debug */ = {
+		13B47204315E668A106A91DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A956CA8FD1C82A293E42757F /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1C18A3CBA6645AC93E37AF44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C42561E3324808FDF5C49040 /* Pods-XCDYouTubeKit OS X Demo.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2C6553DBFB843D433997D544 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2D83B5F21AA2A9D10309E1C /* Pods-XCDYouTubeKit iOS Demo.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2D42621004B09CD57ACC38CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97D0FA2D17A8A549E5AC18D8 /* Pods-XCDYouTubeKit OS X Demo.release.xcconfig */;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		328240FDF3B7F8C98C6A54DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A956CA8FD1C82A293E42757F /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5E1B96C3F566EDCA1C97D6D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -696,28 +1126,12 @@
 			};
 			name = Debug;
 		};
-		A070A05B8FBB617BFBEEC5AC /* Debug */ = {
+		6226658EA65FA81E46CB6482 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF0A4F3096342C3B75DFF780 /* Pods-XCDYouTubeKit iOS Demo.debug.xcconfig */;
+			baseConfigurationReference = AEDBE1493CBA6F1FF7589C76 /* Pods-XCDYouTubeKit iOS Demo-NSLogger-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		B2AF65F2271DC1784A20C020 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95245F5D16CE5A558B1A3F73 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit iOS Demo-NSLogger/Pods-XCDYouTubeKit iOS Demo-NSLogger-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
@@ -728,12 +1142,47 @@
 			};
 			name = Debug;
 		};
-		C882114C2C68FBC4A7E469B3 /* Release */ = {
+		66D4C42653EFA87EE7377E55 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95245F5D16CE5A558B1A3F73 /* Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7586EA045F2A1E138FA94270 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D13405FA0EAAFD93AF1611 /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack/Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger/Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
@@ -744,71 +1193,206 @@
 			};
 			name = Release;
 		};
-		EB0675A4F85C9ACF140CFA8F /* Release */ = {
+		7C5B800E24CBD85D463031C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F58AB0CD2CE41E7283C11FF /* Pods-XCDYouTubeKit iOS Demo.release.xcconfig */;
+			baseConfigurationReference = AEDBE1493CBA6F1FF7589C76 /* Pods-XCDYouTubeKit iOS Demo-NSLogger-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit iOS Demo-NSLogger/Pods-XCDYouTubeKit iOS Demo-NSLogger-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		7D8E8253B908ABF9569D87D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63C803DDD34362F37C187676 /* Pods-XCDYouTubeKit OS X Demo-NSLogger-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit OS X Demo-NSLogger/Pods-XCDYouTubeKit OS X Demo-NSLogger-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		86750E247C3E1FF5A5E38BE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83020BFBEDB940463C871E1A /* Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-Private.xcconfig */;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack/Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9831AA30386C3ADDA508F35E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63C803DDD34362F37C187676 /* Pods-XCDYouTubeKit OS X Demo-NSLogger-Private.xcconfig */;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit OS X Demo-NSLogger/Pods-XCDYouTubeKit OS X Demo-NSLogger-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		983488777227E51BAFE40417 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8E740EF78BC0053AFA37419 /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger/Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BFBB34C77BECAD0A7FA7E714 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D13405FA0EAAFD93AF1611 /* Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger/Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CBD93F92CF9619EB9EBE2216 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8E740EF78BC0053AFA37419 /* Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-Private.xcconfig */;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger/Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2EF3FED32FBABD9FF551E767 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack" */ = {
+		179A0A54187722C5912451B4 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				42561E4A543103E6A5B64547 /* Debug */,
-				26EDA21967DBFC3D94E7C278 /* Release */,
+				1C18A3CBA6645AC93E37AF44 /* Debug */,
+				2D42621004B09CD57ACC38CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		722A6BE7945234E341E61DFD /* Build configuration list for PBXProject "Pods" */ = {
+		211F101A3F5CAB4FAB21CFB3 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo-NSLogger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				709E873045A0F1AC75050AF0 /* Debug */,
-				5228FF4AE67F4FFB887BA180 /* Release */,
+				7D8E8253B908ABF9569D87D3 /* Debug */,
+				9831AA30386C3ADDA508F35E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C69E977DDBB7C5E3E17E619C /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack" */ = {
+		2FA3DF0B1174DD25F7B60A7F /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo-NSLogger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B2AF65F2271DC1784A20C020 /* Debug */,
-				C882114C2C68FBC4A7E469B3 /* Release */,
+				6226658EA65FA81E46CB6482 /* Debug */,
+				7C5B800E24CBD85D463031C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EEA8CE6364078C8C549D2BDF /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo" */ = {
+		347099674712F99963990233 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A070A05B8FBB617BFBEEC5AC /* Debug */,
-				EB0675A4F85C9ACF140CFA8F /* Release */,
+				0D68064ABCD932B1B464B5F8 /* Debug */,
+				86750E247C3E1FF5A5E38BE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FE76CEBE041AAB54CA8970A6 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo" */ = {
+		4088418C875AB7076019E856 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo-CocoaLumberjack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				20C2D230059185390A17D0D6 /* Debug */,
-				3BE9819F1E1DBF0EF68AA203 /* Release */,
+				13B47204315E668A106A91DE /* Debug */,
+				328240FDF3B7F8C98C6A54DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57EDA9EB6B1A9A37F45475A0 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				983488777227E51BAFE40417 /* Debug */,
+				CBD93F92CF9619EB9EBE2216 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5AB0B155A78EAD238929E812 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo-XCDLumberjackNSLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFBB34C77BECAD0A7FA7E714 /* Debug */,
+				7586EA045F2A1E138FA94270 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65F8E4C0C0BCC22DF1016197 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E1B96C3F566EDCA1C97D6D3 /* Debug */,
+				66D4C42653EFA87EE7377E55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCF7BD78D4AD586B5D38CDB9 /* Build configuration list for PBXNativeTarget "Pods-XCDYouTubeKit iOS Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C6553DBFB843D433997D544 /* Debug */,
+				11A1276CEBFB284B406D2360 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 5B6E98D6DFC53A7051B84748 /* Project object */;
+	rootObject = C3D99A8127414F8EA2B00DCB /* Project object */;
 }
