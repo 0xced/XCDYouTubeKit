@@ -37,7 +37,7 @@ static void InitializeLoggers(void)
 	ttyLogger.colorsEnabled = YES;
 	[DDLog addLogger:ttyLogger];
 	
-	NSString *bonjourServiceName = [[[NSProcessInfo processInfo] environment] objectForKey:@"NSLOGGER_BONJOUR_SERVICE_NAME"];
+	NSString *bonjourServiceName = [[NSUserDefaults standardUserDefaults] objectForKey:@"NSLoggerBonjourServiceName"];
 	XCDLumberjackNSLogger *logger = [[XCDLumberjackNSLogger alloc] initWithBonjourServiceName:bonjourServiceName];
 	logger.tags = @{ @0: @"Movie Player", @((NSInteger)0xced70676) : @"XCDYouTubeKit" };
 	[DDLog addLogger:logger];
