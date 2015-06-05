@@ -44,11 +44,11 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
 /**
  *  Initializes a YouTube video player view controller
  *
- *  @param videoIdentifier A 11 characters YouTube video identifier. If the video identifier is invalid (including nil) the `MPMoviePlayerPlaybackDidFinishNotification` will be posted with a `MPMovieFinishReasonPlaybackError` reason.
+ *  @param videoIdentifier A 11 characters YouTube video identifier. If the video identifier is invalid the `MPMoviePlayerPlaybackDidFinishNotification` will be posted with a `MPMovieFinishReasonPlaybackError` reason.
  *
  *  @return An initialized YouTube video player view controller with the specified video identifier.
  *
- *  @discussion You pass a nil videoIdentifier and set the `videoIdentifier` property later.
+ *  @discussion You can pass a nil videoIdentifier (or use the standard `init` method instead) and set the `videoIdentifier` property later.
  */
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier __attribute__((objc_designated_initializer));
 
