@@ -76,7 +76,7 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
  *
  *  You should set this property right after calling the `<initWithVideoIdentifier:>` method. Setting this property to nil restores its default values.
  *
- *  @see `XCDYouTubeVideoQuality`
+ *  @see XCDYouTubeVideoQuality
  */
 @property (nonatomic, copy) NSArray *preferredVideoQualities;
 
