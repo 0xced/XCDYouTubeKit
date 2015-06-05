@@ -5,7 +5,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  The quality of YouTube videos. These values are used as keys in the `streamURLs` property of the `XCDYouTubeVideo` class.
+ *  The quality of YouTube videos. These values are used as keys in the `<[XCDYouTubeVideo streamURLs]>` property.
  *
  *  The constant numbers are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_formats) values.
  */
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
 
 /**
- *  Represents a YouTube video. Use the `-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]` method to obtain a `XCDYouTubeVideo` object.
+ *  Represents a YouTube video. Use the `<-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]>` method to obtain a `XCDYouTubeVideo` object.
  */
 @interface XCDYouTubeVideo : NSObject <NSCopying>
 

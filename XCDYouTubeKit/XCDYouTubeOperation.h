@@ -5,7 +5,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  The `XCDYouTubeOperation` protocol is adopted by opaque objects returned by the `-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]` method.
+ *  The `XCDYouTubeOperation` protocol is adopted by opaque objects returned by the `<-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]>` method.
  */
 @protocol XCDYouTubeOperation <NSObject>
 
