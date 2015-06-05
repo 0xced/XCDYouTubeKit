@@ -2,7 +2,7 @@ xcodeproj 'XCDYouTubeKit Demo.xcodeproj'
 workspace '../XCDYouTubeKit Demo.xcworkspace'
 
 def import_pods
-  pod 'CocoaLumberjack', '~> 2.0.0'
+  pod 'XCDLumberjackNSLogger', '~> 1.0.0'
 end
 
 target 'XCDYouTubeKit iOS Demo' do
