@@ -214,6 +214,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 {
 	self.video = video;
 	XCDYouTubeLogInfo(@"Video operation finished with success: %@", video);
+	XCDYouTubeLogDebug(@"%@", video.debugDescription);
 	[self finish];
 }
 
