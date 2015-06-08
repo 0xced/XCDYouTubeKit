@@ -59,6 +59,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	_videoIdentifier = videoIdentifier ?: @"";
 	_languageIdentifier = languageIdentifier ?: @"en";
 	
+	_keepRunning = YES;
+	
 	return self;
 }
 
@@ -94,9 +96,6 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) startRequestWithURL:(NSURL *)url type:(XCDYouTubeRequestType)requestType
 {
-	if ([self isCancelled])
-		return;
-	
 	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo
 	if (++self.requestCount > 6)
 	{
@@ -237,7 +236,6 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage" ]];
 	[self startNextRequest];
 	
-	self.keepRunning = YES;
 	while (self.keepRunning)
 		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
 }
