@@ -220,7 +220,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 - (void) finishWithError
 {
 	self.error = self.youTubeError ?: self.lastError;
-	XCDYouTubeLogError(@"Video operation finished with error: %@", self.error);
+	XCDYouTubeLogError(@"Video operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
 	[self finish];
 }
 
