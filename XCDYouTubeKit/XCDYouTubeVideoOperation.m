@@ -242,6 +242,9 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) cancel
 {
+	if (self.isCancelled || self.isFinished)
+		return;
+	
 	XCDYouTubeLogInfo(@"Canceling video operation: %@", self);
 	
 	[super cancel];
