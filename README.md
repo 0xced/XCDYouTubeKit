@@ -97,6 +97,31 @@ XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVid
 
 See the demo project for more sample code.
 
+## Logging
+
+Since version 2.2.0, XCDYouTubeKit produces logs. XCDYouTubeKit supports [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack) but does not require it. If your project includes CocoaLumberjack, all logs will be routed through CocoaLumberjack, else logs will be emitted with `NSLog`.
+
+The context for identifying all XCDYouTubeKit logs in CocoaLumberjack is the number `(NSInteger)0xced70676`. Beware, CocoaLumberjack contexts are NSIntegers, don’t forget the cast.
+
+### Controlling log levels
+
+If you are using CocoaLumberjack, you are responsible for controlling the log levels with the CocoaLumberjack APIs.
+
+If you are not using CocoaLumberjack, you can control the log levels with the `XCDYouTubeKitLogLevel` environment variable. The log levels are the same as CocoaLumberjack, with the addition of the *trace* level.
+
+Level   | Value
+--------|------
+Error   | 0x01
+Warning | 0x02
+Info    | 0x04
+Debug   | 0x08
+Verbose | 0x10
+Trace   | 0x20
+ 
+The levels are bitmasks, so you can combine them. For example, if you want to log *error*, *warning* and *info* levels, set the `XCDYouTubeKitLogLevel` environment variable to `0x7`.
+
+If you do not set the `XCDYouTubeKitLogLevel` environment variable, only warning and error levels are logged.
+
 ## Credits
 
 The URL extraction algorithms in *XCDYouTubeKit* are inspired by the [YouTube extractor](https://github.com/rg3/youtube-dl/blob/master/youtube_dl/extractor/youtube.py) module of the *youtube-dl* project.
