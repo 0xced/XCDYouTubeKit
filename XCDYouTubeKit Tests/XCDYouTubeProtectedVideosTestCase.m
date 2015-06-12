@@ -243,6 +243,21 @@
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
+// Edit testProtectedVideoWithNonAnonymousJavaScriptPlayerFunction.json by replacing `"(function()` with `"(xunction()`
+- (void) testProtectedVideoWithNonAnonymousJavaScriptPlayerFunction_offline
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(video);
+		 XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		 XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		 XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from WMG. It is restricted from playback on certain sites. Watch on YouTube");
+		 [expectation fulfill];
+	 }];
+	[self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
 // With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page
 - (void) testAgeRestrictedVEVOVideoWithEmbedWebPageConnectionError_offline
 {
