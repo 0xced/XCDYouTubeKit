@@ -4,8 +4,6 @@
 
 #import "XCDYouTubeLogger.h"
 
-#pragma clang diagnostic ignored "-Wformat-nonliteral"
-
 @implementation XCDYouTubeLogger
 
 + (void) log:(BOOL)asynchronous level:(NSUInteger)level flag:(DDLogFlag)flag context:(NSInteger)context file:(const char *)file function:(const char *)function line:(NSUInteger)line tag:(id)tag format:(NSString *)format, ...
