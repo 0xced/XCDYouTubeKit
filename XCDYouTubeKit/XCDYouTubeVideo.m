@@ -37,7 +37,7 @@ static NSString *XCDURLEncodedStringUsingEncoding(NSString *string, NSStringEnco
 
 NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncoding encoding)
 {
-	NSArray *keys = [[dictionary allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+	NSArray *keys = [dictionary.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
 		return [evaluatedObject isKindOfClass:[NSString class]];
 	}]];
 	
@@ -124,7 +124,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 				if (signature)
 					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, [signature stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 				
-				streamURLs[@([itag integerValue])] = streamURL;
+				streamURLs[@(itag.integerValue)] = streamURL;
 			}
 		}
 		_streamURLs = [streamURLs copy];
@@ -156,7 +156,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 			}
 			
 			NSString *errorcode = info[@"errorcode"];
-			NSInteger code = errorcode ? [errorcode integerValue] : XCDYouTubeErrorNoStreamAvailable;
+			NSInteger code = errorcode ? errorcode.integerValue : XCDYouTubeErrorNoStreamAvailable;
 			*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:code userInfo:userInfo];
 		}
 		return nil;
@@ -185,7 +185,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 
 - (NSUInteger) hash
 {
-	return [self.identifier hash];
+	return self.identifier.hash;
 }
 
 - (NSString *) description
