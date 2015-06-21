@@ -28,7 +28,6 @@
 	NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
 	if (enabled)
 	{
-		[defaultCenter addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveVideo:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:nil];
 		[defaultCenter addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 		[defaultCenter addObserver:self selector:@selector(moviePlayerPlaybackStateDidChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
 		[defaultCenter addObserver:self selector:@selector(moviePlayerLoadStateDidChange:) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
@@ -36,7 +35,6 @@
 	}
 	else
 	{
-		[defaultCenter removeObserver:self name:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:nil];
 		[defaultCenter removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 		[defaultCenter removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
 		[defaultCenter removeObserver:self name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
@@ -111,11 +109,6 @@
 {
 	MPMoviePlayerController *moviePlayerController = notification.object;
 	DDLogInfo(@"Now Playing %@", moviePlayerController.contentURL);
-}
-
-- (void) videoPlayerViewControllerDidReceiveVideo:(NSNotification *)notification
-{
-	DDLogInfo(@"Video: %@", notification.userInfo[XCDYouTubeVideoUserInfoKey]);
 }
 
 @end
