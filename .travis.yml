@@ -1,5 +1,7 @@
 osx_image: beta-xcode6.3
 language: objective-c
+before_install:
+    - xcrun simctl list
 install:
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
     - sudo easy_install cpp-coveralls
