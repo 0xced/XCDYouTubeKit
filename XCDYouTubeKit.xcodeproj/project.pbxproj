@@ -428,6 +428,7 @@
 				C2623177191D741700D23900 /* Headers */,
 				C2623175191D741700D23900 /* Sources */,
 				C2623176191D741700D23900 /* Frameworks */,
+				C23803F41B3848110022F240 /* Analyzer */,
 				C249AAA819C091DE00BA17AE /* Export Environment for XcodeCoverage */,
 			);
 			buildRules = (
@@ -446,6 +447,7 @@
 				C2A3F2CB17F4827800AC1C3B /* Copy Files */,
 				C2A3F2C917F4827800AC1C3B /* Sources */,
 				C2A3F2CA17F4827800AC1C3B /* Frameworks */,
+				C222633B1B37660E00BA6719 /* Analyzer */,
 				C249AAA719C0872400BA17AE /* Export Environment for XcodeCoverage */,
 			);
 			buildRules = (
@@ -484,6 +486,7 @@
 				C2F0E56F1944F10E00D8EBA8 /* Frameworks */,
 				C2F0E5701944F10E00D8EBA8 /* Headers */,
 				C2F0E5711944F10E00D8EBA8 /* Resources */,
+				C23803F31B3847C60022F240 /* Analyzer */,
 			);
 			buildRules = (
 			);
@@ -563,6 +566,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		C222633B1B37660E00BA6719 /* Analyzer */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Analyzer;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = Scripts/analyzer.py;
+		};
+		C23803F31B3847C60022F240 /* Analyzer */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Analyzer;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = Scripts/analyzer.py;
+		};
+		C23803F41B3848110022F240 /* Analyzer */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Analyzer;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = Scripts/analyzer.py;
+		};
 		C249AAA519C045C400BA17AE /* Delete *.gcda files */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
