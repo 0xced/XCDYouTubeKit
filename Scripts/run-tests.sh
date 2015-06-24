@@ -16,7 +16,7 @@ for BUILD_SETTING in OBJROOT RUN_CLANG_STATIC_ANALYZER; do
     fi
 done
 
-# xcpretty --version > /dev/null && COMMAND+=" | xcpretty -c"
+xcpretty --version > /dev/null && COMMAND+=" | xcpretty -c"
 
 set -x
 eval "${COMMAND}"
