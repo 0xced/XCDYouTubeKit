@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0620"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -26,9 +26,28 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Code Coverage">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
+               BuildableName = "XCDYouTubeKit iOS Tests.xctest"
+               BlueprintName = "XCDYouTubeKit iOS Tests"
+               ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C2F0E5721944F10E00D8EBA8"
+            BuildableName = "XCDYouTubeKit.framework"
+            BlueprintName = "XCDYouTubeKit iOS Framework"
+            ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = ""
@@ -58,6 +77,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C2F0E5721944F10E00D8EBA8"
+            BuildableName = "XCDYouTubeKit.framework"
+            BlueprintName = "XCDYouTubeKit iOS Framework"
+            ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

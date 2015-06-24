@@ -1,11 +1,11 @@
 //
-//  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- *  The `XCDYouTubeOperation` protocol is adopted by opaque objects returned by the `-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]` method.
+ *  The `XCDYouTubeOperation` protocol is adopted by opaque objects returned by the `<-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]>` method.
  */
 @protocol XCDYouTubeOperation <NSObject>
 

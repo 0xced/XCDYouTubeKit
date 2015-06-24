@@ -3,7 +3,7 @@
 [![Build Status](https://img.shields.io/travis/0xced/XCDYouTubeKit/master.svg?style=flat)](https://travis-ci.org/0xced/XCDYouTubeKit)
 [![Coverage Status](https://img.shields.io/coveralls/0xced/XCDYouTubeKit/master.svg?style=flat)](https://coveralls.io/r/0xced/XCDYouTubeKit?branch=master)
 [![Platform](https://img.shields.io/cocoapods/p/XCDYouTubeKit.svg?style=flat)](http://cocoadocs.org/docsets/XCDYouTubeKit/)
-[![Pod Version](https://img.shields.io/cocoapods/v/XCDYouTubeKit.svg?style=flat)](http://cocoadocs.org/docsets/XCDYouTubeKit/)
+[![Pod Version](https://img.shields.io/cocoapods/v/XCDYouTubeKit.svg?style=flat)](https://cocoapods.org/pods/XCDYouTubeKit)
 [![Carthage Compatibility](https://img.shields.io/badge/carthage-✓-f2a77e.svg?style=flat)](https://github.com/Carthage/Carthage/)
 [![License](https://img.shields.io/cocoapods/l/XCDYouTubeKit.svg?style=flat)](LICENSE)
 
@@ -30,12 +30,12 @@ XCDYouTubeKit is available through CocoaPods and Carthage.
 
 CocoaPods:
 ```ruby
-pod "XCDYouTubeKit", "~> 2.1.3"
+pod "XCDYouTubeKit", "~> 2.2.0"
 ```
 
 Carthage:
 ```objc
-github "0xced/XCDYouTubeKit" ~> 2.1.3
+github "0xced/XCDYouTubeKit" ~> 2.2.0
 ```
 
 Alternatively, you can manually use the provided static library on iOS or dynamic framework on OS X. In order to use the iOS static library, you must:
@@ -96,6 +96,31 @@ XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVid
 ```
 
 See the demo project for more sample code.
+
+## Logging
+
+Since version 2.2.0, XCDYouTubeKit produces logs. XCDYouTubeKit supports [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack) but does not require it. If your project includes CocoaLumberjack, all logs will be routed through CocoaLumberjack, else logs will be emitted with `NSLog`.
+
+The context for identifying all XCDYouTubeKit logs in CocoaLumberjack is the number `(NSInteger)0xced70676`. Beware, CocoaLumberjack contexts are NSIntegers, don’t forget the cast.
+
+### Controlling log levels
+
+If you are using CocoaLumberjack, you are responsible for controlling the log levels with the CocoaLumberjack APIs.
+
+If you are not using CocoaLumberjack, you can control the log levels with the `XCDYouTubeKitLogLevel` environment variable. The log levels are the same as CocoaLumberjack, with the addition of the *trace* level.
+
+Level   | Value
+--------|------
+Error   | 0x01
+Warning | 0x02
+Info    | 0x04
+Debug   | 0x08
+Verbose | 0x10
+Trace   | 0x20
+ 
+The levels are bitmasks, so you can combine them. For example, if you want to log *error*, *warning* and *info* levels, set the `XCDYouTubeKitLogLevel` environment variable to `0x7`.
+
+If you do not set the `XCDYouTubeKitLogLevel` environment variable, only warning and error levels are logged.
 
 ## Credits
 

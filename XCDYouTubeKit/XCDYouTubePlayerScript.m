@@ -1,10 +1,6 @@
 //
-//  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
-
-#import "XCDYouTubePlayerScript.h"
-
-#import <JavaScriptCore/JavaScriptCore.h>
 
 #import <Availability.h>
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_7_0
@@ -13,6 +9,12 @@
 #warning Rewrite JavaScriptCore code with JSContext + JSValue (available since OS X 10.9) instead the verbose C API.
 #endif
 
+#import "XCDYouTubePlayerScript.h"
+
+#import <JavaScriptCore/JavaScriptCore.h>
+
+#import "XCDYouTubeLogger.h"
+
 @interface XCDYouTubePlayerScript ()
 @property (nonatomic, assign) JSGlobalContextRef context;
 @property (nonatomic, assign) JSObjectRef signatureFunction;
@@ -20,16 +22,34 @@
 
 @implementation XCDYouTubePlayerScript
 
+static NSString * JSValueDescription(JSContextRef context, JSValueRef value)
+{
+	JSStringRef exceptionStringRef = JSValueToStringCopy(context, value, NULL);
+	if (exceptionStringRef)
+	{
+		CFStringRef exceptionString = JSStringCopyCFString(kCFAllocatorDefault, exceptionStringRef);
+		JSStringRelease(exceptionStringRef);
+		if (exceptionString)
+		{
+			return CFBridgingRelease(exceptionString);
+		}
+	}
+	return nil;
+}
+
 - (instancetype) initWithString:(NSString *)string
 {
 	if (!(self = [super init]))
 		return nil;
 	
 	NSString *script = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	XCDYouTubeLogTrace(@"%@", script);
 	static NSString *jsPrologue = @"(function()";
 	static NSString *jsEpilogue = @")();";
 	if ([script hasPrefix:jsPrologue] && [script hasSuffix:jsEpilogue])
 		script = [script substringWithRange:NSMakeRange(jsPrologue.length, script.length - (jsPrologue.length + jsEpilogue.length))];
+	else
+		XCDYouTubeLogWarning(@"Unexpected player script (not an anonymous function)");
 	
 	_context = JSGlobalContextCreate(NULL);
 	
@@ -48,7 +68,10 @@
 	}
 	
 	JSStringRef scriptRef = JSStringCreateWithCFString((__bridge CFStringRef)script);
-	JSEvaluateScript(_context, scriptRef, NULL, NULL, 0, NULL);
+	JSValueRef exception;
+	JSValueRef scriptResult = JSEvaluateScript(_context, scriptRef, NULL, NULL, 0, &exception);
+	if (!scriptResult && exception)
+		XCDYouTubeLogWarning(@"JavaScript exception: %@", JSValueDescription(_context, exception));
 	JSStringRelease(scriptRef);
 	
 	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[\"']signature[\"']\\s*,\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
@@ -63,6 +86,9 @@
 		if (JSValueIsObject(_context, signatureFunction) && JSObjectIsFunction(_context, (JSObjectRef)signatureFunction))
 			_signatureFunction = (JSObjectRef)signatureFunction;
 	}
+	
+	if (!_signatureFunction)
+		XCDYouTubeLogWarning(@"No signature function in player script");
 	
 	return self;
 }

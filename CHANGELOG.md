@@ -1,3 +1,9 @@
+#### Version 2.2.0
+
+* Networking and parsing code is executed on a background thread for better performance. The `XCDYouTubeVideoOperation` class has changed from an asynchronous to a synchronous operation and must not be started on the main thread. (#147)
+* Logging support, see the [README](README.md#logging) for documentation.
+* Improved documentation.
+
 #### Version 2.1.3
 
 * Adaptation to YouTube API change. (#144)

@@ -1,8 +1,10 @@
 //
-//  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
 #import "XCDYouTubeVideoWebpage.h"
+
+#import "XCDYouTubeLogger.h"
 
 @interface XCDYouTubeVideoWebpage ()
 @property (nonatomic, strong) NSData *data;
@@ -36,11 +38,12 @@
 	{
 		__block NSDictionary *playerConfigurationDictionary;
 		CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
-		NSString *html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, [self.data bytes], (CFIndex)[self.data length], encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
+		NSString *html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, self.data.bytes, (CFIndex)self.data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
+		XCDYouTubeLogTrace(@"%@", html);
 		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});|\\(\\s*'PLAYER_CONFIG',\\s*(\\{.*?\\})\\s*\\)" options:NSRegularExpressionCaseInsensitive error:NULL];
 		[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
 		{
-			for (NSUInteger i = 1; i < [result numberOfRanges]; i++)
+			for (NSUInteger i = 1; i < result.numberOfRanges; i++)
 			{
 				NSRange range = [result rangeAtIndex:i];
 				if (range.length == 0)

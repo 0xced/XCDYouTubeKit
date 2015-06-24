@@ -1,14 +1,18 @@
 //
-//  Copyright (c) 2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
 #import "AppDelegate.h"
+
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 @implementation AppDelegate
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"EdeVaT-zZt4" }];
+	
+	[DDLog addLogger:[DDASLLogger sharedInstance]];
 }
 
 - (IBAction) playVideo:(id)sender

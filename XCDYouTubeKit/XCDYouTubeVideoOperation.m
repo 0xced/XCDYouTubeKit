@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
 #import "XCDYouTubeVideoOperation.h"
@@ -10,6 +10,7 @@
 #import "XCDYouTubeError.h"
 #import "XCDYouTubeVideoWebpage.h"
 #import "XCDYouTubePlayerScript.h"
+#import "XCDYouTubeLogger.h"
 
 static const void * const XCDYouTubeRequestTypeKey = &XCDYouTubeRequestTypeKey;
 
@@ -30,8 +31,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, strong) NSMutableData *connectionData;
 @property (atomic, strong) NSMutableArray *eventLabels;
 
-@property (atomic, assign) BOOL isExecuting;
-@property (atomic, assign) BOOL isFinished;
+@property (atomic, assign) BOOL keepRunning;
 
 @property (atomic, strong) XCDYouTubeVideoWebpage *webpage;
 @property (atomic, strong) XCDYouTubeVideoWebpage *embedWebpage;
@@ -58,6 +58,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	
 	_videoIdentifier = videoIdentifier ?: @"";
 	_languageIdentifier = languageIdentifier ?: @"en";
+	
+	_keepRunning = YES;
 	
 	return self;
 }
@@ -94,9 +96,6 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) startRequestWithURL:(NSURL *)url type:(XCDYouTubeRequestType)requestType
 {
-	if ([self isCancelled])
-		return;
-	
 	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo
 	if (++self.requestCount > 6)
 	{
@@ -105,18 +104,23 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		return;
 	}
 	
+	XCDYouTubeLogDebug(@"Starting request: %@", url);
+	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
 	
 	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
 	objc_setAssociatedObject(connection, XCDYouTubeRequestTypeKey, @(requestType), OBJC_ASSOCIATION_RETAIN);
-	[connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+	[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	[connection start];
 	self.connection = connection;
 }
 
 - (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info
 {
+	XCDYouTubeLogDebug(@"Handling video info response");
+	XCDYouTubeLogVerbose(@"Video info: %@", info);
+	
 	NSError *error = nil;
 	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:self.response error:&error];
 	if (video)
@@ -145,6 +149,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) handleWebPageResponse
 {
+	XCDYouTubeLogDebug(@"Handling web page response");
+	
 	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
 	
 	if (self.webpage.javaScriptPlayerURL)
@@ -167,6 +173,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) handleEmbedWebPageResponse
 {
+	XCDYouTubeLogDebug(@"Handling embed web page response");
+	
 	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
 	
 	if (self.embedWebpage.javaScriptPlayerURL)
@@ -181,6 +189,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) handleJavaScriptPlayerResponse
 {
+	XCDYouTubeLogDebug(@"Handling JavaScript player response");
+	
 	NSString *script = [[NSString alloc] initWithData:self.connectionData encoding:NSISOLatin1StringEncoding];
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
@@ -202,41 +212,41 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 - (void) finishWithVideo:(XCDYouTubeVideo *)video
 {
 	self.video = video;
+	XCDYouTubeLogInfo(@"Video operation finished with success: %@", video);
+	XCDYouTubeLogDebug(@"%@", video.debugDescription);
 	[self finish];
 }
 
 - (void) finishWithError
 {
 	self.error = self.youTubeError ?: self.lastError;
+	XCDYouTubeLogError(@"Video operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
 	[self finish];
 }
 
 #pragma mark - NSOperation
 
-+ (BOOL) automaticallyNotifiesObserversForKey:(NSString *)key
+- (void) main
 {
-	SEL selector = NSSelectorFromString(key);
-	return selector == @selector(isExecuting) || selector == @selector(isFinished) || [super automaticallyNotifiesObserversForKey:key];
-}
-
-- (BOOL) isConcurrent
-{
-	return YES;
-}
-
-- (void) start
-{
-	if ([self isCancelled])
-		return;
+	if ([NSThread isMainThread])
+		@throw [NSException exceptionWithName:NSGenericException reason:@"XCDYouTubeVideoOperation must not be executed on the main thread." userInfo:nil];
 	
-	self.isExecuting = YES;
+	XCDYouTubeLogInfo(@"Starting video operation: %@", self);
 	
 	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage" ]];
 	[self startNextRequest];
+	
+	while (self.keepRunning)
+		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
 }
 
 - (void) cancel
 {
+	if (self.isCancelled || self.isFinished)
+		return;
+	
+	XCDYouTubeLogInfo(@"Canceling video operation: %@", self);
+	
 	[super cancel];
 	
 	[self.connection cancel];
@@ -246,8 +256,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) finish
 {
-	self.isExecuting = NO;
-	self.isFinished = YES;
+	self.keepRunning = NO;
 }
 
 #pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate
@@ -295,6 +304,13 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
 	
 	[self startNextRequest];
+}
+
+#pragma mark - NSObject
+
+- (NSString *) description
+{
+	return [NSString stringWithFormat:@"<%@: %p> %@ (%@)", self.class, self, self.videoIdentifier, self.languageIdentifier];
 }
 
 @end

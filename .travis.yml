@@ -1,12 +1,24 @@
 language: objective-c
+env:
+  global:
+    LC_CTYPE="en_US.UTF-8"
+  matrix:
+    - CONFIGURATION="Code Coverage" SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s"        OBJROOT="build"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=7.1"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.1"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 4s"        RUN_CLANG_STATIC_ANALYZER="YES"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s"        RUN_CLANG_STATIC_ANALYZER="YES"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Framework"      DESTINATION="platform=iOS Simulator,name=iPhone 4s"        RUN_CLANG_STATIC_ANALYZER="YES"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Framework"      DESTINATION="platform=iOS Simulator,name=iPhone 5s"        RUN_CLANG_STATIC_ANALYZER="YES"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit OS X"               DESTINATION="platform=OS X"                                RUN_CLANG_STATIC_ANALYZER="YES"
+before_install:
+  - xcrun simctl list
 install:
-    - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-    - sudo easy_install cpp-coveralls
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - sudo easy_install cpp-coveralls
 script:
-    - export LC_CTYPE=en_US.UTF-8
-    - set -o pipefail
-    - xcodebuild test -project XCDYouTubeKit.xcodeproj -scheme 'XCDYouTubeKit iOS Static Library' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
-    - xcodebuild test -project XCDYouTubeKit.xcodeproj -scheme 'XCDYouTubeKit iOS Static Library' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch 64-bit)' OBJROOT=build | xcpretty -c
-    - xcodebuild test -project XCDYouTubeKit.xcodeproj -scheme 'XCDYouTubeKit OS X' | xcpretty -c
+  - ./Scripts/run-tests.sh
 after_success:
-    - coveralls --include XCDYouTubeKit
+  - if [ "$CONFIGURATION" == "Code Coverage" ]; then
+      coveralls --include XCDYouTubeKit;
+    fi

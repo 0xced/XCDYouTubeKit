@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
 int main(int argc, const char * argv[])
