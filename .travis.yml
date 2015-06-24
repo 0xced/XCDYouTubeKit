@@ -16,7 +16,6 @@ env:
     - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit OS X"               DESTINATION="platform=OS X"                                RUN_CLANG_STATIC_ANALYZER="YES"
 before_install:
   - xcrun simctl list
-  - cat "${HOME}/build.sh"
 install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - sudo easy_install cpp-coveralls
@@ -24,5 +23,5 @@ script:
   - ./Scripts/run-tests.sh
 after_success:
   - if [ "$CONFIGURATION" == "Code Coverage" ]; then
-      coveralls --verbose --include XCDYouTubeKit
+      coveralls --include XCDYouTubeKit;
     fi
