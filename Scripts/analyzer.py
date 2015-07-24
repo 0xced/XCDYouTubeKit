@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import os, plistlib, sys
+import glob, os, plistlib, sys
 
 run_clang_static_analyzer = os.environ.get('RUN_CLANG_STATIC_ANALYZER', '0').strip(' ')
 if not run_clang_static_analyzer[:1] in 'YyTt123456789':
@@ -11,8 +11,8 @@ if not os.path.exists(analyzer_results_dir):
 	sys.exit("error: Static Anaylzer results not found, expected in %s" % analyzer_results_dir)
 
 exit_code = 0
-for result in os.listdir(analyzer_results_dir):
-	with open(os.path.join(analyzer_results_dir, result)) as f:
+for result in glob.iglob(os.path.join(analyzer_results_dir, "*.plist")):
+	with open(result) as f:
 		plist = plistlib.readPlist(f)
 		for diagnostic in plist['diagnostics']:
 			location = diagnostic['location']
