@@ -78,7 +78,7 @@
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testDVRVideo
@@ -227,7 +227,7 @@
 		XCTAssertEqual(underlyingError.code, NSURLErrorNotConnectedToInternet);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testUsingClientOnNonMainThread
