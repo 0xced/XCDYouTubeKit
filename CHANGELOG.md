@@ -1,3 +1,7 @@
+#### Version 2.2.1
+
+* Fixed CocoaPods integration issue with Xcode 7 beta. (#165)
+
 #### Version 2.2.0
 
 * Networking and parsing code is executed on a background thread for better performance. The `XCDYouTubeVideoOperation` class has changed from an asynchronous to a synchronous operation and must not be started on the main thread. (#147)
