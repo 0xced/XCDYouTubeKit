@@ -83,8 +83,8 @@ static NSString * JSValueDescription(JSContextRef context, JSValueRef value)
 		JSStringRef signatureFunctionNameRef = JSStringCreateWithCFString((__bridge CFStringRef)signatureFunctionName);
 		JSValueRef signatureFunction = JSEvaluateScript(_context, signatureFunctionNameRef, NULL, NULL, 0, NULL);
 		JSStringRelease(signatureFunctionNameRef);
-		if (JSValueIsObject(_context, signatureFunction) && JSObjectIsFunction(_context, (JSObjectRef)signatureFunction))
-			_signatureFunction = (JSObjectRef)signatureFunction;
+		if (JSValueIsObject(_context, signatureFunction) && JSObjectIsFunction(_context, (JSObjectRef)(intptr_t)signatureFunction))
+			_signatureFunction = (JSObjectRef)(intptr_t)signatureFunction;
 	}
 	
 	if (!_signatureFunction)
