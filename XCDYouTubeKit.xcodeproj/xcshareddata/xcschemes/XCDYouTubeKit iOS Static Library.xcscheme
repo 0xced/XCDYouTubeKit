@@ -50,6 +50,11 @@
       </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
+            key = "XCDYouTubeKitLogLevel"
+            value = "0"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "VCR_CASSETTES_DIRECTORY"
             value = "$(SRCROOT)/XCDYouTubeKit Tests/Cassettes"
             isEnabled = "NO">
