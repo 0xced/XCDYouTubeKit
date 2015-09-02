@@ -16,7 +16,7 @@
 XCDLumberjackNSLogger is available through CocoaPods.
 
 ```ruby
-pod "XCDLumberjackNSLogger", "~> 1.0.0"
+pod "XCDLumberjackNSLogger", "~> 1.0.1"
 ```
 
 ## Usage
