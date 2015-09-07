@@ -787,6 +787,8 @@
 				WARNING_CFLAGS = (
 					"$(inherited)",
 					"-Wno-documentation-unknown-command",
+					"-Wno-nullable-to-nonnull-conversion",
+					"-Wno-reserved-id-macro",
 				);
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -808,6 +810,8 @@
 				WARNING_CFLAGS = (
 					"$(inherited)",
 					"-Wno-documentation-unknown-command",
+					"-Wno-nullable-to-nonnull-conversion",
+					"-Wno-reserved-id-macro",
 				);
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1063,6 +1067,8 @@
 				WARNING_CFLAGS = (
 					"$(inherited)",
 					"-Wno-documentation-unknown-command",
+					"-Wno-nullable-to-nonnull-conversion",
+					"-Wno-reserved-id-macro",
 				);
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1086,6 +1092,8 @@
 				WARNING_CFLAGS = (
 					"$(inherited)",
 					"-Wno-documentation-unknown-command",
+					"-Wno-nullable-to-nonnull-conversion",
+					"-Wno-reserved-id-macro",
 				);
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1109,6 +1117,8 @@
 				WARNING_CFLAGS = (
 					"$(inherited)",
 					"-Wno-documentation-unknown-command",
+					"-Wno-nullable-to-nonnull-conversion",
+					"-Wno-reserved-id-macro",
 				);
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1132,6 +1142,8 @@
 				WARNING_CFLAGS = (
 					"$(inherited)",
 					"-Wno-documentation-unknown-command",
+					"-Wno-nullable-to-nonnull-conversion",
+					"-Wno-reserved-id-macro",
 				);
 				WRAPPER_EXTENSION = xctest;
 			};
