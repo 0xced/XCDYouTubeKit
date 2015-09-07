@@ -907,6 +907,7 @@
 				VERSIONING_SYSTEM = "Semantic Versioning";
 				WARNING_CFLAGS = (
 					"-Weverything",
+					"-Wno-unknown-warning-option",
 					"-Wno-gnu",
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-pedantic",
@@ -958,6 +959,7 @@
 				VERSIONING_SYSTEM = "Semantic Versioning";
 				WARNING_CFLAGS = (
 					"-Weverything",
+					"-Wno-unknown-warning-option",
 					"-Wno-gnu",
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-pedantic",
@@ -1026,6 +1028,7 @@
 				VERSIONING_SYSTEM = "Semantic Versioning";
 				WARNING_CFLAGS = (
 					"-Weverything",
+					"-Wno-unknown-warning-option",
 					"-Wno-gnu",
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-pedantic",
