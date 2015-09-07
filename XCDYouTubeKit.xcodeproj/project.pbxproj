@@ -912,6 +912,7 @@
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-pedantic",
 					"-Wno-unused-parameter",
+					"-Wno-partial-availability",
 				);
 			};
 			name = Debug;
@@ -964,6 +965,7 @@
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-pedantic",
 					"-Wno-unused-parameter",
+					"-Wno-partial-availability",
 				);
 			};
 			name = Release;
@@ -1033,6 +1035,7 @@
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-pedantic",
 					"-Wno-unused-parameter",
+					"-Wno-partial-availability",
 				);
 			};
 			name = "Code Coverage";
