@@ -1,3 +1,4 @@
+osx_image: xcode6.4
 language: objective-c
 env:
   global:
@@ -6,6 +7,9 @@ env:
     - CONFIGURATION="Code Coverage" SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s"        OBJROOT="build"
     - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=7.1"
     - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.1"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.2"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.3"
+    - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.4"
     - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 4s"        RUN_CLANG_STATIC_ANALYZER="YES"
     - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" DESTINATION="platform=iOS Simulator,name=iPhone 5s"        RUN_CLANG_STATIC_ANALYZER="YES"
     - CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Framework"      DESTINATION="platform=iOS Simulator,name=iPhone 4s"        RUN_CLANG_STATIC_ANALYZER="YES"
