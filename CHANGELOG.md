@@ -1,5 +1,7 @@
 #### Version 2.2.1
 
+* Xcode 7 support.
+* Nullability annotations.
 * Fixed CocoaPods integration issue with Xcode 7 beta. (#165)
 
 #### Version 2.2.0
