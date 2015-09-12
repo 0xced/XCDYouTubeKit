@@ -16,6 +16,7 @@
 		C2428B07191C3DE400065504 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2428B04191C3DE400065504 /* main.m */; };
 		C2428B0C191C415300065504 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2428B0B191C415300065504 /* AVKit.framework */; };
 		C2570B861A02415F00127127 /* NowPlayingInfoCenterProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */; };
+		C2597EA21B0CB90C0030E9F2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FB52DF1918F89A00B2CBE6 /* JavaScriptCore.framework */; };
 		C26231B5191D7E0600D23900 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; };
 		C26231B7191D7F8500D23900 /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C2630D3E1935C449000D3917 /* PlayerEventLogger.m */; };
@@ -131,6 +132,7 @@
 				C27415E317F4D02E0026834B /* AVFoundation.framework in Frameworks */,
 				C27415A617F491230026834B /* CoreGraphics.framework in Frameworks */,
 				C27415A417F491230026834B /* Foundation.framework in Frameworks */,
+				C2597EA21B0CB90C0030E9F2 /* JavaScriptCore.framework in Frameworks */,
 				C27415E517F4D0330026834B /* MediaPlayer.framework in Frameworks */,
 				C27415A217F491230026834B /* UIKit.framework in Frameworks */,
 				BBC4CDD99742C66C5310997D /* libPods-XCDYouTubeKit iOS Demo.a in Frameworks */,
@@ -602,24 +604,6 @@
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-U,_JSContextGetGlobalObject",
-					"-Wl,-U,_JSEvaluateScript",
-					"-Wl,-U,_JSGlobalContextCreate",
-					"-Wl,-U,_JSGlobalContextRelease",
-					"-Wl,-U,_JSObjectCallAsFunction",
-					"-Wl,-U,_JSObjectIsFunction",
-					"-Wl,-U,_JSObjectMake",
-					"-Wl,-U,_JSObjectSetProperty",
-					"-Wl,-U,_JSStringCopyCFString",
-					"-Wl,-U,_JSStringCreateWithCFString",
-					"-Wl,-U,_JSStringRelease",
-					"-Wl,-U,_JSValueIsObject",
-					"-Wl,-U,_JSValueIsString",
-					"-Wl,-U,_JSValueMakeString",
-					"-Wl,-U,_JSValueToStringCopy",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -635,24 +619,6 @@
 				GCC_PREFIX_HEADER = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-U,_JSContextGetGlobalObject",
-					"-Wl,-U,_JSEvaluateScript",
-					"-Wl,-U,_JSGlobalContextCreate",
-					"-Wl,-U,_JSGlobalContextRelease",
-					"-Wl,-U,_JSObjectCallAsFunction",
-					"-Wl,-U,_JSObjectIsFunction",
-					"-Wl,-U,_JSObjectMake",
-					"-Wl,-U,_JSObjectSetProperty",
-					"-Wl,-U,_JSStringCopyCFString",
-					"-Wl,-U,_JSStringCreateWithCFString",
-					"-Wl,-U,_JSStringRelease",
-					"-Wl,-U,_JSValueIsObject",
-					"-Wl,-U,_JSValueIsString",
-					"-Wl,-U,_JSValueMakeString",
-					"-Wl,-U,_JSValueToStringCopy",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
