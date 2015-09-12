@@ -17,8 +17,8 @@ Are you enjoying XCDYouTubeKit? You can say thank you with [a tweet](https://twi
 
 ## Requirements
 
-- Runs on iOS 5.0 and later
-- Runs on OS X 10.7 and later
+- Runs on iOS 7.0 and later
+- Runs on OS X 10.9 and later
 
 ## Warning
 
