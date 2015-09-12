@@ -6,7 +6,6 @@
 #define NS_ASSUME_NONNULL_BEGIN
 #define NS_ASSUME_NONNULL_END
 #define nullable
-#define __nullable
 #endif
 
 #import <Foundation/Foundation.h>
@@ -39,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return An initialized `XCDYouTubeVideoOperation` object.
  */
-- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString * __nullable)languageIdentifier;
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier;
 
 /**
  *  --------------------------------
