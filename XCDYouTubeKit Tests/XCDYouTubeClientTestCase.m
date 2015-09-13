@@ -114,7 +114,9 @@
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
-	setenv("XCDYouTubeKitLogLevel", logLevel, 1);
+	
+	if (logLevel)
+		setenv("XCDYouTubeKitLogLevel", logLevel, 1);
 }
 
 - (void) testRemovedVideo
