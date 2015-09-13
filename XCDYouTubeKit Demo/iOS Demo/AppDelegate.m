@@ -63,9 +63,9 @@ static void InitializeAudioSession(void)
 static void InitializeAppearance(UINavigationController *rootViewController)
 {
 	UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
-	navigationBarAppearance.titleTextAttributes = @{ UITextAttributeFont: [UIFont boldSystemFontOfSize:17] };
+	navigationBarAppearance.titleTextAttributes = @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:17] };
 	UIBarButtonItem *settingsButtonItem = rootViewController.topViewController.navigationItem.rightBarButtonItem;
-	[settingsButtonItem setTitleTextAttributes:@{ UITextAttributeFont: [UIFont boldSystemFontOfSize:26] } forState:UIControlStateNormal];
+	[settingsButtonItem setTitleTextAttributes:@{ NSFontAttributeName: [UIFont boldSystemFontOfSize:26] } forState:UIControlStateNormal];
 }
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
