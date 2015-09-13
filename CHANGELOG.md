@@ -3,7 +3,7 @@
 * Raised deployment target to iOS 7.0 and OS X 10.9.
 * Xcode 7 support.
 * Nullability annotations.
-* Fixed CocoaPods integration issue with Xcode 7 beta. (#165)
+* Fixed bitcode issue with CocoaPods integration. (#165, #173)
 
 #### Version 2.2.0
 
