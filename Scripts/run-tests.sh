@@ -19,6 +19,7 @@ for BUILD_SETTING in OBJROOT RUN_CLANG_STATIC_ANALYZER; do
 done
 
 xcpretty --version > /dev/null && COMMAND+=" | xcpretty -c"
+xcpretty-travis-formatter > /dev/null && COMMAND+=" -f `xcpretty-travis-formatter`"
 
 set -x
 eval "${COMMAND}"
