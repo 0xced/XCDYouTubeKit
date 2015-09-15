@@ -50,7 +50,8 @@
 					continue;
 				
 				NSString *configString = [html substringWithRange:range];
-				NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:[configString dataUsingEncoding:NSUTF8StringEncoding] options:(NSJSONReadingOptions)0 error:NULL];
+				NSData *configData = [configString dataUsingEncoding:NSUTF8StringEncoding];
+				NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:configData ?: [NSData new] options:(NSJSONReadingOptions)0 error:NULL];
 				if ([playerConfiguration isKindOfClass:[NSDictionary class]])
 				{
 					playerConfigurationDictionary = playerConfiguration;

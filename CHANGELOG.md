@@ -1,3 +1,10 @@
+#### Version 2.3.0
+
+* Raised deployment target to iOS 7.0 and OS X 10.9.
+* Xcode 7 support.
+* Nullability annotations.
+* Fixed bitcode issue with CocoaPods integration. (#165, #173)
+
 #### Version 2.2.0
 
 * Networking and parsing code is executed on a background thread for better performance. The `XCDYouTubeVideoOperation` class has changed from an asynchronous to a synchronous operation and must not be started on the main thread. (#147)

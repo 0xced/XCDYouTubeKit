@@ -78,7 +78,7 @@
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testDVRVideo
@@ -102,6 +102,8 @@
 
 - (void) testRestrictedVideo
 {
+	char *logLevel = getenv("XCDYouTubeKitLogLevel");
+	setenv("XCDYouTubeKitLogLevel", "1", 1);
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"1kIsylLeHHU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
@@ -112,6 +114,9 @@
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
+	
+	if (logLevel)
+		setenv("XCDYouTubeKitLogLevel", logLevel, 1);
 }
 
 - (void) testRemovedVideo
@@ -227,7 +232,7 @@
 		XCTAssertEqual(underlyingError.code, NSURLErrorNotConnectedToInternet);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testUsingClientOnNonMainThread

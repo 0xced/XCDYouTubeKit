@@ -2,11 +2,19 @@
 //  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
+#if !__has_feature(nullability)
+#define NS_ASSUME_NONNULL_BEGIN
+#define NS_ASSUME_NONNULL_END
+#define nullable
+#endif
+
 #import <Foundation/Foundation.h>
 
 #import <XCDYouTubeKit/XCDYouTubeOperation.h>
 #import <XCDYouTubeKit/XCDYouTubeVideo.h>
 #import <XCDYouTubeKit/XCDYouTubeError.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  The `XCDYouTubeClient` class is responsible for interacting with the YouTube API. Given a YouTube video identifier, you will get video information with the `<-getVideoWithIdentifier:completionHandler:>` method.
@@ -35,7 +43,7 @@
  *
  *  @return A client with the specified language identifier.
  */
-- (instancetype) initWithLanguageIdentifier:(NSString *)languageIdentifier;
+- (instancetype) initWithLanguageIdentifier:(nullable NSString *)languageIdentifier;
 
 /**
  *  ---------------------------------
@@ -68,6 +76,8 @@
  *
  *  @return An opaque object conforming to the `<XCDYouTubeOperation>` protocol for canceling the asynchronous video information operation. If you call the `cancel` method before the operation is finished, the completion handler will not be called. It is recommended that you store this opaque object as a weak property.
  */
-- (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler __attribute__((nonnull(2)));
+- (id<XCDYouTubeOperation>) getVideoWithIdentifier:(nullable NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler;
 
 @end
+
+NS_ASSUME_NONNULL_END

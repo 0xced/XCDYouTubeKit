@@ -2,10 +2,18 @@
 //  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
+#if !__has_feature(nullability)
+#define NS_ASSUME_NONNULL_BEGIN
+#define NS_ASSUME_NONNULL_END
+#define nullable
+#endif
+
 #import <Foundation/Foundation.h>
 
 #import <XCDYouTubeKit/XCDYouTubeOperation.h>
 #import <XCDYouTubeKit/XCDYouTubeVideo.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  XCDYouTubeVideoOperation is a subclass of `NSOperation` that connects to the YouTube API and parse the response.
@@ -30,7 +38,7 @@
  *
  *  @return An initialized `XCDYouTubeVideoOperation` object.
  */
-- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier;
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier;
 
 /**
  *  --------------------------------
@@ -43,12 +51,14 @@
  *
  *  Returns nil if the operation is not yet finished or if it was canceled.
  */
-@property (atomic, readonly) NSError *error;
+@property (atomic, readonly, nullable) NSError *error;
 /**
  *  Returns a video object if the operation succeeded or nil if it failed.
  *
  *  Returns nil if the operation is not yet finished or if it was canceled.
  */
-@property (atomic, readonly) XCDYouTubeVideo *video;
+@property (atomic, readonly, nullable) XCDYouTubeVideo *video;
 
 @end
+
+NS_ASSUME_NONNULL_END

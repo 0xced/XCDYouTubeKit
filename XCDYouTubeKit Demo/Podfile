@@ -1,12 +1,14 @@
 xcodeproj 'XCDYouTubeKit Demo.xcodeproj'
 workspace '../XCDYouTubeKit Demo.xcworkspace'
 
+inhibit_all_warnings!
+
 def import_pods
   pod 'XCDLumberjackNSLogger', '~> 1.0.0'
 end
 
 target 'XCDYouTubeKit iOS Demo' do
-  platform :ios, '5.0'
+  platform :ios, '7.0'
   import_pods
 end
 

@@ -81,7 +81,8 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		NSMutableArray *streamQueries = [[streamMap componentsSeparatedByString:@","] mutableCopy];
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
 		
-		_title = info[@"title"];
+		NSString *title = info[@"title"] ?: @"";
+		_title = title;
 		_duration = [info[@"length_seconds"] doubleValue];
 		
 		NSString *smallThumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
