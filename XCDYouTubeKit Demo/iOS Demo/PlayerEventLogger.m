@@ -5,6 +5,7 @@
 #import "PlayerEventLogger.h"
 
 #import <CocoaLumberjack/CocoaLumberjack.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @implementation PlayerEventLogger
 

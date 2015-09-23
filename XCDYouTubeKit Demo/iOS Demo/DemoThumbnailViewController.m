@@ -4,6 +4,10 @@
 
 #import "DemoThumbnailViewController.h"
 
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
+
+#import "MPMoviePlayerController+BackgroundPlayback.h"
+
 @interface DemoThumbnailViewController ()
 
 @property (nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;

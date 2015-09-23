@@ -4,6 +4,10 @@
 
 #import "DemoAsynchronousViewController.h"
 
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
+
+#import "MPMoviePlayerController+BackgroundPlayback.h"
+
 @implementation DemoAsynchronousViewController
 
 - (void) viewDidLoad

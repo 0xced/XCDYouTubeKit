@@ -4,6 +4,10 @@
 
 #import "DemoFullScreenViewController.h"
 
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
+
+#import "MPMoviePlayerController+BackgroundPlayback.h"
+
 @implementation DemoFullScreenViewController
 
 - (void) viewDidLoad

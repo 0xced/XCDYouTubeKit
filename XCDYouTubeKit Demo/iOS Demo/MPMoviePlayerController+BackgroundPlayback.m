@@ -4,6 +4,7 @@
 
 #import "MPMoviePlayerController+BackgroundPlayback.h"
 
+#import <AVFoundation/AVFoundation.h>
 #import <objc/runtime.h>
 
 #ifndef NSFoundationVersionNumber_iOS_7_0
