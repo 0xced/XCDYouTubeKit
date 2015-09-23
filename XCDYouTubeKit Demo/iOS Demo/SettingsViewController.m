@@ -4,7 +4,7 @@
 
 #import "SettingsViewController.h"
 
-#import <AVFoundation/AVFoundation.h>
+@import AVFoundation;
 
 @interface SettingsViewController () <UIActionSheetDelegate>
 
