@@ -17,7 +17,7 @@ env:
 before_install:
   - xcrun simctl list
 install:
-  - brew update
+  - brew update; brew update
   - brew install coreutils
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - sudo easy_install cpp-coveralls
