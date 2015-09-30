@@ -6,7 +6,9 @@ set -o pipefail
 : ${CONFIGURATION:="Release"}
 : ${DESTINATION:="platform=iOS Simulator,name=iPhone 5s"}
 
-COMMAND="xcodebuild clean test -project XCDYouTubeKit.xcodeproj -scheme '${SCHEME}' -configuration '${CONFIGURATION}' -destination '${DESTINATION}'"
+COMMAND=""
+gstdbuf --version > /dev/null && COMMAND+="gstdbuf -o 0 "
+COMMAND+="xcodebuild clean test -project XCDYouTubeKit.xcodeproj -scheme '${SCHEME}' -configuration '${CONFIGURATION}' -destination '${DESTINATION}'"
 
 for BUILD_SETTING in OBJROOT RUN_CLANG_STATIC_ANALYZER; do
     VALUE=`eval echo \\$"${BUILD_SETTING}"`
