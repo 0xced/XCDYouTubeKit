@@ -1,7 +1,6 @@
 //
 //  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
-
 #if !__has_feature(nullability)
 #define NS_ASSUME_NONNULL_BEGIN
 #define NS_ASSUME_NONNULL_END
@@ -41,6 +40,8 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
  *
  *  Use the `<presentInView:>` method to play a YouTube video inline.
  */
+#if TARGET_OS_IOS
+
 @interface XCDYouTubeVideoPlayerViewController : MPMoviePlayerViewController
 
 /**
@@ -118,4 +119,5 @@ MP_EXTERN NSString *const XCDMetadataKeySmallThumbnailURL DEPRECATED_MSG_ATTRIBU
 MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL DEPRECATED_MSG_ATTRIBUTE("Use XCDYouTubeVideoUserInfoKey instead.");
 MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL DEPRECATED_MSG_ATTRIBUTE("Use XCDYouTubeVideoUserInfoKey instead.");
 
+#endif
 NS_ASSUME_NONNULL_END
