@@ -116,13 +116,13 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	self.connection = connection;
 }
 
-- (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info
+- (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info response:(NSURLResponse *)response
 {
 	XCDYouTubeLogDebug(@"Handling video info response");
 	XCDYouTubeLogVerbose(@"Video info: %@", info);
 	
 	NSError *error = nil;
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:self.response error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:response error:&error];
 	if (video)
 	{
 		[video mergeVideo:self.noStreamVideo];
@@ -147,11 +147,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 }
 
-- (void) handleWebPageResponse
+- (void) handleWebPageWithData:(NSData *)data response:(NSURLResponse *)response
 {
 	XCDYouTubeLogDebug(@"Handling web page response");
 	
-	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
+	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithData:data response:response];
 	
 	if (self.webpage.javaScriptPlayerURL)
 	{
@@ -171,11 +171,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 }
 
-- (void) handleEmbedWebPageResponse
+- (void) handleEmbedWebPageWithData:(NSData *)data response:(NSURLResponse *)response
 {
 	XCDYouTubeLogDebug(@"Handling embed web page response");
 	
-	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
+	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithData:data response:response];
 	
 	if (self.embedWebpage.javaScriptPlayerURL)
 	{
@@ -187,11 +187,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 }
 
-- (void) handleJavaScriptPlayerResponse
+- (void) handleJavaScriptPlayerWithData:(NSData *)data response:(NSURLResponse *)response
 {
 	XCDYouTubeLogDebug(@"Handling JavaScript player response");
 	
-	NSString *script = [[NSString alloc] initWithData:self.connectionData encoding:NSISOLatin1StringEncoding];
+	NSString *script = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
 	if (self.webpage.isAgeRestricted)
@@ -205,7 +205,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 	else
 	{
-		[self handleVideoInfoResponseWithInfo:self.webpage.videoInfo];
+		[self handleVideoInfoResponseWithInfo:self.webpage.videoInfo response:response];
 	}
 }
 
@@ -282,17 +282,17 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		{
 			NSString *videoQuery = [[NSString alloc] initWithData:self.connectionData encoding:NSASCIIStringEncoding];
 			NSDictionary *info = XCDDictionaryWithQueryString(videoQuery, NSUTF8StringEncoding);
-			[self handleVideoInfoResponseWithInfo:info];
+			[self handleVideoInfoResponseWithInfo:info response:self.response];
 		}
 			break;
 		case XCDYouTubeRequestTypeWatchPage:
-			[self handleWebPageResponse];
+			[self handleWebPageWithData:self.connectionData response:self.response];
 			break;
 		case XCDYouTubeRequestTypeEmbedPage:
-			[self handleEmbedWebPageResponse];
+			[self handleEmbedWebPageWithData:self.connectionData response:self.response];
 			break;
 		case XCDYouTubeRequestTypeJavaScriptPlayer:
-			[self handleJavaScriptPlayerResponse];
+			[self handleJavaScriptPlayerWithData:self.connectionData response:self.response];
 			break;
 	}
 }
