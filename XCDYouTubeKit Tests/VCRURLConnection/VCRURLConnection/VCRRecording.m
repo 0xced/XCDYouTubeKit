@@ -24,11 +24,7 @@
 #import "VCRRecording.h"
 #import "VCROrderedMutableDictionary.h"
 #import "VCRError.h"
-#if TARGET_OS_IPHONE
 #import <MobileCoreServices/MobileCoreServices.h>
-#else
-#import <CoreServices/CoreServices.h>
-#endif
 
 // For -[NSData initWithBase64Encoding:] and -[NSData base64Encoding]
 // Remove when targetting iOS 7+, use -[NSData initWithBase64EncodedString:options:] and -[NSData base64EncodedStringWithOptions:] instead
@@ -68,22 +64,13 @@
            [self.body isEqualToString:recording.body];
 }
 
-static NSDictionary *SerializableUserInfo(NSDictionary *userInfo) {
-    NSMutableDictionary *serializableUserInfo = [NSMutableDictionary new];
-    for (id<NSCopying> key in userInfo) {
-        id value = userInfo[key];
-        if ([value isKindOfClass:[NSError class]]) {
-            NSError *error = (NSError *)value;
-            serializableUserInfo[key] = [NSError errorWithDomain:error.domain code:error.code userInfo:SerializableUserInfo(error.userInfo)];
-        } else if ([value conformsToProtocol:@protocol(NSCoding)]) {
-            serializableUserInfo[key] = value;
-        }
-    }
-    return [serializableUserInfo copy];
-}
-
-- (void)setError:(NSError *)error {
-    _error = [NSError errorWithDomain:error.domain code:error.code userInfo:SerializableUserInfo(error.userInfo)];
+- (NSUInteger)hash {
+    const NSUInteger prime = 17;
+    NSUInteger hash = 1;
+    hash = prime * hash + [self.method hash];
+    hash = prime * hash + [self.URI hash];
+    hash = prime * hash + [self.body hash];
+    return hash;
 }
 
 - (BOOL)isText {

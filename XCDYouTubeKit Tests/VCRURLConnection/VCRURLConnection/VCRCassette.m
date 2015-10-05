@@ -100,6 +100,10 @@
     return [self.responseDictionary isEqual:cassette.responseDictionary];
 }
 
+- (NSUInteger)hash {
+    return [self.responseDictionary hash];
+}
+
 - (NSArray *)allKeys {
     return [self.responseDictionary allKeys];
 }

@@ -1,5 +1,5 @@
 //
-// VCRAppDelegate.m
+// VCRResponseViewController.h
 //
 // Copyright (c) 2012 Dustin Barker
 //
@@ -21,32 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "VCRAppDelegate.h"
+#import <VCRURLConnection/VCRRecording.h>
+#import <UIKit/UIKit.h>
 
-#import "VCRViewController.h"
-#import "VCR.h"
+@interface VCRRecordingViewController : UIViewController
 
-@implementation VCRAppDelegate
-
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    [VCR start];
-    NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
-    [VCR loadCassetteWithContentsOfURL:[NSURL fileURLWithPath:cassettePath]];
-    
-    VCRCassetteViewController *cassetteViewController = [[VCRCassetteViewController alloc] init];
-    cassetteViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    cassetteViewController.cassette = [VCR cassette];
-    
-    self.viewController = [[VCRViewController alloc] initWithNibName:@"VCRViewController" bundle:nil];
-    self.viewController.cassetteViewController = cassetteViewController;
-    
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-
-    return YES;
-}
+@property (nonatomic, strong) VCRRecording *recording;
 
 @end

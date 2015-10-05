@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0500"
+   LastUpgradeVersion = "0610"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3475B52167EA0680044511D"
-               BuildableName = "Example-iOS.app"
-               BlueprintName = "Example-iOS"
+               BlueprintIdentifier = "B3B4FBF91ADA178000C997D0"
+               BuildableName = "libVCRURLConnection.a"
+               BlueprintName = "VCRURLConnection"
+               ReferencedContainer = "container:VCRURLConnection.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B3B4FC031ADA178100C997D0"
+               BuildableName = "VCRURLConnectionTests.xctest"
+               BlueprintName = "VCRURLConnectionTests"
                ReferencedContainer = "container:VCRURLConnection.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,13 +42,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B3B4FC031ADA178100C997D0"
+               BuildableName = "VCRURLConnectionTests.xctest"
+               BlueprintName = "VCRURLConnectionTests"
+               ReferencedContainer = "container:VCRURLConnection.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3475B52167EA0680044511D"
-            BuildableName = "Example-iOS.app"
-            BlueprintName = "Example-iOS"
+            BlueprintIdentifier = "B3B4FBF91ADA178000C997D0"
+            BuildableName = "libVCRURLConnection.a"
+            BlueprintName = "VCRURLConnection"
             ReferencedContainer = "container:VCRURLConnection.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -48,15 +72,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3475B52167EA0680044511D"
-            BuildableName = "Example-iOS.app"
-            BlueprintName = "Example-iOS"
+            BlueprintIdentifier = "B3B4FBF91ADA178000C997D0"
+            BuildableName = "libVCRURLConnection.a"
+            BlueprintName = "VCRURLConnection"
             ReferencedContainer = "container:VCRURLConnection.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -66,15 +90,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3475B52167EA0680044511D"
-            BuildableName = "Example-iOS.app"
-            BlueprintName = "Example-iOS"
+            BlueprintIdentifier = "B3B4FBF91ADA178000C997D0"
+            BuildableName = "libVCRURLConnection.a"
+            BlueprintName = "VCRURLConnection"
             ReferencedContainer = "container:VCRURLConnection.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
