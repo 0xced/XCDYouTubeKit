@@ -1,3 +1,7 @@
+#### Version 2.3.2
+
+* Adaptation to YouTube API change. (#186)
+
 #### Version 2.3.1
 
 * Improved Swift 2.0 interoperability. (#178)
