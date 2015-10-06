@@ -60,6 +60,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	return self;
 }
 
+#pragma mark - Requests
+
 - (void) startNextRequest
 {
 	if (self.eventLabels.count == 0)
@@ -116,6 +118,42 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	
 	self.requestType = requestType;
 }
+
+#pragma mark - Response Dispatch
+
+- (void) handleConnectionSuccessWithData:(NSData *)data response:(NSURLResponse *)response requestType:(XCDYouTubeRequestType)requestType
+{
+	switch (requestType)
+	{
+		case XCDYouTubeRequestTypeGetVideoInfo:
+		{
+			NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+			NSDictionary *info = XCDDictionaryWithQueryString(videoQuery, NSUTF8StringEncoding);
+			[self handleVideoInfoResponseWithInfo:info response:response];
+		}
+			break;
+		case XCDYouTubeRequestTypeWatchPage:
+			[self handleWebPageWithData:data response:response];
+			break;
+		case XCDYouTubeRequestTypeEmbedPage:
+			[self handleEmbedWebPageWithData:data response:response];
+			break;
+		case XCDYouTubeRequestTypeJavaScriptPlayer:
+			[self handleJavaScriptPlayerWithData:data response:response];
+			break;
+	}
+}
+
+- (void) handleConnectionError:(NSError *)connectionError
+{
+	NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: connectionError.localizedDescription,
+	                            NSUnderlyingErrorKey: connectionError };
+	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
+	
+	[self startNextRequest];
+}
+
+#pragma mark - Response Parsing
 
 - (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info response:(NSURLResponse *)response
 {
@@ -210,6 +248,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 }
 
+#pragma mark - Finish Operation
+
 - (void) finishWithVideo:(XCDYouTubeVideo *)video
 {
 	self.video = video;
@@ -223,6 +263,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	self.error = self.youTubeError ?: self.lastError;
 	XCDYouTubeLogError(@"Video operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
 	[self finish];
+}
+
+- (void) finish
+{
+	self.keepRunning = NO;
 }
 
 #pragma mark - NSOperation
@@ -251,43 +296,6 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	[super cancel];
 	
 	[self finish];
-}
-
-- (void) finish
-{
-	self.keepRunning = NO;
-}
-
-- (void) handleConnectionSuccessWithData:(NSData *)data response:(NSURLResponse *)response requestType:(XCDYouTubeRequestType)requestType
-{
-	switch (requestType)
-	{
-		case XCDYouTubeRequestTypeGetVideoInfo:
-		{
-			NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-			NSDictionary *info = XCDDictionaryWithQueryString(videoQuery, NSUTF8StringEncoding);
-			[self handleVideoInfoResponseWithInfo:info response:response];
-		}
-			break;
-		case XCDYouTubeRequestTypeWatchPage:
-			[self handleWebPageWithData:data response:response];
-			break;
-		case XCDYouTubeRequestTypeEmbedPage:
-			[self handleEmbedWebPageWithData:data response:response];
-			break;
-		case XCDYouTubeRequestTypeJavaScriptPlayer:
-			[self handleJavaScriptPlayerWithData:data response:response];
-			break;
-	}
-}
-
-- (void) handleConnectionError:(NSError *)connectionError
-{
-	NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: connectionError.localizedDescription,
-	                            NSUnderlyingErrorKey: connectionError };
-	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
-	
-	[self startNextRequest];
 }
 
 #pragma mark - NSObject
