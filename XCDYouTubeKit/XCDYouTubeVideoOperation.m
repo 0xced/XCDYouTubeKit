@@ -12,8 +12,6 @@
 #import "XCDYouTubePlayerScript.h"
 #import "XCDYouTubeLogger.h"
 
-static const void * const XCDYouTubeRequestTypeKey = &XCDYouTubeRequestTypeKey;
-
 typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	XCDYouTubeRequestTypeGetVideoInfo = 1,
 	XCDYouTubeRequestTypeWatchPage,
@@ -21,14 +19,12 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	XCDYouTubeRequestTypeJavaScriptPlayer,
 };
 
-@interface XCDYouTubeVideoOperation () <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
+@interface XCDYouTubeVideoOperation ()
 @property (atomic, copy, readonly) NSString *videoIdentifier;
 @property (atomic, copy, readonly) NSString *languageIdentifier;
 
 @property (atomic, assign) NSInteger requestCount;
-@property (atomic, strong) NSURLConnection *connection;
-@property (atomic, strong) NSURLResponse *response;
-@property (atomic, strong) NSMutableData *connectionData;
+@property (atomic, assign) XCDYouTubeRequestType requestType;
 @property (atomic, strong) NSMutableArray *eventLabels;
 
 @property (atomic, assign) BOOL keepRunning;
@@ -68,8 +64,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 {
 	if (self.eventLabels.count == 0)
 	{
-		XCDYouTubeRequestType requestType = [objc_getAssociatedObject(self.connection, XCDYouTubeRequestTypeKey) unsignedIntegerValue];
-		if (requestType == XCDYouTubeRequestTypeWatchPage || self.webpage)
+		if (self.requestType == XCDYouTubeRequestTypeWatchPage || self.webpage)
 			[self finishWithError];
 		else
 			[self startWatchPageRequest];
@@ -109,11 +104,17 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
 	
-	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-	objc_setAssociatedObject(connection, XCDYouTubeRequestTypeKey, @(requestType), OBJC_ASSOCIATION_RETAIN);
-	[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-	[connection start];
-	self.connection = connection;
+	NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+	NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+	{
+		if (error)
+			[self handleConnectionError:error];
+		else
+			[self handleConnectionSuccessWithData:data response:response requestType:requestType];
+	}];
+	[dataTask resume];
+	
+	self.requestType = requestType;
 }
 
 - (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info response:(NSURLResponse *)response
@@ -249,34 +250,12 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	
 	[super cancel];
 	
-	[self.connection cancel];
-	
 	[self finish];
 }
 
 - (void) finish
 {
 	self.keepRunning = NO;
-}
-
-#pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate
-
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-	NSUInteger capacity = response.expectedContentLength == NSURLResponseUnknownLength ? 0 : (NSUInteger)response.expectedContentLength;
-	self.connectionData = [[NSMutableData alloc] initWithCapacity:capacity];
-	self.response = response;
-}
-
-- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-	[self.connectionData appendData:data];
-}
-
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection
-{
-	XCDYouTubeRequestType requestType = [objc_getAssociatedObject(connection, XCDYouTubeRequestTypeKey) unsignedIntegerValue];
-	[self handleConnectionSuccessWithData:self.connectionData response:self.response requestType:requestType];
 }
 
 - (void) handleConnectionSuccessWithData:(NSData *)data response:(NSURLResponse *)response requestType:(XCDYouTubeRequestType)requestType
@@ -300,11 +279,6 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 			[self handleJavaScriptPlayerWithData:data response:response];
 			break;
 	}
-}
-
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)connectionError
-{
-	[self handleConnectionError:connectionError];
 }
 
 - (void) handleConnectionError:(NSError *)connectionError
