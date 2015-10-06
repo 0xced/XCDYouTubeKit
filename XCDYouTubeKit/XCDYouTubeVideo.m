@@ -22,7 +22,7 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 		if (pair.count == 2)
 		{
 			NSString *key = pair[0];
-			NSString *value = [pair[1] stringByReplacingPercentEscapesUsingEncoding:encoding];
+			NSString *value = [pair[1] stringByRemovingPercentEncoding];
 			value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
 			dictionary[key] = value;
 		}
@@ -32,7 +32,7 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string, NSStringEncoding en
 
 static NSString *XCDURLEncodedStringUsingEncoding(NSString *string, NSStringEncoding encoding)
 {
-	return CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)string, NULL, CFSTR("!*'();:@&=+$,/?%#[]"), CFStringConvertNSStringEncodingToEncoding(encoding)));
+	return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"]];
 }
 
 NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary, NSStringEncoding encoding)
@@ -123,7 +123,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 					_expirationDate = ExpirationDate(streamURL);
 				
 				if (signature)
-					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, [signature stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, [signature stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@""]]]];
 				
 				streamURLs[@(itag.integerValue)] = streamURL;
 			}

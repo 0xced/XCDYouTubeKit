@@ -25,10 +25,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, copy, readonly) NSString *videoIdentifier;
 @property (atomic, copy, readonly) NSString *languageIdentifier;
 
+@property (nonatomic) XCDYouTubeRequestType requestType;
 @property (atomic, assign) NSInteger requestCount;
-@property (atomic, strong) NSURLConnection *connection;
+@property (atomic, strong) NSURLSessionDataTask *task;
 @property (atomic, strong) NSURLResponse *response;
-@property (atomic, strong) NSMutableData *connectionData;
+@property (atomic, strong) NSData *responseData;
 @property (atomic, strong) NSMutableArray *eventLabels;
 
 @property (atomic, assign) BOOL keepRunning;
@@ -68,8 +69,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 {
 	if (self.eventLabels.count == 0)
 	{
-		XCDYouTubeRequestType requestType = [objc_getAssociatedObject(self.connection, XCDYouTubeRequestTypeKey) unsignedIntegerValue];
-		if (requestType == XCDYouTubeRequestTypeWatchPage || self.webpage)
+		if (self.requestType == XCDYouTubeRequestTypeWatchPage || self.webpage)
 			[self finishWithError];
 		else
 			[self startWatchPageRequest];
@@ -108,12 +108,43 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
-	
-	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-	objc_setAssociatedObject(connection, XCDYouTubeRequestTypeKey, @(requestType), OBJC_ASSOCIATION_RETAIN);
-	[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-	[connection start];
-	self.connection = connection;
+
+	NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+	self.task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+
+		if (error) {
+			NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: error.localizedDescription,
+										NSUnderlyingErrorKey: error };
+			self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
+
+			[self startNextRequest];
+		} else {
+		self.responseData = data;
+		self.response = response;
+
+		switch (requestType)
+		{
+			case XCDYouTubeRequestTypeGetVideoInfo:
+			{
+				NSString *videoQuery = [[NSString alloc] initWithData:self.responseData encoding:NSASCIIStringEncoding];
+				NSDictionary *info = XCDDictionaryWithQueryString(videoQuery, NSUTF8StringEncoding);
+				[self handleVideoInfoResponseWithInfo:info];
+			}
+				break;
+			case XCDYouTubeRequestTypeWatchPage:
+				[self handleWebPageResponse];
+				break;
+			case XCDYouTubeRequestTypeEmbedPage:
+				[self handleEmbedWebPageResponse];
+				break;
+			case XCDYouTubeRequestTypeJavaScriptPlayer:
+				[self handleJavaScriptPlayerResponse];
+				break;
+		}
+		}
+	}];
+	self.requestType = requestType;
+	[self.task resume];
 }
 
 - (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info
@@ -151,7 +182,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 {
 	XCDYouTubeLogDebug(@"Handling web page response");
 	
-	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
+	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.responseData response:self.response];
 	
 	if (self.webpage.javaScriptPlayerURL)
 	{
@@ -175,7 +206,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 {
 	XCDYouTubeLogDebug(@"Handling embed web page response");
 	
-	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.connectionData response:self.response];
+	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithData:self.responseData response:self.response];
 	
 	if (self.embedWebpage.javaScriptPlayerURL)
 	{
@@ -191,7 +222,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 {
 	XCDYouTubeLogDebug(@"Handling JavaScript player response");
 	
-	NSString *script = [[NSString alloc] initWithData:self.connectionData encoding:NSISOLatin1StringEncoding];
+	NSString *script = [[NSString alloc] initWithData:self.responseData encoding:NSISOLatin1StringEncoding];
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
 	if (self.webpage.isAgeRestricted)
@@ -249,7 +280,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	
 	[super cancel];
 	
-	[self.connection cancel];
+	[self.task cancel];
 	
 	[self finish];
 }
@@ -259,52 +290,6 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	self.keepRunning = NO;
 }
 
-#pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate
-
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-	NSUInteger capacity = response.expectedContentLength == NSURLResponseUnknownLength ? 0 : (NSUInteger)response.expectedContentLength;
-	self.connectionData = [[NSMutableData alloc] initWithCapacity:capacity];
-	self.response = response;
-}
-
-- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-	[self.connectionData appendData:data];
-}
-
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection
-{
-	XCDYouTubeRequestType requestType = [objc_getAssociatedObject(connection, XCDYouTubeRequestTypeKey) unsignedIntegerValue];
-	switch (requestType)
-	{
-		case XCDYouTubeRequestTypeGetVideoInfo:
-		{
-			NSString *videoQuery = [[NSString alloc] initWithData:self.connectionData encoding:NSASCIIStringEncoding];
-			NSDictionary *info = XCDDictionaryWithQueryString(videoQuery, NSUTF8StringEncoding);
-			[self handleVideoInfoResponseWithInfo:info];
-		}
-			break;
-		case XCDYouTubeRequestTypeWatchPage:
-			[self handleWebPageResponse];
-			break;
-		case XCDYouTubeRequestTypeEmbedPage:
-			[self handleEmbedWebPageResponse];
-			break;
-		case XCDYouTubeRequestTypeJavaScriptPlayer:
-			[self handleJavaScriptPlayerResponse];
-			break;
-	}
-}
-
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)connectionError
-{
-	NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: connectionError.localizedDescription,
-	                            NSUnderlyingErrorKey: connectionError };
-	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
-	
-	[self startNextRequest];
-}
 
 #pragma mark - NSObject
 

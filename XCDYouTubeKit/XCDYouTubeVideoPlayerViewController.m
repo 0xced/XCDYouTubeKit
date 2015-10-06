@@ -8,6 +8,8 @@
 
 #import <objc/runtime.h>
 
+#if TARGET_OS_IOS
+
 NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"error"; // documented in -[MPMoviePlayerController initWithContentURL:]
 
 NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification = @"XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification";
@@ -196,3 +198,4 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 }
 
 @end
+#endif
