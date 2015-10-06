@@ -4,6 +4,8 @@
 
 #import "NowPlayingInfoCenterProvider.h"
 
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
+
 @implementation NowPlayingInfoCenterProvider
 
 - (instancetype) init

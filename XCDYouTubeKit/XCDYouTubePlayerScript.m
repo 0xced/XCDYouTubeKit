@@ -34,14 +34,20 @@
 		XCDYouTubeLogWarning(@"JavaScript exception: %@", exception);
 	};
 	
-	for (NSString *propertyPath in @[ @"window.navigator", @"document", @"navigator" ])
-	{
-		JSValue *object = (JSValue *)_context;
-		for (NSString *propertyName in [propertyPath componentsSeparatedByString:@"."])
-		{
-			object[propertyName] = [JSValue valueWithNewObjectInContext:_context];
-			object = object[propertyName];
+	NSDictionary *environment = @{
+		@"document": @{},
+		@"navigator": @{},
+		@"window": @{
+			@"location": @{
+				@"hash": @""
+			},
+			@"navigator": @{}
 		}
+	};
+	for (NSString *propertyName in environment)
+	{
+		JSValue *value = [JSValue valueWithObject:environment[propertyName] inContext:_context];
+		_context[propertyName] = value;
 	}
 	
 	[_context evaluateScript:script];

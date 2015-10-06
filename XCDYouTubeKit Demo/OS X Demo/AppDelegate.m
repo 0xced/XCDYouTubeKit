@@ -4,7 +4,10 @@
 
 #import "AppDelegate.h"
 
+@import AVFoundation;
+
 #import <CocoaLumberjack/CocoaLumberjack.h>
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
 
 @implementation AppDelegate
 

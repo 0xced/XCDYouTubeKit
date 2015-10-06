@@ -4,6 +4,10 @@
 
 #import "DemoInlineViewController.h"
 
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
+
+#import "MPMoviePlayerController+BackgroundPlayback.h"
+
 @interface DemoInlineViewController ()
 
 @property (nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;

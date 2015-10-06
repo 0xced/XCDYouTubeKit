@@ -787,7 +787,6 @@
 					"-Wno-nullable-to-nonnull-conversion",
 					"-Wno-reserved-id-macro",
 				);
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
@@ -805,7 +804,6 @@
 					"-Wno-nullable-to-nonnull-conversion",
 					"-Wno-reserved-id-macro",
 				);
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -821,7 +819,6 @@
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				PRODUCT_NAME = XCDYouTubeKit;
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
 		};
@@ -838,7 +835,6 @@
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				PRODUCT_NAME = XCDYouTubeKit;
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = framework;
 			};
 			name = "Code Coverage";
 		};
@@ -855,7 +851,6 @@
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				PRODUCT_NAME = XCDYouTubeKit;
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
 		};
@@ -875,7 +870,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.3.1;
+				DYLIB_CURRENT_VERSION = 2.3.2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -929,7 +924,7 @@
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.3.1;
+				DYLIB_CURRENT_VERSION = 2.3.2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -996,7 +991,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.3.1;
+				DYLIB_CURRENT_VERSION = 2.3.2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1057,7 +1052,6 @@
 					"-Wno-nullable-to-nonnull-conversion",
 					"-Wno-reserved-id-macro",
 				);
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = "Code Coverage";
 		};
@@ -1078,7 +1072,6 @@
 					"-Wno-nullable-to-nonnull-conversion",
 					"-Wno-reserved-id-macro",
 				);
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
@@ -1099,7 +1092,6 @@
 					"-Wno-nullable-to-nonnull-conversion",
 					"-Wno-reserved-id-macro",
 				);
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = "Code Coverage";
 		};
@@ -1120,7 +1112,6 @@
 					"-Wno-nullable-to-nonnull-conversion",
 					"-Wno-reserved-id-macro",
 				);
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};

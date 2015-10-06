@@ -4,8 +4,10 @@
 
 #import "AppDelegate.h"
 
-#import "ContextLogFormatter.h"
+@import AVFoundation;
 #import <XCDLumberjackNSLogger/XCDLumberjackNSLogger.h>
+
+#import "ContextLogFormatter.h"
 
 @implementation AppDelegate
 

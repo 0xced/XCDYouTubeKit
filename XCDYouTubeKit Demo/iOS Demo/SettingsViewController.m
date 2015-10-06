@@ -4,6 +4,8 @@
 
 #import "SettingsViewController.h"
 
+@import AVFoundation;
+
 @interface SettingsViewController () <UIActionSheetDelegate>
 
 @property (nonatomic, weak) IBOutlet UISwitch *playVideoInBackgroundSwitch;
