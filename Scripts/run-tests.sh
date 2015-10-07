@@ -8,7 +8,7 @@ set -o pipefail
 
 COMMAND=""
 gstdbuf --version > /dev/null && COMMAND+="gstdbuf -o 0 "
-COMMAND+="xcodebuild clean test -project XCDYouTubeKit.xcodeproj -scheme '${SCHEME}' -configuration '${CONFIGURATION}' -destination '${DESTINATION}'"
+COMMAND+="xcodebuild clean test -project XCDYouTubeKit.xcodeproj -scheme '${SCHEME}' -configuration '${CONFIGURATION}' -destination '${DESTINATION}' | tee xcodebuild.log"
 
 for BUILD_SETTING in OBJROOT RUN_CLANG_STATIC_ANALYZER; do
     VALUE=`eval echo \\$"${BUILD_SETTING}"`
@@ -22,4 +22,4 @@ xcpretty --version > /dev/null && COMMAND+=" | xcpretty -c"
 xcpretty-travis-formatter > /dev/null && COMMAND+=" -f `xcpretty-travis-formatter`"
 
 set -x
-eval "${COMMAND}"
+eval "${COMMAND}" && rm xcodebuild.log
