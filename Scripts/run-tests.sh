@@ -20,8 +20,7 @@ done
 
 COMMAND+=" | tee xcodebuild.log"
 
-xcpretty --version > /dev/null && COMMAND+=" | xcpretty -c"
-xcpretty-travis-formatter > /dev/null && COMMAND+=" -f `xcpretty-travis-formatter`"
+xcpretty --version > /dev/null 2>&1 && COMMAND+=" | xcpretty -c" && xcpretty-travis-formatter > /dev/null 2>&1 && COMMAND+=" -f `xcpretty-travis-formatter`"
 
 set -x
 eval "${COMMAND}" && rm xcodebuild.log
