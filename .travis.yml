@@ -25,8 +25,6 @@ install:
 script:
   - ./Scripts/run-tests.sh
 after_success:
-  - if [ "$CONFIGURATION" == "Code Coverage" ]; then
-      coveralls --include XCDYouTubeKit;
-    fi
+  - [ "$CONFIGURATION" == "Code Coverage" ] && coveralls --include XCDYouTubeKit
 after_failure:
   - cat xcodebuild.log
