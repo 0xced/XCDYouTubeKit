@@ -60,8 +60,23 @@ On iOS, you can use the class `XCDYouTubeVideoPlayerViewController` the same way
 #### Present the video in full-screen
 
 ```objc
-XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
-[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+- (void) playVideo
+{
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
+	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+}
+
+- (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:notification.object];
+	MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
+	if (finishReason == MPMovieFinishReasonPlaybackError)
+	{
+		// Handle error
+	}
+}
+
 ```
 
 #### Present the video in a non full-screen view
