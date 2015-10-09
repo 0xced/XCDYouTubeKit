@@ -24,4 +24,4 @@ script:
 after_success:
   - '[ "$CONFIGURATION" == "Code Coverage" ] && coveralls --include XCDYouTubeKit'
 after_failure:
-  - cat xcodebuild.log
+  - cat xcodebuild.log && sleep 5
