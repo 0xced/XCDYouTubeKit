@@ -29,11 +29,13 @@ XCDYouTubeKit is against the YouTube [Terms of Service](https://www.youtube.com/
 XCDYouTubeKit is available through CocoaPods and Carthage.
 
 CocoaPods:
+
 ```ruby
 pod "XCDYouTubeKit", "~> 2.3.2"
 ```
 
 Carthage:
+
 ```objc
 github "0xced/XCDYouTubeKit" ~> 2.3.2
 ```
