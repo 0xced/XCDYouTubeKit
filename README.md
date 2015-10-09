@@ -53,22 +53,6 @@ These steps will ensure that `#import <XCDYouTubeKit/XCDYouTubeKit.h>` will work
 
 XCDYouTubeKit is [fully documented](http://cocoadocs.org/docsets/XCDYouTubeKit/).
 
-### iOS and OS X
-
-```objc
-NSString *videoIdentifier = @"EdeVaT-zZt4"; // A 11 characters YouTube video identifier
-[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
-	if (video)
-	{
-		// Do something with the `video` object
-	}
-	else
-	{
-		// Handle error
-	}
-}];
-```
-
 ### iOS only
 
 On iOS, you can use the class `XCDYouTubeVideoPlayerViewController` the same way you use a `MPMoviePlayerViewController`, except you initialize it with a YouTube video identifier instead of a content URL.
@@ -86,6 +70,22 @@ XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVid
 XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
 [videoPlayerViewController presentInView:self.videoContainerView];
 [videoPlayerViewController.moviePlayer play];
+```
+
+### iOS and OS X
+
+```objc
+NSString *videoIdentifier = @"EdeVaT-zZt4"; // A 11 characters YouTube video identifier
+[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+	if (video)
+	{
+		// Do something with the `video` object
+	}
+	else
+	{
+		// Handle error
+	}
+}];
 ```
 
 See the demo project for more sample code.
