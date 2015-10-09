@@ -16,8 +16,8 @@ env:
     - 'CONFIGURATION="Release"       SCHEME="XCDYouTubeKit OS X"               DESTINATION="platform=OS X"                                RUN_CLANG_STATIC_ANALYZER="YES"'
 before_install:
   - xcrun simctl list
-install:
   - brew update; brew update
+install:
   - brew install coreutils
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
