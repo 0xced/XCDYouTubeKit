@@ -73,6 +73,7 @@ On iOS, you can use the class `XCDYouTubeVideoPlayerViewController` the same way
 	MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
 	if (finishReason == MPMovieFinishReasonPlaybackError)
 	{
+		NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
 		// Handle error
 	}
 }
