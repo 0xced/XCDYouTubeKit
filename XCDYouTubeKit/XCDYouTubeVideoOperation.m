@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, assign) NSInteger requestCount;
 @property (atomic, assign) XCDYouTubeRequestType requestType;
 @property (atomic, strong) NSMutableArray *eventLabels;
+@property (atomic, strong) NSURLSessionDataTask *dataTask;
 
 @property (atomic, assign) BOOL keepRunning;
 
@@ -107,14 +108,14 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
 	
 	NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-	NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+	self.dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
 	{
 		if (error)
 			[self handleConnectionError:error];
 		else
 			[self handleConnectionSuccessWithData:data response:response requestType:requestType];
 	}];
-	[dataTask resume];
+	[self.dataTask resume];
 	
 	self.requestType = requestType;
 }
