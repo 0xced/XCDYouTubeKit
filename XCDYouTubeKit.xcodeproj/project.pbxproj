@@ -61,7 +61,7 @@
 		C2D0CC511912673500DA8CD4 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC3E1912673500DA8CD4 /* VCR.m */; };
 		C2D0CC521912673500DA8CD4 /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC401912673500DA8CD4 /* VCRCassette.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-method-signatures -Wno-assign-enum"; }; };
 		C2D0CC531912673500DA8CD4 /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC431912673500DA8CD4 /* VCRCassetteManager.m */; };
-		C2D0CC541912673500DA8CD4 /* VCRError.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC451912673500DA8CD4 /* VCRError.m */; };
+		C2D0CC541912673500DA8CD4 /* VCRErrorSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC451912673500DA8CD4 /* VCRErrorSerialization.m */; };
 		C2D0CC551912673500DA8CD4 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC471912673500DA8CD4 /* VCROrderedMutableDictionary.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-missing-prototypes -Wno-method-signatures -Wno-objc-designated-initializers"; }; };
 		C2D0CC561912673500DA8CD4 /* VCRRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC491912673500DA8CD4 /* VCRRecording.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-assign-enum -Wno-direct-ivar-access -Wno-method-signatures -Wno-sign-conversion"; }; };
 		C2D0CC571912673500DA8CD4 /* VCRRecordingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4B1912673500DA8CD4 /* VCRRecordingURLProtocol.m */; };
@@ -74,7 +74,7 @@
 		C2DD4DB51920033A00AF6F85 /* VCR+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC3C1912673500DA8CD4 /* VCR+NSURLSessionConfiguration.m */; settings = {COMPILER_FLAGS = "-Wno-missing-prototypes -Wno-undef"; }; };
 		C2DD4DB61920033A00AF6F85 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC3E1912673500DA8CD4 /* VCR.m */; };
 		C2DD4DB71920033A00AF6F85 /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC431912673500DA8CD4 /* VCRCassetteManager.m */; };
-		C2DD4DB81920033A00AF6F85 /* VCRError.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC451912673500DA8CD4 /* VCRError.m */; };
+		C2DD4DB81920033A00AF6F85 /* VCRErrorSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC451912673500DA8CD4 /* VCRErrorSerialization.m */; };
 		C2DD4DB91920033A00AF6F85 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC471912673500DA8CD4 /* VCROrderedMutableDictionary.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-missing-prototypes -Wno-method-signatures -Wno-objc-designated-initializers"; }; };
 		C2DD4DBA1920033A00AF6F85 /* VCRRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC491912673500DA8CD4 /* VCRRecording.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-assign-enum -Wno-direct-ivar-access -Wno-method-signatures -Wno-sign-conversion"; }; };
 		C2DD4DBB1920033A00AF6F85 /* VCRRecordingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4B1912673500DA8CD4 /* VCRRecordingURLProtocol.m */; };
@@ -183,8 +183,8 @@
 		C2D0CC411912673500DA8CD4 /* VCRCassette_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassette_Private.h; sourceTree = "<group>"; };
 		C2D0CC421912673500DA8CD4 /* VCRCassetteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteManager.h; sourceTree = "<group>"; };
 		C2D0CC431912673500DA8CD4 /* VCRCassetteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassetteManager.m; sourceTree = "<group>"; };
-		C2D0CC441912673500DA8CD4 /* VCRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRError.h; sourceTree = "<group>"; };
-		C2D0CC451912673500DA8CD4 /* VCRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRError.m; sourceTree = "<group>"; };
+		C2D0CC441912673500DA8CD4 /* VCRErrorSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRErrorSerialization.h; sourceTree = "<group>"; };
+		C2D0CC451912673500DA8CD4 /* VCRErrorSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRErrorSerialization.m; sourceTree = "<group>"; };
 		C2D0CC461912673500DA8CD4 /* VCROrderedMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCROrderedMutableDictionary.h; sourceTree = "<group>"; };
 		C2D0CC471912673500DA8CD4 /* VCROrderedMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCROrderedMutableDictionary.m; sourceTree = "<group>"; };
 		C2D0CC481912673500DA8CD4 /* VCRRecording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRecording.h; sourceTree = "<group>"; };
@@ -349,8 +349,8 @@
 				C2D0CC411912673500DA8CD4 /* VCRCassette_Private.h */,
 				C2D0CC421912673500DA8CD4 /* VCRCassetteManager.h */,
 				C2D0CC431912673500DA8CD4 /* VCRCassetteManager.m */,
-				C2D0CC441912673500DA8CD4 /* VCRError.h */,
-				C2D0CC451912673500DA8CD4 /* VCRError.m */,
+				C2D0CC441912673500DA8CD4 /* VCRErrorSerialization.h */,
+				C2D0CC451912673500DA8CD4 /* VCRErrorSerialization.m */,
 				C2D0CC461912673500DA8CD4 /* VCROrderedMutableDictionary.h */,
 				C2D0CC471912673500DA8CD4 /* VCROrderedMutableDictionary.m */,
 				C2D0CC481912673500DA8CD4 /* VCRRecording.h */,
@@ -678,7 +678,7 @@
 				C2D0CC511912673500DA8CD4 /* VCR.m in Sources */,
 				C2D0CC521912673500DA8CD4 /* VCRCassette.m in Sources */,
 				C2D0CC531912673500DA8CD4 /* VCRCassetteManager.m in Sources */,
-				C2D0CC541912673500DA8CD4 /* VCRError.m in Sources */,
+				C2D0CC541912673500DA8CD4 /* VCRErrorSerialization.m in Sources */,
 				C2D0CC551912673500DA8CD4 /* VCROrderedMutableDictionary.m in Sources */,
 				C2D0CC561912673500DA8CD4 /* VCRRecording.m in Sources */,
 				C2D0CC571912673500DA8CD4 /* VCRRecordingURLProtocol.m in Sources */,
@@ -729,7 +729,7 @@
 				C2DD4DB61920033A00AF6F85 /* VCR.m in Sources */,
 				C2DD4DC2192003CA00AF6F85 /* VCRCassette.m in Sources */,
 				C2DD4DB71920033A00AF6F85 /* VCRCassetteManager.m in Sources */,
-				C2DD4DB81920033A00AF6F85 /* VCRError.m in Sources */,
+				C2DD4DB81920033A00AF6F85 /* VCRErrorSerialization.m in Sources */,
 				C2DD4DB91920033A00AF6F85 /* VCROrderedMutableDictionary.m in Sources */,
 				C2DD4DBA1920033A00AF6F85 /* VCRRecording.m in Sources */,
 				C22263391B33FDE000BA6719 /* XCTestWorkarounds.m in Sources */,
