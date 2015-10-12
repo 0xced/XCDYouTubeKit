@@ -28,7 +28,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, strong) NSMutableArray *eventLabels;
 @property (atomic, strong) NSURLSessionDataTask *dataTask;
 
-@property (atomic, assign) BOOL keepRunning;
+@property (atomic, assign) BOOL isExecuting;
+@property (atomic, assign) BOOL isFinished;
 
 @property (atomic, strong) XCDYouTubeVideoWebpage *webpage;
 @property (atomic, strong) XCDYouTubeVideoWebpage *embedWebpage;
@@ -55,8 +56,6 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	
 	_videoIdentifier = videoIdentifier ?: @"";
 	_languageIdentifier = languageIdentifier ?: @"en";
-	
-	_keepRunning = YES;
 	
 	return self;
 }
@@ -268,23 +267,34 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) finish
 {
-	self.keepRunning = NO;
+	self.isExecuting = NO;
+	self.isFinished = YES;
 }
 
 #pragma mark - NSOperation
 
-- (void) main
++ (BOOL) automaticallyNotifiesObserversForKey:(NSString *)key
 {
-	if ([NSThread isMainThread])
-		@throw [NSException exceptionWithName:NSGenericException reason:@"XCDYouTubeVideoOperation must not be executed on the main thread." userInfo:nil];
+	SEL selector = NSSelectorFromString(key);
+	return selector == @selector(isExecuting) || selector == @selector(isFinished) || [super automaticallyNotifiesObserversForKey:key];
+}
+
+- (BOOL) isConcurrent
+{
+	return YES;
+}
+
+- (void) start
+{
+	if ([self isCancelled])
+		return;
 	
 	XCDYouTubeLogInfo(@"Starting video operation: %@", self);
 	
+	self.isExecuting = YES;
+	
 	self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage" ]];
 	[self startNextRequest];
-	
-	while (self.keepRunning)
-		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
 }
 
 - (void) cancel

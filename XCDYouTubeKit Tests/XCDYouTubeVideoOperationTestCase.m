@@ -19,20 +19,29 @@
 - (void) testIsAsynchronous
 {
 	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
-	XCTAssertFalse(operation.isAsynchronous);
+	XCTAssertTrue(operation.isAsynchronous);
 }
 
 - (void) testIsConcurrent
 {
 	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
-	XCTAssertFalse(operation.isConcurrent);
+	XCTAssertTrue(operation.isConcurrent);
 }
 
 - (void) testStartingOnMainThread
 {
 	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
+	[self keyValueObservingExpectationForObject:operation keyPath:@"isFinished" handler:^BOOL(id observedObject, NSDictionary *change)
+	{
+		XCTAssertNil([observedObject video]);
+		XCTAssertNotNil([observedObject error]);
+		return YES;
+	}];
+	
 	XCTAssertTrue([NSThread isMainThread]);
-	XCTAssertThrowsSpecificNamed([operation start], NSException, NSGenericException);
+	[operation start];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testStartingOnBackgroundThread
