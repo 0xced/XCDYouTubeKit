@@ -93,6 +93,9 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) startRequestWithURL:(NSURL *)url type:(XCDYouTubeRequestType)requestType
 {
+	if (self.isCancelled)
+		return;
+	
 	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo
 	if (++self.requestCount > 6)
 	{
@@ -109,6 +112,9 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
 	self.dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
 	{
+		if (self.isCancelled)
+			return;
+		
 		if (error)
 			[self handleConnectionError:error];
 		else
@@ -286,7 +292,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) start
 {
-	if ([self isCancelled])
+	if (self.isCancelled)
 		return;
 	
 	XCDYouTubeLogInfo(@"Starting video operation: %@", self);
@@ -305,6 +311,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	XCDYouTubeLogInfo(@"Canceling video operation: %@", self);
 	
 	[super cancel];
+	
+	[self.dataTask cancel];
 	
 	[self finish];
 }
