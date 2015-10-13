@@ -26,4 +26,7 @@ script:
 after_success:
   - '[ "$CONFIGURATION" == "Code Coverage" ] && coveralls --include XCDYouTubeKit'
 after_failure:
-  - cat xcodebuild.log && sleep 5
+  - cat xcodebuild.log
+  - cat $TMPDIR/com.apple.dt.XCTest-status/Session*.log
+  - cat ~/Library/Logs/DiagnosticReports/xctest*.crash
+  - sleep 5
