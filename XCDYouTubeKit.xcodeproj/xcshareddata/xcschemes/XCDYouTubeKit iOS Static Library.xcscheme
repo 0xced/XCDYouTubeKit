@@ -50,11 +50,6 @@
       </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "NSZombieEnabled"
-            value = "YES"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
             key = "XCDYouTubeKitLogLevel"
             value = "0"
             isEnabled = "YES">
