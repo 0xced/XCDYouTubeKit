@@ -61,7 +61,7 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void) testCancelingOperation
+- (void) testCancelingOperationAfterStart
 {
 	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
 	[self keyValueObservingExpectationForObject:operation keyPath:@"isFinished" handler:^BOOL(id observedObject, NSDictionary *change)
@@ -72,6 +72,20 @@
 	}];
 	[operation start];
 	[operation cancel];
+	[self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void) testCancelingOperationBeforeStart
+{
+	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
+	[self keyValueObservingExpectationForObject:operation keyPath:@"isFinished" handler:^BOOL(id observedObject, NSDictionary *change)
+	{
+		XCTAssertNil([observedObject video]);
+		XCTAssertNil([observedObject error]);
+		return YES;
+	}];
+	[operation cancel];
+	[operation start];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
