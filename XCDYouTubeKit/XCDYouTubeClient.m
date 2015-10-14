@@ -32,7 +32,7 @@
 - (instancetype) initWithLanguageIdentifier:(NSString *)languageIdentifier
 {
 	if (!(self = [super init]))
-		return nil;
+		return nil; // LCOV_EXCL_LINE
 	
 	_languageIdentifier = languageIdentifier;
 	_queue = [NSOperationQueue new];
