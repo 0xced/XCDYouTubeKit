@@ -31,6 +31,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 @property (atomic, assign) BOOL isExecuting;
 @property (atomic, assign) BOOL isFinished;
+@property (atomic, readonly) dispatch_semaphore_t operationStartSemaphore;
 
 @property (atomic, strong) XCDYouTubeVideoWebpage *webpage;
 @property (atomic, strong) XCDYouTubeVideoWebpage *embedWebpage;
@@ -59,6 +60,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	_languageIdentifier = languageIdentifier ?: @"en";
 	
 	_session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+	
+	_operationStartSemaphore = dispatch_semaphore_create(0);
 	
 	return self;
 }
@@ -294,6 +297,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) start
 {
+	dispatch_semaphore_signal(self.operationStartSemaphore);
+	
 	if (self.isCancelled)
 		return;
 	
@@ -316,16 +321,9 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	
 	[self.dataTask cancel];
 	
-	// This deferred call should not be necessary but we let some time for the NSOperationQueue to `start` the operation
-	// in order to avoid this warning:
-	//     *** XCDYouTubeVideoOperation 0x7f8b18c84880 went isFinished=YES without being started by the queue it is in
-	//
-	// Ideally we should wait for the `start` method to be called when the operation is added to a queue but there
-	// is no public API to know in which queue an operation is in. Note that using +[NSOperationQueue currentQueue]
-	// is *not* what we want, the correct queue is [self valueForKeyPath:@"private._queue"].
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self finish];
-	});
+	// Wait for `start` to be called in order to avoid this warning: *** XCDYouTubeVideoOperation 0x7f8b18c84880 went isFinished=YES without being started by the queue it is in
+	dispatch_semaphore_wait(self.operationStartSemaphore, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(200 * NSEC_PER_MSEC)));
+	[self finish];
 }
 
 #pragma mark - NSObject
