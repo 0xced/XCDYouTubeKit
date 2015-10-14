@@ -17,8 +17,6 @@ before_install:
   - brew update; brew update
 install:
   - brew install coreutils
-  - gem install specific_install --no-rdoc --no-ri --no-document --quiet
-  - gem specific_install -l https://www.github.com/0xced/xcpretty.git -b uncaught-exceptions
   - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
   - sudo easy_install cpp-coveralls
 script:
