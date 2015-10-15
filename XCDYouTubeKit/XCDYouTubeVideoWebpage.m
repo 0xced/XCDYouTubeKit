@@ -12,12 +12,11 @@
 @end
 
 @implementation XCDYouTubeVideoWebpage
-{
-	NSDictionary *_playerConfiguration;
-	NSDictionary *_videoInfo;
-	NSURL *_javaScriptPlayerURL;
-	BOOL _isAgeRestricted;
-}
+
+@synthesize playerConfiguration = _playerConfiguration;
+@synthesize videoInfo = _videoInfo;
+@synthesize javaScriptPlayerURL = _javaScriptPlayerURL;
+@synthesize isAgeRestricted = _isAgeRestricted;
 
 - (instancetype) initWithData:(NSData *)data response:(NSURLResponse *)response
 {
@@ -29,8 +28,6 @@
 	
 	return self;
 }
-
-#pragma clang diagnostic ignored "-Wdirect-ivar-access"
 
 - (NSDictionary *) playerConfiguration
 {
