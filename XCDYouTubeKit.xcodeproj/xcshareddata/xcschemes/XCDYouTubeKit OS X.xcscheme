@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0620"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -23,10 +23,10 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Code Coverage"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "NO"
-      buildConfiguration = "Code Coverage">
+      shouldUseLaunchSchemeArgsEnv = "NO">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -65,15 +65,18 @@
             isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <MacroExpansion>
          <BuildableReference
@@ -88,10 +91,10 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
    </ProfileAction>
    <AnalyzeAction

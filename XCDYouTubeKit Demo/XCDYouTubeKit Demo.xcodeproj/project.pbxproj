@@ -306,7 +306,7 @@
 		C274159617F491230026834B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Cédric Luthi";
 			};
 			buildConfigurationList = C274159917F491230026834B /* Build configuration list for PBXProject "XCDYouTubeKit Demo" */;
@@ -486,6 +486,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "OS X Demo/Supporting Files/XCDYouTubeKit OS X Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit.demo.osx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -511,6 +512,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "OS X Demo/Supporting Files/XCDYouTubeKit OS X Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit.demo.osx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -533,6 +535,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 2.3.2;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -594,6 +597,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit.demo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -607,6 +611,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit.demo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
