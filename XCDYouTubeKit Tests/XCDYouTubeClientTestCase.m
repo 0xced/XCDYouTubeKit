@@ -117,7 +117,7 @@
 - (void) testGeoblockedVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vwkFTztnl7Y" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"JTIBV-86Pt0" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
