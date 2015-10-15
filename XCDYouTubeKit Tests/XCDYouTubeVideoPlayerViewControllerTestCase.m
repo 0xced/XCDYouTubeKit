@@ -20,7 +20,7 @@
 - (void) testVideoNotification
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"EdeVaT-zZt4"];
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"6v2L2UGZJAM"];
 	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:videoPlayerViewController queue:nil usingBlock:^(NSNotification *notification)
 	{
 		XCTAssertNotNil(notification.userInfo[XCDYouTubeVideoUserInfoKey]);
@@ -34,7 +34,7 @@
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [XCDYouTubeVideoPlayerViewController new];
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-		videoPlayerViewController.videoIdentifier = @"EdeVaT-zZt4";
+		videoPlayerViewController.videoIdentifier = @"6v2L2UGZJAM";
 	}];
 	[[NSNotificationCenter defaultCenter] addObserverForName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:videoPlayerViewController queue:nil usingBlock:^(NSNotification *notification)
 	{
@@ -47,7 +47,7 @@
 - (void) testNoStreamAvailableErrorNotification
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"EdeVaT-zZt4"];
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"6v2L2UGZJAM"];
 	videoPlayerViewController.preferredVideoQualities = @[];
 	[[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer queue:nil usingBlock:^(NSNotification *notification)
 	{

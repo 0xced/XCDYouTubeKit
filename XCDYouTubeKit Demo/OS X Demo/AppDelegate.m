@@ -13,7 +13,7 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"EdeVaT-zZt4" }];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"6v2L2UGZJAM" }];
 	
 	[DDLog addLogger:[DDASLLogger sharedInstance]];
 }
