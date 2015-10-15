@@ -81,6 +81,19 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void) testExpiredLiveVideo
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"i2-MnWWoL6M" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqualObjects(error.localizedDescription, @"This live event has ended.");
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testRestrictedVideo
 {
 	char *logLevel = getenv("XCDYouTubeKitLogLevel");
