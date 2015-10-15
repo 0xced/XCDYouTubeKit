@@ -196,7 +196,9 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 
 - (NSString *) debugDescription
 {
-	NSString *duration = [[NSDateComponentsFormatter new] stringFromTimeInterval:self.duration] ?: [NSString stringWithFormat:@"%@ seconds", @(self.duration)];
+	NSDateComponentsFormatter *dateComponentsFormatter = [NSDateComponentsFormatter new];
+	dateComponentsFormatter.unitsStyle = NSDateComponentsFormatterUnitsStyleAbbreviated;
+	NSString *duration = [dateComponentsFormatter stringFromTimeInterval:self.duration] ?: [NSString stringWithFormat:@"%@ seconds", @(self.duration)];
 	NSString *thumbnailDescription = [NSString stringWithFormat:@"Small  thumbnail: %@\nMedium thumbnail: %@\nLarge  thumbnail: %@", self.smallThumbnailURL, self.mediumThumbnailURL, self.largeThumbnailURL];
 	return [NSString stringWithFormat:@"<%@: %p> %@\nDuration: %@\nExpiration date: %@\n%@\nVideo Streams: %@", self.class, self, self.description, duration, self.expirationDate, thumbnailDescription, self.streamURLs];
 }
