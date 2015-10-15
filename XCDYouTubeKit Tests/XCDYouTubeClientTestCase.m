@@ -81,25 +81,6 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void) testDVRVideo
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"H7iQ4sAf0OE" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	{
-		XCTAssertNil(error);
-		XCTAssertNil(video.expirationDate);
-		XCTAssertNotNil(video.title);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
-		XCTAssertEqual(video.streamURLs.count, 1U);
-		XCTAssertTrue(video.duration > 0);
-		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
-		[expectation fulfill];
-	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
-}
-
 - (void) testRestrictedVideo
 {
 	char *logLevel = getenv("XCDYouTubeKitLogLevel");
