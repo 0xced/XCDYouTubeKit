@@ -9,10 +9,13 @@
 @interface XCDYouTubeVideoWebpage ()
 @property (nonatomic, strong) NSData *data;
 @property (nonatomic, strong) NSURLResponse *response;
+
+@property (nonatomic, readonly) NSString *html;
 @end
 
 @implementation XCDYouTubeVideoWebpage
 
+@synthesize html = _html;
 @synthesize playerConfiguration = _playerConfiguration;
 @synthesize videoInfo = _videoInfo;
 @synthesize javaScriptPlayerURL = _javaScriptPlayerURL;
@@ -29,16 +32,24 @@
 	return self;
 }
 
+- (NSString *) html
+{
+	if (!_html)
+	{
+		CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
+		_html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, self.data.bytes, (CFIndex)self.data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
+		XCDYouTubeLogTrace(@"%@", _html);
+	}
+	return _html;
+}
+
 - (NSDictionary *) playerConfiguration
 {
 	if (!_playerConfiguration)
 	{
 		__block NSDictionary *playerConfigurationDictionary;
-		CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
-		NSString *html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, self.data.bytes, (CFIndex)self.data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
-		XCDYouTubeLogTrace(@"%@", html);
 		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});|\\(\\s*'PLAYER_CONFIG',\\s*(\\{.*?\\})\\s*\\)" options:NSRegularExpressionCaseInsensitive error:NULL];
-		[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+		[playerConfigRegularExpression enumerateMatchesInString:self.html options:(NSMatchingOptions)0 range:NSMakeRange(0, self.html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
 		{
 			for (NSUInteger i = 1; i < result.numberOfRanges; i++)
 			{
@@ -46,7 +57,7 @@
 				if (range.length == 0)
 					continue;
 				
-				NSString *configString = [html substringWithRange:range];
+				NSString *configString = [self.html substringWithRange:range];
 				NSData *configData = [configString dataUsingEncoding:NSUTF8StringEncoding];
 				NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:configData ?: [NSData new] options:(NSJSONReadingOptions)0 error:NULL];
 				if ([playerConfiguration isKindOfClass:[NSDictionary class]])
