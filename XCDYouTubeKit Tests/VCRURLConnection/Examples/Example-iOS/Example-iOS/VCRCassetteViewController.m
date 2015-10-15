@@ -23,7 +23,8 @@
 
 #import "VCRCassetteViewController.h"
 #import "VCRRecordingViewController.h"
-#import "VCR.h"
+#import <VCRURLConnection/VCR.h>
+#import <VCRURLConnection/VCRRequestKey.h>
 
 @interface VCRCassetteViewController ()
 @property (nonatomic, strong) IBOutlet UITableView *tableView;

@@ -21,9 +21,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "VCRRequestKey.h"
-#import "VCRRecording.h"
 #import <Foundation/Foundation.h>
+
+@class VCRRecording;
+@class VCRRequestKey;
 
 @interface VCRCassette : NSObject
 

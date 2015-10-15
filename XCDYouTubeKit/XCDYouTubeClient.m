@@ -32,7 +32,7 @@
 - (instancetype) initWithLanguageIdentifier:(NSString *)languageIdentifier
 {
 	if (!(self = [super init]))
-		return nil;
+		return nil; // LCOV_EXCL_LINE
 	
 	_languageIdentifier = languageIdentifier;
 	_queue = [NSOperationQueue new];
@@ -64,8 +64,15 @@
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
-			if (operation.video || operation.error) // If both `video` and `error` are nil, then the operation was cancelled
+			if (operation.video || operation.error)
+			{
+				NSAssert(!(operation.video && operation.error), @"One of `video` or `error` must be nil.");
 				completionHandler(operation.video, operation.error);
+			}
+			else
+			{
+				NSAssert(operation.isCancelled, @"Both `video` and `error` can not be nil if the operation was not canceled.");
+			}
 			operation.completionBlock = nil;
 #pragma clang diagnostic pop
 		}];

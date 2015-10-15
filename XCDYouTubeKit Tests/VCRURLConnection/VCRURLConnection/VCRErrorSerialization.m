@@ -21,56 +21,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "VCRError.h"
+#import "VCRErrorSerialization.h"
 
 // For -[NSData initWithBase64Encoding:] and -[NSData base64Encoding]
 // Remove when targetting iOS 7+, use -[NSData initWithBase64EncodedString:options:] and -[NSData base64EncodedStringWithOptions:] instead
 #pragma clang diagnostic ignored "-Wdeprecated"
 
-@interface VCRError ()
-@property (nonatomic, copy) NSString *vcr_localizedDescription;
-@end
-
-@implementation VCRError
-
-+ (id)JSONForError:(NSError *)error {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary addEntriesFromDictionary:@{ @"code": @(error.code),
-                                            @"domain": error.domain,
-                                            @"localizedDescription": error.localizedDescription }];
-    if ([error.userInfo count] > 0) {
-        dictionary[@"userInfo"] = [self serializedUserInfo:error.userInfo];
-    }
-    return dictionary;
-}
-
-+ (NSString *)serializedUserInfo:(NSDictionary *)userInfo {
+static NSString * SerializedUserInfo(NSDictionary *userInfo) {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userInfo];
     return [data base64Encoding];
 }
 
-+ (NSDictionary *)deserializedUserInfo:(NSString *)string {
+static NSDictionary * DeserializedUserInfo(NSString *string) {
     NSData *data = string ? [[NSData alloc] initWithBase64Encoding:string] : [NSData data];
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
-- (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)userInfo localizedDescription:(NSString *)localizedDescription {
-    self = [super initWithDomain:domain code:code userInfo:userInfo];
-    if (self) {
-        self.vcr_localizedDescription = localizedDescription;
+NSDictionary * JSONWithError(NSError *error) {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary addEntriesFromDictionary:@{ @"code": @(error.code),
+                                            @"domain": error.domain }];
+    if ([error.userInfo count] > 0) {
+        dictionary[@"userInfo"] = SerializedUserInfo(error.userInfo);
     }
-    return self;
+    return dictionary;
 }
 
-- (id)initWithJSON:(id)json {
-    return [self initWithDomain:json[@"domain"]
-                           code:[json[@"code"] integerValue]
-                       userInfo:[[self class] deserializedUserInfo:json[@"userInfo"]]
-           localizedDescription:json[@"localizedDescription"]];
+extern NSError * ErrorWithJSON(NSDictionary *json) {
+    NSString *domain = json[@"domain"];
+    NSInteger code = [json[@"code"] integerValue];
+    NSDictionary *userInfo = DeserializedUserInfo(json[@"userInfo"]);
+    return [NSError errorWithDomain:domain code:code userInfo:userInfo];
 }
-
-- (NSString *)localizedDescription {
-    return self.vcr_localizedDescription;
-}
-
-@end

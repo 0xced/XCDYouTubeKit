@@ -53,22 +53,24 @@
     __block BOOL completed = NO;
     __block NSData *receivedData;
     __block NSHTTPURLResponse *httpResponse;
-    [self recordRequest:request requestBlock:^{
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                    completed = YES;
-                                                    receivedData = data;
-                                                    httpResponse = (NSHTTPURLResponse *)response;
-                                                }];
-        [task resume];
-    } predicateBlock:^BOOL{
-        return completed;
-    } completion:^(VCRRecording *recording) {
-        XCTAssertEqual(recording.statusCode, httpResponse.statusCode, @"");
-        XCTAssertEqualObjects(recording.data, receivedData, @"");
-        
-        [self testRecording:recording forRequest:request];
-    }];
+    XCTestExpectation *expectation = [self expectationWithDescription:nil];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                completed = YES;
+                                                receivedData = data;
+                                                httpResponse = (NSHTTPURLResponse *)response;
+                                                [expectation fulfill];
+                                            }];
+    [task resume];
+    [self waitForExpectationsWithTimeout:60 handler:nil];
+    
+    VCRRecording *recording = [[[VCRCassetteManager defaultManager] currentCassette] recordingForRequest:request];
+    XCTAssertEqual(recording.statusCode, httpResponse.statusCode, @"");
+    XCTAssertEqualObjects(recording.data, receivedData, @"");
+    XCTAssertEqualObjects(recording.method, request.HTTPMethod, @"");
+    XCTAssertEqualObjects(recording.URI, [[request URL] absoluteString], @"");
+    XCTAssert(recording.statusCode != 0, @"");
+    XCTAssertNotNil(recording.headerFields);
 }
               
 - (void)testResponseIsRecordedForSharedSession {
@@ -87,24 +89,29 @@
 // FIXME: need bundle id to test background session
 
 - (void)testResponseIsReplayedWithSession:(NSURLSession *)session {
-    id json = @{ @"method": @"GET", @"uri": @"http://foo", @"body": @"Foo Bar Baz" };
+    NSString *uri = @"http://foo";
+    id json = @{ @"method": @"GET", @"uri": uri, @"body": @"Foo Bar Baz" };
+    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:@[ json ]];
+    [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:uri]];
+    VCRRecording *recording = [[[VCRCassetteManager defaultManager] currentCassette] recordingForRequest:request];
+    
     __block BOOL completed = NO;
     __block NSData *receivedData;
     __block NSHTTPURLResponse *httpResponse;
-    [self replayJSON:json requestBlock:^(NSURLRequest *request) {
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                    completed = YES;
-                                                    receivedData = data;
-                                                    httpResponse = (NSHTTPURLResponse *)response;
-                                                }];
-        [task resume];
-    } predicateBlock:^BOOL{
-        return completed;
-    } completion:^(VCRRecording *recording) {
-        XCTAssertEqual(httpResponse.statusCode, recording.statusCode, @"");
-        XCTAssertEqualObjects(receivedData, recording.data, @"");
-    }];
+    XCTestExpectation *expectation = [self expectationWithDescription:nil];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                completed = YES;
+                                                receivedData = data;
+                                                httpResponse = (NSHTTPURLResponse *)response;
+                                                [expectation fulfill];
+                                            }];
+    [task resume];
+    
+    [self waitForExpectationsWithTimeout:60 handler:nil];
+    XCTAssertEqual(httpResponse.statusCode, recording.statusCode, @"");
+    XCTAssertEqualObjects(receivedData, recording.data, @"");
 }
 
 - (void)testResponseIsReplayedForSharedSession {

@@ -54,7 +54,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 - (instancetype) initWithContentURL:(NSURL *)contentURL
 {
 	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:` method instead." userInfo:nil];
-}
+} // LCOV_EXCL_LINE
 
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier
 {
@@ -64,7 +64,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 		self = [super init];
 	
 	if (!self)
-		return nil;
+		return nil; // LCOV_EXCL_LINE
 	
 	// See https://github.com/0xced/XCDYouTubeKit/commit/cadec1c3857d6a302f71b9ce7d1ae48e389e6890
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];

@@ -19,20 +19,29 @@
 - (void) testIsAsynchronous
 {
 	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
-	XCTAssertFalse(operation.isAsynchronous);
+	XCTAssertTrue(operation.isAsynchronous);
 }
 
 - (void) testIsConcurrent
 {
 	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
-	XCTAssertFalse(operation.isConcurrent);
+	XCTAssertTrue(operation.isConcurrent);
 }
 
 - (void) testStartingOnMainThread
 {
 	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
+	[self keyValueObservingExpectationForObject:operation keyPath:@"isFinished" handler:^BOOL(id observedObject, NSDictionary *change)
+	{
+		XCTAssertNil([observedObject video]);
+		XCTAssertNotNil([observedObject error]);
+		return YES;
+	}];
+	
 	XCTAssertTrue([NSThread isMainThread]);
-	XCTAssertThrowsSpecificNamed([operation start], NSException, NSGenericException);
+	[operation start];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testStartingOnBackgroundThread
@@ -50,6 +59,74 @@
 		[operation start];
 	});
 	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testCancelingOperationTwice
+{
+	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
+	[self keyValueObservingExpectationForObject:operation keyPath:@"isFinished" handler:^BOOL(id observedObject, NSDictionary *change)
+	{
+		XCTAssertNil([observedObject video]);
+		XCTAssertNil([observedObject error]);
+		return YES;
+	}];
+	[operation cancel];
+	[operation cancel];
+	[self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void) testCancelingOperationAfterStart
+{
+	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
+	[self keyValueObservingExpectationForObject:operation keyPath:@"isFinished" handler:^BOOL(id observedObject, NSDictionary *change)
+	{
+		XCTAssertNil([observedObject video]);
+		XCTAssertNil([observedObject error]);
+		return YES;
+	}];
+	[operation start];
+	[operation cancel];
+	[self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void) testCancelingOperationBeforeStart
+{
+	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
+	[self keyValueObservingExpectationForObject:operation keyPath:@"isFinished" handler:^BOOL(id observedObject, NSDictionary *change)
+	{
+		XCTAssertNil([observedObject video]);
+		XCTAssertNil([observedObject error]);
+		return YES;
+	}];
+	[operation cancel];
+	[operation start];
+	[self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void) testCancelingOperationAfterDelay
+{
+	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:@"" languageIdentifier:nil];
+	[self keyValueObservingExpectationForObject:operation keyPath:@"isFinished" handler:^BOOL(id observedObject, NSDictionary *change)
+	{
+		XCTAssertNil([observedObject video]);
+		XCTAssertNil([observedObject error]);
+		return YES;
+	}];
+	__weak XCTestExpectation *videoExpectation = [self keyValueObservingExpectationForObject:operation keyPath:@"video" handler:^BOOL(id observedObject, NSDictionary *change)
+	{
+		XCTFail();
+		return NO;
+	}];
+	__weak XCTestExpectation *errorExpectation = [self keyValueObservingExpectationForObject:operation keyPath:@"error" handler:^BOOL(id observedObject, NSDictionary *change)
+	{
+		XCTFail();
+		return NO;
+	}];
+	[operation start];
+	[operation performSelector:@selector(cancel) withObject:nil afterDelay:0.2];
+	[videoExpectation performSelector:@selector(fulfill) withObject:nil afterDelay:0.4];
+	[errorExpectation performSelector:@selector(fulfill) withObject:nil afterDelay:0.4];
+	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
 @end

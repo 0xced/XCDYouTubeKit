@@ -22,8 +22,8 @@ static VCR_NSURLSessionConfigurationConstructor VCR_original_ephemeralSessionCon
 
 void VCR_addProtocolsToConfiguration(NSURLSessionConfiguration *configuration) {
     NSMutableArray *protocols = [NSMutableArray arrayWithArray:[configuration protocolClasses]];
-    [protocols addObject:[VCRRecordingURLProtocol class]];
-    [protocols addObject:[VCRReplayingURLProtocol class]];
+    [protocols insertObject:[VCRRecordingURLProtocol class] atIndex:0];
+    [protocols insertObject:[VCRReplayingURLProtocol class] atIndex:1];
     [configuration setProtocolClasses:protocols];
 }
 

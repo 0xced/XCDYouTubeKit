@@ -22,7 +22,7 @@
 - (instancetype) initWithData:(NSData *)data response:(NSURLResponse *)response
 {
 	if (!(self = [super init]))
-		return nil;
+		return nil; // LCOV_EXCL_LINE
 	
 	_data = data;
 	_response = response;
