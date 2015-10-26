@@ -210,7 +210,7 @@
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="XCDYouTubeKit Demo" id="EbD-d0-IM9">
-                        <barButtonItem key="rightBarButtonItem" title="⚙" id="7lm-am-b1c">
+                        <barButtonItem key="rightBarButtonItem" title="⚙︎" id="7lm-am-b1c">
                             <connections>
                                 <segue destination="J9u-jB-as3" kind="modal" id="Tgm-O6-khC"/>
                             </connections>
