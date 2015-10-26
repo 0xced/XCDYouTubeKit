@@ -74,7 +74,7 @@
 		XCTAssertNotNil(video.mediumThumbnailURL);
 		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertEqual(video.streamURLs.count, 1U);
-		XCTAssertTrue(video.duration <= 0.0 && video.duration >= 0);
+		XCTAssertEqualObjects(@(video.duration), @0);
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[expectation fulfill];
 	}];
