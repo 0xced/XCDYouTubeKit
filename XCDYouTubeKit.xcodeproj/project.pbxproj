@@ -817,8 +817,6 @@
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
-				PRODUCT_NAME = XCDYouTubeKit;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -834,8 +832,6 @@
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
-				PRODUCT_NAME = XCDYouTubeKit;
 				SDKROOT = macosx;
 			};
 			name = "Code Coverage";
@@ -851,8 +847,6 @@
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
-				PRODUCT_NAME = XCDYouTubeKit;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -897,6 +891,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
+				PRODUCT_NAME = XCDYouTubeKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "Semantic Versioning";
@@ -949,6 +945,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
+				PRODUCT_NAME = XCDYouTubeKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
@@ -968,14 +966,12 @@
 		C2A3F2DC17F4827800AC1C3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = XCDYouTubeKit;
 			};
 			name = Debug;
 		};
 		C2A3F2DD17F4827800AC1C3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = XCDYouTubeKit;
 			};
 			name = Release;
 		};
@@ -1021,6 +1017,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
+				PRODUCT_NAME = XCDYouTubeKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "Semantic Versioning";
@@ -1039,7 +1037,6 @@
 		C2D0CC5F191283A400DA8CD4 /* Code Coverage */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = XCDYouTubeKit;
 			};
 			name = "Code Coverage";
 		};
@@ -1127,8 +1124,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
-				PRODUCT_NAME = XCDYouTubeKit;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"$(inherited)",
@@ -1144,8 +1139,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
-				PRODUCT_NAME = XCDYouTubeKit;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"$(inherited)",
@@ -1161,8 +1154,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
-				PRODUCT_NAME = XCDYouTubeKit;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"$(inherited)",
