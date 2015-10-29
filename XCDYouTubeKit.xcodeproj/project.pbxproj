@@ -780,6 +780,7 @@
 					"$(inherited)",
 					"$(BUILT_PRODUCTS_DIR)/include",
 				);
+				INFOPLIST_FILE = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"$(inherited)",
@@ -797,6 +798,7 @@
 					"$(inherited)",
 					"$(BUILT_PRODUCTS_DIR)/include",
 				);
+				INFOPLIST_FILE = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"$(inherited)",
@@ -815,7 +817,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -829,7 +830,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				SDKROOT = macosx;
 			};
 			name = "Code Coverage";
@@ -843,7 +843,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -885,6 +884,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -940,6 +940,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
@@ -1011,6 +1012,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1044,6 +1046,7 @@
 					"$(inherited)",
 					"$(BUILT_PRODUCTS_DIR)/include",
 				);
+				INFOPLIST_FILE = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"$(inherited)",
@@ -1058,6 +1061,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -1078,6 +1082,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -1098,6 +1103,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -1120,7 +1126,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"$(inherited)",
@@ -1135,7 +1140,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"$(inherited)",
@@ -1150,7 +1154,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"$(inherited)",
