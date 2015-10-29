@@ -815,7 +815,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				SDKROOT = macosx;
 			};
@@ -830,7 +829,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				SDKROOT = macosx;
 			};
@@ -845,7 +843,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
 				SDKROOT = macosx;
 			};
