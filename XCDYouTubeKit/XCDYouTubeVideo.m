@@ -8,6 +8,8 @@
 
 #import <objc/runtime.h>
 
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
 NSString *const XCDYouTubeNoStreamVideoUserInfoKey = @"NoStreamVideo";
 NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming = @"HTTPLiveStreaming";

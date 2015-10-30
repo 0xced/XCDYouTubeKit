@@ -6,6 +6,8 @@
 
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
 
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 @interface XCDYouTubeProtectedVideosTestCase : XCDYouTubeKitTestCase
 @end
 
