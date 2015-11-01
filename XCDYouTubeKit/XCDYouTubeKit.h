@@ -2,7 +2,7 @@
 //  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
-#import <Availability.h>
+#import <TargetConditionals.h>
 
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
 #import <XCDYouTubeKit/XCDYouTubeError.h>
@@ -10,6 +10,6 @@
 #import <XCDYouTubeKit/XCDYouTubeVideo.h>
 #import <XCDYouTubeKit/XCDYouTubeVideoOperation.h>
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS || (!defined(TARGET_OS_IOS) && TARGET_OS_IPHONE)
 #import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
 #endif
