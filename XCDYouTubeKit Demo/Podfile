@@ -16,3 +16,9 @@ target 'XCDYouTubeKit OS X Demo' do
   platform :osx, '10.9'
   import_pods
 end
+
+target 'XCDYouTubeKit tvOS Demo' do
+  plugin 'cocoapods-expert-difficulty'
+  platform :tvos, '9.0'
+  pod 'Google-API-Client/YouTube', '~> 1.0.422'
+end
