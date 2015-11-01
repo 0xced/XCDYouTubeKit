@@ -535,7 +535,7 @@ static NSMutableDictionary *gKindMap = nil;
   NSString *kind = nil;
   if ([json isKindOfClass:[NSDictionary class]]) {
     kind = [json valueForKey:@"kind"];
-    if ([kind isKindOfClass:[NSString class]] && [kind length] > 0) {
+    if ([kind isKindOfClass:[NSString class]] && [kind length] > 0 && ![NSStringFromClass(defaultClass) hasSuffix:@"ResourceId"]) {
       Class dynamicClass = [GTLObject registeredObjectClassForKind:kind];
       if (dynamicClass) {
         classToCreate = dynamicClass;
