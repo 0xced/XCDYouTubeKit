@@ -93,7 +93,6 @@
 		332059E2822D78DCC698CFD69AAEADA4 /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C06FD801CB83C71E57D308DCDE54011 /* DDFileLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		33A6B972339A06AE4DD7B3553DB61959 /* GTLYouTubeActivityContentDetailsUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 907E651E73DF9342E8C4B26E79CB4CA0 /* GTLYouTubeActivityContentDetailsUpload.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		34526B18C6E26E2AD0887C02E141A262 /* GTMHTTPFetcherService.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D79FD9883F4BB25890581C1A136F136 /* GTMHTTPFetcherService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3454843ABD927F7B301DDC10D5406C19 /* GTMHTTPFetcherLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9341A6C2956E5C2B8EC77D1BDE43F74 /* GTMHTTPFetcherLogViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3608EB9F631020ADCD5E9D9B608B5110 /* GTLUploadParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 923ED80BA20EB8F6795D1C62AC11FA61 /* GTLUploadParameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3643F5E1D3109485A1DED4A5FD45853E /* GTLYouTubePlaylistSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A5FC3978A20704B0BBDDE1C9B8D3645 /* GTLYouTubePlaylistSnippet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		36D293B57E1AC19470F13FE3B0876DE6 /* GTLYouTubeActivityListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EF70911ECDB9A1287CFCF22937B27822 /* GTLYouTubeActivityListResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -2435,7 +2434,6 @@
 				7E9115F6F0D573536A070E6DF17B30F0 /* GTMGatherInputStream.m in Sources */,
 				70B9AA58E5B964E7FFAA124A2F7A3BCA /* GTMHTTPFetcher.m in Sources */,
 				83B7989624BA8853C369B0282B1D5B42 /* GTMHTTPFetcherLogging.m in Sources */,
-				3454843ABD927F7B301DDC10D5406C19 /* GTMHTTPFetcherLogViewController.m in Sources */,
 				F9E63D12C9BB0348E0295CA176F5B7C5 /* GTMHTTPFetcherService.m in Sources */,
 				A22A392C1B7544C8E3F0B66E350B565F /* GTMHTTPFetchHistory.m in Sources */,
 				2DAC853CF0B1EAE42EA792D0B1135196 /* GTMHTTPUploadFetcher.m in Sources */,
