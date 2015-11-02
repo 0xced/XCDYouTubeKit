@@ -34,11 +34,12 @@
 		C27415E517F4D0330026834B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415E417F4D0330026834B /* MediaPlayer.framework */; };
 		C27AD2A11A0791F000866050 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C27AD2A01A0791F000866050 /* Images.xcassets */; };
 		C2A1E7471BD1AE0F001EAC91 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A1E7461BD1AE0F001EAC91 /* XCDYouTubeKit.framework */; };
+		C2ADD72D1BE6AC3100B182ED /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADD72C1BE6AC3100B182ED /* VideoCell.m */; };
 		C2BA376D192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */; };
 		C2C5D2981A6E5AB900F2B3F8 /* VideoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C5D2971A6E5AB900F2B3F8 /* VideoPickerController.m */; };
 		C2CF7CEE1B17737400C356EA /* ContextLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CF7CED1B17737400C356EA /* ContextLogFormatter.m */; };
 		C2D627601BE3C648005367FF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6275F1BE3C648005367FF /* AppDelegate.m */; };
-		C2D627631BE3C648005367FF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D627621BE3C648005367FF /* ViewController.m */; };
+		C2D627631BE3C648005367FF /* PlaylistCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D627621BE3C648005367FF /* PlaylistCollectionViewController.m */; };
 		C2D627661BE3C648005367FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D627641BE3C648005367FF /* Main.storyboard */; };
 		C2D627701BE3C95C005367FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6276E1BE3C95C005367FF /* main.m */; };
 		C2D627721BE3CA0A005367FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D627711BE3CA0A005367FF /* Assets.xcassets */; };
@@ -106,6 +107,8 @@
 		C27415E417F4D0330026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C27AD2A01A0791F000866050 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C2A1E7461BD1AE0F001EAC91 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = "../build/Debug-iphoneos/XCDYouTubeKit.framework"; sourceTree = "<group>"; };
+		C2ADD72B1BE6AC3100B182ED /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		C2ADD72C1BE6AC3100B182ED /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		C2BA376B192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMoviePlayerController+BackgroundPlayback.h"; sourceTree = "<group>"; };
 		C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMoviePlayerController+BackgroundPlayback.m"; sourceTree = "<group>"; };
 		C2C5D2961A6E5AB900F2B3F8 /* VideoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPickerController.h; sourceTree = "<group>"; };
@@ -115,8 +118,8 @@
 		C2D627591BE3C648005367FF /* XCDYouTubeKit tvOS Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XCDYouTubeKit tvOS Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D6275E1BE3C648005367FF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2D6275F1BE3C648005367FF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C2D627611BE3C648005367FF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C2D627621BE3C648005367FF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C2D627611BE3C648005367FF /* PlaylistCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistCollectionViewController.h; sourceTree = "<group>"; };
+		C2D627621BE3C648005367FF /* PlaylistCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistCollectionViewController.m; sourceTree = "<group>"; };
 		C2D627651BE3C648005367FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C2D6276D1BE3C95C005367FF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2D6276E1BE3C95C005367FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -287,8 +290,10 @@
 			children = (
 				C2D6275E1BE3C648005367FF /* AppDelegate.h */,
 				C2D6275F1BE3C648005367FF /* AppDelegate.m */,
-				C2D627611BE3C648005367FF /* ViewController.h */,
-				C2D627621BE3C648005367FF /* ViewController.m */,
+				C2D627611BE3C648005367FF /* PlaylistCollectionViewController.h */,
+				C2D627621BE3C648005367FF /* PlaylistCollectionViewController.m */,
+				C2ADD72B1BE6AC3100B182ED /* VideoCell.h */,
+				C2ADD72C1BE6AC3100B182ED /* VideoCell.m */,
 				C2D627641BE3C648005367FF /* Main.storyboard */,
 				C2D6275B1BE3C648005367FF /* Supporting Files */,
 			);
@@ -619,7 +624,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2D627631BE3C648005367FF /* ViewController.m in Sources */,
+				C2D627631BE3C648005367FF /* PlaylistCollectionViewController.m in Sources */,
+				C2ADD72D1BE6AC3100B182ED /* VideoCell.m in Sources */,
 				C2D627701BE3C95C005367FF /* main.m in Sources */,
 				C2D627601BE3C648005367FF /* AppDelegate.m in Sources */,
 			);
