@@ -44,6 +44,7 @@
 		C2D627701BE3C95C005367FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6276E1BE3C95C005367FF /* main.m */; };
 		C2D627721BE3CA0A005367FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D627711BE3CA0A005367FF /* Assets.xcassets */; };
 		C2D627761BE58D40005367FF /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D627751BE58D40005367FF /* XCDYouTubeKit.framework */; };
+		C2D803D01BEAAA4E008B9F79 /* YouTube-API-Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2D803CF1BEAAA4E008B9F79 /* YouTube-API-Key.plist */; };
 		C2DDFAF419C2CEB000E7DB66 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DDFAF319C2CEB000E7DB66 /* LaunchScreen.xib */; };
 		C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EFB48618730A2B0046B1FE /* SettingsViewController.m */; };
 		D6DA45E4DB3C53A40067B56D /* libPods-XCDYouTubeKit OS X Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E142D6E7DD428B9A92C81C /* libPods-XCDYouTubeKit OS X Demo.a */; };
@@ -125,6 +126,7 @@
 		C2D6276E1BE3C95C005367FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C2D627711BE3CA0A005367FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2D627751BE58D40005367FF /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = "../build/Debug-appletvos/XCDYouTubeKit.framework"; sourceTree = "<group>"; };
+		C2D803CF1BEAAA4E008B9F79 /* YouTube-API-Key.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "YouTube-API-Key.plist"; sourceTree = "<group>"; };
 		C2DDFAF319C2CEB000E7DB66 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libXCDYouTubeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2EFB48518730A2B0046B1FE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				C2D627711BE3CA0A005367FF /* Assets.xcassets */,
 				C2D6276D1BE3C95C005367FF /* Info.plist */,
 				C2D6276E1BE3C95C005367FF /* main.m */,
+				C2D803CF1BEAAA4E008B9F79 /* YouTube-API-Key.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2D627721BE3CA0A005367FF /* Assets.xcassets in Resources */,
+				C2D803D01BEAAA4E008B9F79 /* YouTube-API-Key.plist in Resources */,
 				C2D627661BE3C648005367FF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

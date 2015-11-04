@@ -25,7 +25,9 @@
 		_youTubeService = [GTLServiceYouTube new];
 		_youTubeService.shouldFetchNextPages = YES;
 		_youTubeService.retryEnabled = YES;
-		_youTubeService.APIKey = @"";
+		// Please enter your YouTube API Key in `XCDYouTubeKit Demo/tvOS Demo/Supporting Files/YouTube-API-Key.plist`
+		NSData *youTubeAPIKeyData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"YouTube-API-Key" withExtension:@"plist"]];
+		_youTubeService.APIKey = [NSPropertyListSerialization propertyListWithData:youTubeAPIKeyData options:NSPropertyListImmutable format:NULL error:NULL];
 		NSAssert(_youTubeService.APIKey.length > 0, @"An API key is required, see https://developers.google.com/youtube/v3/getting-started");
 	}
 	return _youTubeService;
