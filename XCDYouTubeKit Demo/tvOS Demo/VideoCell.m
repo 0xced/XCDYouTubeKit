@@ -38,4 +38,12 @@
 	[self.imageDataTask resume];
 }
 
+- (void) didUpdateFocusInContext:(UIFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator
+{
+	[coordinator addCoordinatedAnimations:^{
+		self.titleLabel.textColor = self.isFocused ? [UIColor whiteColor] : [UIColor blackColor];
+	} completion:nil];
+}
+
+
 @end
