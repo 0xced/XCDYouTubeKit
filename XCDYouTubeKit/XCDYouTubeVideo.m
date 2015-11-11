@@ -107,6 +107,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
 	
 	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: response.URL } mutableCopy] : [NSMutableDictionary new];
+	userInfo[@"XCDYouTubeVideo"] = self;
 	
 	if (streamMap.length > 0 || httpLiveStream.length > 0)
 	{
