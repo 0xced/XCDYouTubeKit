@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B9AAF5D8C00DD7A63BBD5208 /* libPods-XCDYouTubeKit tvOS Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D65308C01751335E0F848A /* libPods-XCDYouTubeKit tvOS Demo.a */; };
 		BBC4CDD99742C66C5310997D /* libPods-XCDYouTubeKit iOS Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8BF5226EBEEC149DA46CF1 /* libPods-XCDYouTubeKit iOS Demo.a */; };
+		C232DA801C00B8AD00E26E3A /* XCDYouTubeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C232DA7F1C00B8AD00E26E3A /* XCDYouTubeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C235BB831B2099450076FC81 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C235BB821B2099450076FC81 /* Settings.bundle */; };
 		C2428AE5191C3C1400065504 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2428AE4191C3C1400065504 /* AppDelegate.m */; };
 		C2428AE8191C3C1400065504 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2428AE6191C3C1400065504 /* MainMenu.xib */; };
@@ -43,7 +44,6 @@
 		C2D627661BE3C648005367FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D627641BE3C648005367FF /* Main.storyboard */; };
 		C2D627701BE3C95C005367FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6276E1BE3C95C005367FF /* main.m */; };
 		C2D627721BE3CA0A005367FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D627711BE3CA0A005367FF /* Assets.xcassets */; };
-		C2D627761BE58D40005367FF /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D627751BE58D40005367FF /* XCDYouTubeKit.framework */; };
 		C2D803D01BEAAA4E008B9F79 /* YouTube-API-Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2D803CF1BEAAA4E008B9F79 /* YouTube-API-Key.plist */; };
 		C2DDFAF419C2CEB000E7DB66 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DDFAF319C2CEB000E7DB66 /* LaunchScreen.xib */; };
 		C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EFB48618730A2B0046B1FE /* SettingsViewController.m */; };
@@ -51,6 +51,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		C232DA791C00B3D500E26E3A /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C232DA801C00B8AD00E26E3A /* XCDYouTubeKit.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C26231B6191D7F7100D23900 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,6 +83,7 @@
 		5D14861A6EADE45BBD219921 /* Pods-XCDYouTubeKit iOS Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XCDYouTubeKit iOS Demo/Pods-XCDYouTubeKit iOS Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		6B8BF5226EBEEC149DA46CF1 /* libPods-XCDYouTubeKit iOS Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit iOS Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD66BE384BF01AAC3B7F40D5 /* Pods-XCDYouTubeKit iOS Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XCDYouTubeKit iOS Demo/Pods-XCDYouTubeKit iOS Demo.release.xcconfig"; sourceTree = "<group>"; };
+		C232DA7F1C00B8AD00E26E3A /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = "../Debug-appletvos/XCDYouTubeKit.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C235BB821B2099450076FC81 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C2428AD0191C3C1400065504 /* XCDYouTubeKit OS X Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XCDYouTubeKit OS X Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2428AE3191C3C1400065504 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -107,7 +119,7 @@
 		C27415E217F4D02E0026834B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C27415E417F4D0330026834B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C27AD2A01A0791F000866050 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C2A1E7461BD1AE0F001EAC91 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = "../build/Debug-iphoneos/XCDYouTubeKit.framework"; sourceTree = "<group>"; };
+		C2A1E7461BD1AE0F001EAC91 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCDYouTubeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2ADD72B1BE6AC3100B182ED /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
 		C2ADD72C1BE6AC3100B182ED /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		C2BA376B192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMoviePlayerController+BackgroundPlayback.h"; sourceTree = "<group>"; };
@@ -125,13 +137,11 @@
 		C2D6276D1BE3C95C005367FF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2D6276E1BE3C95C005367FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C2D627711BE3CA0A005367FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C2D627751BE58D40005367FF /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = "../build/Debug-appletvos/XCDYouTubeKit.framework"; sourceTree = "<group>"; };
 		C2D803CF1BEAAA4E008B9F79 /* YouTube-API-Key.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "YouTube-API-Key.plist"; sourceTree = "<group>"; };
 		C2DDFAF319C2CEB000E7DB66 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libXCDYouTubeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2EFB48518730A2B0046B1FE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C2EFB48618730A2B0046B1FE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCDYouTubeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2FB52DF1918F89A00B2CBE6 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		CDBF2D1C2B9BA1D8E6794BEE /* Pods-XCDYouTubeKit tvOS Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit tvOS Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XCDYouTubeKit tvOS Demo/Pods-XCDYouTubeKit tvOS Demo.release.xcconfig"; sourceTree = "<group>"; };
 		F6A8734BD776A59334E3896C /* Pods-XCDYouTubeKit tvOS Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit tvOS Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XCDYouTubeKit tvOS Demo/Pods-XCDYouTubeKit tvOS Demo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,7 +177,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2D627761BE58D40005367FF /* XCDYouTubeKit.framework in Frameworks */,
 				B9AAF5D8C00DD7A63BBD5208 /* libPods-XCDYouTubeKit tvOS Demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,11 +233,10 @@
 		C27415A017F491230026834B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C2D627751BE58D40005367FF /* XCDYouTubeKit.framework */,
 				C2A1E7461BD1AE0F001EAC91 /* XCDYouTubeKit.framework */,
 				C2EDD2EC1805917900BEA32B /* libXCDYouTubeKit.a */,
-				C2F0E59E1945065C00D8EBA8 /* XCDYouTubeKit.framework */,
 				C26231B4191D7E0600D23900 /* XCDYouTubeKit.framework */,
+				C232DA7F1C00B8AD00E26E3A /* XCDYouTubeKit.framework */,
 				C27415E217F4D02E0026834B /* AVFoundation.framework */,
 				C2428B0B191C415300065504 /* AVKit.framework */,
 				C27415A517F491230026834B /* CoreGraphics.framework */,
@@ -378,8 +386,9 @@
 				C2D627551BE3C648005367FF /* Sources */,
 				C2D627561BE3C648005367FF /* Frameworks */,
 				C2D627571BE3C648005367FF /* Resources */,
-				4F1B4CE3C9D25C82013EA81A /* Embed Pods Frameworks */,
+				C232DA791C00B3D500E26E3A /* Copy Frameworks */,
 				0E44E427995B48B2A9B5AE01 /* Copy Pods Resources */,
+				4F1B4CE3C9D25C82013EA81A /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
