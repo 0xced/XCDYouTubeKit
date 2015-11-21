@@ -123,9 +123,9 @@
 		return NO;
 	}];
 	[operation start];
-	[operation performSelector:@selector(cancel) withObject:nil afterDelay:0.2];
-	[videoExpectation performSelector:@selector(fulfill) withObject:nil afterDelay:0.4];
-	[errorExpectation performSelector:@selector(fulfill) withObject:nil afterDelay:0.4];
+	[operation performSelector:@selector(cancel) withObject:nil afterDelay:0.0];
+	[videoExpectation performSelector:@selector(fulfill) withObject:nil afterDelay:0.2];
+	[errorExpectation performSelector:@selector(fulfill) withObject:nil afterDelay:0.2];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
