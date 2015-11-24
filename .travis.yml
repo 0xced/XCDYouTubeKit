@@ -7,6 +7,8 @@ env:
     - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.2" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library"'
     - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.3" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library"'
     - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.4" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.0" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.1" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library"'
     - 'DESTINATION="platform=iOS Simulator,name=iPhone 4s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" RUN_CLANG_STATIC_ANALYZER="YES"'
     - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" RUN_CLANG_STATIC_ANALYZER="YES"'
     - 'DESTINATION="platform=iOS Simulator,name=iPhone 4s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
