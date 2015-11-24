@@ -9,8 +9,33 @@
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 
 #import "VideoCell.h"
+#import "GradientMaskView.h"
 
 @implementation PlaylistCollectionViewController
+
+- (void) viewDidLoad
+{
+	[super viewDidLoad];
+	
+	self.collectionView.maskView = [GradientMaskView new];
+}
+
+- (void) viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+	
+	GradientMaskView *maskView = (GradientMaskView *)self.collectionView.maskView;
+	maskView.maskPosition = ({
+		CGFloat end = [maskView.maskPosition[@"end"] floatValue];
+		CGFloat maximumMaskStart = end + (self.topLayoutGuide.length * 0.5);
+		CGFloat verticalScrollPosition = MAX(0, self.collectionView.contentOffset.y + self.collectionView.contentInset.top);
+		@{
+		   @"start": @( MIN(maximumMaskStart, end + verticalScrollPosition) ),
+		   @"end":   @( self.topLayoutGuide.length * 0.8 )
+		};
+	});
+	maskView.frame = (CGRect){ (CGPoint){0, self.collectionView.contentOffset.y}, self.collectionView.bounds.size };
+}
 
 - (void) setItems:(NSArray *)items
 {
