@@ -8,7 +8,7 @@ set -o pipefail
 
 COMMAND="env NSUnbufferedIO=YES xcodebuild clean test -project XCDYouTubeKit.xcodeproj -scheme '${SCHEME}' -configuration '${CONFIGURATION}' -destination '${DESTINATION}'"
 
-for BUILD_SETTING in OBJROOT RUN_CLANG_STATIC_ANALYZER; do
+for BUILD_SETTING in OBJROOT RUN_CLANG_STATIC_ANALYZER IPHONEOS_DEPLOYMENT_TARGET MACOSX_DEPLOYMENT_TARGET; do
     VALUE=`eval echo \\$"${BUILD_SETTING}"`
     if [ ! -z "${VALUE}" ]; then
         COMMAND+=" ${BUILD_SETTING}='${VALUE}'"
