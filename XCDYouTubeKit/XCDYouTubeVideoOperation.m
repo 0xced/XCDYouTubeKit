@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		[self.eventLabels removeObjectAtIndex:0];
 		
 		NSDictionary *query = @{ @"video_id": self.videoIdentifier, @"hl": self.languageIdentifier, @"el": eventLabel, @"ps": @"default" };
-		NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
+		NSString *queryString = XCDQueryStringWithDictionary(query);
 		NSURL *videoInfoURL = [NSURL URLWithString:[@"https://www.youtube.com/get_video_info?" stringByAppendingString:queryString]];
 		[self startRequestWithURL:videoInfoURL type:XCDYouTubeRequestTypeGetVideoInfo];
 	}
@@ -92,7 +92,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 - (void) startWatchPageRequest
 {
 	NSDictionary *query = @{ @"v": self.videoIdentifier, @"hl": self.languageIdentifier, @"has_verified": @YES };
-	NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
+	NSString *queryString = XCDQueryStringWithDictionary(query);
 	NSURL *webpageURL = [NSURL URLWithString:[@"https://www.youtube.com/watch?" stringByAppendingString:queryString]];
 	[self startRequestWithURL:webpageURL type:XCDYouTubeRequestTypeWatchPage];
 }
@@ -139,7 +139,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		case XCDYouTubeRequestTypeGetVideoInfo:
 		{
 			NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-			NSDictionary *info = XCDDictionaryWithQueryString(videoQuery, NSUTF8StringEncoding);
+			NSDictionary *info = XCDDictionaryWithQueryString(videoQuery);
 			[self handleVideoInfoResponseWithInfo:info response:response];
 		}
 			break;
@@ -249,7 +249,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		NSString *eurl = [@"https://youtube.googleapis.com/v/" stringByAppendingString:self.videoIdentifier];
 		NSString *sts = [self.embedWebpage.playerConfiguration[@"sts"] description] ?: [self.webpage.playerConfiguration[@"sts"] description] ?: @"";
 		NSDictionary *query = @{ @"video_id": self.videoIdentifier, @"hl": self.languageIdentifier, @"eurl": eurl, @"sts": sts};
-		NSString *queryString = XCDQueryStringWithDictionary(query, NSUTF8StringEncoding);
+		NSString *queryString = XCDQueryStringWithDictionary(query);
 		NSURL *videoInfoURL = [NSURL URLWithString:[@"https://www.youtube.com/get_video_info?" stringByAppendingString:queryString]];
 		[self startRequestWithURL:videoInfoURL type:XCDYouTubeRequestTypeGetVideoInfo];
 	}
