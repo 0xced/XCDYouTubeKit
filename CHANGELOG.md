@@ -1,3 +1,10 @@
+#### Version 2.4.0
+
+* Support for tvOS. (#182)
+* Replaced deprecated methods and classes: now using `NSURLSession` instead of `NSURLConnection` internally. (#190, #210)
+* Support for Objective-C generics where applicable.
+* The `XCDYouTubeVideoOperation` class has changed back from a synchronous to an asynchronous operation and can be started on the main thread.
+
 #### Version 2.3.3
 
 * Adaptation to YouTube API change. (#193, #194, #196, #197, #198, #202)
