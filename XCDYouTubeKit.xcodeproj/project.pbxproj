@@ -100,7 +100,7 @@
 		C2D0CC541912673500DA8CD4 /* VCRErrorSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC451912673500DA8CD4 /* VCRErrorSerialization.m */; };
 		C2D0CC551912673500DA8CD4 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC471912673500DA8CD4 /* VCROrderedMutableDictionary.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-missing-prototypes -Wno-method-signatures -Wno-objc-designated-initializers"; }; };
 		C2D0CC561912673500DA8CD4 /* VCRRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC491912673500DA8CD4 /* VCRRecording.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-assign-enum -Wno-direct-ivar-access -Wno-method-signatures -Wno-sign-conversion"; }; };
-		C2D0CC571912673500DA8CD4 /* VCRRecordingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4B1912673500DA8CD4 /* VCRRecordingURLProtocol.m */; };
+		C2D0CC571912673500DA8CD4 /* VCRRecordingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4B1912673500DA8CD4 /* VCRRecordingURLProtocol.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		C2D0CC581912673500DA8CD4 /* VCRReplayingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4D1912673500DA8CD4 /* VCRReplayingURLProtocol.m */; };
 		C2D0CC591912673500DA8CD4 /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4F1912673500DA8CD4 /* VCRRequestKey.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-method-signatures"; }; };
 		C2D0CC5B1912693400DA8CD4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D0CC5A1912693400DA8CD4 /* MobileCoreServices.framework */; };
@@ -113,7 +113,7 @@
 		C2DD4DB81920033A00AF6F85 /* VCRErrorSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC451912673500DA8CD4 /* VCRErrorSerialization.m */; };
 		C2DD4DB91920033A00AF6F85 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC471912673500DA8CD4 /* VCROrderedMutableDictionary.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-missing-prototypes -Wno-method-signatures -Wno-objc-designated-initializers"; }; };
 		C2DD4DBA1920033A00AF6F85 /* VCRRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC491912673500DA8CD4 /* VCRRecording.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-assign-enum -Wno-direct-ivar-access -Wno-method-signatures -Wno-sign-conversion"; }; };
-		C2DD4DBB1920033A00AF6F85 /* VCRRecordingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4B1912673500DA8CD4 /* VCRRecordingURLProtocol.m */; };
+		C2DD4DBB1920033A00AF6F85 /* VCRRecordingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4B1912673500DA8CD4 /* VCRRecordingURLProtocol.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		C2DD4DBC1920033A00AF6F85 /* VCRReplayingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4D1912673500DA8CD4 /* VCRReplayingURLProtocol.m */; };
 		C2DD4DBD1920033A00AF6F85 /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D0CC4F1912673500DA8CD4 /* VCRRequestKey.m */; settings = {COMPILER_FLAGS = "-Wno-overriding-method-mismatch -Wno-method-signatures"; }; };
 		C2DD4DBE1920034400AF6F85 /* XCDYouTubeClientTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C20F57A718817D5400EDBFB0 /* XCDYouTubeClientTestCase.m */; };

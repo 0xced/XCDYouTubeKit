@@ -7,6 +7,8 @@
 #import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
 #import <XCDYouTubeKit/XCDYouTubeError.h>
 
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 @interface XCDYouTubeVideoPlayerViewControllerTestCase : XCDYouTubeKitTestCase
 @end
 
