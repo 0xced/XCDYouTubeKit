@@ -15,7 +15,7 @@ env:
     - 'DESTINATION="platform=iOS Simulator,name=iPhone 4s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
     - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
     - 'DESTINATION="platform=OS X"                                CONFIGURATION="Release"       SCHEME="XCDYouTubeKit OS X"               RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=OS X"                                CONFIGURATION="Release"       SCHEME="XCDYouTubeKit OS X"               MACOSX_DEPLOYMENT_TARGET="10.11"'
+    - 'DESTINATION="platform=OS X"                                CONFIGURATION="Release"       SCHEME="XCDYouTubeKit OS X"               MACOSX_DEPLOYMENT_TARGET="10.10"'
     - 'DESTINATION="platform=tvOS Simulator,name=Apple TV 1080p"  CONFIGURATION="Release"       SCHEME="XCDYouTubeKit tvOS"               RUN_CLANG_STATIC_ANALYZER="YES"'
 before_install:
   - xcrun simctl list
