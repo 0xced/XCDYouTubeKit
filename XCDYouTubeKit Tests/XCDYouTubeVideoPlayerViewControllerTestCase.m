@@ -4,6 +4,7 @@
 
 #import "XCDYouTubeKitTestCase.h"
 
+#import <XCDYouTubeKit/XCDYouTubeClient.h>
 #import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
 #import <XCDYouTubeKit/XCDYouTubeError.h>
 
@@ -17,6 +18,18 @@
 - (void) testWrongInitializer
 {
 	XCTAssertThrowsSpecificNamed([[XCDYouTubeVideoPlayerViewController alloc] initWithContentURL:nil], NSException, NSGenericException);
+}
+
+- (void) testAPIMisuseException
+{
+#if defined(DEBUG) && DEBUG
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"6v2L2UGZJAM" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
+		XCTAssertThrowsSpecificNamed([[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"6v2L2UGZJAM"], NSException, NSGenericException);
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+#endif
 }
 
 - (void) testVideoNotification

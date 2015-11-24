@@ -60,6 +60,15 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier
 {
+#if defined(DEBUG) && DEBUG
+	NSString *callStackSymbols = [[NSThread callStackSymbols] componentsJoinedByString:@"\n"];
+	if ([callStackSymbols rangeOfString:@"-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]_block_invoke"].length > 0)
+	{
+		NSString *reason = @"XCDYouTubeVideoPlayerViewController must not be used in the completion handler of `-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]`. Please read the documentation and sample code to properly use XCDYouTubeVideoPlayerViewController.";
+		@throw [NSException exceptionWithName:NSGenericException reason:reason userInfo:nil];
+	}
+#endif
+	
 	if ([[[UIDevice currentDevice] systemVersion] integerValue] >= 8)
 		self = [super initWithContentURL:nil];
 	else
