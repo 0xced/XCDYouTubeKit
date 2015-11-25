@@ -15,6 +15,8 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
+	<string>$(DYLIB_CURRENT_VERSION)</string>
+	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2013-2015 Cédric Luthi. All rights reserved.</string>

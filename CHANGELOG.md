@@ -1,3 +1,7 @@
+#### Version 2.4.1
+
+* Added the CFBundleVersion key in the Info.plist file for iTunes Connect validation. (#214)
+
 #### Version 2.4.0
 
 * Support for tvOS. (#182)
