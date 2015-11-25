@@ -302,6 +302,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	if (self.isCancelled)
 		return;
 	
+	if (self.videoIdentifier.length != 11)
+	{
+		XCDYouTubeLogWarning(@"Video identifier length should be 11. [%@]", self.videoIdentifier);
+	}
+	
 	XCDYouTubeLogInfo(@"Starting video operation: %@", self);
 	
 	self.isExecuting = YES;
