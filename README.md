@@ -7,7 +7,7 @@
 [![Carthage Compatibility](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage/)
 [![License](https://img.shields.io/cocoapods/l/XCDYouTubeKit.svg?style=flat)](LICENSE)
 
-**XCDYouTubeKit** is a YouTube video player for iOS and OS X.
+**XCDYouTubeKit** is a YouTube video player for iOS, tvOS and OS X.
 
 <img src="Screenshots/XCDYouTubeVideoPlayerViewController.png" width="480" height="320">
 
