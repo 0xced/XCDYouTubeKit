@@ -72,7 +72,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	if ([[[UIDevice currentDevice] systemVersion] integerValue] >= 8)
 		self = [super initWithContentURL:nil];
 	else
-		self = [super init];
+		self = [super init]; // LCOV_EXCL_LINE
 	
 	if (!self)
 		return nil; // LCOV_EXCL_LINE
