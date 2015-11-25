@@ -56,15 +56,16 @@ NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger indent) {
 @implementation VCROrderedMutableDictionary
 
 - (instancetype)init {
-	return [self initWithCapacity:0];
+    if ((self = [super init])) {
+        _dictionary = [NSMutableDictionary new];
+        _array = [NSMutableArray new];
+    }
+    return self;
 }
 
-- (instancetype)initWithCapacity:(NSUInteger)capacity {
-	if ((self = [super init])) {
-		_dictionary = [NSMutableDictionary dictionaryWithCapacity:capacity];
-		_array = [NSMutableArray arrayWithCapacity:capacity];
-	}
-	return self;
+- (instancetype)initWithCapacity:(NSUInteger)numItems
+{
+    return [self init];
 }
 
 - (instancetype)copy {

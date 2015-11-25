@@ -1,4 +1,4 @@
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 ${inherited} NSLOGGER_WAS_HERE=1 NSLOGGER_BUILD_USERNAME="${USER}" ${inherited} NSLOGGER_WAS_HERE=1 NSLOGGER_BUILD_USERNAME="${USER}"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 ${inherited} NSLOGGER_WAS_HERE=1 NSLOGGER_BUILD_USERNAME="${USER}"
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CocoaLumberjack" "${PODS_ROOT}/Headers/Public/NSLogger" "${PODS_ROOT}/Headers/Public/XCDLumberjackNSLogger"
 OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CocoaLumberjack" -isystem "${PODS_ROOT}/Headers/Public/NSLogger" -isystem "${PODS_ROOT}/Headers/Public/XCDLumberjackNSLogger"
 OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-XCDYouTubeKit OS X Demo-CocoaLumberjack" -l"Pods-XCDYouTubeKit OS X Demo-NSLogger" -l"Pods-XCDYouTubeKit OS X Demo-XCDLumberjackNSLogger" -framework "CFNetwork" -framework "CoreServices" -framework "SystemConfiguration"

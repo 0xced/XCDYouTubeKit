@@ -47,7 +47,7 @@ static void InitializeLoggers(void)
 
 static void InitializeUserDefaults(void)
 {
-	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"EdeVaT-zZt4" }];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"VideoIdentifier": @"6v2L2UGZJAM" }];
 }
 
 static void InitializeAudioSession(void)

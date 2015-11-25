@@ -135,11 +135,12 @@
 		XCTAssertTrue(video.duration > 0);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityHD720)]];
 		request.HTTPMethod = @"HEAD";
-		[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+		NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
 		{
 			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
 			[expectation fulfill];
 		}];
+		[dataTask resume];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }

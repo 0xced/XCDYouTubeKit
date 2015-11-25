@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!-- Beware! Counterintuitively this must be a 'Browser key', not an 'iOS key'. -->
+<string></string>
+<!--
+      Once you have entered your API Key, use the following command to ignore the local change:
+      git update-index --skip-worktree YouTube-API-Key.plist
+-->
+</plist>

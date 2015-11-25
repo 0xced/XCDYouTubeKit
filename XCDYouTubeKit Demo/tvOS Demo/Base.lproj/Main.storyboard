@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="DPV-3s-utp">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="h8p-lz-FB3">
+            <objects>
+                <navigationController id="DPV-3s-utp" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zRe-xe-JEn">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7a4-kv-v74" kind="relationship" relationship="rootViewController" id="zEW-Nu-NGG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ffs-43-XBL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2704" y="-906"/>
+        </scene>
+        <!--Playlist Collection View Controller-->
+        <scene sceneID="jA7-e4-ufZ">
+            <objects>
+                <collectionViewController id="7a4-kv-v74" customClass="PlaylistCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="O4O-P5-lyV">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="96" minimumInteritemSpacing="96" id="I5U-4K-wKo">
+                            <size key="itemSize" width="480" height="400"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="96" minY="96" maxX="96" maxY="96"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VideoCell" id="MLF-Mb-svJ" customClass="VideoCell">
+                                <rect key="frame" x="96" y="241" width="480" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="400"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="prf-Sg-rKF">
+                                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="prf-Sg-rKF" secondAttribute="height" multiplier="16:9" id="eoj-9s-0DX"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTK-kt-3bc">
+                                            <rect key="frame" x="8" y="278" width="464" height="114"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="gTK-kt-3bc" firstAttribute="top" secondItem="prf-Sg-rKF" secondAttribute="bottom" constant="8" id="Chk-XW-Pf2"/>
+                                    <constraint firstItem="gTK-kt-3bc" firstAttribute="leading" secondItem="MLF-Mb-svJ" secondAttribute="leadingMargin" id="GG9-cC-5t8"/>
+                                    <constraint firstItem="prf-Sg-rKF" firstAttribute="leading" secondItem="MLF-Mb-svJ" secondAttribute="leading" id="IqE-wS-WGW"/>
+                                    <constraint firstAttribute="trailing" secondItem="prf-Sg-rKF" secondAttribute="trailing" id="ckA-GR-QfG"/>
+                                    <constraint firstItem="prf-Sg-rKF" firstAttribute="top" secondItem="MLF-Mb-svJ" secondAttribute="top" id="djv-Kf-8Tl"/>
+                                    <constraint firstItem="gTK-kt-3bc" firstAttribute="trailing" secondItem="MLF-Mb-svJ" secondAttribute="trailingMargin" id="eib-bA-iBE"/>
+                                    <constraint firstItem="gTK-kt-3bc" firstAttribute="bottom" secondItem="MLF-Mb-svJ" secondAttribute="bottomMargin" id="jTc-XX-DnP"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="prf-Sg-rKF" id="eRl-KC-KCF"/>
+                                    <outlet property="titleLabel" destination="gTK-kt-3bc" id="KEp-tI-sek"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="7a4-kv-v74" id="oZG-Fq-fzE"/>
+                            <outlet property="delegate" destination="7a4-kv-v74" id="1Rk-oO-fhi"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="FFZ-2B-aTz"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G78-IH-huT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-508" y="-906"/>
+        </scene>
+    </scenes>
+</document>

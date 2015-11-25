@@ -13,7 +13,7 @@
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
 	<key>CFBundleIdentifier</key>
-	<string>ch.pitaya.xcdyoutubekit.demo.ios</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -55,7 +55,7 @@
 	<array>
 		<dict>
 			<key>Standard</key>
-			<string>EdeVaT-zZt4</string>
+			<string>6v2L2UGZJAM</string>
 		</dict>
 		<dict>
 			<key>VEVO (Mumford &amp; Sons)</key>
@@ -79,11 +79,7 @@
 		</dict>
 		<dict>
 			<key>Live Video</key>
-			<string>i2-MnWWoL6M</string>
-		</dict>
-		<dict>
-			<key>DVR Video</key>
-			<string>H7iQ4sAf0OE</string>
+			<string>NUDvGbEFfKk</string>
 		</dict>
 		<dict>
 			<key>Restricted Video</key>
@@ -98,18 +94,5 @@
 			<string>vwkFTztnl7Y</string>
 		</dict>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>googlevideo.com</key>
-			<dict>
-				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-			</dict>
-		</dict>
-	</dict>
 </dict>
 </plist>

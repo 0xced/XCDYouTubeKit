@@ -41,7 +41,10 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
  *
  *  Use the `<presentInView:>` method to play a YouTube video inline.
  */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 @interface XCDYouTubeVideoPlayerViewController : MPMoviePlayerViewController
+#pragma clang diagnostic pop
 
 /**
  *  ------------------

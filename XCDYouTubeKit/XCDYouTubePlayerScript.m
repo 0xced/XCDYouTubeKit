@@ -18,7 +18,7 @@
 - (instancetype) initWithString:(NSString *)string
 {
 	if (!(self = [super init]))
-		return nil;
+		return nil; // LCOV_EXCL_LINE
 	
 	NSString *script = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	XCDYouTubeLogTrace(@"%@", script);

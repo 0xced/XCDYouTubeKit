@@ -1,2 +1,5 @@
-PODS_XCDYOUTUBEKIT_OS_X_DEMO_NSLOGGER_GCC_PREPROCESSOR_DEFINITIONS = ${inherited} NSLOGGER_WAS_HERE=1 NSLOGGER_BUILD_USERNAME="${USER}"
-PODS_XCDYOUTUBEKIT_OS_X_DEMO_NSLOGGER_OTHER_LDFLAGS = -framework "CFNetwork" -framework "CoreServices" -framework "SystemConfiguration"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 ${inherited} NSLOGGER_WAS_HERE=1 NSLOGGER_BUILD_USERNAME="${USER}"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/NSLogger" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CocoaLumberjack" "${PODS_ROOT}/Headers/Public/NSLogger" "${PODS_ROOT}/Headers/Public/XCDLumberjackNSLogger"
+OTHER_LDFLAGS = -framework "CFNetwork" -framework "CoreServices" -framework "SystemConfiguration"
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

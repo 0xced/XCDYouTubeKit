@@ -23,7 +23,7 @@
 
 #import "VCRRecording.h"
 #import "VCROrderedMutableDictionary.h"
-#import "VCRError.h"
+#import "VCRErrorSerialization.h"
 #if TARGET_OS_IPHONE
 #import <MobileCoreServices/MobileCoreServices.h>
 #else
@@ -56,7 +56,7 @@
         [self setBody:body];
         
         if (json[@"error"]) {
-            self.error = [[VCRError alloc] initWithJSON:json[@"error"]];
+            self.error = ErrorWithJSON(json[@"error"]);
         }
     }
     return self;
@@ -68,22 +68,13 @@
            [self.body isEqualToString:recording.body];
 }
 
-static NSDictionary *SerializableUserInfo(NSDictionary *userInfo) {
-    NSMutableDictionary *serializableUserInfo = [NSMutableDictionary new];
-    for (id<NSCopying> key in userInfo) {
-        id value = userInfo[key];
-        if ([value isKindOfClass:[NSError class]]) {
-            NSError *error = (NSError *)value;
-            serializableUserInfo[key] = [NSError errorWithDomain:error.domain code:error.code userInfo:SerializableUserInfo(error.userInfo)];
-        } else if ([value conformsToProtocol:@protocol(NSCoding)]) {
-            serializableUserInfo[key] = value;
-        }
-    }
-    return [serializableUserInfo copy];
-}
-
-- (void)setError:(NSError *)error {
-    _error = [NSError errorWithDomain:error.domain code:error.code userInfo:SerializableUserInfo(error.userInfo)];
+- (NSUInteger)hash {
+    const NSUInteger prime = 17;
+    NSUInteger hash = 1;
+    hash = prime * hash + [self.method hash];
+    hash = prime * hash + [self.URI hash];
+    hash = prime * hash + [self.body hash];
+    return hash;
 }
 
 - (BOOL)isText {
@@ -132,7 +123,7 @@ static NSDictionary *SerializableUserInfo(NSDictionary *userInfo) {
     
     NSError *error = self.error;
     if (error) {
-        dictionary[@"error"] = [VCRError JSONForError:error];
+        dictionary[@"error"] = JSONWithError(error);
     }
     
     VCROrderedMutableDictionary *sortedDict = [VCROrderedMutableDictionary dictionaryWithCapacity:[infoDict count]];

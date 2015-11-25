@@ -4,7 +4,7 @@
 [![Coverage Status](https://img.shields.io/coveralls/0xced/XCDYouTubeKit/master.svg?style=flat)](https://coveralls.io/r/0xced/XCDYouTubeKit?branch=master)
 [![Platform](https://img.shields.io/cocoapods/p/XCDYouTubeKit.svg?style=flat)](http://cocoadocs.org/docsets/XCDYouTubeKit/)
 [![Pod Version](https://img.shields.io/cocoapods/v/XCDYouTubeKit.svg?style=flat)](https://cocoapods.org/pods/XCDYouTubeKit)
-[![Carthage Compatibility](https://img.shields.io/badge/carthage-✓-f2a77e.svg?style=flat)](https://github.com/Carthage/Carthage/)
+[![Carthage Compatibility](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage/)
 [![License](https://img.shields.io/cocoapods/l/XCDYouTubeKit.svg?style=flat)](LICENSE)
 
 **XCDYouTubeKit** is a YouTube video player for iOS and OS X.
@@ -29,13 +29,15 @@ XCDYouTubeKit is against the YouTube [Terms of Service](https://www.youtube.com/
 XCDYouTubeKit is available through CocoaPods and Carthage.
 
 CocoaPods:
+
 ```ruby
-pod "XCDYouTubeKit", "~> 2.3.3"
+pod "XCDYouTubeKit", "~> 2.4.0"
 ```
 
 Carthage:
+
 ```objc
-github "0xced/XCDYouTubeKit" ~> 2.3.3
+github "0xced/XCDYouTubeKit" ~> 2.4.0
 ```
 
 Alternatively, you can manually use the provided static library on iOS or dynamic framework on OS X. In order to use the iOS static library, you must:
@@ -51,6 +53,41 @@ These steps will ensure that `#import <XCDYouTubeKit/XCDYouTubeKit.h>` will work
 
 XCDYouTubeKit is [fully documented](http://cocoadocs.org/docsets/XCDYouTubeKit/).
 
+### iOS only
+
+On iOS, you can use the class `XCDYouTubeVideoPlayerViewController` the same way you use a `MPMoviePlayerViewController`, except you initialize it with a YouTube video identifier instead of a content URL.
+
+#### Present the video in full-screen
+
+```objc
+- (void) playVideo
+{
+	XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
+	[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+}
+
+- (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:notification.object];
+	MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
+	if (finishReason == MPMovieFinishReasonPlaybackError)
+	{
+		NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
+		// Handle error
+	}
+}
+
+```
+
+#### Present the video in a non full-screen view
+
+```objc
+XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
+[videoPlayerViewController presentInView:self.videoContainerView];
+[videoPlayerViewController.moviePlayer play];
+```
+
 ### iOS and OS X
 
 ```objc
@@ -65,25 +102,6 @@ NSString *videoIdentifier = @"EdeVaT-zZt4"; // A 11 characters YouTube video ide
 		// Handle error
 	}
 }];
-```
-
-### iOS only
-
-On iOS, you can use the class `XCDYouTubeVideoPlayerViewController` the same way you use a `MPMoviePlayerViewController`, except you initialize it with a YouTube video identifier instead of a content URL.
-
-#### Present the video in full-screen
-
-```objc
-XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
-[self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
-```
-
-#### Present the video in a non full-screen view
-
-```objc
-XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"9bZkp7q19f0"];
-[videoPlayerViewController presentInView:self.videoContainerView];
-[videoPlayerViewController.moviePlayer play];
 ```
 
 See the demo project for more sample code.

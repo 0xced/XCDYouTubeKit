@@ -7,6 +7,16 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.1):
     - CocoaLumberjack/Default
+  - Google-API-Client/Common (1.0.422):
+    - gtm-http-fetcher (~> 1.0.141)
+    - gtm-oauth2 (~> 1.0.125)
+  - Google-API-Client/YouTube (1.0.422):
+    - Google-API-Client/Common
+    - gtm-http-fetcher (~> 1.0.141)
+    - gtm-oauth2 (~> 1.0.125)
+  - gtm-http-fetcher (1.0.141)
+  - gtm-oauth2 (1.0.126):
+    - gtm-http-fetcher (~> 1.0.141)
   - NSLogger (1.5.1):
     - NSLogger/Standard (= 1.5.1)
   - NSLogger/Standard (1.5.1)
@@ -15,11 +25,15 @@ PODS:
     - NSLogger (~> 1.5.1)
 
 DEPENDENCIES:
+  - Google-API-Client/YouTube (~> 1.0.422)
   - XCDLumberjackNSLogger (~> 1.0.0)
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
+  Google-API-Client: cb712cf122f1d7fda966de4c2bc551324573366c
+  gtm-http-fetcher: 6d4617e7d343b6e4c082b777541c334eb6f5d81e
+  gtm-oauth2: 2a18b824e4f8a02df6cfe987beb59ae9d9697f9d
   NSLogger: 5ed223a2436df96244e033be750656dacdeec034
   XCDLumberjackNSLogger: 867392d7b40490e1b15aac9c1acee0952bf33d61
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
