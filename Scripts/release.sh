@@ -21,8 +21,11 @@ VERSION=$1
 git flow release start ${VERSION}
 
 echo "Updating version"
+CURRENT_PROJECT_VERSION=$(xcodebuild -project XCDYouTubeKit.xcodeproj -showBuildSettings | awk '/CURRENT_PROJECT_VERSION/{print $3}')
+CURRENT_PROJECT_VERSION=$(expr ${CURRENT_PROJECT_VERSION} + 1)
 set -v
 sed -i "" "s/DYLIB_CURRENT_VERSION = .*;/DYLIB_CURRENT_VERSION = ${VERSION};/g" "XCDYouTubeKit.xcodeproj/project.pbxproj"
+sed -i "" "s/CURRENT_PROJECT_VERSION = .*;/CURRENT_PROJECT_VERSION = ${CURRENT_PROJECT_VERSION};/g" "XCDYouTubeKit.xcodeproj/project.pbxproj"
 sed -i "" "s/CURRENT_PROJECT_VERSION = .*;/CURRENT_PROJECT_VERSION = ${VERSION};/g" "XCDYouTubeKit Demo/XCDYouTubeKit Demo.xcodeproj/project.pbxproj"
 sed -i "" "s/^\(.*s.version.*=.*\)\".*\"/\1\"${VERSION}\"/" "XCDYouTubeKit.podspec"
 sed -E -i "" "s/~> [0-9\.]+/~> ${VERSION}/g" "README.md"

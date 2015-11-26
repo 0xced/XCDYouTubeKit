@@ -7,7 +7,7 @@
 [![Carthage Compatibility](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage/)
 [![License](https://img.shields.io/cocoapods/l/XCDYouTubeKit.svg?style=flat)](LICENSE)
 
-**XCDYouTubeKit** is a YouTube video player for iOS and OS X.
+**XCDYouTubeKit** is a YouTube video player for iOS, tvOS and OS X.
 
 <img src="Screenshots/XCDYouTubeVideoPlayerViewController.png" width="480" height="320">
 
@@ -31,13 +31,13 @@ XCDYouTubeKit is available through CocoaPods and Carthage.
 CocoaPods:
 
 ```ruby
-pod "XCDYouTubeKit", "~> 2.4.0"
+pod "XCDYouTubeKit", "~> 2.4.1"
 ```
 
 Carthage:
 
 ```objc
-github "0xced/XCDYouTubeKit" ~> 2.4.0
+github "0xced/XCDYouTubeKit" ~> 2.4.1
 ```
 
 Alternatively, you can manually use the provided static library on iOS or dynamic framework on OS X. In order to use the iOS static library, you must:
