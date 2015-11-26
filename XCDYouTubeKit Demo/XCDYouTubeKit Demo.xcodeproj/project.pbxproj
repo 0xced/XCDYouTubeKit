@@ -105,7 +105,6 @@
 		C2428AE4191C3C1400065504 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C2428AE7191C3C1400065504 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C2428AE9191C3C1400065504 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C2428AF0191C3C1400065504 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C2428B04191C3DE400065504 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C2428B05191C3DE400065504 /* XCDYouTubeKit OS X Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "XCDYouTubeKit OS X Demo-Info.plist"; sourceTree = "<group>"; };
 		C2428B0B191C415300065504 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
@@ -257,7 +256,6 @@
 				C2FB52DF1918F89A00B2CBE6 /* JavaScriptCore.framework */,
 				C27415E417F4D0330026834B /* MediaPlayer.framework */,
 				C27415A117F491230026834B /* UIKit.framework */,
-				C2428AF0191C3C1400065504 /* XCTest.framework */,
 				07E142D6E7DD428B9A92C81C /* libPods-XCDYouTubeKit OS X Demo.a */,
 				6B8BF5226EBEEC149DA46CF1 /* libPods-XCDYouTubeKit iOS Demo.a */,
 				30D65308C01751335E0F848A /* libPods-XCDYouTubeKit tvOS Demo.a */,
