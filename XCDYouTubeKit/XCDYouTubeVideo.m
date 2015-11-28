@@ -76,9 +76,14 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
 		
 		NSString *title = info[@"title"] ?: @"";
+		NSString *author = info[@"author"] ?: @"";
+		NSString *keywords = info[@"keywords"] ?: @"";
+
 		_title = title;
+		_author = author;
 		_duration = [info[@"length_seconds"] doubleValue];
-		
+		_keywords = keywords;
+
 		NSString *smallThumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
 		NSString *mediumThumbnail = info[@"iurlsd"] ?: info[@"iurlhq"] ?: info[@"iurlmq"];
 		NSString *largeThumbnail = info[@"iurlmaxres"];
