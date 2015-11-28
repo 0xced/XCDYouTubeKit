@@ -11,9 +11,15 @@
 
 #import <Foundation/Foundation.h>
 
-#import <XCDYouTubeKit/XCDYouTubeOperation.h>
-#import <XCDYouTubeKit/XCDYouTubeVideo.h>
-#import <XCDYouTubeKit/XCDYouTubeError.h>
+#if __has_include(<XCDYouTubeKit/XCDYouTubeOperation.h>)
+    #import <XCDYouTubeKit/XCDYouTubeOperation.h>
+    #import <XCDYouTubeKit/XCDYouTubeVideo.h>
+    #import <XCDYouTubeKit/XCDYouTubeError.h>
+#else
+    #import "XCDYouTubeOperation.h"
+    #import "XCDYouTubeVideo.h"
+    #import "XCDYouTubeError.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
