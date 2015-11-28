@@ -22,11 +22,12 @@ before_install:
 install:
   - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
   - sudo easy_install cpp-coveralls
+  - sudo easy_install codecov
 script:
   - open -b com.apple.iphonesimulator # Workaround https://github.com/travis-ci/travis-ci/issues/3040
   - ./Scripts/run-tests.sh
 after_success:
-  - '[ "$CONFIGURATION" == "Code Coverage" ] && coveralls --include XCDYouTubeKit'
+  - '[ "$CONFIGURATION" == "Code Coverage" ] && coveralls --include XCDYouTubeKit; codecov --gcov-glob "*XCDYouTubeKit iOS Tests*"'
 after_failure:
   - cat xcodebuild.log
   - cat $TMPDIR/com.apple.dt.XCTest-status/Session*.log
