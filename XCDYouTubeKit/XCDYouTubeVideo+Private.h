@@ -2,7 +2,11 @@
 //  Copyright (c) 2013-2016 Cédric Luthi. All rights reserved.
 //
 
-#import <XCDYouTubeKit/XCDYouTubeVideo.h>
+#if __has_include(<XCDYouTubeKit/XCDYouTubeVideo.h>)
+    #import <XCDYouTubeKit/XCDYouTubeVideo.h>
+#else
+    #import "XCDYouTubeVideo.h"
+#endif
 
 #import "XCDYouTubePlayerScript.h"
 
