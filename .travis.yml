@@ -27,7 +27,8 @@ script:
   - open -b com.apple.iphonesimulator # Workaround https://github.com/travis-ci/travis-ci/issues/3040
   - ./Scripts/run-tests.sh
 after_success:
-  - '[ "$CONFIGURATION" == "Code Coverage" ] && coveralls --include XCDYouTubeKit; codecov --gcov-glob "*XCDYouTubeKit iOS Tests*"'
+  - '[ "$CONFIGURATION" == "Code Coverage" ] && coveralls --include XCDYouTubeKit'
+  - '[ "$CONFIGURATION" == "Code Coverage" ] && codecov --gcov-glob "*XCDYouTubeKit iOS Tests*"'
 after_failure:
   - cat xcodebuild.log
   - cat $TMPDIR/com.apple.dt.XCTest-status/Session*.log
