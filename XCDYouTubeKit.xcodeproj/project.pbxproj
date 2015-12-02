@@ -523,7 +523,7 @@
 			dependencies = (
 			);
 			name = "XCDYouTubeKit tvOS";
-			productName = "XCDYouTubeKit";
+			productName = XCDYouTubeKit;
 			productReference = C215BE971BE2E36600F9783B /* XCDYouTubeKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
