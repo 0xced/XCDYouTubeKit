@@ -139,6 +139,7 @@
 		C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMoviePlayerController+BackgroundPlayback.m"; sourceTree = "<group>"; };
 		C2C5D2961A6E5AB900F2B3F8 /* VideoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPickerController.h; sourceTree = "<group>"; };
 		C2C5D2971A6E5AB900F2B3F8 /* VideoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPickerController.m; sourceTree = "<group>"; };
+		C2CEABA61C0EFBE80077C5CA /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		C2CF7CEC1B17737400C356EA /* ContextLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextLogFormatter.h; sourceTree = "<group>"; };
 		C2CF7CED1B17737400C356EA /* ContextLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextLogFormatter.m; sourceTree = "<group>"; };
 		C2D627591BE3C648005367FF /* XCDYouTubeKit tvOS Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XCDYouTubeKit tvOS Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +222,7 @@
 		C274159517F491230026834B = {
 			isa = PBXGroup;
 			children = (
+				C2CEABA61C0EFBE80077C5CA /* Playground.playground */,
 				C27415BE17F4CDD80026834B /* iOS Demo */,
 				C2428AD7191C3C1400065504 /* OS X Demo */,
 				C2D6275A1BE3C648005367FF /* tvOS Demo */,
