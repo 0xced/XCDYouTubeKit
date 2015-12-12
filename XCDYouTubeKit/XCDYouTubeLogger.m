@@ -4,31 +4,29 @@
 
 #import "XCDYouTubeLogger.h"
 
+@protocol XCDYouTubeLogger_DDLog
+// Copied from CocoaLumberjack's DDLog interface
++ (void) log:(BOOL)asynchronous message:(NSString *)message level:(NSUInteger)level flag:(DDLogFlag)flag context:(NSInteger)context file:(const char *)file function:(const char *)function line:(NSUInteger)line tag:(id)tag;
+@end
+
 @implementation XCDYouTubeLogger
 
-+ (void) log:(BOOL)asynchronous level:(NSUInteger)level flag:(DDLogFlag)flag context:(NSInteger)context file:(const char *)file function:(const char *)function line:(NSUInteger)line tag:(id)tag format:(NSString *)format, ...
++ (void) logMessage:(NSString * (^)(void))message flag:(DDLogFlag)flag file:(const char *)file function:(const char *)function line:(NSUInteger)line
 {
-	char *logLevelString = getenv("XCDYouTubeKitLogLevel");
-	NSUInteger logLevel = logLevelString ? strtoul(logLevelString, NULL, 0) : DDLogFlagError | DDLogFlagWarning;
-	if (!(flag & logLevel))
-		return;
-	
-	va_list arguments;
-	va_start(arguments, format);
-	NSLog(@"[XCDYouTubeKit] %@", [[NSString alloc] initWithFormat:format arguments:arguments]);
-	va_end(arguments);
+	Class DDLogClass = NSClassFromString(@"DDLog");
+	if ([DDLogClass respondsToSelector:@selector(log:message:level:flag:context:file:function:line:tag:)])
+	{
+		[DDLogClass log:YES message:message() level:NSUIntegerMax flag:flag context:(NSInteger)0xced70676 file:file function:function line:line tag:nil];
+	}
+	else
+	{
+		char *logLevelString = getenv("XCDYouTubeKitLogLevel");
+		NSUInteger logLevel = logLevelString ? strtoul(logLevelString, NULL, 0) : DDLogFlagError | DDLogFlagWarning;
+		if (!(flag & logLevel))
+			return;
+		
+		NSLog(@"[XCDYouTubeKit] %@", message());
+	}
 }
 
 @end
-
-Class XCDYouTubeLogClass(void)
-{
-	static Class logClass;
-	static dispatch_once_t once;
-	dispatch_once(&once, ^{
-		logClass = NSClassFromString(@"DDLog");
-		if (![logClass methodSignatureForSelector:@selector(log:level:flag:context:file:function:line:tag:format:)])
-			logClass = [XCDYouTubeLogger class];
-	});
-	return logClass;
-}
