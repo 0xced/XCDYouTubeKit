@@ -1,3 +1,9 @@
+#### Version 2.4.2
+
+* Restored iOS deployment target to 7.0. (#220)
+* Improved `-[XCDYouTubeVideo debugDescription]` by sorting streams by itag.
+* Improved logging performance.
+
 #### Version 2.4.1
 
 * Added the CFBundleVersion key in the Info.plist file for iTunes Connect validation. (#214)
