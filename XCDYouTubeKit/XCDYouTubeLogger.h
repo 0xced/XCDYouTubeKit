@@ -19,6 +19,8 @@ __attribute__((visibility("hidden")))
 + (void) logMessage:(NSString * (^)(void))message flag:(DDLogFlag)flag file:(const char *)file function:(const char *)function line:(NSUInteger)line;
 @end
 
+extern void XCDYouTubeSetLogHandler(void (^handler)(NSString * (^message)(void), DDLogFlag flag, const char *file, const char *function, NSUInteger line));
+
 #define XCDYouTubeLog(_flag, _message) [XCDYouTubeLogger logMessage:(_message) flag:(_flag) file:__FILE__ function:__PRETTY_FUNCTION__ line:__LINE__]
 
 #define XCDYouTubeLogError(format, ...)   XCDYouTubeLog(DDLogFlagError,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
