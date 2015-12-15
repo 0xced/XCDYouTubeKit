@@ -8,27 +8,27 @@
 
 @protocol XCDYouTubeLogger_DDLog
 // Copied from CocoaLumberjack's DDLog interface
-+ (void) log:(BOOL)asynchronous message:(NSString *)message level:(NSUInteger)level flag:(DDLogFlag)flag context:(NSInteger)context file:(const char *)file function:(const char *)function line:(NSUInteger)line tag:(id)tag;
++ (void) log:(BOOL)asynchronous message:(NSString *)message level:(NSUInteger)level flag:(NSUInteger)flag context:(NSInteger)context file:(const char *)file function:(const char *)function line:(NSUInteger)line tag:(id)tag;
 @end
 
-static void (^const DefaultLogHandler)(NSString *(^)(void), DDLogFlag, const char *, const char *, NSUInteger) = ^(NSString *(^message)(void), DDLogFlag flag, const char *file, const char *function, NSUInteger line)
+static void (^const DefaultLogHandler)(NSString *(^)(void), XCDLogFlag, const char *, const char *, NSUInteger) = ^(NSString *(^message)(void), XCDLogFlag flag, const char *file, const char *function, NSUInteger line)
 {
 	char *logLevelString = getenv("XCDYouTubeKitLogLevel");
-	NSUInteger logLevel = logLevelString ? strtoul(logLevelString, NULL, 0) : DDLogFlagError | DDLogFlagWarning;
+	NSUInteger logLevel = logLevelString ? strtoul(logLevelString, NULL, 0) : XCDLogFlagError | XCDLogFlagWarning;
 	if ((flag & logLevel))
 		NSLog(@"[XCDYouTubeKit] %@", message());
 };
 
 static Class DDLogClass = Nil;
 
-static void (^const CocoaLumberjackLogHandler)(NSString *(^)(void), DDLogFlag, const char *, const char *, NSUInteger) = ^(NSString *(^message)(void), DDLogFlag flag, const char *file, const char *function, NSUInteger line)
+static void (^const CocoaLumberjackLogHandler)(NSString *(^)(void), XCDLogFlag, const char *, const char *, NSUInteger) = ^(NSString *(^message)(void), XCDLogFlag flag, const char *file, const char *function, NSUInteger line)
 {
 	[DDLogClass log:YES message:message() level:NSUIntegerMax flag:flag context:(NSInteger)0xced70676 file:file function:function line:line tag:nil];
 };
 
-static void (^LogHandler)(NSString *(^)(void), DDLogFlag, const char *, const char *, NSUInteger);
+static void (^LogHandler)(NSString *(^)(void), XCDLogFlag, const char *, const char *, NSUInteger);
 
-void XCDYouTubeSetLogHandler(void (^handler)(NSString * (^message)(void), DDLogFlag flag, const char *file, const char *function, NSUInteger line))
+void XCDYouTubeSetLogHandler(void (^handler)(NSString * (^message)(void), XCDLogFlag flag, const char *file, const char *function, NSUInteger line))
 {
 	LogHandler = handler;
 }
@@ -58,7 +58,7 @@ void XCDYouTubeSetLogHandler(void (^handler)(NSString * (^message)(void), DDLogF
 	});
 }
 
-+ (void) logMessage:(NSString * (^)(void))message flag:(DDLogFlag)flag file:(const char *)file function:(const char *)function line:(NSUInteger)line
++ (void) logMessage:(NSString * (^)(void))message flag:(XCDLogFlag)flag file:(const char *)file function:(const char *)function line:(NSUInteger)line
 {
 	if (LogHandler)
 		LogHandler(message, flag, file, function, line);
