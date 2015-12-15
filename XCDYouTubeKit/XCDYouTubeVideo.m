@@ -48,6 +48,22 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary)
 	return [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 }
 
+static NSString *SortedDictionaryDescription(NSDictionary *dictionary)
+{
+	NSArray *sortedKeys = [dictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+		return [[obj1 description] compare:[obj2 description] options:NSNumericSearch];
+	}];
+	
+	NSMutableString *description = [[NSMutableString alloc] initWithString:@"{\n"];
+	for (id key in sortedKeys)
+	{
+		[description appendFormat:@"\t%@ \u2192 %@\n", key, dictionary[key]];
+	}
+	[description appendString:@"}"];
+	
+	return [description copy];
+}
+
 @implementation XCDYouTubeVideo
 
 static NSDate * ExpirationDate(NSURL *streamURL)
@@ -197,7 +213,8 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	dateComponentsFormatter.unitsStyle = NSDateComponentsFormatterUnitsStyleAbbreviated;
 	NSString *duration = [dateComponentsFormatter stringFromTimeInterval:self.duration] ?: [NSString stringWithFormat:@"%@ seconds", @(self.duration)];
 	NSString *thumbnailDescription = [NSString stringWithFormat:@"Small  thumbnail: %@\nMedium thumbnail: %@\nLarge  thumbnail: %@", self.smallThumbnailURL, self.mediumThumbnailURL, self.largeThumbnailURL];
-	return [NSString stringWithFormat:@"<%@: %p> %@\nDuration: %@\nExpiration date: %@\n%@\nVideo Streams: %@", self.class, self, self.description, duration, self.expirationDate, thumbnailDescription, self.streamURLs];
+	NSString *streamsDescription = SortedDictionaryDescription(self.streamURLs);
+	return [NSString stringWithFormat:@"<%@: %p> %@\nDuration: %@\nExpiration date: %@\n%@\nStreams: %@", self.class, self, self.description, duration, self.expirationDate, thumbnailDescription, streamsDescription];
 }
 
 #pragma mark - NSCopying

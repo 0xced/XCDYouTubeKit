@@ -10,6 +10,7 @@
 
 @property (nonatomic, weak) IBOutlet UISwitch *playVideoInBackgroundSwitch;
 @property (nonatomic, weak) IBOutlet UILabel *audioSessionCategoryLabel;
+@property (nonatomic, weak) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -21,6 +22,9 @@
 	
 	self.playVideoInBackgroundSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"PlayVideoInBackground"];
 	self.audioSessionCategoryLabel.text = [[AVAudioSession sharedInstance] category];
+	
+	NSBundle *bundle = [NSBundle bundleWithIdentifier:@"ch.pitaya.xcdyoutubekit"];
+	self.versionLabel.text = [NSString stringWithFormat:@"Version %@ (%@)", [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"], [bundle objectForInfoDictionaryKey:@"CFBundleVersion"]];
 }
 
 #pragma mark - Actions

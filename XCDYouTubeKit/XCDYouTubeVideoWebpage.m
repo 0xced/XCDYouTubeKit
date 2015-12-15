@@ -38,7 +38,7 @@
 	{
 		CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
 		_html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, self.data.bytes, (CFIndex)self.data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
-		XCDYouTubeLogTrace(@"%@", _html);
+		XCDYouTubeLogTrace(@"%@", self->_html);
 	}
 	return _html;
 }

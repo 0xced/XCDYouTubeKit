@@ -81,6 +81,22 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.85480720769999996" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="9oQ-7i-tau">
+                                <rect key="frame" x="20" y="236" width="280" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D2S-1Q-mbd">
+                                        <rect key="frame" x="8" y="12" width="264" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -95,6 +111,7 @@
                     <connections>
                         <outlet property="audioSessionCategoryLabel" destination="kF0-JD-bMu" id="1sO-1i-SCh"/>
                         <outlet property="playVideoInBackgroundSwitch" destination="6Mj-Me-MVI" id="GLn-CN-avS"/>
+                        <outlet property="versionLabel" destination="D2S-1Q-mbd" id="oC0-bg-3X1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vxg-1k-CgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
