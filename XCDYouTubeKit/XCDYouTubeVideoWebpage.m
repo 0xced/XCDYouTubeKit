@@ -4,7 +4,7 @@
 
 #import "XCDYouTubeVideoWebpage.h"
 
-#import "XCDYouTubeLogger.h"
+#import "XCDYouTubeLogger+Private.h"
 
 @interface XCDYouTubeVideoWebpage ()
 @property (nonatomic, strong) NSData *data;

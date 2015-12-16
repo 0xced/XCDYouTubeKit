@@ -6,6 +6,7 @@
 
 @import AVFoundation;
 #import <XCDLumberjackNSLogger/XCDLumberjackNSLogger.h>
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
 
 #import "ContextLogFormatter.h"
 
@@ -35,13 +36,13 @@ static void InitializeLoggers(void)
 	DDTTYLogger *ttyLogger = [DDTTYLogger sharedInstance];
 	DDLogLevel defaultLogLevel = LogLevelForEnvironmentVariable(@"DefaultLogLevel", DDLogLevelInfo);
 	DDLogLevel youTubeLogLevel = LogLevelForEnvironmentVariable(@"XCDYouTubeLogLevel", DDLogLevelWarning);
-	ttyLogger.logFormatter = [[ContextLogFormatter alloc] initWithLevels:@{ @((NSInteger)0xced70676) : @(youTubeLogLevel) } defaultLevel:defaultLogLevel];
+	ttyLogger.logFormatter = [[ContextLogFormatter alloc] initWithLevels:@{ @(XCDYouTubeKitLumberjackContext) : @(youTubeLogLevel) } defaultLevel:defaultLogLevel];
 	ttyLogger.colorsEnabled = YES;
 	[DDLog addLogger:ttyLogger];
 	
 	NSString *bonjourServiceName = [[NSUserDefaults standardUserDefaults] objectForKey:@"NSLoggerBonjourServiceName"];
 	XCDLumberjackNSLogger *logger = [[XCDLumberjackNSLogger alloc] initWithBonjourServiceName:bonjourServiceName];
-	logger.tags = @{ @0: @"Movie Player", @((NSInteger)0xced70676) : @"XCDYouTubeKit" };
+	logger.tags = @{ @0: @"Movie Player", @(XCDYouTubeKitLumberjackContext) : @"XCDYouTubeKit" };
 	[DDLog addLogger:logger];
 }
 

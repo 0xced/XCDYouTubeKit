@@ -4,6 +4,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern const NSInteger XCDYouTubeKitLumberjackContext;
+
 // Matching DDLogFlag from CocoaLumberjack's DDLog.h
 typedef NS_OPTIONS(NSUInteger, XCDLogFlag) {
 	XCDLogFlagError      = (1 << 0), // 0...00001
@@ -14,18 +16,8 @@ typedef NS_OPTIONS(NSUInteger, XCDLogFlag) {
 	XCDLogFlagTrace      = (1 << 5)  // 0..100000 (custom level not present in DDLog.h)
 };
 
-__attribute__((visibility("hidden")))
 @interface XCDYouTubeLogger : NSObject
-+ (void) logMessage:(NSString * (^)(void))message flag:(XCDLogFlag)flag file:(const char *)file function:(const char *)function line:(NSUInteger)line;
+
++ (void) setLogHandler:(void (^)(NSString * (^message)(void), XCDLogFlag flag, const char *file, const char *function, NSUInteger line))logHandler;
+
 @end
-
-extern void XCDYouTubeSetLogHandler(void (^handler)(NSString * (^message)(void), XCDLogFlag flag, const char *file, const char *function, NSUInteger line));
-
-#define XCDYouTubeLog(_flag, _message) [XCDYouTubeLogger logMessage:(_message) flag:(_flag) file:__FILE__ function:__PRETTY_FUNCTION__ line:__LINE__]
-
-#define XCDYouTubeLogError(format, ...)   XCDYouTubeLog(XCDLogFlagError,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogWarning(format, ...) XCDYouTubeLog(XCDLogFlagWarning, (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogInfo(format, ...)    XCDYouTubeLog(XCDLogFlagInfo,    (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogDebug(format, ...)   XCDYouTubeLog(XCDLogFlagDebug,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogVerbose(format, ...) XCDYouTubeLog(XCDLogFlagVerbose, (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogTrace(format, ...)   XCDYouTubeLog(XCDLogFlagTrace,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
