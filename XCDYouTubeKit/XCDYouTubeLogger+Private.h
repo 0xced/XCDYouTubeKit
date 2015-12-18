@@ -8,15 +8,15 @@
 
 @interface XCDYouTubeLogger ()
 
-+ (void) logMessage:(NSString * (^)(void))message flag:(XCDLogFlag)flag file:(const char *)file function:(const char *)function line:(NSUInteger)line;
++ (void) logMessage:(NSString * (^)(void))message level:(XCDLogLevel)level file:(const char *)file function:(const char *)function line:(NSUInteger)line;
 
 @end
 
-#define XCDYouTubeLog(_flag, _message) [XCDYouTubeLogger logMessage:(_message) flag:(_flag) file:__FILE__ function:__PRETTY_FUNCTION__ line:__LINE__]
+#define XCDYouTubeLog(_level, _message) [XCDYouTubeLogger logMessage:(_message) level:(_level) file:__FILE__ function:__PRETTY_FUNCTION__ line:__LINE__]
 
-#define XCDYouTubeLogError(format, ...)   XCDYouTubeLog(XCDLogFlagError,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogWarning(format, ...) XCDYouTubeLog(XCDLogFlagWarning, (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogInfo(format, ...)    XCDYouTubeLog(XCDLogFlagInfo,    (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogDebug(format, ...)   XCDYouTubeLog(XCDLogFlagDebug,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogVerbose(format, ...) XCDYouTubeLog(XCDLogFlagVerbose, (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogTrace(format, ...)   XCDYouTubeLog(XCDLogFlagTrace,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
+#define XCDYouTubeLogError(format, ...)   XCDYouTubeLog(XCDLogLevelError,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
+#define XCDYouTubeLogWarning(format, ...) XCDYouTubeLog(XCDLogLevelWarning, (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
+#define XCDYouTubeLogInfo(format, ...)    XCDYouTubeLog(XCDLogLevelInfo,    (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
+#define XCDYouTubeLogDebug(format, ...)   XCDYouTubeLog(XCDLogLevelDebug,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
+#define XCDYouTubeLogVerbose(format, ...) XCDYouTubeLog(XCDLogLevelVerbose, (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
+#define XCDYouTubeLogTrace(format, ...)   XCDYouTubeLog(XCDLogLevelTrace,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
