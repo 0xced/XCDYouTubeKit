@@ -1,3 +1,7 @@
+#### Version 2.4.3
+
+* Fixed *XCDYouTubeKit iOS Framework* deployment target. (#223)
+
 #### Version 2.4.2
 
 * Restored iOS deployment target to 7.0. (#220)
