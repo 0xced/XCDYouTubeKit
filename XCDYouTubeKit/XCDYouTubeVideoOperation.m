@@ -134,23 +134,26 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 - (void) handleConnectionSuccessWithData:(NSData *)data response:(NSURLResponse *)response requestType:(XCDYouTubeRequestType)requestType
 {
+	CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)response.textEncodingName ?: CFSTR(""));
+	// Use kCFStringEncodingMacRoman as fallback because it defines characters for every byte value and is ASCII compatible. See https://mikeash.com/pyblog/friday-qa-2010-02-19-character-encodings.html
+	NSString *responseString = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, data.bytes, (CFIndex)data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingMacRoman, false)) ?: @"";
+	NSAssert(responseString.length > 0, @"Failed to decode response from %@ (response.textEncodingName = %@, data.length = %@)", response.URL, response.textEncodingName, @(data.length));
+	
+	XCDYouTubeLogVerbose(@"Response: %@\n%@", response, responseString);
+	
 	switch (requestType)
 	{
 		case XCDYouTubeRequestTypeGetVideoInfo:
-		{
-			NSString *videoQuery = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-			NSDictionary *info = XCDDictionaryWithQueryString(videoQuery);
-			[self handleVideoInfoResponseWithInfo:info response:response];
-		}
+			[self handleVideoInfoResponseWithInfo:XCDDictionaryWithQueryString(responseString) response:response];
 			break;
 		case XCDYouTubeRequestTypeWatchPage:
-			[self handleWebPageWithData:data response:response];
+			[self handleWebPageWithHTMLString:responseString];
 			break;
 		case XCDYouTubeRequestTypeEmbedPage:
-			[self handleEmbedWebPageWithData:data response:response];
+			[self handleEmbedWebPageWithHTMLString:responseString];
 			break;
 		case XCDYouTubeRequestTypeJavaScriptPlayer:
-			[self handleJavaScriptPlayerWithData:data response:response];
+			[self handleJavaScriptPlayerWithScript:responseString];
 			break;
 	}
 }
@@ -169,7 +172,6 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 - (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info response:(NSURLResponse *)response
 {
 	XCDYouTubeLogDebug(@"Handling video info response");
-	XCDYouTubeLogVerbose(@"Video info: %@", info);
 	
 	NSError *error = nil;
 	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:response error:&error];
@@ -197,11 +199,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 }
 
-- (void) handleWebPageWithData:(NSData *)data response:(NSURLResponse *)response
+- (void) handleWebPageWithHTMLString:(NSString *)html
 {
 	XCDYouTubeLogDebug(@"Handling web page response");
 	
-	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithData:data response:response];
+	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithHTMLString:html];
 	
 	if (self.webpage.javaScriptPlayerURL)
 	{
@@ -221,11 +223,11 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 }
 
-- (void) handleEmbedWebPageWithData:(NSData *)data response:(NSURLResponse *)response
+- (void) handleEmbedWebPageWithHTMLString:(NSString *)html
 {
 	XCDYouTubeLogDebug(@"Handling embed web page response");
 	
-	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithData:data response:response];
+	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithHTMLString:html];
 	
 	if (self.embedWebpage.javaScriptPlayerURL)
 	{
@@ -237,11 +239,10 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 }
 
-- (void) handleJavaScriptPlayerWithData:(NSData *)data response:(NSURLResponse *)response
+- (void) handleJavaScriptPlayerWithScript:(NSString *)script
 {
 	XCDYouTubeLogDebug(@"Handling JavaScript player response");
 	
-	NSString *script = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
 	if (self.webpage.isAgeRestricted)
@@ -255,7 +256,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	}
 	else
 	{
-		[self handleVideoInfoResponseWithInfo:self.webpage.videoInfo response:response];
+		[self handleVideoInfoResponseWithInfo:self.webpage.videoInfo response:nil];
 	}
 }
 

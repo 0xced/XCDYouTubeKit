@@ -19,4 +19,3 @@
 #define XCDYouTubeLogInfo(format, ...)    XCDYouTubeLog(XCDLogLevelInfo,    (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
 #define XCDYouTubeLogDebug(format, ...)   XCDYouTubeLog(XCDLogLevelDebug,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
 #define XCDYouTubeLogVerbose(format, ...) XCDYouTubeLog(XCDLogLevelVerbose, (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))
-#define XCDYouTubeLogTrace(format, ...)   XCDYouTubeLog(XCDLogLevelTrace,   (^{ return [NSString stringWithFormat:(format), ##__VA_ARGS__]; }))

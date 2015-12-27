@@ -11,8 +11,7 @@ typedef NS_ENUM(NSUInteger, XCDLogLevel) {
 	XCDLogLevelWarning    = 1,
 	XCDLogLevelInfo       = 2,
 	XCDLogLevelDebug      = 3,
-	XCDLogLevelVerbose    = 4,
-	XCDLogLevelTrace      = 5
+	XCDLogLevelVerbose    = 4
 };
 
 @interface XCDYouTubeLogger : NSObject

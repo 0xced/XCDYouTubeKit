@@ -7,7 +7,7 @@
 __attribute__((visibility("hidden")))
 @interface XCDYouTubeVideoWebpage : NSObject
 
-- (instancetype) initWithData:(NSData *)data response:(NSURLResponse *)response;
+- (instancetype) initWithHTMLString:(NSString *)html;
 
 @property (nonatomic, readonly) NSDictionary *playerConfiguration;
 @property (nonatomic, readonly) NSDictionary *videoInfo;

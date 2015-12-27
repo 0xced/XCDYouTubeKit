@@ -4,43 +4,25 @@
 
 #import "XCDYouTubeVideoWebpage.h"
 
-#import "XCDYouTubeLogger+Private.h"
-
 @interface XCDYouTubeVideoWebpage ()
-@property (nonatomic, strong) NSData *data;
-@property (nonatomic, strong) NSURLResponse *response;
-
 @property (nonatomic, readonly) NSString *html;
 @end
 
 @implementation XCDYouTubeVideoWebpage
 
-@synthesize html = _html;
 @synthesize playerConfiguration = _playerConfiguration;
 @synthesize videoInfo = _videoInfo;
 @synthesize javaScriptPlayerURL = _javaScriptPlayerURL;
 @synthesize isAgeRestricted = _isAgeRestricted;
 
-- (instancetype) initWithData:(NSData *)data response:(NSURLResponse *)response
+- (instancetype) initWithHTMLString:(NSString *)html
 {
 	if (!(self = [super init]))
 		return nil; // LCOV_EXCL_LINE
 	
-	_data = data;
-	_response = response;
+	_html = html;
 	
 	return self;
-}
-
-- (NSString *) html
-{
-	if (!_html)
-	{
-		CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
-		_html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, self.data.bytes, (CFIndex)self.data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
-		XCDYouTubeLogTrace(@"%@", self->_html);
-	}
-	return _html;
 }
 
 - (NSDictionary *) playerConfiguration
@@ -112,10 +94,9 @@
 {
 	if (!_isAgeRestricted)
 	{
-		NSData *openGraphAgeRestriction = [@"og:restrictions:age" dataUsingEncoding:NSUTF8StringEncoding];
-		NSDataSearchOptions options = (NSDataSearchOptions)0;
-		NSRange range = NSMakeRange(0, self.data.length);
-		_isAgeRestricted = [self.data rangeOfData:openGraphAgeRestriction options:options range:range].location != NSNotFound;
+		NSStringCompareOptions options = (NSStringCompareOptions)0;
+		NSRange range = NSMakeRange(0, self.html.length);
+		_isAgeRestricted = [self.html rangeOfString:@"og:restrictions:age" options:options range:range].location != NSNotFound;
 	}
 	return _isAgeRestricted;
 }
