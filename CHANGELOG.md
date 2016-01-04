@@ -1,3 +1,7 @@
+#### Version 2.5.0
+
+* Logging is fully configurable with the new `XCDYouTubeLogger` class.
+
 #### Version 2.4.3
 
 * Fixed *XCDYouTubeKit iOS Framework* deployment target. (#223)
