@@ -59,6 +59,13 @@
 		C24C162E18E9A139005E92E9 /* XCDYouTubeVideoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C162D18E9A139005E92E9 /* XCDYouTubeVideoOperation.m */; };
 		C25308C518D7392500132734 /* XCDYouTubeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C25308C418D7392500132734 /* XCDYouTubeClient.m */; };
 		C25308C818D739EB00132734 /* XCDYouTubeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = C25308C718D739EB00132734 /* XCDYouTubeVideo.m */; };
+		C257F7911C206B8F006146D3 /* XCDYouTubeLogger+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = C257F7901C206B86006146D3 /* XCDYouTubeLogger+Private.h */; };
+		C257F7921C206B8F006146D3 /* XCDYouTubeLogger+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = C257F7901C206B86006146D3 /* XCDYouTubeLogger+Private.h */; };
+		C257F7931C206B90006146D3 /* XCDYouTubeLogger+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = C257F7901C206B86006146D3 /* XCDYouTubeLogger+Private.h */; };
+		C257F7941C206D26006146D3 /* XCDYouTubeLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C2597EA41B0CD2120030E9F2 /* XCDYouTubeLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C257F7951C206D26006146D3 /* XCDYouTubeLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C2597EA41B0CD2120030E9F2 /* XCDYouTubeLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C257F7961C206D26006146D3 /* XCDYouTubeLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C2597EA41B0CD2120030E9F2 /* XCDYouTubeLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C257F7971C21617B006146D3 /* XCDYouTubeLogger.h in Copy Files */ = {isa = PBXBuildFile; fileRef = C2597EA41B0CD2120030E9F2 /* XCDYouTubeLogger.h */; };
 		C2597EA31B0CB9920030E9F2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C224EB641919241B0038186E /* JavaScriptCore.framework */; };
 		C2597EA61B0CE6D80030E9F2 /* XCDYouTubeLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C2597EA51B0CE6D70030E9F2 /* XCDYouTubeLogger.m */; };
 		C2597EA71B0CE6D80030E9F2 /* XCDYouTubeLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C2597EA51B0CE6D70030E9F2 /* XCDYouTubeLogger.m */; };
@@ -174,6 +181,7 @@
 				C2D0CBAD19122B3B00DA8CD4 /* XCDYouTubeKit.h in Copy Files */,
 				C2A7E8B518EE1EFC005B8B5F /* XCDYouTubeClient.h in Copy Files */,
 				C2A7E8B618EE1F00005B8B5F /* XCDYouTubeError.h in Copy Files */,
+				C257F7971C21617B006146D3 /* XCDYouTubeLogger.h in Copy Files */,
 				C2A7E8B718EE1F09005B8B5F /* XCDYouTubeOperation.h in Copy Files */,
 				C2A7E8B818EE205D005B8B5F /* XCDYouTubeVideo.h in Copy Files */,
 				C2D0CBAE19122B4800DA8CD4 /* XCDYouTubeVideoOperation.h in Copy Files */,
@@ -206,6 +214,7 @@
 		C25308C418D7392500132734 /* XCDYouTubeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeClient.m; sourceTree = "<group>"; };
 		C25308C618D739EB00132734 /* XCDYouTubeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideo.h; sourceTree = "<group>"; };
 		C25308C718D739EB00132734 /* XCDYouTubeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideo.m; sourceTree = "<group>"; };
+		C257F7901C206B86006146D3 /* XCDYouTubeLogger+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XCDYouTubeLogger+Private.h"; sourceTree = "<group>"; };
 		C2597EA41B0CD2120030E9F2 /* XCDYouTubeLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeLogger.h; sourceTree = "<group>"; };
 		C2597EA51B0CE6D70030E9F2 /* XCDYouTubeLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeLogger.m; sourceTree = "<group>"; };
 		C262317A191D741700D23900 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XCDYouTubeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -387,6 +396,7 @@
 				C25308C418D7392500132734 /* XCDYouTubeClient.m */,
 				C24C162918E4DA6E005E92E9 /* XCDYouTubeError.h */,
 				C2D0CBAC19122A8F00DA8CD4 /* XCDYouTubeKit.h */,
+				C257F7901C206B86006146D3 /* XCDYouTubeLogger+Private.h */,
 				C2597EA41B0CD2120030E9F2 /* XCDYouTubeLogger.h */,
 				C2597EA51B0CE6D70030E9F2 /* XCDYouTubeLogger.m */,
 				C24C163318E9FECE005E92E9 /* XCDYouTubeOperation.h */,
@@ -444,6 +454,8 @@
 				C215BEB01BE2E57600F9783B /* XCDYouTubeClient.h in Headers */,
 				C215BEB11BE2E57C00F9783B /* XCDYouTubeError.h in Headers */,
 				C215BEB21BE2E58100F9783B /* XCDYouTubeKit.h in Headers */,
+				C257F7961C206D26006146D3 /* XCDYouTubeLogger.h in Headers */,
+				C257F7931C206B90006146D3 /* XCDYouTubeLogger+Private.h in Headers */,
 				C215BEB31BE2E58900F9783B /* XCDYouTubeOperation.h in Headers */,
 				C215BEB81BE2E5B000F9783B /* XCDYouTubeVideoWebpage.h in Headers */,
 				C215BEB61BE2E59400F9783B /* XCDYouTubeVideo.h in Headers */,
@@ -461,6 +473,8 @@
 				C2386B1E1974036300646123 /* XCDYouTubeVideoWebpage.h in Headers */,
 				C26231AC191D752200D23900 /* XCDYouTubeError.h in Headers */,
 				C26231AD191D752500D23900 /* XCDYouTubeKit.h in Headers */,
+				C257F7951C206D26006146D3 /* XCDYouTubeLogger.h in Headers */,
+				C257F7921C206B8F006146D3 /* XCDYouTubeLogger+Private.h in Headers */,
 				C26231AE191D752800D23900 /* XCDYouTubeOperation.h in Headers */,
 				C26231AF191D752D00D23900 /* XCDYouTubeVideo.h in Headers */,
 				C26231B0191D753500D23900 /* XCDYouTubeVideoOperation.h in Headers */,
@@ -476,6 +490,8 @@
 				C2F0E58E1944F82600D8EBA8 /* XCDYouTubeClient.h in Headers */,
 				C2F0E58F1944F82600D8EBA8 /* XCDYouTubeError.h in Headers */,
 				C2142F2A19644779000FA9C0 /* XCDYouTubeKit.h in Headers */,
+				C257F7941C206D26006146D3 /* XCDYouTubeLogger.h in Headers */,
+				C257F7911C206B8F006146D3 /* XCDYouTubeLogger+Private.h in Headers */,
 				C2F0E5901944F83E00D8EBA8 /* XCDYouTubeOperation.h in Headers */,
 				C2F0E5931944F84700D8EBA8 /* XCDYouTubeVideo.h in Headers */,
 				C2F0E5941944F84A00D8EBA8 /* XCDYouTubeVideoOperation.h in Headers */,
@@ -1141,10 +1157,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.4.3;
+				DYLIB_CURRENT_VERSION = 2.5.0;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1207,11 +1223,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.4.3;
+				DYLIB_CURRENT_VERSION = 2.5.0;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1279,10 +1296,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.4.3;
+				DYLIB_CURRENT_VERSION = 2.5.0;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

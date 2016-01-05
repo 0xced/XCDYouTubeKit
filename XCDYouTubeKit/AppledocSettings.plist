@@ -8,8 +8,7 @@
 	<false/>
 	<key>--ignore</key>
 	<array>
-		<string>XCDYouTubeLogger.h</string>
-		<string>XCDYouTubeVideoOperation.m</string>
+		<string>*.m</string>
 	</array>
 	<key>--index-desc</key>
 	<string>README.md</string>

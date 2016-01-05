@@ -1,3 +1,8 @@
+#### Version 2.5.0
+
+* Logging is fully configurable with the new `XCDYouTubeLogger` class.
+* Added `XCDYouTubeAllowedCountriesUserInfoKey` for better diagnosis of some unplayable (geoblocked) videos. (#216)
+
 #### Version 2.4.3
 
 * Fixed *XCDYouTubeKit iOS Framework* deployment target. (#223)

@@ -1,5 +1,5 @@
 //
-//  Copyright © 2015 Cédric Luthi. All rights reserved.
+//  Copyright © 2013-2016 Cédric Luthi. All rights reserved.
 //
 
 #import "PlaylistCollectionViewController.h"

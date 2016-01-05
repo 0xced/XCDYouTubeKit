@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2016 Cédric Luthi. All rights reserved.
 //
 
 #import "XCDYouTubeKitTestCase.h"
@@ -136,6 +136,7 @@
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
 		XCTAssertEqualObjects(error.localizedDescription, @"The uploader has not made this video available in your country.");
+		XCTAssertEqualObjects(error.userInfo[XCDYouTubeAllowedCountriesUserInfoKey], [NSSet setWithArray:@[ @"Mexico" ]]);
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
