@@ -9,6 +9,7 @@
 #import <objc/runtime.h>
 
 NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
+NSString *const XCDYouTubeAllowedCountriesUserInfoKey = @"AllowedCountries";
 NSString *const XCDYouTubeNoStreamVideoUserInfoKey = @"NoStreamVideo";
 NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming = @"HTTPLiveStreaming";
 

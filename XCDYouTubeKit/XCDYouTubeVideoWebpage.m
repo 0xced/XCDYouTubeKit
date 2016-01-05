@@ -14,6 +14,7 @@
 @synthesize videoInfo = _videoInfo;
 @synthesize javaScriptPlayerURL = _javaScriptPlayerURL;
 @synthesize isAgeRestricted = _isAgeRestricted;
+@synthesize regionsAllowed = _regionsAllowed;
 
 - (instancetype) initWithHTMLString:(NSString *)html
 {
@@ -99,6 +100,23 @@
 		_isAgeRestricted = [self.html rangeOfString:@"og:restrictions:age" options:options range:range].location != NSNotFound;
 	}
 	return _isAgeRestricted;
+}
+
+- (NSSet *) regionsAllowed
+{
+	if (!_regionsAllowed)
+	{
+		_regionsAllowed = [NSSet set];
+		NSRegularExpression *regionsAllowedRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"meta\\s+itemprop=\"regionsAllowed\"\\s+content=\"(.*)\"" options:(NSRegularExpressionOptions)0 error:NULL];
+		NSTextCheckingResult *regionsAllowedResult = [regionsAllowedRegularExpression firstMatchInString:self.html options:(NSMatchingOptions)0 range:NSMakeRange(0, self.html.length)];
+		if (regionsAllowedResult.numberOfRanges > 1)
+		{
+			NSString *regionsAllowed = [self.html substringWithRange:[regionsAllowedResult rangeAtIndex:1]];
+			if (regionsAllowed.length > 0)
+				_regionsAllowed = [NSSet setWithArray:[regionsAllowed componentsSeparatedByString:@","]];
+		}
+	}
+	return _regionsAllowed;
 }
 
 @end

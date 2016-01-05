@@ -10,6 +10,12 @@
 extern NSString *const XCDYouTubeVideoErrorDomain;
 
 /**
+ *  A key that may be present in the error's userInfo dictionary when the error code is XCDYouTubeErrorRestrictedPlayback.
+ *  The object for that key is a NSSet instance containing localized country names.
+ */
+extern NSString *const XCDYouTubeAllowedCountriesUserInfoKey;
+
+/**
  *  These values are returned as the error code property of an NSError object with the domain `XCDYouTubeVideoErrorDomain`.
  */
 typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {

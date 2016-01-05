@@ -46,6 +46,27 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 @implementation XCDYouTubeVideoOperation
 
+static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *languageIdentifier)
+{
+	if (error.code == XCDYouTubeErrorRestrictedPlayback && regionsAllowed.count > 0)
+	{
+		NSLocale *locale = [NSLocale localeWithLocaleIdentifier:languageIdentifier];
+		NSMutableSet *allowedCountries = [NSMutableSet new];
+		for (NSString *countryCode in regionsAllowed)
+		{
+			NSString *country = [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
+			[allowedCountries addObject:country ?: countryCode];
+		}
+		NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:error.userInfo];
+		userInfo[XCDYouTubeAllowedCountriesUserInfoKey] = [allowedCountries copy];
+		return [NSError errorWithDomain:error.domain code:error.code userInfo:[userInfo copy]];
+	}
+	else
+	{
+		return error;
+	}
+}
+
 - (instancetype) init
 {
 	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:languageIdentifier:` method instead." userInfo:nil];
@@ -192,7 +213,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 		{
 			self.lastError = error;
 			if (error.code > 0)
-				self.youTubeError = error;
+				self.youTubeError = YouTubeError(error, self.webpage.regionsAllowed, self.languageIdentifier);
 			
 			[self startNextRequest];
 		}
