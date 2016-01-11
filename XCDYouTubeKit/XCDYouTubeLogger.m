@@ -13,14 +13,6 @@ const NSInteger XCDYouTubeKitLumberjackContext = (NSInteger)0xced70676;
 + (void) log:(BOOL)asynchronous message:(NSString *)message level:(NSUInteger)level flag:(NSUInteger)flag context:(NSInteger)context file:(const char *)file function:(const char *)function line:(NSUInteger)line tag:(id)tag;
 @end
 
-static void (^const DefaultLogHandler)(NSString * (^)(void), XCDLogLevel, const char *, const char *, NSUInteger) = ^(NSString *(^message)(void), XCDLogLevel level, const char *file, const char *function, NSUInteger line)
-{
-	char *logLevelString = getenv("XCDYouTubeKitLogLevel");
-	NSUInteger logLevelMask = logLevelString ? strtoul(logLevelString, NULL, 0) : (1 << XCDLogLevelError) | (1 << XCDLogLevelWarning);
-	if ((1 << level) & logLevelMask)
-		NSLog(@"[XCDYouTubeKit] %@", message());
-};
-
 static Class DDLogClass = Nil;
 
 static void (^const CocoaLumberjackLogHandler)(NSString * (^)(void), XCDLogLevel, const char *, const char *, NSUInteger) = ^(NSString *(^message)(void), XCDLogLevel level, const char *file, const char *function, NSUInteger line)
@@ -29,7 +21,13 @@ static void (^const CocoaLumberjackLogHandler)(NSString * (^)(void), XCDLogLevel
 	[DDLogClass log:YES message:message() level:NSUIntegerMax flag:(1 << level) context:XCDYouTubeKitLumberjackContext file:file function:function line:line tag:nil];
 };
 
-static void (^LogHandler)(NSString * (^)(void), XCDLogLevel, const char *, const char *, NSUInteger);
+static void (^LogHandler)(NSString * (^)(void), XCDLogLevel, const char *, const char *, NSUInteger) = ^(NSString *(^message)(void), XCDLogLevel level, const char *file, const char *function, NSUInteger line)
+{
+	char *logLevelString = getenv("XCDYouTubeKitLogLevel");
+	NSUInteger logLevelMask = logLevelString ? strtoul(logLevelString, NULL, 0) : (1 << XCDLogLevelError) | (1 << XCDLogLevelWarning);
+	if ((1 << level) & logLevelMask)
+		NSLog(@"[XCDYouTubeKit] %@", message());
+};
 
 @implementation XCDYouTubeLogger
 
@@ -37,8 +35,6 @@ static void (^LogHandler)(NSString * (^)(void), XCDLogLevel, const char *, const
 {
 	static dispatch_once_t once;
 	dispatch_once(&once, ^{
-		LogHandler = DefaultLogHandler;
-		
 		DDLogClass = objc_lookUpClass("DDLog");
 		if (DDLogClass)
 		{
