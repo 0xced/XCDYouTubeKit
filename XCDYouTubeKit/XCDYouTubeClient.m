@@ -34,24 +34,19 @@
 	if (!(self = [super init]))
 		return nil; // LCOV_EXCL_LINE
 	
-	_languageIdentifier = languageIdentifier;
+	_languageIdentifier = ^{
+		return languageIdentifier ?: ^{
+			NSArray *preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
+			NSString *preferredLocalization = preferredLocalizations.firstObject ?: @"en";
+			return [NSLocale canonicalLanguageIdentifierFromString:preferredLocalization] ?: @"en";
+		}();
+	}();
+	
 	_queue = [NSOperationQueue new];
 	_queue.maxConcurrentOperationCount = 6; // paul_irish: Chrome re-confirmed that the 6 connections-per-host limit is the right magic number: https://code.google.com/p/chromium/issues/detail?id=285567#c14 [https://twitter.com/paul_irish/status/422808635698212864]
 	_queue.name = NSStringFromClass(self.class);
 	
 	return self;
-}
-
-- (NSString *) languageIdentifier
-{
-	if (!_languageIdentifier)
-	{
-		_languageIdentifier = @"en";
-		NSArray *preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
-		if (preferredLocalizations.count > 0)
-			_languageIdentifier = [NSLocale canonicalLanguageIdentifierFromString:preferredLocalizations[0]];
-	}
-	return _languageIdentifier;
 }
 
 - (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo * __nullable video, NSError * __nullable error))completionHandler
