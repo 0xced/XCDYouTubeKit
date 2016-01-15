@@ -11,7 +11,8 @@
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "YES"
+            hideIssues = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C274159D17F491230026834B"
@@ -39,15 +40,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C274159D17F491230026834B"
-            BuildableName = "XCDYouTubeKit iOS Demo.app"
-            BlueprintName = "XCDYouTubeKit iOS Demo"
-            ReferencedContainer = "container:XCDYouTubeKit Demo.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "XCDYouTubeKitLogLevel"

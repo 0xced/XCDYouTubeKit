@@ -11,7 +11,8 @@
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "YES"
+            hideIssues = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C2623179191D741700D23900"
@@ -42,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C2DD4DA1191FFDE100AF6F85"
-            BuildableName = "XCDYouTubeKit OS X Tests.xctest"
-            BlueprintName = "XCDYouTubeKit OS X Tests"
+            BlueprintIdentifier = "C2623179191D741700D23900"
+            BuildableName = "XCDYouTubeKit.framework"
+            BlueprintName = "XCDYouTubeKit OS X"
             ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -96,6 +97,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C2623179191D741700D23900"
+            BuildableName = "XCDYouTubeKit.framework"
+            BlueprintName = "XCDYouTubeKit OS X"
+            ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
