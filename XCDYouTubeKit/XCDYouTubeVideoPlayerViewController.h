@@ -108,6 +108,17 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
  */
 - (void) presentInView:(UIView *)view;
 
+/**
+ *  Present the video inside a view with a control style.
+ *
+ *  @param view The view inside which you want to present the video.
+ *  @param controlStyle The control style which you want to use.
+ *
+ *  @discussion The video view is added as a subview of the specified view. The video does not start playing immediately, you have to call `[videoPlayerViewController.moviePlayer play]` for playback to start. See `MPMoviePlayerController` documentation for more information.
+ *
+ *  Ownership of the XCDYouTubeVideoPlayerViewController instance is transferred to the view.
+ */
+- (void) presentInView:(UIView *)view controlStyle:(MPMovieControlStyle)controlStyle;
 @end
 
 /**
