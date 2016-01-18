@@ -5,6 +5,6 @@
 <string></string>
 <!--
       Once you have entered your API Key, use the following command to ignore the local change:
-      git update-index --skip-worktree YouTube-API-Key.plist
+      git update-index --skip-worktree "XCDYouTubeKit Demo/tvOS Demo/Supporting Files/YouTube-API-Key.plist"
 -->
 </plist>
