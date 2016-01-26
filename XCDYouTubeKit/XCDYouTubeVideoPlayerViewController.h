@@ -6,6 +6,7 @@
 #define NS_ASSUME_NONNULL_BEGIN
 #define NS_ASSUME_NONNULL_END
 #define nullable
+#define null_resettable
 #endif
 
 #import <MediaPlayer/MediaPlayer.h>
@@ -89,7 +90,7 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
  *
  *  @see XCDYouTubeVideoQuality
  */
-@property (nonatomic, copy) NSArray *preferredVideoQualities;
+@property (nonatomic, copy, null_resettable) NSArray *preferredVideoQualities;
 
 /**
  *  ------------------------
