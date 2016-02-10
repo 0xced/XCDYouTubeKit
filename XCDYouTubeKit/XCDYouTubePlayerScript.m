@@ -40,7 +40,9 @@
 		@"location": @{
 			@"hash": @""
 		},
-		@"navigator": @{},
+		@"navigator": @{
+			@"userAgent": @""
+		},
 	};
 	_context[@"window"] = @{};
 	for (NSString *propertyName in environment)

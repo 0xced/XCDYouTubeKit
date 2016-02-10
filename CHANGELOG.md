@@ -1,5 +1,6 @@
 #### Version 2.5.1
 
+* Adaptation to YouTube API change. (#231)
 * Fixed compilation issue with Xcode 7.3 beta. (#228)
 
 #### Version 2.5.0
