@@ -213,7 +213,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		{
 			self.lastError = error;
 			if (error.code > 0)
-				self.youTubeError = YouTubeError(error, self.webpage.regionsAllowed, self.languageIdentifier);
+				self.youTubeError = error;
 			
 			[self startNextRequest];
 		}
@@ -293,7 +293,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 
 - (void) finishWithError
 {
-	self.error = self.youTubeError ?: self.lastError;
+	self.error = self.youTubeError ? YouTubeError(self.youTubeError, self.webpage.regionsAllowed, self.languageIdentifier) : self.lastError;
 	XCDYouTubeLogError(@"Video operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
 	[self finish];
 }
