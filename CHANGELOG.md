@@ -1,3 +1,7 @@
+#### Version 2.5.1
+
+* Fixed compilation issue with Xcode 7.3 beta. (#228)
+
 #### Version 2.5.0
 
 * Logging is fully configurable with the new `XCDYouTubeLogger` class.
