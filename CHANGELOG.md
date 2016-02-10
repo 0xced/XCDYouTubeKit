@@ -2,6 +2,7 @@
 
 * Adaptation to YouTube API change. (#231)
 * Fixed compilation issue with Xcode 7.3 beta. (#228)
+* Properly annotated the `preferredVideoQualities` property as `null_resettable`.
 
 #### Version 2.5.0
 
