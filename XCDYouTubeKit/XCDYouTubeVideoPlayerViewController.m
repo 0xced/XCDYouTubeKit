@@ -166,9 +166,9 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:self userInfo:userInfo];
 #pragma clang diagnostic pop
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:self userInfo:@{ XCDYouTubeVideoUserInfoKey: video }];
-	
 	self.moviePlayer.contentURL = streamURL;
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:self userInfo:@{ XCDYouTubeVideoUserInfoKey: video }];
 }
 
 - (void) stopWithError:(NSError *)error
