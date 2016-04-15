@@ -18,7 +18,22 @@ target 'XCDYouTubeKit OS X Demo' do
 end
 
 target 'XCDYouTubeKit tvOS Demo' do
+  # cocoapods-expert-difficulty is required because GoogleAPIClient and its dependencies do not (yet?) officialy support the tvos platform
   plugin 'cocoapods-expert-difficulty'
   platform :tvos, '9.0'
-  pod 'Google-API-Client/YouTube', '~> 1.0.422'
+  pod 'GoogleAPIClient/YouTube', '~> 1.0'
+  
+  # since the pods do not have a tvos deployment target defined CocoaPods adds '-DOS_OBJECT_USE_OBJC=0' in the compiler flags, see https://github.com/CocoaPods/CocoaPods/blob/e610bef264b6f4406af3c4ef8d3ad1a9286a0fc9/lib/cocoapods/installer/target_installer/pod_target_installer.rb#L286-L288
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.source_build_phase.files.each do |build_file|
+        if build_file.settings
+          compiler_flags = build_file.settings['COMPILER_FLAGS']
+          if compiler_flags
+            build_file.settings['COMPILER_FLAGS'] = compiler_flags.gsub('-DOS_OBJECT_USE_OBJC=0', '')
+          end
+        end
+      end
+    end
+  end
 end
