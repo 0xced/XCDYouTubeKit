@@ -25,16 +25,33 @@ PODS:
     - NSLogger (~> 1.5.1)
 
 DEPENDENCIES:
-  - GoogleAPIClient/YouTube (~> 1.0)
+  - GoogleAPIClient/YouTube (from `https://github.com/0xced/google-api-objectivec-client.git`, commit `c7879e017f959e031e757f0833ed93cd2477fecf`)
+  - GTMSessionFetcher (from `https://github.com/0xced/gtm-session-fetcher.git`, commit `8622fd1dcc3a976d95e26fae24ac424c0c18a7b4`)
   - XCDLumberjackNSLogger (~> 1.0)
+
+EXTERNAL SOURCES:
+  GoogleAPIClient:
+    :commit: c7879e017f959e031e757f0833ed93cd2477fecf
+    :git: https://github.com/0xced/google-api-objectivec-client.git
+  GTMSessionFetcher:
+    :commit: 8622fd1dcc3a976d95e26fae24ac424c0c18a7b4
+    :git: https://github.com/0xced/gtm-session-fetcher.git
+
+CHECKOUT OPTIONS:
+  GoogleAPIClient:
+    :commit: c7879e017f959e031e757f0833ed93cd2477fecf
+    :git: https://github.com/0xced/google-api-objectivec-client.git
+  GTMSessionFetcher:
+    :commit: 8622fd1dcc3a976d95e26fae24ac424c0c18a7b4
+    :git: https://github.com/0xced/gtm-session-fetcher.git
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
-  GoogleAPIClient: 712000bb597c05f3a7664cd786c5cf7c569a6452
-  GTMSessionFetcher: 2704a6e2811e3344ba9dc3314cae0d26850f73c5
+  GoogleAPIClient: b08007e8be88a8c3ac302149db9a8bd822186050
+  GTMSessionFetcher: 4df535a0371d0806e153bf7a00b83c7e89094b77
   NSLogger: 5ed223a2436df96244e033be750656dacdeec034
   XCDLumberjackNSLogger: 867392d7b40490e1b15aac9c1acee0952bf33d61
 
-PODFILE CHECKSUM: 437f7356009bd8243f77ee7b677198fa5618f14b
+PODFILE CHECKSUM: 73987acf4b1b90a5b0987d751f83341eb0cc0edc
 
 COCOAPODS: 1.0.0.beta.7
