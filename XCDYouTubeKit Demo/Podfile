@@ -1,4 +1,4 @@
-xcodeproj 'XCDYouTubeKit Demo.xcodeproj'
+project 'XCDYouTubeKit Demo.xcodeproj'
 workspace '../XCDYouTubeKit Demo.xcworkspace'
 
 inhibit_all_warnings!
