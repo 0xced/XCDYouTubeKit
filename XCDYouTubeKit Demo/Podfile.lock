@@ -26,7 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - GoogleAPIClient/YouTube (~> 1.0)
-  - XCDLumberjackNSLogger (~> 1.0.0)
+  - XCDLumberjackNSLogger (~> 1.0)
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
@@ -35,6 +35,6 @@ SPEC CHECKSUMS:
   NSLogger: 5ed223a2436df96244e033be750656dacdeec034
   XCDLumberjackNSLogger: 867392d7b40490e1b15aac9c1acee0952bf33d61
 
-PODFILE CHECKSUM: 854d571d728bc88e69a856da7c1367fbac8819a5
+PODFILE CHECKSUM: 437f7356009bd8243f77ee7b677198fa5618f14b
 
 COCOAPODS: 1.0.0.beta.7
