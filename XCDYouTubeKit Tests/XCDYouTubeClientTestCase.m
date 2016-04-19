@@ -130,13 +130,13 @@
 - (void) testGeoblockedVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"JTIBV-86Pt0" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Exf63KPXF6w" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
 		XCTAssertEqualObjects(error.localizedDescription, @"The uploader has not made this video available in your country.");
-		XCTAssertEqualObjects(error.userInfo[XCDYouTubeAllowedCountriesUserInfoKey], [NSSet setWithArray:@[ @"Mexico" ]]);
+		XCTAssertEqualObjects(error.userInfo[XCDYouTubeAllowedCountriesUserInfoKey], [NSSet setWithArray:(@[ @"American Samoa", @"Canada", @"Guam", @"Northern Mariana Islands", @"Puerto Rico", @"U.S. Outlying Islands", @"United States", @"U.S. Virgin Islands" ])]);
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
