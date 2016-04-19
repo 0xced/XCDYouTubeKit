@@ -1,0 +1,1 @@
+../../../GoogleAPIClient/Source/Services/YouTube/Generated/GTLYouTubeActivityContentDetailsBulletin.h

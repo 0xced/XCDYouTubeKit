@@ -1,1 +1,0 @@
-../../../Google-API-Client/Source/Objects/GTLBatchQuery.h

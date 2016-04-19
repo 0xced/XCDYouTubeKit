@@ -1,10 +1,10 @@
-xcodeproj 'XCDYouTubeKit Demo.xcodeproj'
+project 'XCDYouTubeKit Demo.xcodeproj'
 workspace '../XCDYouTubeKit Demo.xcworkspace'
 
 inhibit_all_warnings!
 
 def import_pods
-  pod 'XCDLumberjackNSLogger', '~> 1.0.0'
+  pod 'XCDLumberjackNSLogger', '~> 1.0'
 end
 
 target 'XCDYouTubeKit iOS Demo' do
@@ -18,7 +18,8 @@ target 'XCDYouTubeKit OS X Demo' do
 end
 
 target 'XCDYouTubeKit tvOS Demo' do
-  plugin 'cocoapods-expert-difficulty'
   platform :tvos, '9.0'
-  pod 'Google-API-Client/YouTube', '~> 1.0.422'
+  # Using git + commit instead of official version until https://github.com/google/gtm-session-fetcher/pull/40 and https://github.com/google/google-api-objectivec-client/pull/185 are merged
+  pod 'GoogleAPIClient/YouTube', { :git => 'https://github.com/0xced/google-api-objectivec-client.git', :commit => 'c7879e017f959e031e757f0833ed93cd2477fecf' }
+  pod 'GTMSessionFetcher',       { :git => 'https://github.com/0xced/gtm-session-fetcher.git', :commit => '8622fd1dcc3a976d95e26fae24ac424c0c18a7b4' }
 end
