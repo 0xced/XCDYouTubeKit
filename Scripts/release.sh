@@ -45,7 +45,7 @@ git commit -m "Update version to ${VERSION}"
 
 update_badges "develop" "master"
 
-git flow release finish -f RELEASE_NOTES.md ${VERSION}
+git flow release finish -s -f RELEASE_NOTES.md ${VERSION}
 
 > RELEASE_NOTES.md
 
