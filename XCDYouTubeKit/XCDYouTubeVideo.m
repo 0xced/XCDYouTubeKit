@@ -5,6 +5,7 @@
 #import "XCDYouTubeVideo+Private.h"
 
 #import "XCDYouTubeError.h"
+#import "XCDYouTubeLogger+Private.h"
 
 #import <objc/runtime.h>
 
@@ -25,6 +26,12 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 			NSString *key = pair[0];
 			NSString *value = [pair[1] stringByRemovingPercentEncoding];
 			value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+			if (dictionary[key] && ![dictionary[key] isEqual:value])
+			{
+				XCDYouTubeLogWarning(@"Using XCDDictionaryWithQueryString is inappropriate because the query string has multiple values for the key '%@'\n"
+				                     @"Query: %@\n"
+				                     @"Discarded value: %@", key, string, dictionary[key]);
+			}
 			dictionary[key] = value;
 		}
 	}
