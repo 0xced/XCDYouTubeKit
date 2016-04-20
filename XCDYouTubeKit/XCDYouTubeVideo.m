@@ -81,6 +81,15 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	return expire > 0 ? [NSDate dateWithTimeIntervalSince1970:expire] : nil;
 }
 
+static NSURL * RateBypassURL(NSURL *streamURL)
+{
+	NSURLComponents *components = [NSURLComponents componentsWithURL:streamURL resolvingAgainstBaseURL:NO];
+	NSMutableDictionary *query = [XCDDictionaryWithQueryString(components.query) mutableCopy];
+	query[@"ratebypass"] = @"yes";
+	components.query = XCDQueryStringWithDictionary(query);
+	return components.URL;
+}
+
 - (instancetype) initWithIdentifier:(NSString *)identifier info:(NSDictionary *)info playerScript:(XCDYouTubePlayerScript *)playerScript response:(NSURLResponse *)response error:(NSError * __autoreleasing *)error
 {
 	if (!(self = [super init]))
@@ -146,7 +155,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, escapedSignature]];
 				}
 				
-				streamURLs[@(itag.integerValue)] = streamURL;
+				streamURLs[@(itag.integerValue)] = RateBypassURL(streamURL);
 			}
 		}
 		_streamURLs = [streamURLs copy];
