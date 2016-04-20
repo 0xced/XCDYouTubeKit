@@ -21,6 +21,12 @@ VERSION_PARTS=(${VERSION//./ })
 
 git flow release start ${VERSION}
 
+echo "Updating CHANGELOG"
+grep "#### Version ${VERSION}" RELEASE_NOTES.md > /dev/null || (echo "RELEASE_NOTES.md must contain release notes for version ${VERSION}" && exit 1)
+echo -e "$(cat RELEASE_NOTES.md)\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
+git add CHANGELOG.md
+git commit -m "Update CHANGELOG for version ${VERSION}"
+
 echo "Updating version"
 CURRENT_PROJECT_VERSION=$(xcodebuild -project XCDYouTubeKit.xcodeproj -showBuildSettings | awk '/CURRENT_PROJECT_VERSION/{print $3}')
 CURRENT_PROJECT_VERSION=$(expr ${CURRENT_PROJECT_VERSION} + 1)
@@ -39,7 +45,9 @@ git commit -m "Update version to ${VERSION}"
 
 update_badges "develop" "master"
 
-git flow release finish ${VERSION}
+git flow release finish -f RELEASE_NOTES.md ${VERSION}
+
+> RELEASE_NOTES.md
 
 update_badges "master" "develop"
 
