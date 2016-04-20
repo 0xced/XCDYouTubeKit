@@ -83,10 +83,26 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 
 static NSURL * RateBypassURL(NSURL *streamURL)
 {
+	// RateBypassURL requires iOS 8 or later
+	if (![NSURLComponents instancesRespondToSelector:@selector(queryItems)])
+		return streamURL;
+	
 	NSURLComponents *components = [NSURLComponents componentsWithURL:streamURL resolvingAgainstBaseURL:NO];
-	NSMutableDictionary *query = [XCDDictionaryWithQueryString(components.query) mutableCopy];
-	query[@"ratebypass"] = @"yes";
-	components.query = XCDQueryStringWithDictionary(query);
+	NSMutableArray<NSURLQueryItem *> *queryItems = [components.queryItems mutableCopy];
+	
+	NSURLQueryItem *rateBypassItem = [NSURLQueryItem queryItemWithName:@"ratebypass" value:@"yes"];
+	NSUInteger rateBypassIndex = [queryItems indexOfObjectPassingTest:^BOOL(NSURLQueryItem * _Nonnull queryItem, NSUInteger idx, BOOL * _Nonnull stop) {
+		return [queryItem.name isEqualToString:rateBypassItem.name];
+	}];
+	
+	if (rateBypassIndex == NSNotFound)
+		[queryItems addObject:rateBypassItem];
+	else if (!queryItems[rateBypassIndex].value.boolValue)
+		[queryItems replaceObjectAtIndex:rateBypassIndex withObject:rateBypassItem];
+	else
+		return streamURL;
+	
+	components.queryItems = queryItems;
 	return components.URL;
 }
 
