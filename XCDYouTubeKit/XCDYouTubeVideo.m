@@ -81,14 +81,16 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	return expire > 0 ? [NSDate dateWithTimeIntervalSince1970:expire] : nil;
 }
 
-static NSURL * RateBypassURL(NSURL *streamURL)
+static NSURL * URLBySettingParameter(NSURL *streamURL, NSString *key, NSString *percentEncodedValue)
 {
+	NSString *pattern = [NSString stringWithFormat:@"((^|&)%@=)[^&]*(&?)", key];
+	NSString *template = [NSString stringWithFormat:@"$1%@$3", percentEncodedValue];
 	NSURLComponents *components = [NSURLComponents componentsWithURL:streamURL resolvingAgainstBaseURL:NO];
-	NSRegularExpression *ratebypassRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"((^|&)ratebypass=)[^&]*(&?)" options:(NSRegularExpressionOptions)0 error:NULL];
+	NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:NULL];
 	NSMutableString *percentEncodedQuery = [components.percentEncodedQuery ?: @"" mutableCopy];
-	NSUInteger numberOfMatches = [ratebypassRegularExpression replaceMatchesInString:percentEncodedQuery options:(NSMatchingOptions)0 range:NSMakeRange(0, percentEncodedQuery.length) withTemplate:@"$1yes$3"];
+	NSUInteger numberOfMatches = [regularExpression replaceMatchesInString:percentEncodedQuery options:(NSMatchingOptions)0 range:NSMakeRange(0, percentEncodedQuery.length) withTemplate:template];
 	if (numberOfMatches == 0)
-		[percentEncodedQuery appendFormat:@"%@ratebypass=yes", percentEncodedQuery.length > 0 ? @"&" : @""];
+		[percentEncodedQuery appendFormat:@"%@%@=%@", percentEncodedQuery.length > 0 ? @"&" : @"", key, percentEncodedValue];
 	components.percentEncodedQuery = percentEncodedQuery;
 	return components.URL;
 }
@@ -155,10 +157,10 @@ static NSURL * RateBypassURL(NSURL *streamURL)
 				if (signature)
 				{
 					NSString *escapedSignature = [signature stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, escapedSignature]];
+					streamURL = URLBySettingParameter(streamURL, @"signature", escapedSignature);
 				}
 				
-				streamURLs[@(itag.integerValue)] = RateBypassURL(streamURL);
+				streamURLs[@(itag.integerValue)] = URLBySettingParameter(streamURL, @"ratebypass", @"yes");
 			}
 		}
 		_streamURLs = [streamURLs copy];
