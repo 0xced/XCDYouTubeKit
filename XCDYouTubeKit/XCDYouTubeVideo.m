@@ -72,15 +72,6 @@ static NSString *SortedDictionaryDescription(NSDictionary *dictionary)
 	return [description copy];
 }
 
-@implementation XCDYouTubeVideo
-
-static NSDate * ExpirationDate(NSURL *streamURL)
-{
-	NSDictionary *query = XCDDictionaryWithQueryString(streamURL.query);
-	NSTimeInterval expire = [query[@"expire"] doubleValue];
-	return expire > 0 ? [NSDate dateWithTimeIntervalSince1970:expire] : nil;
-}
-
 static NSURL * URLBySettingParameter(NSURL *streamURL, NSString *key, NSString *percentEncodedValue)
 {
 	NSString *pattern = [NSString stringWithFormat:@"((^|&)%@=)[^&]*(&?)", key];
@@ -93,6 +84,15 @@ static NSURL * URLBySettingParameter(NSURL *streamURL, NSString *key, NSString *
 		[percentEncodedQuery appendFormat:@"%@%@=%@", percentEncodedQuery.length > 0 ? @"&" : @"", key, percentEncodedValue];
 	components.percentEncodedQuery = percentEncodedQuery;
 	return components.URL;
+}
+
+@implementation XCDYouTubeVideo
+
+static NSDate * ExpirationDate(NSURL *streamURL)
+{
+	NSDictionary *query = XCDDictionaryWithQueryString(streamURL.query);
+	NSTimeInterval expire = [query[@"expire"] doubleValue];
+	return expire > 0 ? [NSDate dateWithTimeIntervalSince1970:expire] : nil;
 }
 
 - (instancetype) initWithIdentifier:(NSString *)identifier info:(NSDictionary *)info playerScript:(XCDYouTubePlayerScript *)playerScript response:(NSURLResponse *)response error:(NSError * __autoreleasing *)error
