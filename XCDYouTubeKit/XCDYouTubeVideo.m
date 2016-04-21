@@ -83,26 +83,13 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 
 static NSURL * RateBypassURL(NSURL *streamURL)
 {
-	// RateBypassURL requires iOS 8 or later
-	if (![NSURLComponents instancesRespondToSelector:@selector(queryItems)])
-		return streamURL;
-	
 	NSURLComponents *components = [NSURLComponents componentsWithURL:streamURL resolvingAgainstBaseURL:NO];
-	NSMutableArray<NSURLQueryItem *> *queryItems = [components.queryItems mutableCopy];
-	
-	NSURLQueryItem *rateBypassItem = [NSURLQueryItem queryItemWithName:@"ratebypass" value:@"yes"];
-	NSUInteger rateBypassIndex = [queryItems indexOfObjectPassingTest:^BOOL(NSURLQueryItem * _Nonnull queryItem, NSUInteger idx, BOOL * _Nonnull stop) {
-		return [queryItem.name isEqualToString:rateBypassItem.name];
-	}];
-	
-	if (rateBypassIndex == NSNotFound)
-		[queryItems addObject:rateBypassItem];
-	else if (!queryItems[rateBypassIndex].value.boolValue)
-		[queryItems replaceObjectAtIndex:rateBypassIndex withObject:rateBypassItem];
-	else
-		return streamURL;
-	
-	components.queryItems = queryItems;
+	NSRegularExpression *ratebypassRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"((^|&)ratebypass=)[^&]*(&?)" options:(NSRegularExpressionOptions)0 error:NULL];
+	NSMutableString *percentEncodedQuery = [components.percentEncodedQuery ?: @"" mutableCopy];
+	NSUInteger numberOfMatches = [ratebypassRegularExpression replaceMatchesInString:percentEncodedQuery options:(NSMatchingOptions)0 range:NSMakeRange(0, percentEncodedQuery.length) withTemplate:@"$1yes$3"];
+	if (numberOfMatches == 0)
+		[percentEncodedQuery appendFormat:@"%@ratebypass=yes", percentEncodedQuery.length > 0 ? @"&" : @""];
+	components.percentEncodedQuery = percentEncodedQuery;
 	return components.URL;
 }
 
