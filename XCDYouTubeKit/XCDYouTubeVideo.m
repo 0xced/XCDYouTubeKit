@@ -72,11 +72,11 @@ static NSString *SortedDictionaryDescription(NSDictionary *dictionary)
 	return [description copy];
 }
 
-static NSURL * URLBySettingParameter(NSURL *streamURL, NSString *key, NSString *percentEncodedValue)
+static NSURL * URLBySettingParameter(NSURL *URL, NSString *key, NSString *percentEncodedValue)
 {
 	NSString *pattern = [NSString stringWithFormat:@"((?:^|&)%@=)[^&]*", key];
 	NSString *template = [NSString stringWithFormat:@"$1%@", percentEncodedValue];
-	NSURLComponents *components = [NSURLComponents componentsWithURL:streamURL resolvingAgainstBaseURL:NO];
+	NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
 	NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:NULL];
 	NSMutableString *percentEncodedQuery = [components.percentEncodedQuery ?: @"" mutableCopy];
 	NSUInteger numberOfMatches = [regularExpression replaceMatchesInString:percentEncodedQuery options:(NSMatchingOptions)0 range:NSMakeRange(0, percentEncodedQuery.length) withTemplate:template];
