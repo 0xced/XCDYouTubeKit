@@ -22,7 +22,8 @@
 // Service:
 //   YouTube Data API (youtube/v3)
 // Description:
-//   Programmatic access to YouTube features.
+//   Supports core YouTube features, such as uploading videos, creating and
+//   managing playlists, searching for content, and much more.
 // Documentation:
 //   https://developers.google.com/youtube/v3
 
@@ -112,12 +113,15 @@
 #import "GTLYouTubeLiveChatFanFundingEventDetails.h"
 #import "GTLYouTubeLiveChatMessage.h"
 #import "GTLYouTubeLiveChatMessageAuthorDetails.h"
+#import "GTLYouTubeLiveChatMessageDeletedDetails.h"
 #import "GTLYouTubeLiveChatMessageListResponse.h"
+#import "GTLYouTubeLiveChatMessageRetractedDetails.h"
 #import "GTLYouTubeLiveChatMessageSnippet.h"
 #import "GTLYouTubeLiveChatModerator.h"
 #import "GTLYouTubeLiveChatModeratorListResponse.h"
 #import "GTLYouTubeLiveChatModeratorSnippet.h"
 #import "GTLYouTubeLiveChatTextMessageDetails.h"
+#import "GTLYouTubeLiveChatUserBannedMessageDetails.h"
 #import "GTLYouTubeLiveStream.h"
 #import "GTLYouTubeLiveStreamConfigurationIssue.h"
 #import "GTLYouTubeLiveStreamContentDetails.h"

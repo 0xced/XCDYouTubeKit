@@ -22,7 +22,8 @@
 // Service:
 //   YouTube Data API (youtube/v3)
 // Description:
-//   Programmatic access to YouTube features.
+//   Supports core YouTube features, such as uploading videos, creating and
+//   managing playlists, searching for content, and much more.
 // Documentation:
 //   https://developers.google.com/youtube/v3
 
@@ -197,9 +198,21 @@ NSString * const kGTLYouTubeCaptionSnippet_TrackKind_Asr      = @"ASR";
 NSString * const kGTLYouTubeCaptionSnippet_TrackKind_Forced   = @"forced";
 NSString * const kGTLYouTubeCaptionSnippet_TrackKind_Standard = @"standard";
 
+// GTLYouTubeCdnSettings - FrameRate
+NSString * const kGTLYouTubeCdnSettings_FrameRate_X30fps = @"30fps";
+NSString * const kGTLYouTubeCdnSettings_FrameRate_X60fps = @"60fps";
+
 // GTLYouTubeCdnSettings - IngestionType
 NSString * const kGTLYouTubeCdnSettings_IngestionType_Dash = @"dash";
 NSString * const kGTLYouTubeCdnSettings_IngestionType_Rtmp = @"rtmp";
+
+// GTLYouTubeCdnSettings - Resolution
+NSString * const kGTLYouTubeCdnSettings_Resolution_X1080p = @"1080p";
+NSString * const kGTLYouTubeCdnSettings_Resolution_X1440p = @"1440p";
+NSString * const kGTLYouTubeCdnSettings_Resolution_X240p  = @"240p";
+NSString * const kGTLYouTubeCdnSettings_Resolution_X360p  = @"360p";
+NSString * const kGTLYouTubeCdnSettings_Resolution_X480p  = @"480p";
+NSString * const kGTLYouTubeCdnSettings_Resolution_X720p  = @"720p";
 
 // GTLYouTubeChannelConversionPing - Context
 NSString * const kGTLYouTubeChannelConversionPing_Context_Cview = @"cview";
@@ -345,6 +358,7 @@ NSString * const kGTLYouTubeContentRating_CccRating_CccUnrated = @"cccUnrated";
 
 // GTLYouTubeContentRating - CceRating
 NSString * const kGTLYouTubeContentRating_CceRating_CceM12     = @"cceM12";
+NSString * const kGTLYouTubeContentRating_CceRating_CceM14     = @"cceM14";
 NSString * const kGTLYouTubeContentRating_CceRating_CceM16     = @"cceM16";
 NSString * const kGTLYouTubeContentRating_CceRating_CceM18     = @"cceM18";
 NSString * const kGTLYouTubeContentRating_CceRating_CceM4      = @"cceM4";
@@ -672,6 +686,8 @@ NSString * const kGTLYouTubeContentRating_MoctwRating_MoctwG   = @"moctwG";
 NSString * const kGTLYouTubeContentRating_MoctwRating_MoctwP   = @"moctwP";
 NSString * const kGTLYouTubeContentRating_MoctwRating_MoctwPg  = @"moctwPg";
 NSString * const kGTLYouTubeContentRating_MoctwRating_MoctwR   = @"moctwR";
+NSString * const kGTLYouTubeContentRating_MoctwRating_MoctwR12 = @"moctwR12";
+NSString * const kGTLYouTubeContentRating_MoctwRating_MoctwR15 = @"moctwR15";
 NSString * const kGTLYouTubeContentRating_MoctwRating_MoctwUnrated = @"moctwUnrated";
 
 // GTLYouTubeContentRating - MpaaRating
@@ -848,6 +864,10 @@ NSString * const kGTLYouTubeLiveBroadcastContentDetails_ClosedCaptionsType_Close
 NSString * const kGTLYouTubeLiveBroadcastContentDetails_ClosedCaptionsType_ClosedCaptionsEmbedded = @"closedCaptionsEmbedded";
 NSString * const kGTLYouTubeLiveBroadcastContentDetails_ClosedCaptionsType_ClosedCaptionsHttpPost = @"closedCaptionsHttpPost";
 
+// GTLYouTubeLiveBroadcastContentDetails - Projection
+NSString * const kGTLYouTubeLiveBroadcastContentDetails_Projection_Rectangular = @"rectangular";
+NSString * const kGTLYouTubeLiveBroadcastContentDetails_Projection_X360 = @"360";
+
 // GTLYouTubeLiveBroadcastStatus - LifeCycleStatus
 NSString * const kGTLYouTubeLiveBroadcastStatus_LifeCycleStatus_Abandoned = @"abandoned";
 NSString * const kGTLYouTubeLiveBroadcastStatus_LifeCycleStatus_Complete = @"complete";
@@ -886,11 +906,18 @@ NSString * const kGTLYouTubeLiveChatBanSnippet_Type_Temporary = @"temporary";
 // GTLYouTubeLiveChatMessageSnippet - Type
 NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_ChatEndedEvent = @"chatEndedEvent";
 NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_FanFundingEvent = @"fanFundingEvent";
+NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_MessageDeletedEvent = @"messageDeletedEvent";
+NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_MessageRetractedEvent = @"messageRetractedEvent";
 NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_NewSponsorEvent = @"newSponsorEvent";
 NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_SponsorOnlyModeEndedEvent = @"sponsorOnlyModeEndedEvent";
 NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_SponsorOnlyModeStartedEvent = @"sponsorOnlyModeStartedEvent";
 NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_TextMessageEvent = @"textMessageEvent";
 NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_Tombstone = @"tombstone";
+NSString * const kGTLYouTubeLiveChatMessageSnippet_Type_UserBannedEvent = @"userBannedEvent";
+
+// GTLYouTubeLiveChatUserBannedMessageDetails - BanType
+NSString * const kGTLYouTubeLiveChatUserBannedMessageDetails_BanType_Permanent = @"permanent";
+NSString * const kGTLYouTubeLiveChatUserBannedMessageDetails_BanType_Temporary = @"temporary";
 
 // GTLYouTubeLiveStreamConfigurationIssue - Severity
 NSString * const kGTLYouTubeLiveStreamConfigurationIssue_Severity_Error = @"error";

@@ -65,6 +65,10 @@ static NSString *const kGTLObjectJSONCoderKey = @"json";
   return Nil;
 }
 
++ (BOOL)isKindValidForClassRegistry {
+  return YES;
+}
+
 - (BOOL)isEqual:(GTLObject *)other {
   if (self == other) return YES;
   if (other == nil) return NO;
@@ -554,8 +558,10 @@ static NSMutableDictionary *gKindMap = nil;
   // feeds of heterogenous entries can use the defaultClass as a
   // fallback
   Class classToCreate = defaultClass;
+  BOOL shouldUseKind =
+    (classToCreate == Nil) || [classToCreate isKindValidForClassRegistry];
   NSString *kind = nil;
-  if ([json isKindOfClass:[NSDictionary class]]) {
+  if (shouldUseKind && [json isKindOfClass:[NSDictionary class]]) {
     kind = [json valueForKey:@"kind"];
     if ([kind isKindOfClass:[NSString class]] && [kind length] > 0) {
       Class dynamicClass = [GTLObject registeredObjectClassForKind:kind];

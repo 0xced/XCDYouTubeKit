@@ -22,7 +22,8 @@
 // Service:
 //   YouTube Data API (youtube/v3)
 // Description:
-//   Programmatic access to YouTube features.
+//   Supports core YouTube features, such as uploading videos, creating and
+//   managing playlists, searching for content, and much more.
 // Documentation:
 //   https://developers.google.com/youtube/v3
 // Classes:
@@ -122,12 +123,15 @@
     [GTLYouTubeLiveChatFanFundingEventDetails class],
     [GTLYouTubeLiveChatMessage class],
     [GTLYouTubeLiveChatMessageAuthorDetails class],
+    [GTLYouTubeLiveChatMessageDeletedDetails class],
     [GTLYouTubeLiveChatMessageListResponse class],
+    [GTLYouTubeLiveChatMessageRetractedDetails class],
     [GTLYouTubeLiveChatMessageSnippet class],
     [GTLYouTubeLiveChatModerator class],
     [GTLYouTubeLiveChatModeratorListResponse class],
     [GTLYouTubeLiveChatModeratorSnippet class],
     [GTLYouTubeLiveChatTextMessageDetails class],
+    [GTLYouTubeLiveChatUserBannedMessageDetails class],
     [GTLYouTubeLiveStream class],
     [GTLYouTubeLiveStreamConfigurationIssue class],
     [GTLYouTubeLiveStreamContentDetails class],

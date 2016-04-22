@@ -22,11 +22,12 @@
 // Service:
 //   YouTube Data API (youtube/v3)
 // Description:
-//   Programmatic access to YouTube features.
+//   Supports core YouTube features, such as uploading videos, creating and
+//   managing playlists, searching for content, and much more.
 // Documentation:
 //   https://developers.google.com/youtube/v3
 // Classes:
-//   GTLYouTubeLiveBroadcastContentDetails (0 custom class methods, 10 custom properties)
+//   GTLYouTubeLiveBroadcastContentDetails (0 custom class methods, 12 custom properties)
 
 #if GTL_BUILT_AS_FRAMEWORK
   #import "GTL/GTLObject.h"
@@ -47,6 +48,10 @@
 
 // This value uniquely identifies the live stream bound to the broadcast.
 @property (nonatomic, copy) NSString *boundStreamId;
+
+// The date and time that the live stream referenced by boundStreamId was last
+// updated.
+@property (nonatomic, retain) GTLDateTime *boundStreamLastUpdateTimeMs;
 
 @property (nonatomic, copy) NSString *closedCaptionsType;
 
@@ -82,6 +87,9 @@
 // the broadcaster can use to review the event content before the broadcast
 // stream is shown publicly.
 @property (nonatomic, retain) GTLYouTubeMonitorStreamInfo *monitorStream;
+
+// The projection format of this broadcast. This defaults to rectangular.
+@property (nonatomic, copy) NSString *projection;
 
 // Automatically start recording after the event goes live. The default value
 // for this property is true.

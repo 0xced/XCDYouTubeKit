@@ -19,7 +19,5 @@ end
 
 target 'XCDYouTubeKit tvOS Demo' do
   platform :tvos, '9.0'
-  # Using git + commit instead of official version until https://github.com/google/gtm-session-fetcher/pull/40 and https://github.com/google/google-api-objectivec-client/pull/185 are merged
-  pod 'GoogleAPIClient/YouTube', { :git => 'https://github.com/0xced/google-api-objectivec-client.git', :commit => 'c7879e017f959e031e757f0833ed93cd2477fecf' }
-  pod 'GTMSessionFetcher',       { :git => 'https://github.com/0xced/gtm-session-fetcher.git', :commit => '8622fd1dcc3a976d95e26fae24ac424c0c18a7b4' }
+  pod 'GoogleAPIClient/YouTube', '~> 1.0'
 end

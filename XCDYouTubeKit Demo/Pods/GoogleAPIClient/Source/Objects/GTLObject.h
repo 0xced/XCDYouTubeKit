@@ -147,6 +147,10 @@
 // The default class for additional JSON keys
 + (Class)classForAdditionalProperties;
 
+// Indicates if a "kind" property on this class can be used for the class
+// registry or if it appears to be non standard.
++ (BOOL)isKindValidForClassRegistry;
+
 @end
 
 // Collection objects with an "items" property should derive from GTLCollection

@@ -22,11 +22,12 @@
 // Service:
 //   YouTube Data API (youtube/v3)
 // Description:
-//   Programmatic access to YouTube features.
+//   Supports core YouTube features, such as uploading videos, creating and
+//   managing playlists, searching for content, and much more.
 // Documentation:
 //   https://developers.google.com/youtube/v3
 // Classes:
-//   GTLYouTubeLiveChatMessageSnippet (0 custom class methods, 8 custom properties)
+//   GTLYouTubeLiveChatMessageSnippet (0 custom class methods, 11 custom properties)
 
 #if GTL_BUILT_AS_FRAMEWORK
   #import "GTL/GTLObject.h"
@@ -35,7 +36,10 @@
 #endif
 
 @class GTLYouTubeLiveChatFanFundingEventDetails;
+@class GTLYouTubeLiveChatMessageDeletedDetails;
+@class GTLYouTubeLiveChatMessageRetractedDetails;
 @class GTLYouTubeLiveChatTextMessageDetails;
+@class GTLYouTubeLiveChatUserBannedMessageDetails;
 
 // ----------------------------------------------------------------------------
 //
@@ -47,7 +51,9 @@
 // The ID of the user that authored this message, this field is not always
 // filled. textMessageEvent - the user that wrote the message fanFundingEvent -
 // the user that funded the broadcast newSponsorEvent - the user that just
-// became a sponsor
+// became a sponsor messageDeletedEvent - the moderator that took the action
+// messageRetractedEvent - the author that retracted their message
+// userBannedEvent - the moderator that took the action
 @property (nonatomic, copy) NSString *authorChannelId;
 
 // Contains a string that can be displayed to the user. If this field is not
@@ -63,6 +69,8 @@
 @property (nonatomic, retain) NSNumber *hasDisplayContent;  // boolValue
 
 @property (nonatomic, copy) NSString *liveChatId;
+@property (nonatomic, retain) GTLYouTubeLiveChatMessageDeletedDetails *messageDeletedDetails;
+@property (nonatomic, retain) GTLYouTubeLiveChatMessageRetractedDetails *messageRetractedDetails;
 
 // The date and time when the message was orignally published. The value is
 // specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
@@ -76,4 +84,5 @@
 // of the message as well as which fields will be present.
 @property (nonatomic, copy) NSString *type;
 
+@property (nonatomic, retain) GTLYouTubeLiveChatUserBannedMessageDetails *userBannedDetails;
 @end
