@@ -19,10 +19,11 @@ fi
 VERSION=$1
 VERSION_PARTS=(${VERSION//./ })
 
+grep "#### Version ${VERSION}" RELEASE_NOTES.md > /dev/null || (echo "RELEASE_NOTES.md must contain release notes for version ${VERSION}" && exit 1)
+
 git flow release start ${VERSION}
 
 echo "Updating CHANGELOG"
-grep "#### Version ${VERSION}" RELEASE_NOTES.md > /dev/null || (echo "RELEASE_NOTES.md must contain release notes for version ${VERSION}" && exit 1)
 echo -e "$(cat RELEASE_NOTES.md)\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
 git add CHANGELOG.md
 git commit -m "Update CHANGELOG for version ${VERSION}"
