@@ -71,10 +71,7 @@
 	[self presentViewController:playerViewController animated:YES completion:nil];
 	
 	__weak AVPlayerViewController *weakPlayerViewController = playerViewController;
-	// Quoting https://github.com/google/google-api-objectivec-client/issues/92#issuecomment-135566515
-	// > For now, apps should just directly access the JSON of that incorrect class instance rather than the properties.
-	// Change to `playlistItem.snippet.resourceId.videoId` once https://github.com/google/google-api-objectivec-client/pull/109 is merged
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:playlistItem.snippet.resourceId.JSON[@"videoId"] completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error) {
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:playlistItem.snippet.resourceId.videoId completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error) {
 		if (video)
 		{
 			NSDictionary *streamURLs = video.streamURLs;
