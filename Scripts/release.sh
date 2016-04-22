@@ -49,7 +49,7 @@ update_badges "develop" "master"
 # allow warnings until https://github.com/CocoaPods/CocoaPods/issues/5188 is resolved
 pod lib lint --allow-warnings XCDYouTubeKit.podspec
 
-git flow release finish -s -f RELEASE_NOTES.md ${VERSION}
+GIT_MERGE_AUTOEDIT=no git flow release finish -s -f RELEASE_NOTES.md ${VERSION}
 
 echo -e "#### Version X.Y.Z\n\n* " > RELEASE_NOTES.md
 
