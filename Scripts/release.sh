@@ -46,7 +46,8 @@ git commit -m "Update version to ${VERSION}"
 
 update_badges "develop" "master"
 
-pod lib lint XCDYouTubeKit.podspec
+# allow warnings until https://github.com/CocoaPods/CocoaPods/issues/5188 is resolved
+pod lib lint --allow-warnings XCDYouTubeKit.podspec
 
 git flow release finish -s -f RELEASE_NOTES.md ${VERSION}
 
