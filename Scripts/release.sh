@@ -45,6 +45,8 @@ git commit -m "Update version to ${VERSION}"
 
 update_badges "develop" "master"
 
+pod lib lint --verbose XCDYouTubeKit.podspec
+
 git flow release finish -s -f RELEASE_NOTES.md ${VERSION}
 
 echo -e "#### Version X.Y.Z\n\n* " > RELEASE_NOTES.md
@@ -54,7 +56,6 @@ update_badges "master" "develop"
 echo "Things remaining to do"
 echo "  * git push with tags (master and develop)"
 echo "  * check that build is passing on travis: https://travis-ci.org/0xced/XCDYouTubeKit/"
-echo "  * pod lib lint --verbose XCDYouTubeKit.podspec"
 echo "  * pod trunk push --verbose XCDYouTubeKit.podspec"
 echo "  * pod spec lint --verbose XCDYouTubeKit.podspec"
 echo "  * create a new release on GitHub: https://github.com/0xced/XCDYouTubeKit/releases/new"
