@@ -47,7 +47,7 @@ update_badges "develop" "master"
 
 git flow release finish -s -f RELEASE_NOTES.md ${VERSION}
 
-> RELEASE_NOTES.md
+echo -e "#### Version X.Y.Z\n\n* " > RELEASE_NOTES.md
 
 update_badges "master" "develop"
 
