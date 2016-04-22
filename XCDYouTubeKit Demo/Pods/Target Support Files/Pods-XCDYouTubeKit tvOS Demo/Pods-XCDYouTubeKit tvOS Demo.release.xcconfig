@@ -1,5 +1,6 @@
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Google-API-Client" "${PODS_ROOT}/Headers/Public/gtm-http-fetcher" "${PODS_ROOT}/Headers/Public/gtm-oauth2"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Google-API-Client" -isystem "${PODS_ROOT}/Headers/Public/gtm-http-fetcher" -isystem "${PODS_ROOT}/Headers/Public/gtm-oauth2"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"Google-API-Client" -l"gtm-http-fetcher" -l"gtm-oauth2" -framework "Security" -framework "SystemConfiguration"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 $(inherited) GTL_USE_FRAMEWORK_IMPORTS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GTMSessionFetcher" "${PODS_ROOT}/Headers/Public/GoogleAPIClient"
+LIBRARY_SEARCH_PATHS = $(inherited) "$CONFIGURATION_BUILD_DIR/GTMSessionFetcher" "$CONFIGURATION_BUILD_DIR/GoogleAPIClient"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GTMSessionFetcher" -isystem "${PODS_ROOT}/Headers/Public/GoogleAPIClient"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"GTMSessionFetcher" -l"GoogleAPIClient" -framework "Security"
 PODS_ROOT = ${SRCROOT}/Pods

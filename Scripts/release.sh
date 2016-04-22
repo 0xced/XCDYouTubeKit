@@ -19,7 +19,14 @@ fi
 VERSION=$1
 VERSION_PARTS=(${VERSION//./ })
 
+grep "#### Version ${VERSION}" RELEASE_NOTES.md > /dev/null || (echo "RELEASE_NOTES.md must contain release notes for version ${VERSION}" && exit 1)
+
 git flow release start ${VERSION}
+
+echo "Updating CHANGELOG"
+echo -e "$(cat RELEASE_NOTES.md)\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
+git add CHANGELOG.md
+git commit -m "Update CHANGELOG for version ${VERSION}"
 
 echo "Updating version"
 CURRENT_PROJECT_VERSION=$(xcodebuild -project XCDYouTubeKit.xcodeproj -showBuildSettings | awk '/CURRENT_PROJECT_VERSION/{print $3}')
@@ -39,15 +46,19 @@ git commit -m "Update version to ${VERSION}"
 
 update_badges "develop" "master"
 
-git flow release finish ${VERSION}
+# allow warnings until https://github.com/CocoaPods/CocoaPods/issues/5188 is resolved
+pod lib lint --allow-warnings XCDYouTubeKit.podspec
+
+GIT_MERGE_AUTOEDIT=no git flow release finish -s -f RELEASE_NOTES.md ${VERSION}
+
+echo -e "#### Version X.Y.Z\n\n* " > RELEASE_NOTES.md
 
 update_badges "master" "develop"
 
 echo "Things remaining to do"
 echo "  * git push with tags (master and develop)"
 echo "  * check that build is passing on travis: https://travis-ci.org/0xced/XCDYouTubeKit/"
-echo "  * pod lib lint --verbose XCDYouTubeKit.podspec"
-echo "  * pod trunk push --verbose XCDYouTubeKit.podspec"
-echo "  * pod spec lint --verbose XCDYouTubeKit.podspec"
+echo "  * pod trunk push XCDYouTubeKit.podspec"
+echo "  * pod spec lint XCDYouTubeKit.podspec"
 echo "  * create a new release on GitHub: https://github.com/0xced/XCDYouTubeKit/releases/new"
 echo "  * close milestone on GitHub if applicable: https://github.com/0xced/XCDYouTubeKit/milestones"

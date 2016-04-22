@@ -1,3 +1,9 @@
+#### Version 2.5.2
+
+* Ensure that all the streams are downloadable at full speed. (#177)
+* Post the video notification after setting the movie player’s contentURL property. (#233)
+* Fixed playback of some age restricted videos.
+
 #### Version 2.5.1
 
 * Adaptation to YouTube API change. (#231)

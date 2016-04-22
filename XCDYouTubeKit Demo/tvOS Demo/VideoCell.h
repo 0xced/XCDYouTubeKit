@@ -4,7 +4,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <Google-API-Client/GTLYouTube.h>
+#import <GoogleAPIClient/GTLYouTube.h>
 
 @interface VideoCell : UICollectionViewCell
 

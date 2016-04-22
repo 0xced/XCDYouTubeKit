@@ -31,7 +31,7 @@
 	if (!_playerConfiguration)
 	{
 		__block NSDictionary *playerConfigurationDictionary;
-		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});|\\(\\s*'PLAYER_CONFIG',\\s*(\\{.*?\\})\\s*\\)" options:NSRegularExpressionCaseInsensitive error:NULL];
+		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});|[\\({]\\s*'PLAYER_CONFIG'[,:]\\s*(\\{.*?\\})\\s*(?:,'|\\))" options:NSRegularExpressionCaseInsensitive error:NULL];
 		[playerConfigRegularExpression enumerateMatchesInString:self.html options:(NSMatchingOptions)0 range:NSMakeRange(0, self.html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
 		{
 			for (NSUInteger i = 1; i < result.numberOfRanges; i++)
