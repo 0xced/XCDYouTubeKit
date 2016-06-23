@@ -21,18 +21,14 @@
 		return nil; // LCOV_EXCL_LINE
 	
 	NSString *script = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	if ([script hasPrefix:@"var _yt_player={};(function(g){"]) {
-		script = [script stringByReplacingOccurrencesOfString:@"var _yt_player={};(function(g){" withString:@"g={};"];
-		script = [script stringByReplacingOccurrencesOfString:@"})(_yt_player);" withString:@";_yt_player=g;"];
-	}
-	else {
-		NSRegularExpression *anonymousFunctionRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"\\(function\\([^)]*\\)\\{(.*)\\}\\)\\([^)]*\\)" options:NSRegularExpressionDotMatchesLineSeparators error:NULL];		
-		NSTextCheckingResult *anonymousFunctionResult = [anonymousFunctionRegularExpression firstMatchInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];		
-		if (anonymousFunctionResult.numberOfRanges > 1)		
-			script = [script substringWithRange:[anonymousFunctionResult rangeAtIndex:1]];		
-		else
-			XCDYouTubeLogWarning(@"Unexpected player script (no anonymous function found)");
-	}
+	NSRegularExpression *anonymousFunctionRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"\\(function\\(([^)]*)\\)\\{(.*)\\}\\)\\([^)]*\\)" options:NSRegularExpressionDotMatchesLineSeparators error:NULL];
+	NSTextCheckingResult *anonymousFunctionResult = [anonymousFunctionRegularExpression firstMatchInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
+	if (anonymousFunctionResult.numberOfRanges > 1) {
+		NSString *varName = [anonymousFunctionResult rangeAtIndex:1].length ? [script substringWithRange:[anonymousFunctionResult rangeAtIndex:1]] : @"anyVarName";
+		NSString *functionBody = [script substringWithRange:[anonymousFunctionResult rangeAtIndex:2]];
+		script = [NSString stringWithFormat:@"%@={};%@", varName, functionBody];
+	} else
+		XCDYouTubeLogWarning(@"Unexpected player script (no anonymous function found)");
 	
 	_context = [JSContext new];
 	_context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
