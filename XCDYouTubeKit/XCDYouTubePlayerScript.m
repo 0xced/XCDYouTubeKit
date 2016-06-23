@@ -21,11 +21,13 @@
 		return nil; // LCOV_EXCL_LINE
 	
 	NSString *script = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	NSRegularExpression *anonymousFunctionRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"\\(function\\([^)]*\\)\\{(.*)\\}\\)\\([^)]*\\)" options:NSRegularExpressionDotMatchesLineSeparators error:NULL];
+	NSRegularExpression *anonymousFunctionRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"\\(function\\(([^)]*)\\)\\{(.*)\\}\\)\\([^)]*\\)" options:NSRegularExpressionDotMatchesLineSeparators error:NULL];
 	NSTextCheckingResult *anonymousFunctionResult = [anonymousFunctionRegularExpression firstMatchInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
-	if (anonymousFunctionResult.numberOfRanges > 1)
-		script = [script substringWithRange:[anonymousFunctionResult rangeAtIndex:1]];
-	else
+	if (anonymousFunctionResult.numberOfRanges > 1) {
+		NSString *varName = [anonymousFunctionResult rangeAtIndex:1].length ? [script substringWithRange:[anonymousFunctionResult rangeAtIndex:1]] : @"anyVarName";
+		NSString *functionBody = [script substringWithRange:[anonymousFunctionResult rangeAtIndex:2]];
+		script = [NSString stringWithFormat:@"%@={};%@", varName, functionBody];
+	} else
 		XCDYouTubeLogWarning(@"Unexpected player script (no anonymous function found)");
 	
 	_context = [JSContext new];
