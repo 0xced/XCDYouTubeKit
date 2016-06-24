@@ -1,0 +1,14 @@
+objc: true
+sdk: iphonesimulator
+source_directory: XCDYouTubeKit
+framework_root: .
+umbrella_header: XCDYouTubeKit/XCDYouTubeKit.h
+module: XCDYouTubeKit
+module_version: 2.5.2
+
+author: Cédric Luthi
+author_url: https://twitter.com/0xced
+
+readme: README.md
+github_url: https://github.com/0xced/XCDYouTubeKit
+github_file_prefix: https://github.com/0xced/XCDYouTubeKit/tree/2.5.2/XCDYouTubeKit

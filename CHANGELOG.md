@@ -1,3 +1,7 @@
+#### Version 2.5.3
+
+* Adaptation to YouTube API change. (#257)
+
 #### Version 2.5.2
 
 * Ensure that all the streams are downloadable at full speed. (#177)
