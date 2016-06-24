@@ -1,2 +1,5 @@
 XcodeCoverage
 RELEASE_NOTES.md
+xcuserdata/
+*.xccheckout
+*.xcworkspace
