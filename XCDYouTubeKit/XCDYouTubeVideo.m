@@ -32,7 +32,11 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 				                     @"Query: %@\n"
 				                     @"Discarded value: %@", key, string, dictionary[key]);
 			}
-			dictionary[key] = value;
+
+			if (value)
+			{
+				dictionary[key] = value;
+			}
 		}
 	}
 	return [dictionary copy];
