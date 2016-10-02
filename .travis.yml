@@ -1,32 +1,37 @@
 osx_image: xcode7.3
 language: objective-c
 env:
+  global:
+    - 'SCAN_CONFIGURATION="Release"'
+    - 'SCAN_OUTPUT_TYPES=""'
   matrix:
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Code Coverage" SCHEME="XCDYouTubeKit Static Library" OBJROOT="build"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.1" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.4" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.0" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library" IPHONEOS_DEPLOYMENT_TARGET="9.3"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 4s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library" RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library" RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 4s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=OS X"                                CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=OS X"                                CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      MACOSX_DEPLOYMENT_TARGET="10.11"'
-    - 'DESTINATION="platform=tvOS Simulator,name=Apple TV 1080p"  CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s" SCAN_CONFIGURATION="Debug" SCAN_XCARGS="OBJROOT=build GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.1"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.4"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.0"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3" SCAN_XCARGS="IPHONEOS_DEPLOYMENT_TARGET=9.3"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 4s"        SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s"        SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 4s"        SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s"        SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - 'SCAN_DESTINATION="platform=OS X"                                SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - 'SCAN_DESTINATION="platform=OS X"                                SCAN_XCARGS="MACOSX_DEPLOYMENT_TARGET=10.11"'
+    - 'SCAN_DESTINATION="platform=tvOS Simulator,name=Apple TV 1080p"  SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
 install:
-  - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
+  # Need bundler < 1.13.{1,2} because of https://github.com/bundler/bundler/issues/5000
+  - gem uninstall bundler -v '>1.12.5' --force || echo "bundler >1.12.5 is not installed"
+  - gem install bundler -v 1.12.5 --no-rdoc --no-ri --no-document --quiet
+  - gem install scan --no-rdoc --no-ri --no-document --quiet
   - sudo easy_install cpp-coveralls
   - sudo easy_install codecov
 script:
-  - open -b com.apple.iphonesimulator # Workaround https://github.com/travis-ci/travis-ci/issues/3040
-  - ./Scripts/run-tests.sh
+  - scan
 after_success:
-  - '[ "$CONFIGURATION" == "Code Coverage" ] && coveralls --include XCDYouTubeKit'
-  - '[ "$CONFIGURATION" == "Code Coverage" ] && codecov --gcov-glob "*XCDYouTubeKit iOS Tests*"'
+  - '[[ "$SCAN_XCARGS" == *"GCC_GENERATE_TEST_COVERAGE_FILES"* ]] && coveralls --include XCDYouTubeKit'
+  - '[[ "$SCAN_XCARGS" == *"GCC_GENERATE_TEST_COVERAGE_FILES"* ]] && codecov --gcov-glob "*XCDYouTubeKit iOS Tests*"'
 after_failure:
-  - cat xcodebuild.log
+  - cat ~/Library/Logs/scan/*
   - cat $TMPDIR/com.apple.dt.XCTest-status/Session*.log
   - cat ~/Library/Logs/DiagnosticReports/xctest*.crash
   - sleep 5
