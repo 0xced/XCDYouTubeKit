@@ -2,19 +2,19 @@ osx_image: xcode7.3
 language: objective-c
 env:
   matrix:
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Code Coverage" SCHEME="XCDYouTubeKit iOS Static Library" OBJROOT="build"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.1" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.4" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.0" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" IPHONEOS_DEPLOYMENT_TARGET="9.3"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 4s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Static Library" RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 4s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit iOS Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=OS X"                                CONFIGURATION="Release"       SCHEME="XCDYouTubeKit OS X"               RUN_CLANG_STATIC_ANALYZER="YES"'
-    - 'DESTINATION="platform=OS X"                                CONFIGURATION="Release"       SCHEME="XCDYouTubeKit OS X"               MACOSX_DEPLOYMENT_TARGET="10.11"'
-    - 'DESTINATION="platform=tvOS Simulator,name=Apple TV 1080p"  CONFIGURATION="Release"       SCHEME="XCDYouTubeKit tvOS"               RUN_CLANG_STATIC_ANALYZER="YES"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Code Coverage" SCHEME="XCDYouTubeKit Static Library" OBJROOT="build"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.1" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.4" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.0" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3" CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library" IPHONEOS_DEPLOYMENT_TARGET="9.3"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 4s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library" RUN_CLANG_STATIC_ANALYZER="YES"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Static Library" RUN_CLANG_STATIC_ANALYZER="YES"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 4s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
+    - 'DESTINATION="platform=iOS Simulator,name=iPhone 5s"        CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
+    - 'DESTINATION="platform=OS X"                                CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
+    - 'DESTINATION="platform=OS X"                                CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      MACOSX_DEPLOYMENT_TARGET="10.11"'
+    - 'DESTINATION="platform=tvOS Simulator,name=Apple TV 1080p"  CONFIGURATION="Release"       SCHEME="XCDYouTubeKit Framework"      RUN_CLANG_STATIC_ANALYZER="YES"'
 install:
   - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
   - sudo easy_install cpp-coveralls

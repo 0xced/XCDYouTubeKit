@@ -2,7 +2,7 @@
 
 set -o pipefail
 
-: ${SCHEME:="XCDYouTubeKit iOS Static Library"}
+: ${SCHEME:="XCDYouTubeKit Static Library"}
 : ${CONFIGURATION:="Release"}
 : ${DESTINATION:="platform=iOS Simulator,name=iPhone 5s"}
 
