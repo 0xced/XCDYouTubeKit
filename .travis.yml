@@ -4,20 +4,36 @@ env:
   global:
     - 'SCAN_CONFIGURATION="Release"'
     - 'SCAN_OUTPUT_TYPES=""'
-  matrix:
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s" SCAN_CONFIGURATION="Debug" SCAN_XCARGS="OBJROOT=build GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES"'
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.1"'
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.4"'
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.0"'
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3"'
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3" SCAN_XCARGS="IPHONEOS_DEPLOYMENT_TARGET=9.3"'
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 4s"        SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s"        SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 4s"        SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
-    - 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s"        SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
-    - 'SCAN_DESTINATION="platform=OS X"                                SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
-    - 'SCAN_DESTINATION="platform=OS X"                                SCAN_XCARGS="MACOSX_DEPLOYMENT_TARGET=10.11"'
-    - 'SCAN_DESTINATION="platform=tvOS Simulator,name=Apple TV 1080p"  SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+matrix:
+  include:
+    - osx_image: xcode7.3
+      env: 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s" SCAN_CONFIGURATION="Debug" SCAN_XCARGS="OBJROOT=build GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES"'
+    - osx_image: xcode7.3
+      env: 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.1"'
+    - osx_image: xcode7.3
+      env: 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=8.4"'
+    - osx_image: xcode7.3
+      env: 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.0"'
+    - osx_image: xcode7.3
+      env: 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3"'
+    - osx_image: xcode7.3
+      env: 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=9.3"  SCAN_XCARGS="IPHONEOS_DEPLOYMENT_TARGET=9.3"'
+    - osx_image: xcode8
+      env: 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s,OS=10.0" SCAN_XCARGS="IPHONEOS_DEPLOYMENT_TARGET=10.0"'
+    - osx_image: xcode8
+      env: 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 4s"         SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - osx_image: xcode8
+      env: 'SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s"         SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - osx_image: xcode7.3
+      env: 'SCAN_DESTINATION="platform=OS X"                                 SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - osx_image: xcode7.3
+      env: 'SCAN_DESTINATION="platform=OS X"                                 SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES MACOSX_DEPLOYMENT_TARGET=10.11"'
+    - osx_image: xcode8
+      env: 'SCAN_DESTINATION="platform=OS X"                                 SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - osx_image: xcode7.3
+      env: 'SCAN_DESTINATION="platform=tvOS Simulator,name=Apple TV 1080p"   SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES"'
+    - osx_image: xcode8
+      env: 'SCAN_DESTINATION="platform=tvOS Simulator,name=Apple TV 1080p"   SCAN_XCARGS="RUN_CLANG_STATIC_ANALYZER=YES TVOS_DEPLOYMENT_TARGET=10.0"'
 install:
   # Need bundler < 1.13.{1,2} because of https://github.com/bundler/bundler/issues/5000
   - gem uninstall bundler -v '>1.12.5' --force || echo "bundler >1.12.5 is not installed"
