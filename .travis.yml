@@ -45,7 +45,7 @@ script:
   - scan
 after_success:
   - '[[ "$SCAN_XCARGS" == *"GCC_GENERATE_TEST_COVERAGE_FILES"* ]] && coveralls --include XCDYouTubeKit'
-  - '[[ "$SCAN_XCARGS" == *"GCC_GENERATE_TEST_COVERAGE_FILES"* ]] && codecov --gcov-glob "*XCDYouTubeKit iOS Tests*"'
+  - '[[ "$SCAN_XCARGS" == *"GCC_GENERATE_TEST_COVERAGE_FILES"* ]] && codecov --gcov-glob "*XCDYouTubeKit Tests*"'
 after_failure:
   - cat ~/Library/Logs/scan/*
   - cat $TMPDIR/com.apple.dt.XCTest-status/Session*.log
