@@ -49,5 +49,6 @@ after_success:
 after_failure:
   - cat ~/Library/Logs/scan/*
   - cat $TMPDIR/com.apple.dt.XCTest-status/Session*.log
+  - cat ~/Library/Developer/Xcode/DerivedData/*/Logs/Test/*/Session*.log
   - cat ~/Library/Logs/DiagnosticReports/xctest*.crash
   - sleep 5
