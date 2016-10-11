@@ -42,6 +42,7 @@ install:
   - sudo easy_install cpp-coveralls
   - sudo easy_install codecov
 script:
+  - open -b com.apple.iphonesimulator # Workaround https://github.com/travis-ci/travis-ci/issues/3040 and maybe https://github.com/travis-ci/travis-ci/issues/6675
   - scan
 after_success:
   - '[[ "$SCAN_XCARGS" == *"GCC_GENERATE_TEST_COVERAGE_FILES"* ]] && coveralls --include XCDYouTubeKit'
