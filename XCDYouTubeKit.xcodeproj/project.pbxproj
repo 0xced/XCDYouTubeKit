@@ -737,122 +737,6 @@
 			};
 			name = Release;
 		};
-		C2D0CC5E191283A400DA8CD4 /* Code Coverage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 25;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.5.3;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=appletv*]" = (
-					XCDYouTubeVideoPlayerViewController.m,
-					XCDYouTubeVideoPlayerViewController.h,
-				);
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = (
-					XCDYouTubeVideoPlayerViewController.m,
-					XCDYouTubeVideoPlayerViewController.h,
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = XCDYouTubeKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit;
-				PRODUCT_NAME = XCDYouTubeKit;
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator";
-				TARGETED_DEVICE_FAMILY = "1,2,3";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "Semantic Versioning";
-				WARNING_CFLAGS = (
-					"-Weverything",
-					"-Wno-unknown-warning-option",
-					"-Wno-gnu",
-					"-Wno-objc-missing-property-synthesis",
-					"-Wno-pedantic",
-					"-Wno-unused-parameter",
-					"-Wno-partial-availability",
-				);
-			};
-			name = "Code Coverage";
-		};
-		C2D0CC5F191283A400DA8CD4 /* Code Coverage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = "Code Coverage";
-		};
-		C2D0CC60191283A400DA8CD4 /* Code Coverage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=appletv*]" = XCDYouTubeVideoPlayerViewControllerTestCase.m;
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = XCDYouTubeVideoPlayerViewControllerTestCase.m;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(BUILT_PRODUCTS_DIR)/include",
-				);
-				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = (
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					MediaPlayer,
-					"-framework",
-					UIKit,
-				);
-				"OTHER_LDFLAGS[sdk=macosx*]" = (
-					"-framework",
-					CoreServices,
-				);
-				WARNING_CFLAGS = (
-					"$(inherited)",
-					"-Wno-documentation-unknown-command",
-					"-Wno-nullable-to-nonnull-conversion",
-					"-Wno-reserved-id-macro",
-				);
-			};
-			name = "Code Coverage";
-		};
 		C2F0E5861944F10E00D8EBA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -866,20 +750,6 @@
 				);
 			};
 			name = Debug;
-		};
-		C2F0E5871944F10E00D8EBA8 /* Code Coverage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				WARNING_CFLAGS = (
-					"$(inherited)",
-					"-Wno-auto-import",
-				);
-			};
-			name = "Code Coverage";
 		};
 		C2F0E5881944F10E00D8EBA8 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -902,7 +772,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C20F57AC18817D5400EDBFB0 /* Debug */,
-				C2D0CC60191283A400DA8CD4 /* Code Coverage */,
 				C20F57AD18817D5400EDBFB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -912,7 +781,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2A3F2D917F4827800AC1C3B /* Debug */,
-				C2D0CC5E191283A400DA8CD4 /* Code Coverage */,
 				C2A3F2DA17F4827800AC1C3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -922,7 +790,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2A3F2DC17F4827800AC1C3B /* Debug */,
-				C2D0CC5F191283A400DA8CD4 /* Code Coverage */,
 				C2A3F2DD17F4827800AC1C3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -932,7 +799,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2F0E5861944F10E00D8EBA8 /* Debug */,
-				C2F0E5871944F10E00D8EBA8 /* Code Coverage */,
 				C2F0E5881944F10E00D8EBA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
