@@ -3,7 +3,6 @@ machine:
     version: 8.0
   environment:
     SCAN_CONFIGURATION: "Release"
-    SCAN_DESTINATION: "platform=iOS Simulator,name=iPhone 5s"
     SCAN_OUTPUT_TYPES: "junit"
     SCAN_OUTPUT_DIRECTORY: "$CIRCLE_TEST_REPORTS/junit/"
     SCAN_XCARGS: "RUN_CLANG_STATIC_ANALYZER=YES"
@@ -14,10 +13,9 @@ dependencies:
     - sudo gem uninstall bundler -v '>1.12.5' --force || echo "bundler >1.12.5 is not installed"
     - sudo gem install bundler -v 1.12.5 --no-rdoc --no-ri --no-document --quiet
     - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
-    - sudo curl -fsSL https://git.io/v2Ifs -o /usr/local/bin/circleci-matrix
-    - sudo chmod +x /usr/local/bin/circleci-matrix
 
 test:
   override:
-    - circleci-matrix:
-        parallel: true
+    - scan --destination "platform=OS X"                               --custom_report_file_name "test-results-macOS.xml"
+    - scan --destination "platform=iOS Simulator,name=iPhone 5s"       --custom_report_file_name "test-results-iOS.xml"
+    - scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --custom_report_file_name "test-results-tvOS.xml"
