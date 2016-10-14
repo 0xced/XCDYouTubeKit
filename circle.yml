@@ -9,6 +9,8 @@ machine:
 
 dependencies:
   pre:
+    - xcodebuild -version -sdk
+    - xcrun simctl list
     # Need bundler < 1.13.{1,2,3} because of https://github.com/bundler/bundler/issues/5000
     - sudo gem uninstall bundler -v '>1.12.5' --force || echo "bundler >1.12.5 is not installed"
     - sudo gem install bundler -v 1.12.5 --no-rdoc --no-ri --no-document --quiet
@@ -29,5 +31,5 @@ test:
     - SCAN_OUTPUT_TYPES="" scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --xcargs "TVOS_DEPLOYMENT_TARGET=`xcrun --sdk "appletvsimulator" --show-sdk-version`"
     
     # Run unit tests on older OS versions (see https://circleci.com/docs/ios-builds-on-os-x/ for list of available simulators)
-    - SCAN_OUTPUT_TYPES="" SCAN_XCARGS="" scan --destination "platform=iOS Simulator,name=iPhone 4s,OS=8.4"
     - SCAN_OUTPUT_TYPES="" SCAN_XCARGS="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=9.0"
+    - SCAN_OUTPUT_TYPES="" SCAN_XCARGS="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=8.4"
