@@ -32,4 +32,3 @@ test:
     
     # Run unit tests on older OS versions (see https://circleci.com/docs/ios-builds-on-os-x/ for list of available simulators)
     - SCAN_OUTPUT_TYPES="" SCAN_XCARGS="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=9.0"
-    - SCAN_OUTPUT_TYPES="" SCAN_XCARGS="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=8.4"
