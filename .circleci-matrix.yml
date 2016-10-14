@@ -1,0 +1,7 @@
+env:
+  - SCAN_DESTINATION="platform=iOS Simulator,name=iPhone 5s"
+  - SCAN_DESTINATION="platform=tvOS Simulator,name=Apple TV 1080p"
+  - SCAN_DESTINATION="platform=OS X"
+
+command:
+  - scan --custom_report_file_name "test-results.xml"
