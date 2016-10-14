@@ -16,6 +16,7 @@ dependencies:
 
 test:
   override:
+    - open -b com.apple.iphonesimulator
     - scan --destination "platform=OS X"                               --custom_report_file_name "test-results-macOS.xml"
     - scan --destination "platform=iOS Simulator,name=iPhone 5s"       --custom_report_file_name "test-results-iOS.xml"
     - scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --custom_report_file_name "test-results-tvOS.xml"
