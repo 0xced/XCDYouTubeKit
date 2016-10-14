@@ -2,7 +2,6 @@ machine:
   xcode:
     version: 8.0
   environment:
-    SCAN_CONFIGURATION: "Release"
     SCAN_OUTPUT_TYPES: "junit"
     SCAN_OUTPUT_DIRECTORY: "$CIRCLE_TEST_REPORTS/junit/"
     SCAN_XCARGS: "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep"
