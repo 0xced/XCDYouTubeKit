@@ -14,7 +14,8 @@ dependencies:
     - sudo gem uninstall bundler -v '>1.12.5' --force || echo "bundler >1.12.5 is not installed"
     - sudo gem install bundler -v 1.12.5 --no-rdoc --no-ri --no-document --quiet
     - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
-    - curl -fsSL https://git.io/v2Ifn | bash # https://github.com/michaelcontento/circleci-matrix#installation
+    - sudo curl -fsSL https://git.io/v2Ifs -o /usr/local/bin/circleci-matrix
+    - sudo chmod +x /usr/local/bin/circleci-matrix
 
 test:
   override:
