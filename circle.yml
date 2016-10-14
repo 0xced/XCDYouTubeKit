@@ -5,6 +5,7 @@ machine:
     SCAN_CONFIGURATION: "Release"
     SCAN_DESTINATION: "platform=iOS Simulator,name=iPhone 5s"
     SCAN_OUTPUT_TYPES: "junit"
+    SCAN_OUTPUT_DIRECTORY: "$CIRCLE_TEST_REPORTS/junit/"
     SCAN_XCARGS: "RUN_CLANG_STATIC_ANALYZER=YES"
 
 dependencies:
@@ -16,4 +17,4 @@ dependencies:
 
 test:
   override:
-    - scan --output_directory $CIRCLE_TEST_REPORTS/junit/ --custom_report_file_name "test-results.xml"
+    - scan --custom_report_file_name "test-results.xml"
