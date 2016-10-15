@@ -32,4 +32,4 @@ test:
 
   post:
     - slather coverage --verbose --circleci --coveralls --ignore "../**/Contents/Developer/**" --scheme "$(sed -n 's/scheme "\(.*\)"/\1/p' Scanfile)" "$(sed -n 's/project "\(.*\)"/\1/p' Scanfile)"
-    - bash <(curl -s https://codecov.io/bash) -g "*XCDYouTubeKit Tests*"
+    - bash <(curl -s https://codecov.io/bash) -f XCDYouTubeKit.framework.coverage.txt -X coveragepy -X gcov
