@@ -1,10 +1,6 @@
 machine:
   xcode:
     version: 8.0
-  environment:
-    SCAN_OUTPUT_TYPES: "junit"
-    SCAN_OUTPUT_DIRECTORY: "$CIRCLE_TEST_REPORTS/junit/"
-    SCAN_XCARGS: "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep"
 
 dependencies:
   pre:
@@ -22,17 +18,17 @@ test:
 
   override:
     # Run unit tests and generate junit reports
-    - scan --destination "platform=OS X"                               --custom_report_file_name "test-results-macOS.xml"
-    - scan --destination "platform=iOS Simulator,name=iPhone 5s"       --custom_report_file_name "test-results-iOS.xml" --code_coverage
-    - scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --custom_report_file_name "test-results-tvOS.xml"
+    - scan --destination "platform=OS X"                               --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-macOS.xml
+    - scan --destination "platform=iOS Simulator,name=iPhone 5s"       --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-iOS.xml --code_coverage
+    - scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-tvOS.xml
     
     # Compile with latest deployment target (catches deprecation warnings)
-    - SCAN_OUTPUT_TYPES="" scan --destination "platform=OS X"                               --xcargs "MACOSX_DEPLOYMENT_TARGET=`xcrun --sdk "macosx" --show-sdk-version`"
-    - SCAN_OUTPUT_TYPES="" scan --destination "platform=iOS Simulator,name=iPhone 5s"       --xcargs "IPHONEOS_DEPLOYMENT_TARGET=`xcrun --sdk "iphonesimulator" --show-sdk-version`"
-    - SCAN_OUTPUT_TYPES="" scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --xcargs "TVOS_DEPLOYMENT_TARGET=`xcrun --sdk "appletvsimulator" --show-sdk-version`"
+    - SCAN_OUTPUT_TYPES="" scan --destination "platform=OS X"                               --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep MACOSX_DEPLOYMENT_TARGET=`xcrun --sdk "macosx" --show-sdk-version`"
+    - SCAN_OUTPUT_TYPES="" scan --destination "platform=iOS Simulator,name=iPhone 5s"       --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep IPHONEOS_DEPLOYMENT_TARGET=`xcrun --sdk "iphonesimulator" --show-sdk-version`"
+    - SCAN_OUTPUT_TYPES="" scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep TVOS_DEPLOYMENT_TARGET=`xcrun --sdk "appletvsimulator" --show-sdk-version`"
     
     # Run unit tests on older OS versions (see https://circleci.com/docs/ios-builds-on-os-x/ for list of available simulators)
-    - SCAN_OUTPUT_TYPES="" SCAN_XCARGS="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=9.0"
+    - SCAN_OUTPUT_TYPES="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=9.0"
 
   post:
     - slather coverage --verbose --circleci --coveralls --ignore "../**/Contents/Developer/**" --scheme "$(sed -n 's/scheme "\(.*\)"/\1/p' Scanfile)" "$(sed -n 's/project "\(.*\)"/\1/p' Scanfile)"
