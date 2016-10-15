@@ -2,6 +2,8 @@
 //  Copyright (c) 2013-2016 Cédric Luthi. All rights reserved.
 //
 
+#import "AVFoundation/AVFoundation.h"
+
 #import "XCDYouTubeVideoPlayerViewController.h"
 
 #import "XCDYouTubeClient.h"
@@ -192,6 +194,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	if (![self isBeingPresented])
 		return;
 	
+	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 	self.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
 	[self.moviePlayer play];
 }
