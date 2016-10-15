@@ -14,7 +14,8 @@ dependencies:
     - sudo gem uninstall bundler -v '>1.12.5' --force || echo "bundler >1.12.5 is not installed"
     - sudo gem install bundler -v 1.12.5 --no-rdoc --no-ri --no-document --quiet
     - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
-    - sudo gem install slather --no-rdoc --no-ri --no-document --quiet
+    - sudo gem install specific_install --no-rdoc --no-ri --no-document --quiet
+    - sudo gem specific_install -l https://github.com/0xced/slather.git -b coveralls-verbose
 
 test:
   pre:
