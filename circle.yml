@@ -35,5 +35,5 @@ test:
     - SCAN_OUTPUT_TYPES="" SCAN_XCARGS="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=9.0"
 
   post:
-    - slather coverage --circleci --coveralls --cobertura-xml --ignore "../**/Contents/Developer/**" --scheme "$(sed -n 's/scheme "\(.*\)"/\1/p' Scanfile)" "$(sed -n 's/project "\(.*\)"/\1/p' Scanfile)"
+    - slather coverage --verbose --circleci --coveralls --ignore "../**/Contents/Developer/**" --scheme "$(sed -n 's/scheme "\(.*\)"/\1/p' Scanfile)" "$(sed -n 's/project "\(.*\)"/\1/p' Scanfile)"
     - bash <(curl -s https://codecov.io/bash) -g "*XCDYouTubeKit Tests*"
