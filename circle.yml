@@ -15,7 +15,6 @@ dependencies:
     - sudo gem install bundler -v 1.12.5 --no-rdoc --no-ri --no-document --quiet
     - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
     - sudo gem install slather --no-rdoc --no-ri --no-document --quiet
-    - sudo pip install codecov
 
 test:
   pre:
@@ -37,4 +36,4 @@ test:
 
   post:
     - slather coverage --circleci --coveralls --cobertura-xml --ignore "../**/Contents/Developer/**" --scheme "$(sed -n 's/scheme "\(.*\)"/\1/p' Scanfile)" "$(sed -n 's/project "\(.*\)"/\1/p' Scanfile)"
-    - codecov
+    - bash <(curl -s https://codecov.io/bash)
