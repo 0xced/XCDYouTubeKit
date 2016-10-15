@@ -14,14 +14,17 @@ dependencies:
     - sudo gem uninstall bundler -v '>1.12.5' --force || echo "bundler >1.12.5 is not installed"
     - sudo gem install bundler -v 1.12.5 --no-rdoc --no-ri --no-document --quiet
     - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
+    - sudo gem install slather --no-rdoc --no-ri --no-document --quiet
+    - sudo pip install codecov
 
 test:
-  override:
+  pre:
     - open -b com.apple.iphonesimulator
-    
+
+  override:
     # Run unit tests and generate junit reports
     - scan --destination "platform=OS X"                               --custom_report_file_name "test-results-macOS.xml"
-    - scan --destination "platform=iOS Simulator,name=iPhone 5s"       --custom_report_file_name "test-results-iOS.xml"
+    - scan --destination "platform=iOS Simulator,name=iPhone 5s"       --custom_report_file_name "test-results-iOS.xml" --code_coverage
     - scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --custom_report_file_name "test-results-tvOS.xml"
     
     # Compile with latest deployment target (catches deprecation warnings)
@@ -31,3 +34,7 @@ test:
     
     # Run unit tests on older OS versions (see https://circleci.com/docs/ios-builds-on-os-x/ for list of available simulators)
     - SCAN_OUTPUT_TYPES="" SCAN_XCARGS="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=9.0"
+
+  post:
+    - slather coverage --circleci --coveralls --cobertura-xml --ignore "../**/Contents/Developer/**" --scheme "$(sed -n 's/scheme "\(.*\)"/\1/p' Scanfile)" "$(sed -n 's/project "\(.*\)"/\1/p' Scanfile)"
+    - codecov
