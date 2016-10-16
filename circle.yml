@@ -6,9 +6,6 @@ dependencies:
   pre:
     - xcodebuild -version -sdk
     - xcrun simctl list
-    # Need bundler < 1.13.{1,2,3} because of https://github.com/bundler/bundler/issues/5000
-    - sudo gem uninstall bundler -v '>1.12.5' --force || echo "bundler >1.12.5 is not installed"
-    - sudo gem install bundler -v 1.12.5 --no-rdoc --no-ri --no-document --quiet
     - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
 
 test:
