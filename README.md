@@ -1,7 +1,7 @@
 ## About
 
 [![Build Status](https://img.shields.io/circleci/project/0xced/XCDYouTubeKit/develop.svg?style=flat)](https://circleci.com/gh/0xced/XCDYouTubeKit)
-[![Coverage Status](https://img.shields.io/coveralls/0xced/XCDYouTubeKit/develop.svg?style=flat)](https://coveralls.io/r/0xced/XCDYouTubeKit?branch=develop)
+[![Coverage Status](https://img.shields.io/codecov/c/github/0xced/XCDYouTubeKit/develop.svg?style=flat)](https://codecov.io/gh/0xced/XCDYouTubeKit/branch/develop)
 [![Platform](https://img.shields.io/cocoapods/p/XCDYouTubeKit.svg?style=flat)](http://cocoadocs.org/docsets/XCDYouTubeKit/)
 [![Pod Version](https://img.shields.io/cocoapods/v/XCDYouTubeKit.svg?style=flat)](https://cocoapods.org/pods/XCDYouTubeKit)
 [![Carthage Compatibility](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage/)
