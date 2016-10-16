@@ -15,7 +15,7 @@ test:
   override:
     # Run unit tests and generate junit reports
     - scan --destination "platform=OS X"                               --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-macOS.xml
-    - scan --destination "platform=iOS Simulator,name=iPhone 5s"       --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-iOS.xml --xcargs "OBJROOT=build GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES"
+    - scan --destination "platform=iOS Simulator,name=iPhone 5s"       --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-iOS.xml --code_coverage --xcargs "OBJROOT=build GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES"
     - scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-tvOS.xml
     
     # Compile with latest deployment target (catches deprecation warnings)
@@ -28,4 +28,4 @@ test:
 
   post:
     - sudo pip install cpp-coveralls && coveralls --include XCDYouTubeKit
-    - bash <(curl -s https://codecov.io/bash) -X coveragepy -X xcode -G "*$(sed -n 's/scheme "\(.*\)"/\1/p' Scanfile)*"
+    - bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -f XCDYouTubeKit.framework.coverage.txt -X coveragepy -X gcov
