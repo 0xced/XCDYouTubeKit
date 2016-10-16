@@ -4,6 +4,7 @@ machine:
 
 dependencies:
   pre:
+    - mdfind "kMDItemCFBundleIdentifier == 'com.apple.dt.Xcode'" | awk '{print "echo "$1" && defaults read "$1"/Contents/Info.plist CFBundleShortVersionString\0"}' | xargs -0 bash -c
     - xcodebuild -version -sdk
     - xcrun simctl list
     - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
