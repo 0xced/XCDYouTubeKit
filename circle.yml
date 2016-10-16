@@ -10,7 +10,6 @@ dependencies:
     - sudo gem uninstall bundler -v '>1.12.5' --force || echo "bundler >1.12.5 is not installed"
     - sudo gem install bundler -v 1.12.5 --no-rdoc --no-ri --no-document --quiet
     - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
-    - sudo gem install slather --no-rdoc --no-ri --no-document --quiet
 
 test:
   pre:
@@ -19,7 +18,7 @@ test:
   override:
     # Run unit tests and generate junit reports
     - scan --configuration Release --destination "platform=OS X"                               --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-macOS.xml
-    - scan --configuration Release --destination "platform=iOS Simulator,name=iPhone 5s"       --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-iOS.xml --code_coverage
+    - scan --configuration Release --destination "platform=iOS Simulator,name=iPhone 5s"       --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-iOS.xml --xcargs "OBJROOT=build GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES"
     - scan --configuration Release --destination "platform=tvOS Simulator,name=Apple TV 1080p" --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-tvOS.xml
     
     # Compile with latest deployment target (catches deprecation warnings)
@@ -31,5 +30,5 @@ test:
     - SCAN_OUTPUT_TYPES="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=9.0"
 
   post:
-    - slather coverage --verbose --circleci --coveralls --ignore "../**/Contents/Developer/**" --scheme "$(sed -n 's/scheme "\(.*\)"/\1/p' Scanfile)" "$(sed -n 's/project "\(.*\)"/\1/p' Scanfile)"
-    - bash <(curl -s https://codecov.io/bash) -f XCDYouTubeKit.framework.coverage.txt -X coveragepy -X gcov
+    - sudo pip install cpp-coveralls && coveralls --include XCDYouTubeKit
+    - bash <(curl -s https://codecov.io/bash) -X coveragepy -X xcode -G "*$(sed -n 's/scheme "\(.*\)"/\1/p' Scanfile)*"
