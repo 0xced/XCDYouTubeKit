@@ -145,6 +145,25 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void) testDASHAudioWithRateBypassIsPlayable
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"tg00YEETFzg" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		NSURL *dashAudioURL = video.streamURLs[@140];
+		XCTAssertTrue([dashAudioURL.query containsString:@"ratebypass=yes"]);
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:dashAudioURL];
+		request.HTTPMethod = @"HEAD";
+		NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		{
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		[dataTask resume];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testAgeRestrictedVEVOVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];

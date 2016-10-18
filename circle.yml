@@ -1,0 +1,32 @@
+machine:
+  xcode:
+    version: 8.0
+
+dependencies:
+  pre:
+    - mdfind "kMDItemCFBundleIdentifier == 'com.apple.dt.Xcode'" | awk '{print "echo "$1" && defaults read "$1"/Contents/Info.plist CFBundleShortVersionString\0"}' | xargs -0 bash -c
+    - xcodebuild -version -sdk
+    - xcrun simctl list
+    - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
+
+test:
+  pre:
+    - open -b com.apple.iphonesimulator
+
+  override:
+    # Run unit tests and generate junit reports
+    - scan --destination "platform=OS X"                               --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-macOS.xml
+    - scan --destination "platform=iOS Simulator,name=iPhone 5s"       --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-iOS.xml --code_coverage --xcargs "OBJROOT=build GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES"
+    - scan --destination "platform=tvOS Simulator,name=Apple TV 1080p" --output_directory "$CIRCLE_TEST_REPORTS/junit/" --output_types junit --custom_report_file_name test-results-tvOS.xml
+    
+    # Compile with latest deployment target (catches deprecation warnings)
+    - SCAN_OUTPUT_TYPES="" scan --configuration Release --destination "platform=OS X"                               --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep MACOSX_DEPLOYMENT_TARGET=`xcrun --sdk "macosx" --show-sdk-version`"
+    - SCAN_OUTPUT_TYPES="" scan --configuration Release --destination "platform=iOS Simulator,name=iPhone 5s"       --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep IPHONEOS_DEPLOYMENT_TARGET=`xcrun --sdk "iphonesimulator" --show-sdk-version`"
+    - SCAN_OUTPUT_TYPES="" scan --configuration Release --destination "platform=tvOS Simulator,name=Apple TV 1080p" --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep TVOS_DEPLOYMENT_TARGET=`xcrun --sdk "appletvsimulator" --show-sdk-version`"
+    
+    # Run unit tests on older OS versions (see https://circleci.com/docs/ios-builds-on-os-x/ for list of available simulators)
+    - SCAN_OUTPUT_TYPES="" scan --destination "platform=iOS Simulator,name=iPhone 5s,OS=9.0"
+
+  post:
+    - sudo pip install cpp-coveralls && coveralls --include XCDYouTubeKit
+    - bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -f XCDYouTubeKit.framework.coverage.txt -X coveragepy -X gcov

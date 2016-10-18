@@ -4,7 +4,7 @@
 
 #import "AppDelegate.h"
 
-#import <Google-API-Client/GTLYouTube.h>
+#import <GoogleAPIClient/GTLYouTube.h>
 
 #import "PlaylistCollectionViewController.h"
 

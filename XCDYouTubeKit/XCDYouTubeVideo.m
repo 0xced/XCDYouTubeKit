@@ -5,6 +5,7 @@
 #import "XCDYouTubeVideo+Private.h"
 
 #import "XCDYouTubeError.h"
+#import "XCDYouTubeLogger+Private.h"
 
 #import <objc/runtime.h>
 
@@ -25,6 +26,12 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 			NSString *key = pair[0];
 			NSString *value = [pair[1] stringByRemovingPercentEncoding];
 			value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+			if (dictionary[key] && ![dictionary[key] isEqual:value])
+			{
+				XCDYouTubeLogWarning(@"Using XCDDictionaryWithQueryString is inappropriate because the query string has multiple values for the key '%@'\n"
+				                     @"Query: %@\n"
+				                     @"Discarded value: %@", key, string, dictionary[key]);
+			}
 			dictionary[key] = value;
 		}
 	}
@@ -63,6 +70,20 @@ static NSString *SortedDictionaryDescription(NSDictionary *dictionary)
 	[description appendString:@"}"];
 	
 	return [description copy];
+}
+
+static NSURL * URLBySettingParameter(NSURL *URL, NSString *key, NSString *percentEncodedValue)
+{
+	NSString *pattern = [NSString stringWithFormat:@"((?:^|&)%@=)[^&]*", key];
+	NSString *template = [NSString stringWithFormat:@"$1%@", percentEncodedValue];
+	NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+	NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:NULL];
+	NSMutableString *percentEncodedQuery = [components.percentEncodedQuery ?: @"" mutableCopy];
+	NSUInteger numberOfMatches = [regularExpression replaceMatchesInString:percentEncodedQuery options:(NSMatchingOptions)0 range:NSMakeRange(0, percentEncodedQuery.length) withTemplate:template];
+	if (numberOfMatches == 0)
+		[percentEncodedQuery appendFormat:@"%@%@=%@", percentEncodedQuery.length > 0 ? @"&" : @"", key, percentEncodedValue];
+	components.percentEncodedQuery = percentEncodedQuery;
+	return components.URL;
 }
 
 @implementation XCDYouTubeVideo
@@ -136,10 +157,10 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 				if (signature)
 				{
 					NSString *escapedSignature = [signature stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, escapedSignature]];
+					streamURL = URLBySettingParameter(streamURL, @"signature", escapedSignature);
 				}
 				
-				streamURLs[@(itag.integerValue)] = streamURL;
+				streamURLs[@(itag.integerValue)] = URLBySettingParameter(streamURL, @"ratebypass", @"yes");
 			}
 		}
 		_streamURLs = [streamURLs copy];
