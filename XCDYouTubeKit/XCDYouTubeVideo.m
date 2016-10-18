@@ -103,15 +103,18 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	_identifier = identifier;
 
 	NSString *streamMap = info[@"url_encoded_fmt_stream_map"];
+	NSString *captionsMap = info[@"caption_tracks"];
 	NSString *httpLiveStream = info[@"hlsvp"];
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
 	
 	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: response.URL } mutableCopy] : [NSMutableDictionary new];
 	
-	if (streamMap.length > 0 || httpLiveStream.length > 0)
+	if (streamMap.length > 0 || httpLiveStream.length > 0 || captionsMap.length > 0)
 	{
 		NSMutableArray *streamQueries = [[streamMap componentsSeparatedByString:@","] mutableCopy];
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
+		NSMutableArray *captionQueries = [[captionsMap componentsSeparatedByString:@","]mutableCopy];
+
 		
 		NSString *title = info[@"title"] ?: @"";
 		_title = title;
@@ -128,6 +131,25 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		
 		if (httpLiveStream)
 			streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] = [NSURL URLWithString:httpLiveStream];
+		
+		
+		NSMutableDictionary *captionURLs = [NSMutableDictionary new];
+		
+		for (NSString *captionQuery in captionQueries) {
+			
+			NSDictionary *captionStream = XCDDictionaryWithQueryString(captionQuery);
+			
+			NSString *languageCode = captionStream[@"lc"];
+			NSString *urlString = captionStream[@"u"];
+			if (urlString && languageCode)
+				
+			{
+				captionURLs[languageCode] = [NSURL URLWithString:urlString];
+				
+			}
+		}
+		
+		_captionURLs = [captionURLs copy];
 		
 		for (NSString *streamQuery in streamQueries)
 		{
