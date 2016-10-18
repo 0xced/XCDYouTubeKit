@@ -103,6 +103,12 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
 @property (nonatomic, readonly) NSDictionary *streamURLs;
 #endif
 
+#if __has_feature(objc_generics)
+@property (nonatomic, readonly, nullable) NSDictionary<id, NSURL *> *captionURLs;
+#else
+@property (nonatomic, readonly, nullable) NSDictionary *captionURLs;
+#endif
+
 /**
  *  The expiration date of the video.
  *
