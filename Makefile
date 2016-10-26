@@ -10,7 +10,7 @@ default: check_tools
 
 check_tools:
 	@slather version > /dev/null 2>&1 || printf "⚠️  Please install \e[1;30mslather\e[0m (https://github.com/SlatherOrg/slather) to get a code coverage report: $$ [sudo] \e[1;30mgem install slather\e[0m\n"
-	@scan --version > /dev/null 2>&1 || (printf "⚠️  Please install \e[1;30mscan\e[0m (https://github.com/fastlane/fastlane/tree/master/scan) to run unit tests: $$ [sudo] \e[1;30mgem install scan\e[0m\n" && false)
+	@scan --version > /dev/null 2>&1 || (printf "❌  Please install \e[1;30mscan\e[0m (https://github.com/fastlane/fastlane/tree/master/scan) to run unit tests: $$ [sudo] \e[1;30mgem install scan\e[0m\n" && false)
 
 test_macOS_report:
 	scan --destination "platform=OS X"                               --output_directory "${CIRCLE_TEST_REPORTS}/junit/" --output_types junit --custom_report_file_name test-results-macOS.xml
