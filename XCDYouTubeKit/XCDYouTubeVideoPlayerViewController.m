@@ -147,6 +147,20 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	objc_setAssociatedObject(view, XCDYouTubeVideoPlayerViewControllerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (void) presentInView:(UIView *)view
+	  withControlStyle:(MPMovieControlStyle)style{
+	static const void * const XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerViewControllerKey;
+	
+	self.embedded = YES;
+	
+	self.moviePlayer.controlStyle = style;
+	self.moviePlayer.view.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height);
+	self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	if (![view.subviews containsObject:self.moviePlayer.view])
+		[view addSubview:self.moviePlayer.view];
+	objc_setAssociatedObject(view, XCDYouTubeVideoPlayerViewControllerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 #pragma mark - Private
 
 - (void) startVideo:(XCDYouTubeVideo *)video streamURL:(NSURL *)streamURL
