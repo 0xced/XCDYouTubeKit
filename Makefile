@@ -1,6 +1,6 @@
 export SCAN_PROJECT = XCDYouTubeKit.xcodeproj
 export SCAN_SCHEME = XCDYouTubeKit Framework
-export SCAN_BUILDLOG_PATH = ${CIRCLE_ARTIFACTS}
+export SCAN_BUILDLOG_PATH = ${CIRCLE_ARTIFACTS}/$@
 export SCAN_OUTPUT_TYPES = 
 
 .PHONY: default test_macOS_report test_iOS_report test_tvOS_report test_macOS test_iOS test_tvOS test_iOS_9 check_scan check_slather
