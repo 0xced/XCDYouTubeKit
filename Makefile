@@ -1,3 +1,6 @@
+CIRCLE_ARTIFACTS ?= artifacts
+CIRCLE_TEST_REPORTS ?= test_reports
+
 export SCAN_PROJECT = XCDYouTubeKit.xcodeproj
 export SCAN_SCHEME = XCDYouTubeKit Framework
 export SCAN_BUILDLOG_PATH = ${CIRCLE_ARTIFACTS}/$@
