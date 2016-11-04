@@ -1,11 +1,12 @@
 export SCAN_PROJECT = XCDYouTubeKit.xcodeproj
 export SCAN_SCHEME = XCDYouTubeKit Framework
+export SCAN_BUILDLOG_PATH = ${CIRCLE_ARTIFACTS}
 export SCAN_OUTPUT_TYPES = 
 
 .PHONY: default test_macOS_report test_iOS_report test_tvOS_report test_macOS test_iOS test_tvOS test_iOS_9 check_scan check_slather
 
 default: check_slather check_scan
-	scan --clean --destination "platform=iOS Simulator,name=iPhone 5s" --code_coverage
+	scan --clean --destination "platform=iOS Simulator,name=iPhone 5s" --code_coverage --buildlog_path "~/Library/Logs/scan"
 	slather coverage --verbose --output-directory "${TMPDIR}/${SCAN_SCHEME} Coverage Report" --html --show --ignore "../**/Contents/Developer/**" --scheme "${SCAN_SCHEME}" "${SCAN_PROJECT}" || true
 
 test_macOS_report: check_scan
