@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0116F7C91DB663A00031004C /* testInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0116F7C81DB663A00031004C /* testInfo.plist */; };
-		019FEEFC1DD0E47000D40F64 /* testInfo_undetermined_language_code.plist in Resources */ = {isa = PBXBuildFile; fileRef = 019FEEFB1DD0E47000D40F64 /* testInfo_undetermined_language_code.plist */; };
 		C20F57A818817D5400EDBFB0 /* XCDYouTubeClientTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C20F57A718817D5400EDBFB0 /* XCDYouTubeClientTestCase.m */; };
 		C2142F2A19644779000FA9C0 /* XCDYouTubeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C2D0CBAC19122A8F00DA8CD4 /* XCDYouTubeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C215BEB91BE2E5B500F9783B /* XCDYouTubeVideoWebpage.h in Headers */ = {isa = PBXBuildFile; fileRef = C2386B1C1974036300646123 /* XCDYouTubeVideoWebpage.h */; };
@@ -96,8 +94,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0116F7C81DB663A00031004C /* testInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = testInfo.plist; sourceTree = "<group>"; };
-		019FEEFB1DD0E47000D40F64 /* testInfo_undetermined_language_code.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = testInfo_undetermined_language_code.plist; sourceTree = "<group>"; };
 		C20F579B18817D5400EDBFB0 /* XCDYouTubeKit.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCDYouTubeKit.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20F57A718817D5400EDBFB0 /* XCDYouTubeClientTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeClientTestCase.m; sourceTree = "<group>"; };
 		C22263371B33FDE000BA6719 /* XCTestWorkarounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCTestWorkarounds.m; sourceTree = "<group>"; };
@@ -168,8 +164,6 @@
 		C20F57A118817D5400EDBFB0 /* XCDYouTubeKit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				0116F7C81DB663A00031004C /* testInfo.plist */,
-				019FEEFB1DD0E47000D40F64 /* testInfo_undetermined_language_code.plist */,
 				C2D0CC5C19126E1200DA8CD4 /* Cassettes */,
 				C2D0CC3A1912673500DA8CD4 /* VCRURLConnection */,
 				C20F57A718817D5400EDBFB0 /* XCDYouTubeClientTestCase.m */,
@@ -384,9 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0116F7C91DB663A00031004C /* testInfo.plist in Resources */,
 				C2D0CC5D19126E1200DA8CD4 /* Cassettes in Resources */,
-				019FEEFC1DD0E47000D40F64 /* testInfo_undetermined_language_code.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
