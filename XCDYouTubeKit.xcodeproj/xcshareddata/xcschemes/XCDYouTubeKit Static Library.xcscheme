@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
-   version = "2.0">
+   LastUpgradeVersion = "0820"
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,16 +14,16 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C2F0E5721944F10E00D8EBA8"
-               BuildableName = "XCDYouTubeKit.framework"
-               BlueprintName = "XCDYouTubeKit iOS Framework"
+               BlueprintIdentifier = "C2A3F2CC17F4827800AC1C3B"
+               BuildableName = "libXCDYouTubeKit.a"
+               BlueprintName = "XCDYouTubeKit Static Library"
                ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Code Coverage"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "NO">
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
-               BuildableName = "XCDYouTubeKit iOS Tests.xctest"
-               BlueprintName = "XCDYouTubeKit iOS Tests"
+               BuildableName = "XCDYouTubeKit.xctest"
+               BlueprintName = "XCDYouTubeKit Tests"
                ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C2F0E5721944F10E00D8EBA8"
-            BuildableName = "XCDYouTubeKit.framework"
-            BlueprintName = "XCDYouTubeKit iOS Framework"
+            BlueprintIdentifier = "C2A3F2CC17F4827800AC1C3B"
+            BuildableName = "libXCDYouTubeKit.a"
+            BlueprintName = "XCDYouTubeKit Static Library"
             ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -54,27 +54,36 @@
             value = "0"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "VCR_CASSETTES_DIRECTORY"
+            value = "$(SRCROOT)/XCDYouTubeKit Tests/Cassettes"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "ONLINE_TESTS"
+            value = "YES"
+            isEnabled = "NO">
+         </EnvironmentVariable>
       </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
-      debugXPCServices = "NO"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C2F0E5721944F10E00D8EBA8"
-            BuildableName = "XCDYouTubeKit.framework"
-            BlueprintName = "XCDYouTubeKit iOS Framework"
+            BlueprintIdentifier = "C2A3F2CC17F4827800AC1C3B"
+            BuildableName = "libXCDYouTubeKit.a"
+            BlueprintName = "XCDYouTubeKit Static Library"
             ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -90,9 +99,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C2F0E5721944F10E00D8EBA8"
-            BuildableName = "XCDYouTubeKit.framework"
-            BlueprintName = "XCDYouTubeKit iOS Framework"
+            BlueprintIdentifier = "C2A3F2CC17F4827800AC1C3B"
+            BuildableName = "libXCDYouTubeKit.a"
+            BlueprintName = "XCDYouTubeKit Static Library"
             ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

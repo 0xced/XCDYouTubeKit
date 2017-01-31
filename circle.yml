@@ -1,0 +1,32 @@
+machine:
+  xcode:
+    version: 8.2
+
+dependencies:
+  pre:
+    - mdfind "kMDItemCFBundleIdentifier == 'com.apple.dt.Xcode'" | awk '{print "echo "$1" && defaults read "$1"/Contents/Info.plist CFBundleShortVersionString\0"}' | xargs -0 bash -c
+    - xcodebuild -version -sdk
+    - xcrun simctl list
+    - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
+
+test:
+  pre:
+    - open -b com.apple.iphonesimulator
+
+  override:
+    # Run unit tests, generate junit reports and produce coverage data for iOS
+    - make test_macOS_report
+    - make test_iOS_report
+    - make test_tvOS_report
+    
+    # Run unit tests compiled for the release configuration with latest deployment target (catches deprecation warnings)
+    - make test_macOS
+    - make test_iOS
+    - make test_tvOS
+    
+    # Run unit tests on iOS 9
+    - make test_iOS_9
+
+  post:
+    - sudo pip install cpp-coveralls && coveralls --include XCDYouTubeKit
+    - bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -f XCDYouTubeKit.framework.coverage.txt -X coveragepy -X gcov
