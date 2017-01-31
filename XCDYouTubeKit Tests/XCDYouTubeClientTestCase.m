@@ -169,6 +169,25 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void) testRelativeJSPlayerURL
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"dGR65RWwzg8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.expirationDate);
+		 XCTAssertNotNil(video.smallThumbnailURL);
+		 XCTAssertNotNil(video.mediumThumbnailURL);
+		 XCTAssertNotNil(video.largeThumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 [expectation fulfill];
+	 }];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testFrenchClient
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
