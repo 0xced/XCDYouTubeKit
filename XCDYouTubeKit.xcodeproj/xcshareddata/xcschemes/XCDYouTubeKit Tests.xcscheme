@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,15 +15,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
-               BuildableName = "XCDYouTubeKit iOS Tests.xctest"
-               BlueprintName = "XCDYouTubeKit iOS Tests"
+               BuildableName = "XCDYouTubeKit.xctest"
+               BlueprintName = "XCDYouTubeKit Tests"
                ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Code Coverage"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C20F579A18817D5400EDBFB0"
-               BuildableName = "XCDYouTubeKit iOS Tests.xctest"
-               BlueprintName = "XCDYouTubeKit iOS Tests"
+               BuildableName = "XCDYouTubeKit.xctest"
+               BlueprintName = "XCDYouTubeKit Tests"
                ReferencedContainer = "container:XCDYouTubeKit.xcodeproj">
             </BuildableReference>
          </TestableReference>

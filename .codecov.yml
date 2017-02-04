@@ -1,0 +1,8 @@
+codecov:
+  branch: develop
+
+coverage:
+  precision: 1
+  round: nearest
+  ignore:
+    - "XCDYouTubeKit Tests"
