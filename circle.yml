@@ -32,4 +32,4 @@ deployment:
     branch: [develop, master]
     commands:
       - sudo pip install cpp-coveralls && coveralls --include XCDYouTubeKit
-      - bash <(curl -s https://raw.githubusercontent.com/codecov/codecov-bash/f81a7b47aef0fad3900e887a7ad9c96c0d12c47f/codecov) -J XCDYouTubeKit -f XCDYouTubeKit.framework.coverage.txt -X coveragepy -X gcov
+      - bash <(curl -s https://raw.githubusercontent.com/0xced/codecov-bash/ab6bec11466248315260cda9c2d7d77b6e2c03b0/codecov) -J XCDYouTubeKit -f XCDYouTubeKit.framework.coverage.txt -X coveragepy -X gcov
