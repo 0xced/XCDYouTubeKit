@@ -10,8 +10,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import <XCDYouTubeKit/XCDYouTubeOperation.h>
-#import <XCDYouTubeKit/XCDYouTubeVideo.h>
+#if __has_include(<XCDYouTubeKit/XCDYouTubeVideo.h>)
+    #import <XCDYouTubeKit/XCDYouTubeOperation.h>
+    #import <XCDYouTubeKit/XCDYouTubeVideo.h>
+#else
+    #import "XCDYouTubeOperation.h"
+    #import "XCDYouTubeVideo.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
