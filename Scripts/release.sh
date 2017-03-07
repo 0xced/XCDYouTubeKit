@@ -60,7 +60,7 @@ update_badges "master" "develop"
 
 echo "Things remaining to do"
 echo "  * git push with tags (master and develop)"
-echo "  * check that build is passing on travis: https://travis-ci.org/0xced/XCDYouTubeKit/"
+echo "  * check that build is passing on CircleCI: https://circleci.com/gh/0xced/XCDYouTubeKit"
 echo "  * pod trunk push XCDYouTubeKit.podspec"
 echo "  * create a new release on GitHub: https://github.com/0xced/XCDYouTubeKit/releases/new"
 echo "  * close milestone on GitHub if applicable: https://github.com/0xced/XCDYouTubeKit/milestones"

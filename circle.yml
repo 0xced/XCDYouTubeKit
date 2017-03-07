@@ -27,6 +27,10 @@ test:
     # Run unit tests on iOS 9
     - make test_iOS_9
 
-  post:
-    - sudo pip install cpp-coveralls && coveralls --include XCDYouTubeKit
-    - bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -f XCDYouTubeKit.framework.coverage.txt -X coveragepy -X gcov
+deployment:
+  coverage:
+    branch: [develop, master]
+    commands:
+      - bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -X coveragepy -X gcov
+      - rsync -a *.coverage.txt "${CIRCLE_ARTIFACTS}/coverage/"
+      - sudo pip install cpp-coveralls && coveralls --include XCDYouTubeKit
