@@ -19,6 +19,7 @@ NSString *const XCDMetadataKeyMediumThumbnailURL = @"MediumThumbnailURL";
 NSString *const XCDMetadataKeyLargeThumbnailURL = @"LargeThumbnailURL";
 
 NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification = @"XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification";
+NSString *const XCDYouTubeVideoPlayerViewControllerDidReceiveErrorNotification = @"XCDYouTubeVideoPlayerViewControllerDidReceiveErrorNotification";
 NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 
 @interface XCDYouTubeVideoPlayerViewController ()
@@ -175,7 +176,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 {
 	NSDictionary *userInfo = @{ MPMoviePlayerPlaybackDidFinishReasonUserInfoKey: @(MPMovieFinishReasonPlaybackError),
 	                            XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey: error };
-	[[NSNotificationCenter defaultCenter] postNotificationName:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer userInfo:userInfo];
+	[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveErrorNotification object:self.moviePlayer userInfo:userInfo];
 	
 	if (self.isEmbedded)
 		[self.moviePlayer.view removeFromSuperview];
