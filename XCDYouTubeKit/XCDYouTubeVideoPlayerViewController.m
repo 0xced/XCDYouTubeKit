@@ -206,4 +206,8 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	[self.videoOperation cancel];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
 @end
