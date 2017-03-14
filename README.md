@@ -7,7 +7,7 @@
 [![Carthage Compatibility](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage/)
 [![License](https://img.shields.io/cocoapods/l/XCDYouTubeKit.svg?style=flat)](LICENSE)
 
-**XCDYouTubeKit** is a YouTube video player for iOS, tvOS and OS X.
+**XCDYouTubeKit** is a YouTube video player for iOS, tvOS and macOS.
 
 <img src="Screenshots/XCDYouTubeVideoPlayerViewController.png" width="480" height="320">
 
@@ -17,8 +17,9 @@ Are you enjoying XCDYouTubeKit? You can say thank you with [a tweet](https://twi
 
 ## Requirements
 
-- Runs on iOS 7.0 and later
-- Runs on OS X 10.9 and later
+- Runs on iOS 8.0 and later
+- Runs on macOS 10.9 and later
+- Runs on tvOS 9.0 and later
 
 ## Warning
 
@@ -40,7 +41,7 @@ Carthage:
 github "0xced/XCDYouTubeKit" ~> 2.5
 ```
 
-Alternatively, you can manually use the provided static library on iOS or dynamic framework on OS X. In order to use the iOS static library, you must:
+Alternatively, you can manually use the provided static library or dynamic framework. In order to use the static library, you must:
 
 1. Create a workspace (File → New → Workspace…)
 2. Add your project to the workspace
@@ -88,10 +89,10 @@ XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVid
 [videoPlayerViewController.moviePlayer play];
 ```
 
-### iOS and OS X
+### iOS, tvOS and macOS
 
 ```objc
-NSString *videoIdentifier = @"EdeVaT-zZt4"; // A 11 characters YouTube video identifier
+NSString *videoIdentifier = @"9bZkp7q19f0"; // A 11 characters YouTube video identifier
 [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 	if (video)
 	{
