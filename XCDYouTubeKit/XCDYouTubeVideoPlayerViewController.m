@@ -70,7 +70,7 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 #endif
 	
 	if ([[[UIDevice currentDevice] systemVersion] integerValue] >= 8)
-		self = [super initWithContentURL:nil];
+		self = [super init];
 	else
 		self = [super init]; // LCOV_EXCL_LINE
 	
@@ -139,12 +139,17 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	
 	self.embedded = YES;
 	
+	NSLog(@"EMBED DEPRECATED");
+	
+	/*
 	self.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
 	self.moviePlayer.view.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height);
 	self.moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	if (![view.subviews containsObject:self.moviePlayer.view])
 		[view addSubview:self.moviePlayer.view];
 	objc_setAssociatedObject(view, XCDYouTubeVideoPlayerViewControllerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	*/
+	
 }
 
 #pragma mark - Private
@@ -166,21 +171,17 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveMetadataNotification object:self userInfo:userInfo];
 #pragma clang diagnostic pop
 	
-	self.moviePlayer.contentURL = streamURL;
+	self.player = [AVPlayer playerWithURL:streamURL];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:self userInfo:@{ XCDYouTubeVideoUserInfoKey: video }];
 }
 
 - (void) stopWithError:(NSError *)error
 {
-	NSDictionary *userInfo = @{ MPMoviePlayerPlaybackDidFinishReasonUserInfoKey: @(MPMovieFinishReasonPlaybackError),
-	                            XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey: error };
-	[[NSNotificationCenter defaultCenter] postNotificationName:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer userInfo:userInfo];
+	NSDictionary *userInfo = @{ XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey: error };
+	[[NSNotificationCenter defaultCenter] postNotificationName:MPMoviePlayerPlaybackDidFinishNotification object:self userInfo:userInfo];
 	
-	if (self.isEmbedded)
-		[self.moviePlayer.view removeFromSuperview];
-	else
-		[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
+	[self.presentingViewController dismissMoviePlayerViewControllerAnimated];
 }
 
 #pragma mark - UIViewController
@@ -192,8 +193,8 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 	if (![self isBeingPresented])
 		return;
 	
-	self.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-	[self.moviePlayer play];
+	[self.player play];
+	
 }
 
 - (void) viewWillDisappear:(BOOL)animated
