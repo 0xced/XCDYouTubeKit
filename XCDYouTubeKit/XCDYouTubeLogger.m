@@ -39,12 +39,15 @@ static void (^LogHandler)(NSString * (^)(void), XCDLogLevel, const char *, const
 		if (DDLogClass)
 		{
 			const SEL logSeletor = @selector(log:message:level:flag:context:file:function:line:tag:);
-			const char *typeEncoding = method_getTypeEncoding(class_getClassMethod(DDLogClass, logSeletor));
-			const char *expectedTypeEncoding = protocol_getMethodDescription(@protocol(XCDYouTubeLogger_DDLog), logSeletor, /* isRequiredMethod: */ YES, /* isInstanceMethod: */ NO).types;
-			if (typeEncoding && expectedTypeEncoding && strcmp(typeEncoding, expectedTypeEncoding) == 0)
-				LogHandler = CocoaLumberjackLogHandler;
-			else
-				NSLog(@"[XCDYouTubeKit] Incompatible CocoaLumberjack version. Expected \"%@\", got \"%@\".", expectedTypeEncoding ? @(expectedTypeEncoding) : @"", typeEncoding ? @(typeEncoding) : @"");
+			Method method = class_getClassMethod(DDLogClass, logSeletor);
+			if (method) {
+				const char *typeEncoding = method_getTypeEncoding(method);
+				const char *expectedTypeEncoding = protocol_getMethodDescription(@protocol(XCDYouTubeLogger_DDLog), logSeletor, /* isRequiredMethod: */ YES, /* isInstanceMethod: */ NO).types;
+				if (typeEncoding && expectedTypeEncoding && strcmp(typeEncoding, expectedTypeEncoding) == 0)
+					LogHandler = CocoaLumberjackLogHandler;
+				else
+					NSLog(@"[XCDYouTubeKit] Incompatible CocoaLumberjack version. Expected \"%@\", got \"%@\".", expectedTypeEncoding ? @(expectedTypeEncoding) : @"", typeEncoding ? @(typeEncoding) : @"");
+			}
 		}
 	});
 }
