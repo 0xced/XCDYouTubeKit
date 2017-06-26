@@ -14,18 +14,18 @@ test:
     - open -b com.apple.iphonesimulator
 
   override:
-    # Run unit tests, generate junit reports and produce coverage data for iOS
-    - make test_macOS_report
-    - make test_iOS_report
-    - make test_tvOS_report
-    
     # Run unit tests compiled for the release configuration with latest deployment target (catches deprecation warnings)
     - make test_macOS
-    - make test_iOS
     - make test_tvOS
+    - make test_iOS
     
     # Run unit tests on iOS 9
     - make test_iOS_9
+    
+    # Run unit tests, generate junit reports and produce coverage data for iOS
+    - make test_macOS_report
+    - make test_tvOS_report
+    - make test_iOS_report
 
 deployment:
   coverage:
