@@ -32,5 +32,5 @@ deployment:
     branch: /.*/
     commands:
       - bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -X coveragepy -X gcov -X xcodeplist -X xcodepartials
-      - rsync -a *.coverage.txt "${CIRCLE_ARTIFACTS}/coverage/"
+      - rsync -a *coverage* "${CIRCLE_ARTIFACTS}/coverage/"
       - sudo pip install cpp-coveralls && coveralls --include XCDYouTubeKit
