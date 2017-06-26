@@ -6,9 +6,6 @@ export SCAN_SCHEME = XCDYouTubeKit Framework
 export SCAN_BUILDLOG_PATH = ${CIRCLE_ARTIFACTS}/$@
 export SCAN_OUTPUT_TYPES = 
 
-# Trying to workaround "Exit status: 74" error on CircleCI, see https://github.com/fastlane/fastlane/issues/8909#issuecomment-295788554
-export SCAN_INCLUDE_SIMULATOR_LOGS = false
-
 .PHONY: default test_macOS_report test_iOS_report test_tvOS_report test_macOS test_iOS test_tvOS test_iOS_9 check_scan check_slather
 
 default: check_slather check_scan
