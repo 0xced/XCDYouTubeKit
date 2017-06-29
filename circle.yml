@@ -1,6 +1,6 @@
 machine:
   xcode:
-    version: 8.2
+    version: 8.3
 
 dependencies:
   pre:
@@ -14,23 +14,23 @@ test:
     - open -b com.apple.iphonesimulator
 
   override:
-    # Run unit tests, generate junit reports and produce coverage data for iOS
-    - make test_macOS_report
-    - make test_iOS_report
-    - make test_tvOS_report
-    
     # Run unit tests compiled for the release configuration with latest deployment target (catches deprecation warnings)
     - make test_macOS
-    - make test_iOS
     - make test_tvOS
+    - make test_iOS
     
     # Run unit tests on iOS 9
     - make test_iOS_9
+    
+    # Run unit tests, generate junit reports and produce coverage data for iOS
+    - make test_macOS_report
+    - make test_tvOS_report
+    - make test_iOS_report
 
 deployment:
   coverage:
-    branch: [develop, master]
+    branch: /.*/
     commands:
-      - bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -X coveragepy -X gcov
-      - rsync -a *.coverage.txt "${CIRCLE_ARTIFACTS}/coverage/"
+      - bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -X coveragepy -X gcov -X xcodeplist -X xcodepartials
+      - rsync -a *coverage* "${CIRCLE_ARTIFACTS}/coverage/"
       - sudo pip install cpp-coveralls && coveralls --include XCDYouTubeKit
