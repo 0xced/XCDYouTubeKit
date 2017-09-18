@@ -106,7 +106,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	NSString *httpLiveStream = info[@"hlsvp"];
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
 	
-	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: response.URL } mutableCopy] : [NSMutableDictionary new];
+	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: (id)response.URL } mutableCopy] : [NSMutableDictionary new];
 	
 	if (streamMap.length > 0 || httpLiveStream.length > 0)
 	{

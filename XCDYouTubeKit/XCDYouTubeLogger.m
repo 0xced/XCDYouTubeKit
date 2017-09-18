@@ -39,7 +39,7 @@ static void (^LogHandler)(NSString * (^)(void), XCDLogLevel, const char *, const
 		if (DDLogClass)
 		{
 			const SEL logSeletor = @selector(log:message:level:flag:context:file:function:line:tag:);
-			const char *typeEncoding = method_getTypeEncoding(class_getClassMethod(DDLogClass, logSeletor));
+			const char *typeEncoding = method_getTypeEncoding((Method)class_getClassMethod(DDLogClass, logSeletor));
 			const char *expectedTypeEncoding = protocol_getMethodDescription(@protocol(XCDYouTubeLogger_DDLog), logSeletor, /* isRequiredMethod: */ YES, /* isInstanceMethod: */ NO).types;
 			if (typeEncoding && expectedTypeEncoding && strcmp(typeEncoding, expectedTypeEncoding) == 0)
 				LogHandler = CocoaLumberjackLogHandler;
