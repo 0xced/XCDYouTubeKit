@@ -4,8 +4,8 @@ function update_badges()
 {
     echo "Updating badges"
     set -v
-    sed -i "" "s/$1\.svg/$2.svg/g" "README.md"
-    sed -i "" "s/branch.$1/branch.$2/g" "README.md"
+    sed -i "" "s#$1\.svg#$2.svg#g" "README.md"
+    sed -i "" "s#branch/$1#branch/$2#g" "README.md"
     set +v
     git add "README.md"
     git commit -m "Point badges to the $2 branch"

@@ -1,3 +1,7 @@
+#### Version 2.5.6
+
+* Xcode 9 compatibility (#345, #347, #349)
+
 #### Version 2.5.5
 
 * Adaptation to YouTube API change. (#314)
