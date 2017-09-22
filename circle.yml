@@ -10,9 +10,6 @@ dependencies:
     - sudo gem install scan --no-rdoc --no-ri --no-document --quiet
 
 test:
-  pre:
-    - open -b com.apple.iphonesimulator
-
   override:
     # Run unit tests compiled for the release configuration with latest deployment target (catches deprecation warnings)
     - make test_macOS
