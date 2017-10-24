@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  The quality of YouTube videos. These values are used as keys in the `<[XCDYouTubeVideo streamURLs]>` property.
  *
- *  The constant numbers are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_formats) values.
+ *  The constant numbers are the YouTube [itag](https://en.wikipedia.org/wiki/Talk:YouTube#Moved_from_YouTube.23Quality_formats) values.
  */
 typedef NS_ENUM(NSUInteger, XCDYouTubeVideoQuality) {
 	/**
