@@ -64,7 +64,7 @@
 		NSTextCheckingResult *itagCheckingResult = [itagRegex firstMatchInString:(NSString *_Nonnull)url.absoluteString options:0 range:NSMakeRange(0, url.absoluteString.length)];
 
 		NSString *itag = [url.absoluteString substringWithRange:itagCheckingResult.range];
-		streamURLs[itag] = url;
+		streamURLs[@(itag.integerValue)] = url;
 	}
 	
 	if (streamURLs.count == 0)
