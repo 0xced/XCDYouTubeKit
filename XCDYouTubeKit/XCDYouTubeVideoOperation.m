@@ -17,6 +17,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	XCDYouTubeRequestTypeWatchPage,
 	XCDYouTubeRequestTypeEmbedPage,
 	XCDYouTubeRequestTypeJavaScriptPlayer,
+	XCDYouTubeRequestTypeDashManifest,
+	
 };
 
 @interface XCDYouTubeVideoOperation ()
