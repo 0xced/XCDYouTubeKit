@@ -277,6 +277,20 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	free(properties);
 }
 
+- (void) mergeDashManifestStreamURLs:(NSDictionary *)dashManifestStreamURLs {
+	
+	NSMutableDictionary *approvedStreams = [NSMutableDictionary new];
+	
+	for (NSString *itag in dashManifestStreamURLs) {
+		if (self.streamURLs[itag] == nil)
+			approvedStreams[itag] = dashManifestStreamURLs[itag];
+	}
+	
+	NSMutableDictionary *newStreams = [NSMutableDictionary dictionaryWithDictionary:self.streamURLs];
+	[newStreams addEntriesFromDictionary:approvedStreams];
+	[self setValue:newStreams.copy forKeyPath:NSStringFromSelector(@selector(streamURLs))];
+}
+
 #pragma mark - NSObject
 
 - (BOOL) isEqual:(id)object
