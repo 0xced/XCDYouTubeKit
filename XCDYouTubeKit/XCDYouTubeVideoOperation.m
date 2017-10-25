@@ -125,8 +125,8 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	if (self.isCancelled)
 		return;
 	
-	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo
-	if (++self.requestCount > 6)
+	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo + 1xDashManifest
+	if (++self.requestCount > 7)
 	{
 		// This condition should never happen but the request flow is quite complex so better abort here than go into an infinite loop of requests
 		[self finishWithError];
