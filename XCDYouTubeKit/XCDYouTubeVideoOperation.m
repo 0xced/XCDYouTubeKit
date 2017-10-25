@@ -189,9 +189,11 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleConnectionError:(NSError *)connectionError requestType:(XCDYouTubeRequestType)requestType
 {
 	//Shoud not return a connection error if was as a result of requesting the Dash Manifiest (we have a sucessfully created `XCDYouTubeVideo` and should just finish the operation as if were a 'sucessful' one
-	if (requestType == XCDYouTubeRequestTypeDashManifest)
+	if (requestType == XCDYouTubeRequestTypeDashManifest) {
 		[self finishWithVideo:self.lastSucessfulVideo];
-		
+		return;
+	}
+	
 	NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: connectionError.localizedDescription,
 	                            NSUnderlyingErrorKey: connectionError };
 	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
