@@ -34,13 +34,16 @@
 	if (xmlTypeRegexError)
 		return nil;
 	NSTextCheckingResult *xmlTypeRegexCheckingResult = [xmlTypeRegex firstMatchInString:self.XMLString options:0 range:NSMakeRange(0, self.XMLString.length)];
-	
 	NSString *xmlType = [self.XMLString substringWithRange:xmlTypeRegexCheckingResult.range];
-	if (![xmlType containsString:@"static"])
+	
+	NSRange staticRange = [xmlType rangeOfString:@"static" options:0];
+	if (staticRange.location == NSNotFound)
 		return nil;
 	
 	//Do not process manifests that have DRM protection
-	if ([self.XMLString containsString:@"ContentProtection"] || [self.XMLString containsString:@"mp4protection"])
+	NSRange contentProtectionRange = [self.XMLString rangeOfString:@"ContentProtection" options:0];
+	NSRange mp4ProtectionRange = [self.XMLString rangeOfString:@"mp4protection" options:0];
+	if (contentProtectionRange.location != NSNotFound || mp4ProtectionRange.location != NSNotFound)
 		return nil;
 	
 	//Catch all URLs
@@ -63,7 +66,10 @@
 		NSString* substringForMatch = [self.XMLString substringWithRange:checkingResult.range];
 		NSURL *url = [NSURL URLWithString:substringForMatch];
 	
-		if ([url.absoluteString containsString:@"youtube"] && [url.absoluteString containsString:@"itag"])
+		NSRange youtubeRange = [url.absoluteString rangeOfString:@"youtube" options:0];
+		NSRange itagnRange = [url.absoluteString rangeOfString:@"itag" options:0];
+		
+		if (youtubeRange.location != NSNotFound && itagnRange.location != NSNotFound )
 		{
 			[URLs addObject:url];
 		}
