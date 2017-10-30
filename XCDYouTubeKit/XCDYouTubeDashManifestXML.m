@@ -27,6 +27,18 @@
 
 - (NSDictionary *)streamURLs
 {
+	
+	//Catch the type
+	NSError *xmlTypeRegexError = NULL;
+	NSRegularExpression *xmlTypeRegex = [NSRegularExpression regularExpressionWithPattern:@"(?<=(type=\"))(\\w|\\d|\\n|[().,\\-:;@#$%^&*\\[\\]\"'+–/\\/®°⁰!?{}|`~]| )+?(?=(\"))" options:NSRegularExpressionAnchorsMatchLines error:&xmlTypeRegexError];
+	if (xmlTypeRegexError)
+		return nil;
+	NSTextCheckingResult *xmlTypeRegexCheckingResult = [xmlTypeRegex firstMatchInString:self.XMLString options:0 range:NSMakeRange(0, self.XMLString.length)];
+	
+	NSString *xmlType = [self.XMLString substringWithRange:xmlTypeRegexCheckingResult.range];
+	if (![xmlType containsString:@"static"])
+		return nil;
+	
 	//Catch all URLs
 	NSError *error = nil;
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?<=(<BaseURL>))(\\w|\\d|\\n|[().,\\-:;@#$%^&*\\[\\]\"'+–/\\/®°⁰!?{}|`~]| )+?(?=(</BaseURL>))" options:0 error:&error];
