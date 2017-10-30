@@ -39,6 +39,10 @@
 	if (![xmlType containsString:@"static"])
 		return nil;
 	
+	//Do not process manifests that have DRM protection
+	if ([self.XMLString containsString:@"ContentProtection"] || [self.XMLString containsString:@"mp4protection"])
+		return nil;
+	
 	//Catch all URLs
 	NSError *error = nil;
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?<=(<BaseURL>))(\\w|\\d|\\n|[().,\\-:;@#$%^&*\\[\\]\"'+–/\\/®°⁰!?{}|`~]| )+?(?=(</BaseURL>))" options:0 error:&error];
