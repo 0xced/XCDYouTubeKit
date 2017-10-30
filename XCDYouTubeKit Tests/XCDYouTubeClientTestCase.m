@@ -77,7 +77,7 @@
 		 XCTAssertNotNil(video);
 		 [expectation fulfill];
 	 }];
-	[self waitForExpectationsWithTimeout:70 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testVideoWithUndeterminedCaptionLanguageCode
