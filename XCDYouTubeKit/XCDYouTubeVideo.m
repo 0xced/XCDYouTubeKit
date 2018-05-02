@@ -99,80 +99,83 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 {
 	if (!(self = [super init]))
 		return nil; // LCOV_EXCL_LINE
-	
+
 	_identifier = identifier;
 
 	NSString *streamMap = info[@"url_encoded_fmt_stream_map"];
 	NSString *httpLiveStream = info[@"hlsvp"];
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
-	
+
 	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: (id)response.URL } mutableCopy] : [NSMutableDictionary new];
-	
+
 	if (streamMap.length > 0 || httpLiveStream.length > 0)
 	{
 		NSMutableArray *streamQueries = [[streamMap componentsSeparatedByString:@","] mutableCopy];
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
-		
-		NSString *title = info[@"title"] ?: @"";
-		_title = title;
+
+		_title = info[@"title"] ?: @"";
+		_author = info[@"author"] ?: @"";
 		_duration = [info[@"length_seconds"] doubleValue];
-		
-		NSString *smallThumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
-		NSString *mediumThumbnail = info[@"iurlsd"] ?: info[@"iurlhq"] ?: info[@"iurlmq"];
-		NSString *largeThumbnail = info[@"iurlmaxres"];
-		_smallThumbnailURL = smallThumbnail ? [NSURL URLWithString:smallThumbnail] : nil;
-		_mediumThumbnailURL = mediumThumbnail ? [NSURL URLWithString:mediumThumbnail] : nil;
-		_largeThumbnailURL = largeThumbnail ? [NSURL URLWithString:largeThumbnail] : nil;
-		
+
+		_smallThumbnailURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://i.ytimg.com/vi/%@/default.jpg", identifier]];
+		_mediumThumbnailURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://i.ytimg.com/vi/%@/hqdefault.jpg", identifier]];
+		_largeThumbnailURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://i.ytimg.com/vi/%@/sddefault.jpg", identifier]];
+
 		NSMutableDictionary *streamURLs = [NSMutableDictionary new];
-		
+		NSMutableDictionary *streamSizes = [NSMutableDictionary new];
+
 		if (httpLiveStream)
 			streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] = [NSURL URLWithString:httpLiveStream];
-		
+
 		for (NSString *streamQuery in streamQueries)
 		{
 			NSDictionary *stream = XCDDictionaryWithQueryString(streamQuery);
-			
+
 			NSString *scrambledSignature = stream[@"s"];
 			if (scrambledSignature && !playerScript)
 			{
 				userInfo[XCDYouTubeNoStreamVideoUserInfoKey] = self;
 				if (error)
 					*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorUseCipherSignature userInfo:userInfo];
-				
+
 				return nil;
 			}
 			NSString *signature = [playerScript unscrambleSignature:scrambledSignature];
 			if (playerScript && scrambledSignature && !signature)
 				continue;
-			
+
 			NSString *urlString = stream[@"url"];
 			NSString *itag = stream[@"itag"];
 			if (urlString && itag)
 			{
 				NSURL *streamURL = [NSURL URLWithString:urlString];
+
 				if (!_expirationDate)
 					_expirationDate = ExpirationDate(streamURL);
-				
+
 				if (signature)
 				{
 					NSString *escapedSignature = [signature stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 					streamURL = URLBySettingParameter(streamURL, @"signature", escapedSignature);
 				}
-				
+
 				streamURLs[@(itag.integerValue)] = URLBySettingParameter(streamURL, @"ratebypass", @"yes");
+
+				NSDictionary *query = XCDDictionaryWithQueryString(streamURL.query);
+				streamSizes[@(itag.integerValue)] = @([query[@"clen"] doubleValue] / 1024 / 1024);
 			}
 		}
 		_streamURLs = [streamURLs copy];
-		
+		_streamSizes = [streamSizes copy];
+
 		if (_streamURLs.count == 0)
 		{
 			if (error)
 				*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:userInfo];
-			
+
 			return nil;
 		}
-		
+
 		return self;
 	}
 	else
@@ -187,10 +190,10 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 				NSRange range;
 				while ((range = [reason rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
 					reason = [reason stringByReplacingCharactersInRange:range withString:@""];
-				
+
 				userInfo[NSLocalizedDescriptionKey] = reason;
 			}
-			
+
 			NSString *errorcode = info[@"errorcode"];
 			NSInteger code = errorcode ? errorcode.integerValue : XCDYouTubeErrorNoStreamAvailable;
 			*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:code userInfo:userInfo];

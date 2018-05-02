@@ -70,6 +70,10 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
  */
 @property (nonatomic, readonly) NSString *title;
 /**
+ *  The author of the video.
+ */
+@property (nonatomic, readonly) NSString *author;
+/**
  *  The duration of the video in seconds.
  */
 @property (nonatomic, readonly) NSTimeInterval duration;
@@ -101,6 +105,12 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
 @property (nonatomic, readonly) NSDictionary<id, NSURL *> *streamURLs;
 #else
 @property (nonatomic, readonly) NSDictionary *streamURLs;
+#endif
+
+#if __has_feature(objc_generics)
+@property (nonatomic, readonly) NSDictionary<id, NSNumber *> *streamSizes;
+#else
+@property (nonatomic, readonly) NSDictionary *streamSizes;
 #endif
 
 /**
