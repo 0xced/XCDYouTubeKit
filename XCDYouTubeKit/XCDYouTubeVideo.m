@@ -118,7 +118,8 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		_duration = [info[@"length_seconds"] doubleValue];
 
 		_smallThumbnailURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://i.ytimg.com/vi/%@/default.jpg", identifier]];
-		_largeThumbnailURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://i.ytimg.com/vi/%@/hqdefault.jpg", identifier]];
+		_mediumThumbnailURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://i.ytimg.com/vi/%@/hqdefault.jpg", identifier]];
+		_largeThumbnailURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://i.ytimg.com/vi/%@/sddefault.jpg", identifier]];
 
 		NSMutableDictionary *streamURLs = [NSMutableDictionary new];
 		NSMutableDictionary *streamSizes = [NSMutableDictionary new];
