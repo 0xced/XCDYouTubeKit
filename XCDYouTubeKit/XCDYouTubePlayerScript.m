@@ -67,22 +67,28 @@
 	{
 		XCDYouTubeLogWarning(@"Unexpected player script (no anonymous function found)");
 	}
-	
-	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[\"']signature[\"']\\s*,\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
-	for (NSTextCheckingResult *signatureResult in [signatureRegularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)])
-	{
-		NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
-		if (!signatureFunctionName)
-			continue;
-		
-		JSValue *signatureFunction = self.context[signatureFunctionName];
-		if (signatureFunction.isObject)
-		{
-			_signatureFunction = signatureFunction;
-			break;
-		}
-	}
-	
+
+    NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[\"']signature[\"']\\s*,\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
+    NSArray<NSTextCheckingResult *> *signatureResults =  [signatureRegularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
+    if (!signatureResults.count)
+    {
+        signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"(\\w+)\\s*=\\s*function\\((\\w+)\\).\\s*\\2=\\s*\\2\\.split\\(\"\"\\)\\s*;" options:NSRegularExpressionCaseInsensitive error:NULL];
+        signatureResults =  [signatureRegularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
+    }
+    for (NSTextCheckingResult *signatureResult in signatureResults)
+    {
+        NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
+        if (!signatureFunctionName)
+            continue;
+
+        JSValue *signatureFunction = self.context[signatureFunctionName];
+        if (signatureFunction.isObject)
+        {
+            _signatureFunction = signatureFunction;
+            break;
+        }
+    }
+
 	if (!_signatureFunction)
 		XCDYouTubeLogWarning(@"No signature function in player script");
 	
