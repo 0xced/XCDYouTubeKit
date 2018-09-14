@@ -69,7 +69,7 @@
 	}
 	
    //See list of regex patterns here https://github.com/rg3/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1179
-    NSArray<NSString *>*patterns = @[@"/.sig\\|\\|([[a-zA-Z0-9$]+)\\(",
+    NSArray<NSString *>*patterns = @[@"\\.sig\\|\\|(?<sig>[a-zA-Z0-9$]+)\\(",
                                      @"[\"']signature[\"']\\s*,\\s*([^\\(]+)",
                                      @"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*c\\s*&&d.set\\([^,]+\\s*,\\s*(?<sig>[a-zA-Z0-9$]+)",
                                      @"\\bcs*&&\\s*d\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\C"
