@@ -68,7 +68,29 @@
 		XCDYouTubeLogWarning(@"Unexpected player script (no anonymous function found)");
 	}
 	
-	NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[\"']signature[\"']\\s*,\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
+   //See list of regex patterns here https://github.com/rg3/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1179
+    NSArray<NSString *>*patterns = @[@"/.sig\\|\\|([[a-zA-Z0-9$]+)\\(",
+                                     @"[\"']signature[\"']\\s*,\\s*([^\\(]+)",
+                                     @"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*c\\s*&&d.set\\([^,]+\\s*,\\s*(?<sig>[a-zA-Z0-9$]+)",
+                                     @"\\bcs*&&\\s*d\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\C"
+                                     ];
+    
+    NSRegularExpression *signatureRegularExpression = nil;
+    NSArray<NSTextCheckingResult *> *signatureResults = nil;
+
+    for (NSString *pattern in patterns) {
+        
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:NULL];
+        NSArray<NSTextCheckingResult *> *regexResults =  [regex matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
+        
+        if (regexResults.count != 0)
+        {
+            signatureRegularExpression = regex;
+            signatureResults = regexResults;
+            break;
+        }
+    }
+	
 	for (NSTextCheckingResult *signatureResult in [signatureRegularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)])
 	{
 		NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
