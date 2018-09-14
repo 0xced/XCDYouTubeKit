@@ -75,7 +75,7 @@
                                      @"\\bcs*&&\\s*d\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\C"
                                      ];
     
-    NSRegularExpression *signatureRegularExpression = nil;
+
     NSArray<NSTextCheckingResult *> *signatureResults = nil;
 
     for (NSString *pattern in patterns) {
@@ -85,13 +85,12 @@
         
         if (regexResults.count != 0)
         {
-            signatureRegularExpression = regex;
             signatureResults = regexResults;
             break;
         }
     }
 	
-	for (NSTextCheckingResult *signatureResult in [signatureRegularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)])
+	for (NSTextCheckingResult *signatureResult in signatureResults)
 	{
 		NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
 		if (!signatureFunctionName)
