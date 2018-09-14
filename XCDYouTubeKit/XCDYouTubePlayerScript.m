@@ -68,24 +68,40 @@
 		XCDYouTubeLogWarning(@"Unexpected player script (no anonymous function found)");
 	}
 
-    NSRegularExpression *signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[\"']signature[\"']\\s*,\\s*([^\\(]+)" options:NSRegularExpressionCaseInsensitive error:NULL];
-    NSArray<NSTextCheckingResult *> *signatureResults =  [signatureRegularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
-    if (!signatureResults.count)
+    //See list of regex patterns here https://github.com/rg3/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1179
+    NSArray<NSString *>*patterns = @[@"\\.sig\\|\\|(?<sig>[a-zA-Z0-9$]+)\\(",
+                                     @"[\"']signature[\"']\\s*,\\s*([^\\(]+)",
+                                     @"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*c\\s*&&d.set\\([^,]+\\s*,\\s*(?<sig>[a-zA-Z0-9$]+)",
+                                     @"\\bcs*&&\\s*d\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\C"
+                                     ];
+    
+    NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];
+    
+    for (NSString *pattern in patterns)
     {
-        signatureRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"(\\w+)\\s*=\\s*function\\((\\w+)\\).\\s*\\2=\\s*\\2\\.split\\(\"\"\\)\\s*;" options:NSRegularExpressionCaseInsensitive error:NULL];
-        signatureResults =  [signatureRegularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
-    }
-    for (NSTextCheckingResult *signatureResult in signatureResults)
-    {
-        NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
-        if (!signatureFunctionName)
-            continue;
-
-        JSValue *signatureFunction = self.context[signatureFunctionName];
-        if (signatureFunction.isObject)
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:NULL];
+        if (regex != nil)
         {
-            _signatureFunction = signatureFunction;
-            break;
+            [validRegularExpressions addObject:regex];
+        }
+    }
+    
+    for (NSRegularExpression *regularExpression in validRegularExpressions)
+    {
+        NSArray<NSTextCheckingResult *> *regexResults =  [regularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
+        
+        for (NSTextCheckingResult *signatureResult in regexResults)
+        {
+            NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
+            if (!signatureFunctionName)
+                continue;
+            
+            JSValue *signatureFunction = self.context[signatureFunctionName];
+            if (signatureFunction.isObject)
+            {
+                _signatureFunction = signatureFunction;
+                break;
+            }
         }
     }
 
