@@ -74,35 +74,35 @@
                                      @"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*c\\s*&&d.set\\([^,]+\\s*,\\s*(?<sig>[a-zA-Z0-9$]+)",
                                      @"\\bcs*&&\\s*d\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\C"
                                      ];
-    
-
-    NSArray<NSTextCheckingResult *> *signatureResults = nil;
+	
+    NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];
 
     for (NSString *pattern in patterns) {
-        
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:NULL];
-        NSArray<NSTextCheckingResult *> *regexResults =  [regex matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
-        
-        if (regexResults.count != 0)
+        if (regex != nil)
         {
-            signatureResults = regexResults;
-            break;
+            [validRegularExpressions addObject:regex];
         }
     }
 	
-	for (NSTextCheckingResult *signatureResult in signatureResults)
-	{
-		NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
-		if (!signatureFunctionName)
-			continue;
+    for (NSRegularExpression *regularExpression in validRegularExpressions) {
 		
-		JSValue *signatureFunction = self.context[signatureFunctionName];
-		if (signatureFunction.isObject)
-		{
-			_signatureFunction = signatureFunction;
-			break;
-		}
-	}
+        NSArray<NSTextCheckingResult *> *regexResults =  [regularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
+		
+        for (NSTextCheckingResult *signatureResult in regexResults)
+        {
+            NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
+            if (!signatureFunctionName)
+                continue;
+			
+            JSValue *signatureFunction = self.context[signatureFunctionName];
+            if (signatureFunction.isObject)
+            {
+                _signatureFunction = signatureFunction;
+                break;
+            }
+        }
+    }
 	
 	if (!_signatureFunction)
 		XCDYouTubeLogWarning(@"No signature function in player script");
