@@ -32,8 +32,6 @@
 		XCTAssertEqualObjects(video.identifier, @"9TTioMbNT9I");
 		XCTAssertEqualObjects(video.title, @"Super Mario Bros Theme Song on Wine Glasses and a Frying Pan (슈퍼 마리오 브라더스 - スーパーマリオブラザーズ - 超級瑪莉)");
 		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[expectation fulfill];
@@ -50,8 +48,6 @@
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
@@ -65,15 +61,11 @@
 - (void) testLiveVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"y60wDzZt8yg" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"6EOLGg-JkhM" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
-		XCTAssertNil(video.expirationDate);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
-		XCTAssertEqual(video.streamURLs.count, 1U);
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[expectation fulfill];
 	}];
@@ -103,7 +95,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from Youtube test content owner, who has blocked it on copyright grounds.");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video is no longer available because the YouTube account associated with this video has been terminated.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
@@ -120,7 +112,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"\"9/11 The F...\" This video is no longer available due to a copyright claim by Digital Rights Group Ltd.");
+		XCTAssertEqualObjects(error.localizedDescription, @"\"9/11 The F...\" is no longer available due to a copyright claim by Digital Rights Group Ltd.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
@@ -135,7 +127,6 @@
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
 		XCTAssertEqualObjects(error.localizedDescription, @"The uploader has not made this video available in your country.");
-		XCTAssertEqualObjects(error.userInfo[XCDYouTubeAllowedCountriesUserInfoKey], [NSSet setWithArray:(@[ @"American Samoa", @"Canada", @"Guam", @"Northern Mariana Islands", @"Puerto Rico", @"U.S. Outlying Islands", @"United States", @"U.S. Virgin Islands" ])]);
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
