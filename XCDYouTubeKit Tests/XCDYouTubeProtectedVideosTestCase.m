@@ -156,7 +156,7 @@
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:90 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testAgeRestrictedVEVOVideo
