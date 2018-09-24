@@ -55,6 +55,29 @@
 	
 }
 
+- (void)testVideoWithDashManifest
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"YLg-LCkYXbI" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNotNil(video);
+		 XCTAssertNotNil(video.streamURLs[@299], @"Could not find Dash video 299 in `streamURLs`"); //itag=299: {'ext': 'mp4', 'height': 1080, 'format_note': 'DASH video', 'vcodec': 'h264', 'fps': 60}
+		 [expectation fulfill];
+	 }];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void)testConnectionErrorWithDashManifest
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"YLg-LCkYXbI" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNotNil(video);
+		 [expectation fulfill];
+	 }];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testVideoWithUndeterminedCaptionLanguageCode
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];

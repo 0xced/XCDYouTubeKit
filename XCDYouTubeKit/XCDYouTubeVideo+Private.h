@@ -19,5 +19,6 @@ extern NSArray *XCDCaptionArrayWithString(NSString *string);
 - (instancetype) initWithIdentifier:(NSString *)identifier info:(NSDictionary *)info playerScript:(XCDYouTubePlayerScript *)playerScript response:(NSURLResponse *)response error:(NSError **)error;
 
 - (void) mergeVideo:(XCDYouTubeVideo *)video;
+- (void) mergeDashManifestStreamURLs:(NSDictionary *)dashManifestStreamURLs;
 
 @end
