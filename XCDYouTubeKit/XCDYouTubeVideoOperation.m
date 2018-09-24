@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, assign) NSInteger requestCount;
 @property (atomic, assign) XCDYouTubeRequestType requestType;
 @property (atomic, strong) NSMutableArray *eventLabels;
-@property (atomic, strong) XCDYouTubeVideo *lastSucessfulVideo;
+@property (atomic, strong) XCDYouTubeVideo *lastSuccessfulVideo;
 @property (atomic, readonly) NSURLSession *session;
 @property (atomic, strong) NSURLSessionDataTask *dataTask;
 
@@ -191,7 +191,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	//Shoud not return a connection error if was as a result of requesting the Dash Manifiest (we have a sucessfully created `XCDYouTubeVideo` and should just finish the operation as if were a 'sucessful' one
 	if (requestType == XCDYouTubeRequestTypeDashManifest)
 	{
-		[self finishWithVideo:self.lastSucessfulVideo];
+		[self finishWithVideo:self.lastSuccessfulVideo];
 		return;
 	}
 	
@@ -212,7 +212,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:response error:&error];
 	if (video)
 	{
-		self.lastSucessfulVideo = video;
+		self.lastSuccessfulVideo = video;
 		
 		if (info[@"dashmpd"])
 		{
@@ -310,9 +310,9 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	XCDYouTubeDashManifestXML *dashManifestXML = [[XCDYouTubeDashManifestXML alloc]initWithXMLString:XMLString];
 	NSDictionary *dashhManifestStreamURLs = dashManifestXML.streamURLs;
 	if (dashhManifestStreamURLs)
-		[self.lastSucessfulVideo mergeDashManifestStreamURLs:dashhManifestStreamURLs];
+		[self.lastSuccessfulVideo mergeDashManifestStreamURLs:dashhManifestStreamURLs];
 	
-	[self finishWithVideo:self.lastSucessfulVideo];
+	[self finishWithVideo:self.lastSuccessfulVideo];
 }
 
 #pragma mark - Finish Operation
