@@ -42,7 +42,7 @@
 - (void) testVideoThatHasCaptions
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Q6dsRpVyyWs" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"_g8aLVGXyc0" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	 {
 		 XCTAssertNotNil(video);
 		 XCTAssertNotNil(video);
