@@ -126,7 +126,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	
 	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: (id)response.URL } mutableCopy] : [NSMutableDictionary new];
 	
-	if (streamMap.length > 0 || httpLiveStream.length > 0 || captionsMap.length > 0)
+	if (streamMap.length > 0 || httpLiveStream.length > 0)
 	{
 		NSMutableArray *streamQueries = [[streamMap componentsSeparatedByString:@","] mutableCopy];
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
