@@ -67,12 +67,15 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+//See -[XCDYouTubeVideoOperation handleConnectionError:requestType]
 - (void)testConnectionErrorWithDashManifest
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"YLg-LCkYXbI" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	 {
 		 XCTAssertNotNil(video);
+		 XCTAssertNil(video.streamURLs[@299]);
+		
 		 [expectation fulfill];
 	 }];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
