@@ -65,7 +65,7 @@
 			NSMutableDictionary *info = [NSMutableDictionary new];
 			[args enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop)
 			{
-				if ([(NSString *)value isKindOfClass:[NSString class]] || [(NSNumber *)value isKindOfClass:[NSNumber class]])
+				if ([(NSObject *)value isKindOfClass:[NSString class]] || [(NSObject *)value isKindOfClass:[NSNumber class]])
 					info[key] = [(NSObject *)value description];
 			}];
 			_videoInfo = [info copy];
