@@ -542,6 +542,7 @@
 					"-Wno-documentation-unknown-command",
 					"-Wno-nullable-to-nonnull-conversion",
 					"-Wno-reserved-id-macro",
+					"-Wno-objc-messaging-id",
 				);
 			};
 			name = Debug;
@@ -574,6 +575,7 @@
 					"-Wno-documentation-unknown-command",
 					"-Wno-nullable-to-nonnull-conversion",
 					"-Wno-reserved-id-macro",
+					"-Wno-objc-messaging-id",
 				);
 			};
 			name = Release;

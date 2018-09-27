@@ -24,9 +24,9 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 		if (pair.count == 2)
 		{
 			NSString *key = pair[0];
-			NSString *value = [pair[1] stringByRemovingPercentEncoding];
+			NSString *value = [(NSString *)pair[1] stringByRemovingPercentEncoding];
 			value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-			if (dictionary[key] && ![dictionary[key] isEqual:value])
+			if (dictionary[key] && ![(NSObject *)dictionary[key] isEqual:value])
 			{
 				XCDYouTubeLogWarning(@"Using XCDDictionaryWithQueryString is inappropriate because the query string has multiple values for the key '%@'\n"
 				                     @"Query: %@\n"
@@ -41,7 +41,7 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary)
 {
 	NSArray *keys = [dictionary.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-		return [evaluatedObject isKindOfClass:[NSString class]];
+		return [(NSObject *)evaluatedObject isKindOfClass:[NSString class]];
 	}]];
 	
 	NSMutableString *query = [NSMutableString new];
@@ -50,7 +50,7 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary)
 		if (query.length > 0)
 			[query appendString:@"&"];
 		
-		[query appendFormat:@"%@=%@", key, [dictionary[key] description]];
+		[query appendFormat:@"%@=%@", key, [(NSObject *)dictionary[key] description]];
 	}
 	
 	return [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -59,7 +59,7 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary)
 static NSString *SortedDictionaryDescription(NSDictionary *dictionary)
 {
 	NSArray *sortedKeys = [dictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-		return [[obj1 description] compare:[obj2 description] options:NSNumericSearch];
+		return [[(NSObject *)obj1 description] compare:[(NSObject *) obj2 description] options:NSNumericSearch];
 	}];
 	
 	NSMutableString *description = [[NSMutableString alloc] initWithString:@"{\n"];
@@ -91,7 +91,7 @@ static NSURL * URLBySettingParameter(NSURL *URL, NSString *key, NSString *percen
 static NSDate * ExpirationDate(NSURL *streamURL)
 {
 	NSDictionary *query = XCDDictionaryWithQueryString(streamURL.query);
-	NSTimeInterval expire = [query[@"expire"] doubleValue];
+	NSTimeInterval expire = [(NSString *)query[@"expire"] doubleValue];
 	return expire > 0 ? [NSDate dateWithTimeIntervalSince1970:expire] : nil;
 }
 
@@ -115,7 +115,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		
 		NSString *title = info[@"title"] ?: @"";
 		_title = title;
-		_duration = [info[@"length_seconds"] doubleValue];
+		_duration = [(NSString *)info[@"length_seconds"] doubleValue];
 		
 		NSString *smallThumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
 		NSString *mediumThumbnail = info[@"iurlsd"] ?: info[@"iurlhq"] ?: info[@"iurlmq"];
@@ -216,7 +216,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 
 - (BOOL) isEqual:(id)object
 {
-	return [object isKindOfClass:[XCDYouTubeVideo class]] && [((XCDYouTubeVideo *)object).identifier isEqual:self.identifier];
+	return [(NSObject *)object isKindOfClass:[XCDYouTubeVideo class]] && [((XCDYouTubeVideo *)object).identifier isEqual:self.identifier];
 }
 
 - (NSUInteger) hash
