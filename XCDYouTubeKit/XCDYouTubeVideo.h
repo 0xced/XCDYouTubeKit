@@ -73,19 +73,22 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
  *  The duration of the video in seconds.
  */
 @property (nonatomic, readonly) NSTimeInterval duration;
-
 /**
  *  A thumbnail URL for an image of small size, i.e. 120×90. May be nil.
  */
-@property (nonatomic, readonly, nullable) NSURL *smallThumbnailURL;
+@property (nonatomic, readonly, nullable) NSURL *thumbnailURL;
+/**
+ *  A thumbnail URL for an image of small size, i.e. 120×90. May be nil.
+ */
+@property (nonatomic, readonly, nullable) NSURL *smallThumbnailURL DEPRECATED_MSG_ATTRIBUTE("Renamed. Use `thumbnailURL` instead.");
 /**
  *  A thumbnail URL for an image of medium size, i.e. 320×180, 480×360 or 640×480. May be nil.
  */
-@property (nonatomic, readonly, nullable) NSURL *mediumThumbnailURL;
+@property (nonatomic, readonly, nullable) NSURL *mediumThumbnailURL DEPRECATED_MSG_ATTRIBUTE("No longer available. Use `thumbnailURL` instead.");
 /**
  *  A thumbnail URL for an image of large size, i.e. 1'280×720 or 1'980×1'080. May be nil.
  */
-@property (nonatomic, readonly, nullable) NSURL *largeThumbnailURL;
+@property (nonatomic, readonly, nullable) NSURL *largeThumbnailURL DEPRECATED_MSG_ATTRIBUTE("No longer available. Use `thumbnailURL` instead.");
 
 /**
  *  A dictionary of video stream URLs.

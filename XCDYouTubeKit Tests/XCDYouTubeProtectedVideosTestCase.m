@@ -19,8 +19,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -40,8 +39,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -61,8 +59,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -82,8 +79,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-	
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -103,8 +99,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -124,8 +119,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
@@ -167,8 +161,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
