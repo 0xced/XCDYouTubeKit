@@ -19,9 +19,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -41,9 +39,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -63,9 +59,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -85,8 +79,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -106,9 +99,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -128,12 +119,10 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
-		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityHD720)]];
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
 		request.HTTPMethod = @"HEAD";
 		NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
 		{
@@ -172,9 +161,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.smallThumbnailURL);
-		XCTAssertNotNil(video.mediumThumbnailURL);
-		XCTAssertNotNil(video.largeThumbnailURL);
+		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -197,13 +184,13 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from WMG. It is restricted from playback on certain sites. Watch on YouTube");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
-// With Charles: Tools -> Black List... -> Add `s.ytimg.com` to simulate connection error on the player script
+// With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:yts/* to simulate connection error on the player script
 - (void) testProtectedVideoWithPlayerScriptConnectionError_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -212,13 +199,13 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from WMG. It is restricted from playback on certain sites. Watch on YouTube");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
-// Edit testProtectedVideoWithoutSignatureFunction.json by replacing `\"signature\",` with `\"signaturX\",`
+// Edit testProtectedVideoWithoutSignatureFunction.json by replacing `"akamaized",` with `"Xakamaized",`
 - (void) testProtectedVideoWithoutSignatureFunction_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -227,7 +214,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from WMG. It is restricted from playback on certain sites. Watch on YouTube");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
@@ -242,7 +229,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from WMG. It is restricted from playback on certain sites. Watch on YouTube");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
@@ -257,7 +244,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from WMG. It is restricted from playback on certain sites. Watch on YouTube");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
@@ -272,7 +259,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video contains content from WMG. It is restricted from playback on certain sites. Watch on YouTube");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
