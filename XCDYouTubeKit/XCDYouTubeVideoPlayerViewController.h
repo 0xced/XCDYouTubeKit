@@ -44,6 +44,7 @@ MP_EXTERN NSString *const XCDYouTubeVideoUserInfoKey;
  */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+DEPRECATED_MSG_ATTRIBUTE("Use `AVFoundation` or `AVKit` APIs instead.")
 @interface XCDYouTubeVideoPlayerViewController : MPMoviePlayerViewController
 #pragma clang diagnostic pop
 
