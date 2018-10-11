@@ -5,6 +5,7 @@ jobs:
       xcode: '10.0.0'
     steps:
     - checkout
+    - run: gem install fastlane --no-rdoc --no-ri --no-document
     - run: make test_macOS
     - run: make test_tvOS
     - run: make test_iOS
