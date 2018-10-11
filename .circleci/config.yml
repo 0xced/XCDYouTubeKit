@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: /tmp
     macos:
       xcode: '9.0'
     steps:
