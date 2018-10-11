@@ -10,6 +10,7 @@ jobs:
       GEM_PATH: .gem
     steps:
     - checkout
+    - run: xcrun simctl list
     - run: gem install fastlane --no-rdoc --no-ri --no-document
     - run: echo 'export PATH=$GEM_PATH:$PATH' >> $BASH_ENV
     - run: make test_macOS
