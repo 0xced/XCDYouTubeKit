@@ -3,9 +3,13 @@ jobs:
   build:
     macos:
       xcode: '10.0.0'
+    environment:
+      GEM_HOME: .gem
+      GEM_PATH: .gem
     steps:
     - checkout
     - run: gem install fastlane --no-rdoc --no-ri --no-document
+    - run: echo 'export PATH=$GEM_PATH:$PATH' >> $BASH_ENV
     - run: make test_macOS
     - run: make test_tvOS
     - run: make test_iOS
