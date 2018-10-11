@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    working_directory: /tmp
+    macos:
+      xcode: '9.0'
+    steps:
+    - checkout
+    - run: sudo gem install scan --no-rdoc --no-ri --no-document --quiet
+    - run: make test_macOS
+    - run: make test_tvOS
+    - run: make test_iOS
+    - run: make test_iOS_9
+    - run: make test_macOS_report
+    - run: make test_tvOS_report
+    - run: make test_iOS_report
+    - store_test_results:
+        path: test_reports
