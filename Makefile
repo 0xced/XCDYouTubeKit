@@ -37,7 +37,7 @@ test_iOS_9: check_scan
 	fastlane scan --device "iPhone 5s (9.0)"
 
 check_scan:
-	@fastlane scan --version > /dev/null 2>&1 || (printf "❌  Please install \e[1;30mscan\e[0m (https://github.com/fastlane/fastlane/tree/master/scan) to run unit tests: $$ [sudo] \e[1;30mgem install scan\e[0m\n" && false)
+	@fastlane scan --version > /dev/null 2>&1 || (printf "❌  Please install \e[1;30mfastlane scan\e[0m (https://docs.fastlane.tools/actions/scan/) to run unit tests: $$ [sudo] \e[1;30mgem install fastlane\e[0m\n" && false)
 
 check_slather:
 	@slather version > /dev/null 2>&1 || printf "⚠️  Please install \e[1;30mslather\e[0m (https://github.com/SlatherOrg/slather) to get a code coverage report: $$ [sudo] \e[1;30mgem install slather\e[0m\n"
