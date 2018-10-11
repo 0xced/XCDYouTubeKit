@@ -22,7 +22,7 @@ test_iOS_report: check_scan
 	fastlane scan --output_directory "${CIRCLE_TEST_REPORTS}" --output_types junit --output_files $@.xml --device "iPhone 5s" --code_coverage --xcargs "OBJROOT=build GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES"
 
 test_tvOS_report: check_scan
-	fastlane scan --output_directory "${CIRCLE_TEST_REPORTS}" --output_types junit --output_files $@.xml --device "Apple TV 1080p"
+	fastlane scan --output_directory "${CIRCLE_TEST_REPORTS}" --output_types junit --output_files $@.xml --device "Apple TV"
 
 test_macOS: check_scan
 	fastlane scan --configuration Release                           --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep MACOSX_DEPLOYMENT_TARGET=`xcrun --sdk "macosx" --show-sdk-version`"
@@ -31,7 +31,7 @@ test_iOS: check_scan
 	fastlane scan --configuration Release --device "iPhone 5s"      --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep IPHONEOS_DEPLOYMENT_TARGET=`xcrun --sdk "iphonesimulator" --show-sdk-version`"
 
 test_tvOS: check_scan
-	fastlane scan --configuration Release --device "Apple TV 1080p" --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep TVOS_DEPLOYMENT_TARGET=`xcrun --sdk "appletvsimulator" --show-sdk-version`"
+	fastlane scan --configuration Release --device "Apple TV" --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep TVOS_DEPLOYMENT_TARGET=`xcrun --sdk "appletvsimulator" --show-sdk-version`"
 
 test_iOS_9: check_scan
 	fastlane scan --device "iPhone 5s (9.0)"
