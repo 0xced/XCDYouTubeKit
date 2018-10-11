@@ -33,8 +33,8 @@ test_iOS: check_scan
 test_tvOS: check_scan
 	fastlane scan --configuration Release --device "Apple TV" --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep TVOS_DEPLOYMENT_TARGET=`xcrun --sdk "appletvsimulator" --show-sdk-version`"
 
-test_iOS_9: check_scan
-	fastlane scan --device "iPhone 5s (9.0)"
+test_iOS_10: check_scan
+	fastlane scan --device "iPhone 5s (10.3)"
 
 check_scan:
 	@fastlane scan --version > /dev/null 2>&1 || (printf "❌  Please install \e[1;30mfastlane scan\e[0m (https://docs.fastlane.tools/actions/scan/) to run unit tests: $$ [sudo] \e[1;30mgem install fastlane\e[0m\n" && false)

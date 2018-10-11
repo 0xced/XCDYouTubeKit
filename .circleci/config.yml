@@ -17,7 +17,7 @@ jobs:
     - run: make test_macOS
     - run: make test_tvOS
     - run: make test_iOS
-    - run: make test_iOS_9
+    - run: make test_iOS_10
     - run: make test_macOS_report
     - run: make test_tvOS_report
     - run: make test_iOS_report
