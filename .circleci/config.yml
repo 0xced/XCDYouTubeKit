@@ -26,4 +26,4 @@ jobs:
     - store_test_results:
         path: test_reports
     - store_artifacts:
-        path: $HOME/Library/Developer/Xcode/DerivedData/XCDYouTubeKit-*/Logs/Test
+        path: /Users/distiller/Library/Developer/Xcode/DerivedData/XCDYouTubeKit-*/Logs/Test
