@@ -7,6 +7,7 @@ jobs:
       LANG: en_US.UTF-8
       LC_ALL: en_US.UTF-8
       FASTLANE_DISABLE_ANIMATION: 1
+      FASTLANE_SKIP_UPDATE_CHECK: 1
       SKIP_SLOW_FASTLANE_WARNING: 1
     steps:
     - checkout
