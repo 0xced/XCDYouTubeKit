@@ -25,3 +25,5 @@ jobs:
     - run: make test_iOS_report
     - store_test_results:
         path: test_reports
+    - store_artifacts:
+        path: $HOME/Library/Developer/Xcode/DerivedData/XCDYouTubeKit-*/Logs/Test
