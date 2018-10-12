@@ -8,14 +8,10 @@ jobs:
       LC_ALL: en_US.UTF-8
       FASTLANE_DISABLE_ANIMATION: 1
       SKIP_SLOW_FASTLANE_WARNING: 1
-      GEM_HOME: .gem
-      GEM_PATH: .gem
     steps:
     - checkout
     - run: xcodebuild -version -sdk
     - run: xcrun simctl list
-    - run: gem install fastlane --no-rdoc --no-ri --no-document
-    - run: echo 'export PATH=$GEM_PATH:$PATH' >> $BASH_ENV
     - run: make test_macOS
     - run: make test_tvOS
     - run: make test_iOS
