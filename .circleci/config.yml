@@ -23,3 +23,6 @@ jobs:
     - store_artifacts:
         path: /Users/distiller/Library/Developer/Xcode/DerivedData/XCDYouTubeKit-byvnmvumvdztmngymdsxlhlsgpgd/Logs/Test
         destination: xcresults
+    - store_artifacts:
+        path: artifacts
+        destination: buildlogs
