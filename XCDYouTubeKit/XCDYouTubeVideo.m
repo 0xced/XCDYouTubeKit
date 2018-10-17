@@ -5,6 +5,7 @@
 #import "XCDYouTubeVideo+Private.h"
 
 #import "XCDYouTubeError.h"
+#import "XCDYouTubeLogger+Private.h"
 
 #import <objc/runtime.h>
 
@@ -12,6 +13,23 @@ NSString *const XCDYouTubeVideoErrorDomain = @"XCDYouTubeVideoErrorDomain";
 NSString *const XCDYouTubeAllowedCountriesUserInfoKey = @"AllowedCountries";
 NSString *const XCDYouTubeNoStreamVideoUserInfoKey = @"NoStreamVideo";
 NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming = @"HTTPLiveStreaming";
+
+NSArray <NSDictionary *> *XCDCaptionArrayWithString(NSString *string)
+{
+	NSError *error = nil;
+	NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+	if (!data) { return nil; }
+	NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+	
+	if (error) { return nil; }
+	
+	NSDictionary *captions = JSON[@"captions"];
+	NSDictionary *playerCaptionsTracklistRenderer = captions[@"playerCaptionsTracklistRenderer"];
+	NSArray *captionTracks = playerCaptionsTracklistRenderer[@"captionTracks"];
+	
+	if (captionTracks.count == 0 || captionTracks == nil)  { return nil; }
+	return captionTracks;
+}
 
 NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 {
@@ -23,8 +41,14 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 		if (pair.count == 2)
 		{
 			NSString *key = pair[0];
-			NSString *value = [pair[1] stringByRemovingPercentEncoding];
+			NSString *value = [(NSString *)pair[1] stringByRemovingPercentEncoding];
 			value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+			if (dictionary[key] && ![(NSObject *)dictionary[key] isEqual:value])
+			{
+				XCDYouTubeLogWarning(@"Using XCDDictionaryWithQueryString is inappropriate because the query string has multiple values for the key '%@'\n"
+				                     @"Query: %@\n"
+				                     @"Discarded value: %@", key, string, dictionary[key]);
+			}
 			dictionary[key] = value;
 		}
 	}
@@ -34,7 +58,7 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary)
 {
 	NSArray *keys = [dictionary.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-		return [evaluatedObject isKindOfClass:[NSString class]];
+		return [(NSObject *)evaluatedObject isKindOfClass:[NSString class]];
 	}]];
 	
 	NSMutableString *query = [NSMutableString new];
@@ -43,7 +67,7 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary)
 		if (query.length > 0)
 			[query appendString:@"&"];
 		
-		[query appendFormat:@"%@=%@", key, [dictionary[key] description]];
+		[query appendFormat:@"%@=%@", key, [(NSObject *)dictionary[key] description]];
 	}
 	
 	return [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -52,7 +76,7 @@ NSString *XCDQueryStringWithDictionary(NSDictionary *dictionary)
 static NSString *SortedDictionaryDescription(NSDictionary *dictionary)
 {
 	NSArray *sortedKeys = [dictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-		return [[obj1 description] compare:[obj2 description] options:NSNumericSearch];
+		return [[(NSObject *)obj1 description] compare:[(NSObject *) obj2 description] options:NSNumericSearch];
 	}];
 	
 	NSMutableString *description = [[NSMutableString alloc] initWithString:@"{\n"];
@@ -65,12 +89,26 @@ static NSString *SortedDictionaryDescription(NSDictionary *dictionary)
 	return [description copy];
 }
 
+static NSURL * URLBySettingParameter(NSURL *URL, NSString *key, NSString *percentEncodedValue)
+{
+	NSString *pattern = [NSString stringWithFormat:@"((?:^|&)%@=)[^&]*", key];
+	NSString *template = [NSString stringWithFormat:@"$1%@", percentEncodedValue];
+	NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+	NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:pattern options:(NSRegularExpressionOptions)0 error:NULL];
+	NSMutableString *percentEncodedQuery = [components.percentEncodedQuery ?: @"" mutableCopy];
+	NSUInteger numberOfMatches = [regularExpression replaceMatchesInString:percentEncodedQuery options:(NSMatchingOptions)0 range:NSMakeRange(0, percentEncodedQuery.length) withTemplate:template];
+	if (numberOfMatches == 0)
+		[percentEncodedQuery appendFormat:@"%@%@=%@", percentEncodedQuery.length > 0 ? @"&" : @"", key, percentEncodedValue];
+	components.percentEncodedQuery = percentEncodedQuery;
+	return components.URL;
+}
+
 @implementation XCDYouTubeVideo
 
 static NSDate * ExpirationDate(NSURL *streamURL)
 {
 	NSDictionary *query = XCDDictionaryWithQueryString(streamURL.query);
-	NSTimeInterval expire = [query[@"expire"] doubleValue];
+	NSTimeInterval expire = [(NSString *)query[@"expire"] doubleValue];
 	return expire > 0 ? [NSDate dateWithTimeIntervalSince1970:expire] : nil;
 }
 
@@ -82,10 +120,11 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	_identifier = identifier;
 
 	NSString *streamMap = info[@"url_encoded_fmt_stream_map"];
+	NSString *captionsMap = info[@"player_response"];
 	NSString *httpLiveStream = info[@"hlsvp"];
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
 	
-	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: response.URL } mutableCopy] : [NSMutableDictionary new];
+	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: (id)response.URL } mutableCopy] : [NSMutableDictionary new];
 	
 	if (streamMap.length > 0 || httpLiveStream.length > 0)
 	{
@@ -94,20 +133,58 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		
 		NSString *title = info[@"title"] ?: @"";
 		_title = title;
-		_duration = [info[@"length_seconds"] doubleValue];
+		_duration = [(NSString *)info[@"length_seconds"] doubleValue];
 		
-		NSString *smallThumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
-		NSString *mediumThumbnail = info[@"iurlsd"] ?: info[@"iurlhq"] ?: info[@"iurlmq"];
-		NSString *largeThumbnail = info[@"iurlmaxres"];
-		_smallThumbnailURL = smallThumbnail ? [NSURL URLWithString:smallThumbnail] : nil;
-		_mediumThumbnailURL = mediumThumbnail ? [NSURL URLWithString:mediumThumbnail] : nil;
-		_largeThumbnailURL = largeThumbnail ? [NSURL URLWithString:largeThumbnail] : nil;
+		NSString *thumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
+		_thumbnailURL = thumbnail ? [NSURL URLWithString:thumbnail] : nil;
 		
 		NSMutableDictionary *streamURLs = [NSMutableDictionary new];
 		
 		if (httpLiveStream)
 			streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] = [NSURL URLWithString:httpLiveStream];
 		
+		NSMutableDictionary *captionURLs = [NSMutableDictionary new];
+		NSMutableDictionary *autoGeneratedCaptionURLs = [NSMutableDictionary new];
+		
+		for (NSDictionary *caption in XCDCaptionArrayWithString(captionsMap))
+		{
+			NSString *languageCode = caption[@"languageCode"];
+			NSString *captionVersion = caption[@"vssId"];
+			NSString *captionURLString = caption[@"baseUrl"];
+			if (!captionURLString)
+			{
+				continue;
+			}
+			NSURL *captionURL = [NSURL URLWithString:captionURLString];
+			if (captionURL && languageCode)
+				
+			{
+				if ([languageCode isEqualToString:@"und"])
+				{
+					//Skip because this is a special code than is used to indicate that the lanauage code is undetermined.
+					continue;
+				}
+				if([captionVersion hasPrefix:@"a"])
+				{
+					//Indicates the caption was auto generated
+					autoGeneratedCaptionURLs[languageCode] = captionURL;
+				} else
+				{
+					captionURLs[languageCode] = captionURL;
+				}
+			}
+		}
+		
+		if (captionURLs.count > 0)
+		{
+			_captionURLs = [captionURLs copy];
+		}
+		
+		if (autoGeneratedCaptionURLs.count > 0)
+		{
+			_autoGeneratedCaptionURLs = [autoGeneratedCaptionURLs copy];
+		}
+			
 		for (NSString *streamQuery in streamQueries)
 		{
 			NSDictionary *stream = XCDDictionaryWithQueryString(streamQuery);
@@ -136,10 +213,10 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 				if (signature)
 				{
 					NSString *escapedSignature = [signature stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-					streamURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&signature=%@", urlString, escapedSignature]];
+					streamURL = URLBySettingParameter(streamURL, @"signature", escapedSignature);
 				}
 				
-				streamURLs[@(itag.integerValue)] = streamURL;
+				streamURLs[@(itag.integerValue)] = URLBySettingParameter(streamURL, @"ratebypass", @"yes");
 			}
 		}
 		_streamURLs = [streamURLs copy];
@@ -191,11 +268,25 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	free(properties);
 }
 
+- (void) mergeDashManifestStreamURLs:(NSDictionary *)dashManifestStreamURLs {
+	
+	NSMutableDictionary *approvedStreams = [NSMutableDictionary new];
+	
+	for (NSString *itag in dashManifestStreamURLs) {
+		if (self.streamURLs[itag] == nil)
+			approvedStreams[itag] = dashManifestStreamURLs[itag];
+	}
+	
+	NSMutableDictionary *newStreams = [NSMutableDictionary dictionaryWithDictionary:self.streamURLs];
+	[newStreams addEntriesFromDictionary:approvedStreams];
+	[self setValue:newStreams.copy forKeyPath:NSStringFromSelector(@selector(streamURLs))];
+}
+
 #pragma mark - NSObject
 
 - (BOOL) isEqual:(id)object
 {
-	return [object isKindOfClass:[XCDYouTubeVideo class]] && [((XCDYouTubeVideo *)object).identifier isEqual:self.identifier];
+	return [(NSObject *)object isKindOfClass:[XCDYouTubeVideo class]] && [((XCDYouTubeVideo *)object).identifier isEqual:self.identifier];
 }
 
 - (NSUInteger) hash
@@ -213,7 +304,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	NSDateComponentsFormatter *dateComponentsFormatter = [NSDateComponentsFormatter new];
 	dateComponentsFormatter.unitsStyle = NSDateComponentsFormatterUnitsStyleAbbreviated;
 	NSString *duration = [dateComponentsFormatter stringFromTimeInterval:self.duration] ?: [NSString stringWithFormat:@"%@ seconds", @(self.duration)];
-	NSString *thumbnailDescription = [NSString stringWithFormat:@"Small  thumbnail: %@\nMedium thumbnail: %@\nLarge  thumbnail: %@", self.smallThumbnailURL, self.mediumThumbnailURL, self.largeThumbnailURL];
+	NSString *thumbnailDescription = [NSString stringWithFormat:@"Thumbnail: %@", self.thumbnailURL];
 	NSString *streamsDescription = SortedDictionaryDescription(self.streamURLs);
 	return [NSString stringWithFormat:@"<%@: %p> %@\nDuration: %@\nExpiration date: %@\n%@\nStreams: %@", self.class, self, self.description, duration, self.expirationDate, thumbnailDescription, streamsDescription];
 }

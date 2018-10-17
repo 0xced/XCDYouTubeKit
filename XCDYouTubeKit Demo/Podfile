@@ -1,10 +1,10 @@
-xcodeproj 'XCDYouTubeKit Demo.xcodeproj'
+project 'XCDYouTubeKit Demo.xcodeproj'
 workspace '../XCDYouTubeKit Demo.xcworkspace'
 
 inhibit_all_warnings!
 
 def import_pods
-  pod 'XCDLumberjackNSLogger', '~> 1.0.0'
+  pod 'XCDLumberjackNSLogger', '~> 1.0'
 end
 
 target 'XCDYouTubeKit iOS Demo' do
@@ -18,7 +18,6 @@ target 'XCDYouTubeKit OS X Demo' do
 end
 
 target 'XCDYouTubeKit tvOS Demo' do
-  plugin 'cocoapods-expert-difficulty'
   platform :tvos, '9.0'
-  pod 'Google-API-Client/YouTube', '~> 1.0.422'
+  pod 'GoogleAPIClient/YouTube', '~> 1.0'
 end

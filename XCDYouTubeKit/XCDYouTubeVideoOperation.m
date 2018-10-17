@@ -9,6 +9,7 @@
 #import "XCDYouTubeVideo+Private.h"
 #import "XCDYouTubeError.h"
 #import "XCDYouTubeVideoWebpage.h"
+#import "XCDYouTubeDashManifestXML.h"
 #import "XCDYouTubePlayerScript.h"
 #import "XCDYouTubeLogger+Private.h"
 
@@ -17,6 +18,8 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	XCDYouTubeRequestTypeWatchPage,
 	XCDYouTubeRequestTypeEmbedPage,
 	XCDYouTubeRequestTypeJavaScriptPlayer,
+	XCDYouTubeRequestTypeDashManifest,
+	
 };
 
 @interface XCDYouTubeVideoOperation ()
@@ -26,6 +29,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, assign) NSInteger requestCount;
 @property (atomic, assign) XCDYouTubeRequestType requestType;
 @property (atomic, strong) NSMutableArray *eventLabels;
+@property (atomic, strong) XCDYouTubeVideo *lastSuccessfulVideo;
 @property (atomic, readonly) NSURLSession *session;
 @property (atomic, strong) NSURLSessionDataTask *dataTask;
 
@@ -112,7 +116,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 
 - (void) startWatchPageRequest
 {
-	NSDictionary *query = @{ @"v": self.videoIdentifier, @"hl": self.languageIdentifier, @"has_verified": @YES };
+	NSDictionary *query = @{ @"v": self.videoIdentifier, @"hl": self.languageIdentifier, @"has_verified": @YES, @"bpctr": @9999999999 };
 	NSString *queryString = XCDQueryStringWithDictionary(query);
 	NSURL *webpageURL = [NSURL URLWithString:[@"https://www.youtube.com/watch?" stringByAppendingString:queryString]];
 	[self startRequestWithURL:webpageURL type:XCDYouTubeRequestTypeWatchPage];
@@ -123,8 +127,8 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	if (self.isCancelled)
 		return;
 	
-	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo
-	if (++self.requestCount > 6)
+	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo + 1xDashManifest
+	if (++self.requestCount > 7)
 	{
 		// This condition should never happen but the request flow is quite complex so better abort here than go into an infinite loop of requests
 		[self finishWithError];
@@ -142,7 +146,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 			return;
 		
 		if (error)
-			[self handleConnectionError:error];
+			[self handleConnectionError:error requestType:requestType];
 		else
 			[self handleConnectionSuccessWithData:data response:response requestType:requestType];
 	}];
@@ -176,11 +180,21 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		case XCDYouTubeRequestTypeJavaScriptPlayer:
 			[self handleJavaScriptPlayerWithScript:responseString];
 			break;
+		case XCDYouTubeRequestTypeDashManifest:
+			[self handleDashManifestWithXMLString:responseString response:response];
+			break;
 	}
 }
 
-- (void) handleConnectionError:(NSError *)connectionError
+- (void) handleConnectionError:(NSError *)connectionError requestType:(XCDYouTubeRequestType)requestType
 {
+	//Shoud not return a connection error if was as a result of requesting the Dash Manifiest (we have a sucessfully created `XCDYouTubeVideo` and should just finish the operation as if were a 'sucessful' one
+	if (requestType == XCDYouTubeRequestTypeDashManifest)
+	{
+		[self finishWithVideo:self.lastSuccessfulVideo];
+		return;
+	}
+	
 	NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: connectionError.localizedDescription,
 	                            NSUnderlyingErrorKey: connectionError };
 	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
@@ -198,6 +212,14 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:response error:&error];
 	if (video)
 	{
+		self.lastSuccessfulVideo = video;
+		
+		if (info[@"dashmpd"])
+		{
+			NSURL *dashmpdURL = [NSURL URLWithString:(NSString *_Nonnull)info[@"dashmpd"]];
+			[self startRequestWithURL:dashmpdURL type:XCDYouTubeRequestTypeDashManifest];
+			return;
+		}
 		[video mergeVideo:self.noStreamVideo];
 		[self finishWithVideo:video];
 	}
@@ -269,7 +291,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	if (self.webpage.isAgeRestricted)
 	{
 		NSString *eurl = [@"https://youtube.googleapis.com/v/" stringByAppendingString:self.videoIdentifier];
-		NSString *sts = [self.embedWebpage.playerConfiguration[@"sts"] description] ?: [self.webpage.playerConfiguration[@"sts"] description] ?: @"";
+		NSString *sts = [(NSObject *)self.embedWebpage.playerConfiguration[@"sts"] description] ?: [(NSObject *)self.webpage.playerConfiguration[@"sts"] description] ?: @"";
 		NSDictionary *query = @{ @"video_id": self.videoIdentifier, @"hl": self.languageIdentifier, @"eurl": eurl, @"sts": sts};
 		NSString *queryString = XCDQueryStringWithDictionary(query);
 		NSURL *videoInfoURL = [NSURL URLWithString:[@"https://www.youtube.com/get_video_info?" stringByAppendingString:queryString]];
@@ -279,6 +301,18 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	{
 		[self handleVideoInfoResponseWithInfo:self.webpage.videoInfo response:nil];
 	}
+}
+
+- (void) handleDashManifestWithXMLString:(NSString *)XMLString response:(NSURLResponse *)response
+{
+	XCDYouTubeLogDebug(@"Handling Dash Manifest response");
+	
+	XCDYouTubeDashManifestXML *dashManifestXML = [[XCDYouTubeDashManifestXML alloc]initWithXMLString:XMLString];
+	NSDictionary *dashhManifestStreamURLs = dashManifestXML.streamURLs;
+	if (dashhManifestStreamURLs)
+		[self.lastSuccessfulVideo mergeDashManifestStreamURLs:dashhManifestStreamURLs];
+	
+	[self finishWithVideo:self.lastSuccessfulVideo];
 }
 
 #pragma mark - Finish Operation

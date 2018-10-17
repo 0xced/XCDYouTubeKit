@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                   = "XCDYouTubeKit"
-  s.version                = "2.5.1"
+  s.version                = "2.6.0"
   s.summary                = "YouTube video player for iOS and OS X."
   s.homepage               = "https://github.com/0xced/XCDYouTubeKit"
   s.screenshot             = "https://raw.github.com/0xced/XCDYouTubeKit/#{s.version}/Screenshots/XCDYouTubeVideoPlayerViewController.png"
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.author                 = { "Cédric Luthi" => "cedric.luthi@gmail.com" }
   s.social_media_url       = "https://twitter.com/0xced"
   s.source                 = { :git => "https://github.com/0xced/XCDYouTubeKit.git", :tag => s.version.to_s }
-  s.ios.deployment_target  = "7.0"
+  s.ios.deployment_target  = "8.0"
   s.osx.deployment_target  = "10.9"
   s.tvos.deployment_target = "9.0"
   s.source_files           = "XCDYouTubeKit"

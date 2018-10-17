@@ -31,7 +31,7 @@
 	if (!_playerConfiguration)
 	{
 		__block NSDictionary *playerConfigurationDictionary;
-		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});|\\(\\s*'PLAYER_CONFIG',\\s*(\\{.*?\\})\\s*\\)" options:NSRegularExpressionCaseInsensitive error:NULL];
+		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});|[\\({]\\s*'PLAYER_CONFIG'[,:]\\s*(\\{.*?\\})\\s*(?:,'|\\))" options:NSRegularExpressionCaseInsensitive error:NULL];
 		[playerConfigRegularExpression enumerateMatchesInString:self.html options:(NSMatchingOptions)0 range:NSMakeRange(0, self.html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
 		{
 			for (NSUInteger i = 1; i < result.numberOfRanges; i++)
@@ -65,8 +65,8 @@
 			NSMutableDictionary *info = [NSMutableDictionary new];
 			[args enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop)
 			{
-				if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])
-					info[key] = [value description];
+				if ([(NSObject *)value isKindOfClass:[NSString class]] || [(NSObject *)value isKindOfClass:[NSNumber class]])
+					info[key] = [(NSObject *)value description];
 			}];
 			_videoInfo = [info copy];
 		}
@@ -84,6 +84,8 @@
 			NSString *javaScriptPlayerURLString = jsAssets;
 			if ([jsAssets hasPrefix:@"//"])
 				javaScriptPlayerURLString = [@"https:" stringByAppendingString:jsAssets];
+			else if ([jsAssets hasPrefix:@"/"])
+				javaScriptPlayerURLString = [@"https://www.youtube.com" stringByAppendingString:jsAssets];
 			
 			_javaScriptPlayerURL = [NSURL URLWithString:javaScriptPlayerURLString];
 		}
