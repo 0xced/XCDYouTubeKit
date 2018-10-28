@@ -19,7 +19,6 @@ jobs:
     - run: make test_macOS_report
     - run: make test_tvOS_report
     - run: make test_iOS_report
-    - run: make test_iOS_10
     - store_test_results:
         path: test_reports
     - store_artifacts:
