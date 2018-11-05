@@ -79,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (id<XCDYouTubeOperation>) getVideoWithIdentifier:(nullable NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo * __nullable video, NSError * __nullable error))completionHandler;
 
+- (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier cookies:(nullable NSArray <NSHTTPCookie *>*)cookies completionHandler:(void (^)(XCDYouTubeVideo * __nullable video, NSError * __nullable error))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END
