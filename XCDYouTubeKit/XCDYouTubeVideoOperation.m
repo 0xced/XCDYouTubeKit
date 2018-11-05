@@ -153,6 +153,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
+	[request setValue:[NSString stringWithFormat:@"https://youtube.com/watch?v=%@", self.videoIdentifier] forHTTPHeaderField:@"Referer"];
 	
 	self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
 	{
