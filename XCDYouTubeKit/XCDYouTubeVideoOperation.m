@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @interface XCDYouTubeVideoOperation ()
 @property (atomic, copy, readonly) NSString *videoIdentifier;
 @property (atomic, copy, readonly) NSString *languageIdentifier;
+@property (atomic, strong, readonly) NSArray <NSHTTPCookie *> *cookies;
 
 @property (atomic, assign) NSInteger requestCount;
 @property (atomic, assign) XCDYouTubeRequestType requestType;
@@ -76,7 +77,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:languageIdentifier:` method instead." userInfo:nil];
 } // LCOV_EXCL_LINE
 
-- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier cookies:(NSArray<NSHTTPCookie *> *)cookies
 {
 	if (!(self = [super init]))
 		return nil; // LCOV_EXCL_LINE
@@ -85,10 +86,18 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	_languageIdentifier = languageIdentifier ?: @"en";
 	
 	_session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-	
+	_cookies = [cookies copy];
+	for (NSHTTPCookie *cookie in _cookies) {
+		[_session.configuration.HTTPCookieStorage setCookie:cookie];
+	}
 	_operationStartSemaphore = dispatch_semaphore_create(0);
 	
 	return self;
+			
+}
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier
+{
+	return [self initWithVideoIdentifier:videoIdentifier languageIdentifier:languageIdentifier cookies:nil];
 }
 
 #pragma mark - Requests
@@ -98,7 +107,11 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	if (self.eventLabels.count == 0)
 	{
 		if (self.requestType == XCDYouTubeRequestTypeWatchPage || self.webpage)
+			if (self.cookies.count != 0) {
+			[self startWatchPageRequest];
+		} else {
 			[self finishWithError];
+		}
 		else
 			[self startWatchPageRequest];
 	}
@@ -128,7 +141,8 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		return;
 	
 	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo + 1xDashManifest
-	if (++self.requestCount > 7)
+	//When user is signed in we may have to do over the request hence the number 14.
+	if (++self.requestCount > 14)
 	{
 		// This condition should never happen but the request flow is quite complex so better abort here than go into an infinite loop of requests
 		[self finishWithError];
@@ -288,7 +302,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
-	if (self.webpage.isAgeRestricted)
+	if (self.webpage.isAgeRestricted && self.cookies.count == 0)
 	{
 		NSString *eurl = [@"https://youtube.googleapis.com/v/" stringByAppendingString:self.videoIdentifier];
 		NSString *sts = [(NSObject *)self.embedWebpage.playerConfiguration[@"sts"] description] ?: [(NSObject *)self.webpage.playerConfiguration[@"sts"] description] ?: @"";

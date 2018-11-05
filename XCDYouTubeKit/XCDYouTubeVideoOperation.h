@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier;
 
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier cookies:(NSArray <NSHTTPCookie *>* __nullable)cookies;
+
 /**
  *  --------------------------------
  *  @name Accessing operation result
