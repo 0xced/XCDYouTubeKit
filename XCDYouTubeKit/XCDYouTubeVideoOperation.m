@@ -107,11 +107,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	if (self.eventLabels.count == 0)
 	{
 		if (self.requestType == XCDYouTubeRequestTypeWatchPage || self.webpage)
-			if (self.cookies.count != 0) {
-			[self startWatchPageRequest];
-		} else {
 			[self finishWithError];
-		}
 		else
 			[self startWatchPageRequest];
 	}
@@ -141,8 +137,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		return;
 	
 	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo + 1xDashManifest
-	//When user is signed in we may have to do over the request hence the number 14.
-	if (++self.requestCount > 14)
+	if (++self.requestCount > 7)
 	{
 		// This condition should never happen but the request flow is quite complex so better abort here than go into an infinite loop of requests
 		[self finishWithError];
