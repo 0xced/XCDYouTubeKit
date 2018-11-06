@@ -179,10 +179,12 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void) testAgeRestrictedVEVOVideo
+// Requires login
+
+- (void) testAgeRestrictedVEVOVideoWithAdultUserCookies_online
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosAdultUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
@@ -196,7 +198,42 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		}];
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	
+	[self waitForExpectationsWithTimeout:30 handler:nil];
+}
+
+- (void) testAgeRestrictedVEVOVideoWithMinorUserCookies_online
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.expirationDate);
+		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		  {
+			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+		  }];
+		 [expectation fulfill];
+	 }];
+	
+	[self waitForExpectationsWithTimeout:30 handler:nil];
+}
+
+- (void)testAgeRestrictedVEVOVideoWithoutCookies
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNotNil(error);
+		 XCTAssertNil(video);
+		 [expectation fulfill];
+	 }];
+	
+	[self waitForExpectationsWithTimeout:30 handler:nil];
 }
 
 // With Charles
