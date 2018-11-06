@@ -62,17 +62,17 @@ AVPlayerViewController *playerViewController = [AVPlayerViewController new];
 
 __weak AVPlayerViewController *weakPlayerViewController = playerViewController;
 [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error) {
-if (video)
-{
-NSDictionary *streamURLs = video.streamURLs;
-NSURL *streamURL = streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?: streamURLs[@(XCDYouTubeVideoQualityHD720)] ?: streamURLs[@(XCDYouTubeVideoQualityMedium360)] ?: streamURLs[@(XCDYouTubeVideoQualitySmall240)];
-weakPlayerViewController.player = [AVPlayer playerWithURL:streamURL];
-[weakPlayerViewController.player play];
-}
-else
-{
-[self dismissViewControllerAnimated:YES completion:nil];
-}
+    if (video)
+    {
+        NSDictionary *streamURLs = video.streamURLs;
+        NSURL *streamURL = streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?: streamURLs[@(XCDYouTubeVideoQualityHD720)] ?: streamURLs[@(XCDYouTubeVideoQualityMedium360)] ?: streamURLs[@(XCDYouTubeVideoQualitySmall240)];
+        weakPlayerViewController.player = [AVPlayer playerWithURL:streamURL];
+        [weakPlayerViewController.player play];
+    }
+    else
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }];
 ```
 
@@ -81,14 +81,14 @@ else
 ```objc
 NSString *videoIdentifier = @"9bZkp7q19f0"; // A 11 characters YouTube video identifier
 [[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
-if (video)
-{
-// Do something with the `video` object
-}
-else
-{
-// Handle error
-}
+	if (video)
+	{
+		// Do something with the `video` object
+	}
+	else
+	{
+		// Handle error
+	}
 }];
 ```
 
