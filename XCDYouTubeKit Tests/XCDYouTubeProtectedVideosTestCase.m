@@ -7,9 +7,35 @@
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
 
 @interface XCDYouTubeProtectedVideosTestCase : XCDYouTubeKitTestCase
+extern NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies(void);
+extern NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosMinorUserCookies(void);
 @end
 
 @implementation XCDYouTubeProtectedVideosTestCase
+
+NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosMinorUserCookies()
+{
+	NSURL *cookieURL = [[NSBundle bundleForClass:[XCDYouTubeProtectedVideosTestCase class]]URLForResource:@"minorUserCookieData" withExtension:nil subdirectory:@"Cookies"];
+	
+	NSCAssert(cookieURL != nil, @"Cookie data could not be found!");
+	NSData *cookieData = [NSData dataWithContentsOfURL:cookieURL];
+	NSCAssert(cookieData != nil, @"Cookie data could not be found!");
+	NSArray <NSHTTPCookie *>*cookies = [NSKeyedUnarchiver unarchiveObjectWithData:cookieData];
+	NSCAssert(cookies.count != 0, @"No cookies found!");
+	return cookies;
+}
+
+NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
+{
+	NSURL *cookieURL = [[NSBundle bundleForClass:[XCDYouTubeProtectedVideosTestCase class]]URLForResource:@"adultUserCookieData" withExtension:nil subdirectory:@"Cookies"];
+	
+	NSCAssert(cookieURL != nil, @"Cookie data could not be found!");
+	NSData *cookieData = [NSData dataWithContentsOfURL:cookieURL];
+	NSCAssert(cookieData != nil, @"Cookie data could not be found!");
+	NSArray <NSHTTPCookie *>*cookies = [NSKeyedUnarchiver unarchiveObjectWithData:cookieData];
+	NSCAssert(cookies.count != 0, @"No cookies found!");
+	return cookies;
+}
 
 - (void) testAgeRestrictedVideo
 {
