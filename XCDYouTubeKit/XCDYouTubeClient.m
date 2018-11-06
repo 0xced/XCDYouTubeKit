@@ -77,7 +77,7 @@
 }
 - (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo * __nullable video, NSError * __nullable error))completionHandler
 {
-	return [self getVideoWithIdentifier:videoIdentifier completionHandler:completionHandler];
+	return [self getVideoWithIdentifier:videoIdentifier cookies:nil completionHandler:completionHandler];
 }
 
 @end
