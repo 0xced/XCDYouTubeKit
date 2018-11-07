@@ -72,7 +72,8 @@
     NSArray<NSString *>*patterns = @[@"\\.sig\\|\\|([a-zA-Z0-9$]+)\\(",
                                      @"[\"']signature[\"']\\s*,\\s*([^\\(]+)",
                                      @"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*c\\s*&&d.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)",
-                                     @"\\bcs*&&\\s*d\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\C"
+                                     @"\\bcs*&&\\s*d\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\C",
+				     @"\\bc\\s*&&\\s*d\\.set\\([^,]+\\s*,\\s*\\([^)]*\\)\\s*\\(\\s*([a-zA-Z0-9$]+)\\("
                                      ];
 	
     NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];
