@@ -17,6 +17,7 @@
 @end
 
 static NSString *const offlineSuffix = @"_offline";
+static NSString *const onlineSuffix = @"_online";
 
 @implementation XCDYouTubeKitTestCase
 
@@ -68,7 +69,7 @@ static NSString *const offlineSuffix = @"_offline";
 	}
 	else
 	{
-		if (onlineTests)
+		if (onlineTests || [testName hasSuffix:onlineSuffix])
 			return;
 		
 		self.cassetteURL = [[NSBundle bundleForClass:self.class] URLForResource:testName withExtension:@"json" subdirectory:[@"Cassettes" stringByAppendingPathComponent:NSStringFromClass(self.class)]];
