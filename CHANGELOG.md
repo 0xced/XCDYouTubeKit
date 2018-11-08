@@ -1,3 +1,14 @@
+#### Version 2.7.0
+
+* Add the ability assign cookies via `-[XCDYouTubeClient getVideoWithIdentifier:cookies:completionHandler:]` & `initWithVideoIdentifier:cookies:languageIdentifier:`
+* Add the ability to fetch videos allowed to be watched on youtube only (#315, #309)
+* Deprecated `XCDYouTubeVideoPlayerViewController` (#157)
+* Fixed internal JavaScript exception (#375, #397)
+
+#### Version 2.6.1
+
+* Adaptation to YouTube API change. (#406)
+
 #### Version 2.6.0
 
 * Adaptation to YouTube API change. (#383, #388, #385, #382)
