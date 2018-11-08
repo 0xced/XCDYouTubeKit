@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier;
 
-- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier cookies:(NSArray <NSHTTPCookie *>* __nullable)cookies;
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier cookies:(nullable NSArray <NSHTTPCookie *>*)cookies NS_DESIGNATED_INITIALIZER;
 
 /**
  *  --------------------------------
