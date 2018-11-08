@@ -38,6 +38,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier;
 
+
+/**
+ Initializes a video operation with the specified video identifier and language identifier and cookies.
+
+ @param videoIdentifier  A 11 characters YouTube video identifier.
+ @param languageIdentifier An [ISO 639-1 two-letter language code](http://www.loc.gov/standards/iso639-2/php/code_list.php) used for error localization. If you pass a nil language identifier then English (`en`) is used.
+ @param cookies An array of `NSHTTPCookie` objects, can be nil. These cookies can be used for certain videos that require a login.
+ 
+ @return An initialized `XCDYouTubeVideoOperation` object.
+ */
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier cookies:(nullable NSArray <NSHTTPCookie *>*)cookies NS_DESIGNATED_INITIALIZER;
+
 /**
  *  --------------------------------
  *  @name Accessing operation result

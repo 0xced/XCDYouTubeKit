@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @interface XCDYouTubeVideoOperation ()
 @property (atomic, copy, readonly) NSString *videoIdentifier;
 @property (atomic, copy, readonly) NSString *languageIdentifier;
+@property (atomic, strong, readonly) NSArray <NSHTTPCookie *> *cookies;
 
 @property (atomic, assign) NSInteger requestCount;
 @property (atomic, assign) XCDYouTubeRequestType requestType;
@@ -71,12 +72,15 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	}
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (instancetype) init
 {
-	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:languageIdentifier:` method instead." userInfo:nil];
+	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:cookies:languageIdentifier:` method instead." userInfo:nil];
 } // LCOV_EXCL_LINE
+#pragma clang diagnostic pop
 
-- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier cookies:(NSArray<NSHTTPCookie *> *)cookies
 {
 	if (!(self = [super init]))
 		return nil; // LCOV_EXCL_LINE
@@ -85,10 +89,18 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	_languageIdentifier = languageIdentifier ?: @"en";
 	
 	_session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-	
+	_cookies = [cookies copy];
+	for (NSHTTPCookie *cookie in _cookies) {
+		[_session.configuration.HTTPCookieStorage setCookie:cookie];
+	}
 	_operationStartSemaphore = dispatch_semaphore_create(0);
 	
 	return self;
+}
+
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier
+{
+	return [self initWithVideoIdentifier:videoIdentifier languageIdentifier:languageIdentifier cookies:nil];
 }
 
 #pragma mark - Requests
@@ -139,6 +151,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
 	[request setValue:self.languageIdentifier forHTTPHeaderField:@"Accept-Language"];
+	[request setValue:[NSString stringWithFormat:@"https://youtube.com/watch?v=%@", self.videoIdentifier] forHTTPHeaderField:@"Referer"];
 	
 	self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
 	{
@@ -288,7 +301,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
 	
-	if (self.webpage.isAgeRestricted)
+	if (self.webpage.isAgeRestricted && self.cookies.count == 0)
 	{
 		NSString *eurl = [@"https://youtube.googleapis.com/v/" stringByAppendingString:self.videoIdentifier];
 		NSString *sts = [(NSObject *)self.embedWebpage.playerConfiguration[@"sts"] description] ?: [(NSObject *)self.webpage.playerConfiguration[@"sts"] description] ?: @"";

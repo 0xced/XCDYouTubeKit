@@ -44,7 +44,9 @@
 		_context[@"window"][propertyName] = value;
 	}
 	
+	NSString *matchMediaJsFunction = @"var matchMediaWindow=this;matchMediaWindow.matchMedia=function(a){return false;};";
 	NSString *script = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	script=[matchMediaJsFunction stringByAppendingString:(script)];
 	[_context evaluateScript:script];
 	
 	NSRegularExpression *anonymousFunctionRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"\\(function\\(([^)]*)\\)\\{(.*)\\}\\)\\(([^)]*)\\)" options:NSRegularExpressionDotMatchesLineSeparators error:NULL];
