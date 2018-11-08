@@ -72,10 +72,13 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	}
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (instancetype) init
 {
-	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:languageIdentifier:` method instead." userInfo:nil];
+	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideoIdentifier:cookies:languageIdentifier:` method instead." userInfo:nil];
 } // LCOV_EXCL_LINE
+#pragma clang diagnostic pop
 
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier cookies:(NSArray<NSHTTPCookie *> *)cookies
 {
