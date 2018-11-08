@@ -37,6 +37,111 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	return cookies;
 }
 
+- (void) testAgeRestrictedVideoThatRequiresCookiesWithAdultUserCookies_online
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosAdultUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.expirationDate);
+		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		  {
+			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+		  }];
+		 [expectation fulfill];
+	 }];
+	
+	[self waitForExpectationsWithTimeout:30 handler:nil];
+}
+
+- (void) testAgeRestrictedVideoThatRequiresCookiesWithAdultUserCookiesIsPlayable_online
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosAdultUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.expirationDate);
+		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
+		 request.HTTPMethod = @"HEAD";
+		 NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		 {
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		 
+		[dataTask resume];
+	 }];
+	
+	[self waitForExpectationsWithTimeout:30 handler:nil];
+}
+
+- (void) testAgeRestrictedVideoThatRequiresCookiesWithMinorUserCookies_online
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.expirationDate);
+		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		  {
+			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+		  }];
+		 [expectation fulfill];
+	 }];
+	
+	[self waitForExpectationsWithTimeout:30 handler:nil];
+}
+
+- (void) testAgeRestrictedVideoThatRequiresCookiesWithMinortUserCookiesIsPlayable_online
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.expirationDate);
+		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
+		 request.HTTPMethod = @"HEAD";
+		 NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		 {
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		 
+		[dataTask resume];
+	 }];
+	
+	[self waitForExpectationsWithTimeout:30 handler:nil];
+}
+
+- (void) testAgeRestrictedVideoThatRequiresCookiesWithoutCookies
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNotNil(error);
+		 XCTAssertNil(video);
+		 [expectation fulfill];
+	 }];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testAgeRestrictedVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -179,8 +284,6 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-// Requires login
-
 - (void) testAgeRestrictedVEVOVideoWithAdultUserCookies_online
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -198,6 +301,31 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		}];
 		[expectation fulfill];
 	}];
+	
+	[self waitForExpectationsWithTimeout:30 handler:nil];
+}
+
+- (void) testAgeRestrictedVEVOVideoWithAdultUserCookiesIsPlayable_online
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosAdultUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.expirationDate);
+		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
+		 request.HTTPMethod = @"HEAD";
+		 NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		 {
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		 
+		[dataTask resume];
+	 }];
 	
 	[self waitForExpectationsWithTimeout:30 handler:nil];
 }
@@ -223,6 +351,31 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	[self waitForExpectationsWithTimeout:30 handler:nil];
 }
 
+- (void) testAgeRestrictedVEVOVideoWithMinorUserCookiesIsPlayable_online
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.expirationDate);
+		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
+		 request.HTTPMethod = @"HEAD";
+		 NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		 {
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		 
+		[dataTask resume];
+	 }];
+	
+	[self waitForExpectationsWithTimeout:30 handler:nil];
+}
+
 - (void)testAgeRestrictedVEVOVideoWithoutCookies
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -233,7 +386,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		 [expectation fulfill];
 	 }];
 	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // With Charles
