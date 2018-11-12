@@ -1,3 +1,7 @@
+#### Version 2.7.1
+
+* Fixed Xcode project parsing error (#409, #411)
+
 #### Version 2.7.0
 
 * Add the ability assign cookies via `-[XCDYouTubeClient getVideoWithIdentifier:cookies:completionHandler:]` & `initWithVideoIdentifier:cookies:languageIdentifier:`
