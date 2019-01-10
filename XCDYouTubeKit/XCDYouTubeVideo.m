@@ -14,6 +14,23 @@ NSString *const XCDYouTubeAllowedCountriesUserInfoKey = @"AllowedCountries";
 NSString *const XCDYouTubeNoStreamVideoUserInfoKey = @"NoStreamVideo";
 NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming = @"HTTPLiveStreaming";
 
+
+NSString *XCDHTTPLiveStreamingStringWithString(NSString *string)
+{
+	NSError *error = nil;
+	NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+	if (!data) { return nil; }
+	NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+	
+	if (error) { return nil; }
+	
+	NSDictionary *streamingData = JSON[@"streamingData"];
+	NSString *manifestURL = streamingData[@"hlsManifestUrl"];
+	if (manifestURL.length == 0 || manifestURL == nil)  { return nil; }
+	
+	return manifestURL;
+}
+
 NSArray <NSDictionary *> *XCDCaptionArrayWithString(NSString *string)
 {
 	NSError *error = nil;
@@ -121,7 +138,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 
 	NSString *streamMap = info[@"url_encoded_fmt_stream_map"];
 	NSString *captionsMap = info[@"player_response"];
-	NSString *httpLiveStream = info[@"hlsvp"];
+	NSString *httpLiveStream = info[@"hlsvp"] ?: XCDHTTPLiveStreamingStringWithString(captionsMap);
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
 	
 	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: (id)response.URL } mutableCopy] : [NSMutableDictionary new];
