@@ -26,7 +26,7 @@ NSString *XCDHTTPLiveStreamingStringWithString(NSString *string)
 	
 	NSDictionary *streamingData = JSON[@"streamingData"];
 	NSString *manifestURL = streamingData[@"hlsManifestUrl"];
-	if (manifestURL.length == 0 || manifestURL == nil)  { return nil; }
+	if (manifestURL.length == 0) { return nil; }
 	
 	return manifestURL;
 }
