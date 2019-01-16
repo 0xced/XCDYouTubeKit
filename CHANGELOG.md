@@ -1,3 +1,7 @@
+#### Version 2.7.2
+
+* Adaptation to YouTube API change. (#417)
+
 #### Version 2.7.1
 
 * Fixed Xcode project parsing error (#409, #411)
