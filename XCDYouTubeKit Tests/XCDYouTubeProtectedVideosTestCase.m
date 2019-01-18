@@ -421,7 +421,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
-// Edit testProtectedVideoWithoutSignatureFunction.json by replacing `"akamaized",` with `"Xakamaized",`
+// Edit testProtectedVideoWithoutSignatureFunction.json by replacing `c&&d.set(b,encodeURIComponent(` with `c&&d.Xset(b,encodeURIComponent(`
 - (void) testProtectedVideoWithoutSignatureFunction_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -437,6 +437,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 }
 
 // Edit testProtectedVideoWithBrokenSignatureFunction.json by returning null in the signature function
+//Replace `(function(g){var window` with `(function(g){return void 0!==a};{var window`
 - (void) testProtectedVideoWithBrokenSignatureFunction_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
