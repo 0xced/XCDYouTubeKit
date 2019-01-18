@@ -79,7 +79,7 @@
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         weakSelf.readyState = @(XMLHttpRequestDONE); // TODO
         weakSelf.status = @(httpResponse.statusCode);
-        weakSelf.statusText = [NSString stringWithFormat:@"%ld",httpResponse.statusCode];
+        weakSelf.statusText = [NSString stringWithFormat:@"%@",@(httpResponse.statusCode)];
         weakSelf.responseText = [[NSString alloc] initWithData:receivedData
                                                   encoding:NSUTF8StringEncoding];
 
