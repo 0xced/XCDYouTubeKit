@@ -351,8 +351,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		
 		if (!queryVideo && self.alternativeStreamFlag)
 		{
-			//Should never get called
-			self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:@{NSLocalizedDescriptionKey: @"No stream available."}];
+			//Error
 			[self finishWithError];
 			return;
 		}
