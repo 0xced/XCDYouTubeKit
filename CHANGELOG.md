@@ -1,3 +1,8 @@
+#### Version 2.7.3
+
+* Adaptation to YouTube API change. (#419, #422. #421)
+* Fix JavaScript exception: ReferenceError (#418, #420)
+
 #### Version 2.7.2
 
 * Adaptation to YouTube API change. (#417)
