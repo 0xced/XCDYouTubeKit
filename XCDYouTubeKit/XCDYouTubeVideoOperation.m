@@ -12,6 +12,7 @@
 #import "XCDYouTubeDashManifestXML.h"
 #import "XCDYouTubePlayerScript.h"
 #import "XCDYouTubeLogger+Private.h"
+#import "XCDYouTubeURLQueryOperation.h"
 
 typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	XCDYouTubeRequestTypeGetVideoInfo = 1,
@@ -34,6 +35,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, readonly) NSURLSession *session;
 @property (atomic, strong) NSURLSessionDataTask *dataTask;
 
+@property (atomic, assign) BOOL alternativeStreamFlag;
 @property (atomic, assign) BOOL isExecuting;
 @property (atomic, assign) BOOL isFinished;
 @property (atomic, readonly) dispatch_semaphore_t operationStartSemaphore;
@@ -139,8 +141,8 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	if (self.isCancelled)
 		return;
 	
-	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo + 1xDashManifest
-	if (++self.requestCount > 7)
+	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo + 1xDashManifest (multiplied by 2 since we may retry and try an alternative stream)
+	if (++self.requestCount > 14)
 	{
 		// This condition should never happen but the request flow is quite complex so better abort here than go into an infinite loop of requests
 		[self finishWithError];
@@ -221,8 +223,13 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 {
 	XCDYouTubeLogDebug(@"Handling video info response");
 	
+	NSMutableDictionary *mutableInfo = [info mutableCopy];
+	if (self.alternativeStreamFlag) {
+		[mutableInfo setValue:@(YES) forKey:XCDYouTubeVideoOptionsAlternativeStreamFlag];
+	}
+	
 	NSError *error = nil;
-	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:response error:&error];
+	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:mutableInfo playerScript:self.playerScript response:response error:&error];
 	if (video)
 	{
 		self.lastSuccessfulVideo = video;
@@ -332,10 +339,85 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 
 - (void) finishWithVideo:(XCDYouTubeVideo *)video
 {
-	self.video = video;
-	XCDYouTubeLogInfo(@"Video operation finished with success: %@", video);
-	XCDYouTubeLogDebug(@"%@", ^{ return video.debugDescription; }());
-	[self finish];
+	[self queryVideo:video completionHandler:^(XCDYouTubeVideo * _Nullable queryVideo) {
+		if (!queryVideo && !self.alternativeStreamFlag)
+		{
+			//Retry
+			self.alternativeStreamFlag = YES;
+			self.eventLabels = [[NSMutableArray alloc] initWithArray:@[ @"embedded", @"detailpage" ]];
+			[self startNextRequest];
+			return;
+		}
+		
+		if (!queryVideo && self.alternativeStreamFlag)
+		{
+			//Error
+			[self finishWithError];
+			return;
+		}
+		
+		self.video = video;
+		XCDYouTubeLogInfo(@"Video operation finished with success: %@", video);
+		XCDYouTubeLogDebug(@"%@", ^{ return video.debugDescription; }());
+		[self finish];
+	}];
+}
+
+- (void)queryVideo:(XCDYouTubeVideo *)video completionHandler:(void (^)(XCDYouTubeVideo * __nullable video))completionHandler
+{
+	
+	NSOperationQueue *outerQueue = [NSOperationQueue new];
+	outerQueue.qualityOfService = NSQualityOfServiceUserInitiated;
+	outerQueue.maxConcurrentOperationCount = 1;
+	
+	[outerQueue addOperationWithBlock:^{
+		
+		NSSet <NSNumber *>*queryTags = [NSSet setWithArray:@[@(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
+		
+		NSMutableArray <XCDYouTubeURLQueryOperation *>*operations = [NSMutableArray new];
+		
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL * _Nonnull stop) {
+			if ([queryTags containsObject:key])
+			{
+				XCDYouTubeURLQueryOperation *operation = [[XCDYouTubeURLQueryOperation alloc]initWithURL:streamURL info:@{key : streamURL} cookes:self.cookies];
+				[operations addObject:operation];
+			}
+		}];
+		
+		NSURL *liveStreamURL = video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming];
+		if (liveStreamURL) {
+			[operations addObject:[[XCDYouTubeURLQueryOperation alloc]initWithURL:liveStreamURL info:@{XCDYouTubeVideoQualityHTTPLiveStreaming : liveStreamURL} cookes:self.cookies]];
+		}
+		
+		if (operations.count == 0)
+		{
+			completionHandler(nil);
+			return;
+		}
+		
+		NSOperationQueue *queue = [NSOperationQueue new];
+		queue.maxConcurrentOperationCount = 6;
+		
+		[queue addOperations:operations waitUntilFinished:YES];
+		
+		NSMutableDictionary *streamURLs = [NSMutableDictionary new];
+		
+		for (XCDYouTubeURLQueryOperation *operation in operations)
+		{
+			if (operation.error == nil && [(NSHTTPURLResponse *)operation.response statusCode] == 200)
+			{
+				[streamURLs addEntriesFromDictionary:(NSDictionary *_Nonnull)operation.info];
+			}
+		}
+		
+		if (streamURLs.count == 0)
+		{
+			completionHandler(nil);
+			return;
+		}
+		
+		completionHandler(video);
+	}];
 }
 
 - (void) finishWithError
