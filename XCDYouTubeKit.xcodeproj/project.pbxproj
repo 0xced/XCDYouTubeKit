@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01BCA72F21F17217004C14B5 /* XCDYouTubeURLQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BCA72E21F17217004C14B5 /* XCDYouTubeURLQueryOperation.m */; };
-		01BCA73021F17225004C14B5 /* XCDYouTubeURLQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 01BCA72D21F17217004C14B5 /* XCDYouTubeURLQueryOperation.h */; };
-		01BCA73121F17228004C14B5 /* XCDYouTubeURLQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BCA72E21F17217004C14B5 /* XCDYouTubeURLQueryOperation.m */; };
-		01BCA73221F17245004C14B5 /* XCDYouTubeURLQueryOperation.h in Sources */ = {isa = PBXBuildFile; fileRef = 01BCA72D21F17217004C14B5 /* XCDYouTubeURLQueryOperation.h */; };
 		01D2370A1FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D237091FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m */; };
 		01D2370B1FA03ADE00A13E5F /* XCDYouTubeDashManifestXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 01D237081FA03AC100A13E5F /* XCDYouTubeDashManifestXML.h */; };
 		01D2370C1FA03AF100A13E5F /* XCDYouTubeDashManifestXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D237091FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m */; };
@@ -102,8 +98,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		01BCA72D21F17217004C14B5 /* XCDYouTubeURLQueryOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeURLQueryOperation.h; sourceTree = "<group>"; };
-		01BCA72E21F17217004C14B5 /* XCDYouTubeURLQueryOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeURLQueryOperation.m; sourceTree = "<group>"; };
 		01D237081FA03AC100A13E5F /* XCDYouTubeDashManifestXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeDashManifestXML.h; sourceTree = "<group>"; };
 		01D237091FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeDashManifestXML.m; sourceTree = "<group>"; };
 		01FB237B2191F98100DC8019 /* Cookies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cookies; sourceTree = "<group>"; };
@@ -233,8 +227,6 @@
 				C25308C718D739EB00132734 /* XCDYouTubeVideo.m */,
 				C24C162C18E9A139005E92E9 /* XCDYouTubeVideoOperation.h */,
 				C24C162D18E9A139005E92E9 /* XCDYouTubeVideoOperation.m */,
-				01BCA72D21F17217004C14B5 /* XCDYouTubeURLQueryOperation.h */,
-				01BCA72E21F17217004C14B5 /* XCDYouTubeURLQueryOperation.m */,
 				C2A3F2D517F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h */,
 				C2A3F2D717F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m */,
 				C2386B1C1974036300646123 /* XCDYouTubeVideoWebpage.h */,
@@ -288,7 +280,6 @@
 				C257F7941C206D26006146D3 /* XCDYouTubeLogger.h in Headers */,
 				C257F7911C206B8F006146D3 /* XCDYouTubeLogger+Private.h in Headers */,
 				C2F0E5901944F83E00D8EBA8 /* XCDYouTubeOperation.h in Headers */,
-				01BCA73021F17225004C14B5 /* XCDYouTubeURLQueryOperation.h in Headers */,
 				C2F0E5931944F84700D8EBA8 /* XCDYouTubeVideo.h in Headers */,
 				C2F0E5941944F84A00D8EBA8 /* XCDYouTubeVideoOperation.h in Headers */,
 				C215BEB91BE2E5B500F9783B /* XCDYouTubeVideoWebpage.h in Headers */,
@@ -504,10 +495,8 @@
 				C24C162E18E9A139005E92E9 /* XCDYouTubeVideoOperation.m in Sources */,
 				01D2370A1FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m in Sources */,
 				C25308C818D739EB00132734 /* XCDYouTubeVideo.m in Sources */,
-				01BCA72F21F17217004C14B5 /* XCDYouTubeURLQueryOperation.m in Sources */,
 				C2597EA61B0CE6D80030E9F2 /* XCDYouTubeLogger.m in Sources */,
 				C2FB52DE1918F88C00B2CBE6 /* XCDYouTubePlayerScript.m in Sources */,
-				01BCA73221F17245004C14B5 /* XCDYouTubeURLQueryOperation.h in Sources */,
 				C2A3F2D817F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m in Sources */,
 				C2386B1F1974036300646123 /* XCDYouTubeVideoWebpage.m in Sources */,
 			);
@@ -521,7 +510,6 @@
 				C2F0E5991944F8C200D8EBA8 /* XCDYouTubeClient.m in Sources */,
 				01D2370C1FA03AF100A13E5F /* XCDYouTubeDashManifestXML.m in Sources */,
 				C2F0E59A1944F8C700D8EBA8 /* XCDYouTubePlayerScript.m in Sources */,
-				01BCA73121F17228004C14B5 /* XCDYouTubeURLQueryOperation.m in Sources */,
 				C2597EA71B0CE6D80030E9F2 /* XCDYouTubeLogger.m in Sources */,
 				C2F0E59B1944F8CA00D8EBA8 /* XCDYouTubeVideo.m in Sources */,
 				C2F0E59D1944F8D600D8EBA8 /* XCDYouTubeVideoPlayerViewController.m in Sources */,
