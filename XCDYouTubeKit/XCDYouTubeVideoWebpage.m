@@ -99,7 +99,8 @@
 	{
 		NSStringCompareOptions options = (NSStringCompareOptions)0;
 		NSRange range = NSMakeRange(0, self.html.length);
-		_isAgeRestricted = [self.html rangeOfString:@"og:restrictions:age" options:options range:range].location != NSNotFound;
+		_isAgeRestricted = [self.html rangeOfString:@"og:restrictions:age" options:options range:range].location != NSNotFound || [self.html rangeOfString:@"player-age-gate-content" options:options range:range].location != NSNotFound;
+
 	}
 	return _isAgeRestricted;
 }
