@@ -114,6 +114,35 @@
 			
 			_javaScriptPlayerURL = [NSURL URLWithString:javaScriptPlayerURLString];
 		}
+		else
+		{
+			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\"assets\":.+?\"js\":\\s*(\"[^\"]+\")" options:0 error:nil];
+			NSTextCheckingResult *result = [regex firstMatchInString:self.html options:(NSMatchingOptions)0 range:NSMakeRange(0, self.html.length)];
+			if (result.numberOfRanges < 2)
+				return _javaScriptPlayerURL;
+			
+			NSRange range = [result rangeAtIndex:1];
+			if (range.length == 0)
+				return _javaScriptPlayerURL;
+			
+			
+			NSString *baseJSURLPathString = [[[self.html substringWithRange:range] stringByReplacingOccurrencesOfString:@"\\" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+			
+			NSURLComponents *components = [NSURLComponents componentsWithString:baseJSURLPathString];
+			if (components == nil)
+				return _javaScriptPlayerURL;
+			
+			if (components.scheme == nil || components.scheme.length == 0)
+				components.scheme = @"https";
+			
+			if (components.host == nil || components.host.length == 0)
+				components.host = @"www.youtube.com";
+			
+			if (components.URL == nil)
+				return _javaScriptPlayerURL;
+			
+			_javaScriptPlayerURL = components.URL;
+		}
 	}
 	return _javaScriptPlayerURL;
 }
