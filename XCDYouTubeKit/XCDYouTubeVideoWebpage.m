@@ -12,6 +12,7 @@
 
 @synthesize playerConfiguration = _playerConfiguration;
 @synthesize videoInfo = _videoInfo;
+@synthesize sts = _sts;
 @synthesize javaScriptPlayerURL = _javaScriptPlayerURL;
 @synthesize isAgeRestricted = _isAgeRestricted;
 @synthesize regionsAllowed = _regionsAllowed;
@@ -74,6 +75,30 @@
 	return _videoInfo;
 }
 
+- (NSString *)sts
+{
+	if (!_sts)
+	{
+		NSString *sts = [(NSString *)self.playerConfiguration[@"sts"] description];
+		if (sts != nil) {
+			_sts = sts;
+			return _sts;
+		} else {
+			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\"sts\"\\s*:\\s*(\\d+)" options:0 error:nil];
+			NSTextCheckingResult *result = [regex firstMatchInString:self.html options:(NSMatchingOptions)0 range:NSMakeRange(0, self.html.length)];
+			if (result.numberOfRanges < 2)
+				return _sts;
+			
+			NSRange range = [result rangeAtIndex:1];
+			if (range.length == 0)
+				return _sts;
+			
+			_sts = [self.html substringWithRange:range];
+		}
+	}
+	
+	return _sts;
+}
 - (NSURL *) javaScriptPlayerURL
 {
 	if (!_javaScriptPlayerURL)
