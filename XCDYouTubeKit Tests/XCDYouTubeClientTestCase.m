@@ -146,7 +146,7 @@
 		 }];
 		 [expectation fulfill];
 	 }];
-	[self waitForExpectationsWithTimeout:90 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // See https://github.com/0xced/XCDYouTubeKit/issues/420#issue-400541618
