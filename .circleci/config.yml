@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: '10.0.0'
+      xcode: '10.2.1'
     environment:
       LANG: en_US.UTF-8
       LC_ALL: en_US.UTF-8
