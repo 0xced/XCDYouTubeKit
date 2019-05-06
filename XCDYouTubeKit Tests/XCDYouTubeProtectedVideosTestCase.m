@@ -376,19 +376,6 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	[self waitForExpectationsWithTimeout:30 handler:nil];
 }
 
-- (void)testAgeRestrictedVEVOVideoWithoutCookies
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	 {
-		 XCTAssertNotNil(error);
-		 XCTAssertNil(video);
-		 [expectation fulfill];
-	 }];
-	
-	[self waitForExpectationsWithTimeout:5 handler:nil];
-}
-
 // With Charles
 //   * Enable SSL proxying for *.youtube.com
 //   * Tools -> Black List... -> Add host:www.youtube.com and path:watch to simulate connection error on the web page
