@@ -497,4 +497,41 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
+// See https://github.com/0xced/XCDYouTubeKit/issues/431
+- (void) testAgeRestrictedVideo1
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"6kLq3WMV1nU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.expirationDate);
+		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		  {
+			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+		  }];
+		 [expectation fulfill];
+	 }];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+// See https://github.com/0xced/XCDYouTubeKit/issues/431
+// Remove \\/yts\\/jsbin\\/player_ias-vfl61X81T\\/en_US\\/base.js\ from testAgeRestrictedVideo1WithNoJavaScriptPlayerURL.json
+- (void) testAgeRestrictedVideo1WithNoJavaScriptPlayerURL_offline
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"6kLq3WMV1nU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(video);
+		 XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		 XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		 XCTAssertEqualObjects(error.localizedDescription, @"Sign in to confirm your age");
+		 [expectation fulfill];
+	 }];
+	[self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
 @end
