@@ -20,7 +20,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosMinorUserCookies()
 	NSCAssert(cookieURL != nil, @"Cookie data could not be found!");
 	NSData *cookieData = [NSData dataWithContentsOfURL:cookieURL];
 	NSCAssert(cookieData != nil, @"Cookie data could not be found!");
-	NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:cookieData];
+	NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc]initForReadingFromData:cookieData error:nil];
 	unArchiver.requiresSecureCoding = NO;
 	NSSet *codingClasses = [NSSet setWithArray:@[ [NSArray classForCoder],[NSHTTPCookie classForCoder] ]];
 	NSArray <NSHTTPCookie *>*cookies = [unArchiver decodeObjectOfClasses:codingClasses forKey:NSKeyedArchiveRootObjectKey];
@@ -35,7 +35,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	NSCAssert(cookieURL != nil, @"Cookie data could not be found!");
 	NSData *cookieData = [NSData dataWithContentsOfURL:cookieURL];
 	NSCAssert(cookieData != nil, @"Cookie data could not be found!");
-	NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:cookieData];
+	NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc]initForReadingFromData:cookieData error:nil];
 	unArchiver.requiresSecureCoding = NO;
 	NSSet *codingClasses = [NSSet setWithArray:@[ [NSArray classForCoder],[NSHTTPCookie classForCoder] ]];
 	NSArray <NSHTTPCookie *>*cookies = [unArchiver decodeObjectOfClasses:codingClasses forKey:NSKeyedArchiveRootObjectKey];
