@@ -70,12 +70,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C20F57AA18817D5400EDBFB0 /* PBXContainerItemProxy */ = {
+		C2A95DEE21707ED200767679 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C2A3F2C517F4827800AC1C3B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C2A3F2CC17F4827800AC1C3B;
-			remoteInfo = XCDYouTubeKit;
+			remoteGlobalIDString = C2F0E5721944F10E00D8EBA8;
+			remoteInfo = "XCDYouTubeKit Framework";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -312,7 +312,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C20F57AB18817D5400EDBFB0 /* PBXTargetDependency */,
+				C2A95DEF21707ED200767679 /* PBXTargetDependency */,
 			);
 			name = "XCDYouTubeKit Tests";
 			productName = "XCDYouTubeKit Tests";
@@ -530,10 +530,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C20F57AB18817D5400EDBFB0 /* PBXTargetDependency */ = {
+		C2A95DEF21707ED200767679 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C2A3F2CC17F4827800AC1C3B /* XCDYouTubeKit Static Library */;
-			targetProxy = C20F57AA18817D5400EDBFB0 /* PBXContainerItemProxy */;
+			target = C2F0E5721944F10E00D8EBA8 /* XCDYouTubeKit Framework */;
+			targetProxy = C2A95DEE21707ED200767679 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
