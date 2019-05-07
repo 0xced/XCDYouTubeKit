@@ -16,13 +16,13 @@ default: check_slather check_scan
 	slather coverage --verbose --output-directory "${TMPDIR}/${SCAN_SCHEME} Coverage Report" --html --show --ignore "../**/Contents/Developer/**" --scheme "${SCAN_SCHEME}" "${SCAN_PROJECT}" || true
 
 test_macOS_report: check_scan
-	fastlane scan 
+	fastlane scan --output_directory "${CIRCLE_TEST_REPORTS}" --output_types junit --output_files $@.xml
 
 test_iOS_report: check_scan
-	fastlane scan --device "iPhone 5s" --code_coverage --xcargs "OBJROOT=build GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES"
+	fastlane scan --output_directory "${CIRCLE_TEST_REPORTS}" --output_types junit --output_files $@.xml --device "iPhone 5s" --code_coverage --xcargs "OBJROOT=build GCC_GENERATE_TEST_COVERAGE_FILES=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES"
 
 test_tvOS_report: check_scan
-	fastlane scan --device "Apple TV"
+	fastlane scan --output_directory "${CIRCLE_TEST_REPORTS}" --output_types junit --output_files $@.xml --device "Apple TV"
 
 test_macOS: check_scan
 	fastlane scan --configuration Release --xcargs "RUN_CLANG_STATIC_ANALYZER=YES CLANG_STATIC_ANALYZER_MODE=Deep MACOSX_DEPLOYMENT_TARGET=`xcrun --sdk "macosx" --show-sdk-version`"
