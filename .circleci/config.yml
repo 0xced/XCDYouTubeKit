@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    macos:
+      xcode: '10.2.1'
+    environment:
+      LANG: en_US.UTF-8
+      LC_ALL: en_US.UTF-8
+      FASTLANE_DISABLE_ANIMATION: 1
+      FASTLANE_SKIP_UPDATE_CHECK: 1
+      SKIP_SLOW_FASTLANE_WARNING: 1
+    steps:
+    - checkout
+    - run: xcodebuild -version -sdk
+    - run: xcrun simctl list
+    - run: make test_macOS
+    - run: make test_tvOS
+    - run: make test_iOS
+    - run: make test_macOS_report
+    - run: make test_tvOS_report
+    - run: make test_iOS_report
+    - run:
+          name: Upload to CodeCov
+          command: bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -X coveragepy -X gcov -X xcodeplist -X xcodepartials
+    - store_test_results:
+        path: test_reports
+    - store_artifacts:
+        path: /Users/distiller/Library/Developer/Xcode/DerivedData/XCDYouTubeKit-byvnmvumvdztmngymdsxlhlsgpgd/Logs/Test
+        destination: xcresults
+    - store_artifacts:
+        path: artifacts
+        destination: buildlogs

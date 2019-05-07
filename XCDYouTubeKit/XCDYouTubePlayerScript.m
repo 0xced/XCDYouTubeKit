@@ -7,7 +7,6 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 #import "XCDYouTubeLogger+Private.h"
-#import "XMLHTTPRequest.h"
 
 @interface XCDYouTubePlayerScript ()
 @property (nonatomic, strong) JSContext *context;
@@ -22,9 +21,6 @@
 		return nil; // LCOV_EXCL_LINE
 	
 	_context = [JSContext new];
-	
-	XMLHttpRequest *xmlHttpRequest = [XMLHttpRequest new];
-	[xmlHttpRequest extend:_context];
 	
 	_context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
 		XCDYouTubeLogWarning(@"JavaScript exception: %@", exception);
@@ -42,6 +38,8 @@
 		},
 	};
 	_context[@"window"] = @{};
+	_context [@"XMLHttpRequest"] = @{};
+	
 	for (NSString *propertyName in environment)
 	{
 		JSValue *value = [JSValue valueWithObject:environment[propertyName] inContext:_context];

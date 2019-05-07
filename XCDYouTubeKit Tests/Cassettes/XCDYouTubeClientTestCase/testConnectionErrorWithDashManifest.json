@@ -29,7 +29,7 @@
       "domain" : "NSURLErrorDomain"
     },
     "method" : "GET",
-    "status" : 0,
+    "status" : 404,
     "uri" : "https:\/\/manifest.googlevideo.com\/api\/manifest\/dash\/pl\/18\/id\/60b83e2c29185db2\/fvip\/4\/ms\/au%2Conr\/mm\/31%2C26\/mv\/m\/initcwndbps\/81250\/source\/youtube\/sparams\/as%2Cei%2Chfr%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cplayback_host%2Crequiressl%2Csource%2Cexpire\/mn\/sn-o097znl6%2Csn-a5meknsy\/mt\/1541595266\/ip\/107.170.239.51\/key\/yt6\/hfr\/all\/expire\/1541616988\/ipbits\/0\/as\/fmp4_audio_clear%2Cfmp4_sd_hd_clear\/itag\/0\/requiressl\/yes\/signature\/55DBE87B69362A07203FDA0794E12D8646FF861C.399D1A0D174914F0CDF87E13DE2ECFFA2BE76B95\/ei\/_ODiW6W9EMzSkgb3uLH4Cw\/playback_host\/r2---sn-o097znl6.googlevideo.com"
   }
 ]
