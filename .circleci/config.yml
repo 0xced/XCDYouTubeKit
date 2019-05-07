@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: '10.0.0'
+      xcode: '10.2.1'
     environment:
       LANG: en_US.UTF-8
       LC_ALL: en_US.UTF-8
@@ -19,6 +19,9 @@ jobs:
     - run: make test_macOS_report
     - run: make test_tvOS_report
     - run: make test_iOS_report
+    - run:
+          name: Upload to CodeCov
+          command: bash <(curl -s https://codecov.io/bash) -J XCDYouTubeKit -X coveragepy -X gcov -X xcodeplist -X xcodepartials
     - store_test_results:
         path: test_reports
     - store_artifacts:

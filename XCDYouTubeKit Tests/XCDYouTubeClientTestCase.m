@@ -118,13 +118,58 @@
 - (void) testLiveVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"wv8NRHysoo0" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"hHW1oY26kxQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+// Test for https://github.com/0xced/XCDYouTubeKit/issues/420
+
+- (void) testVideo1
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"8vISc8dZ_bc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
+			 XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+		 }];
+		 [expectation fulfill];
+	 }];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+// See https://github.com/0xced/XCDYouTubeKit/issues/420#issue-400541618
+
+- (void) testVideo1IsPlayable
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"8vISc8dZ_bc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertNotNil(video.expirationDate);
+		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
+		request.HTTPMethod = @"HEAD";
+		NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		{
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		[dataTask resume];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }

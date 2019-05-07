@@ -21,6 +21,7 @@
 		return nil; // LCOV_EXCL_LINE
 	
 	_context = [JSContext new];
+	
 	_context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
 		XCDYouTubeLogWarning(@"JavaScript exception: %@", exception);
 	};
@@ -37,6 +38,8 @@
 		},
 	};
 	_context[@"window"] = @{};
+	_context [@"XMLHttpRequest"] = @{};
+	
 	for (NSString *propertyName in environment)
 	{
 		JSValue *value = [JSValue valueWithObject:environment[propertyName] inContext:_context];
@@ -73,8 +76,9 @@
    //See list of regex patterns here https://github.com/rg3/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1179
     NSArray<NSString *>*patterns = @[@"\\.sig\\|\\|([a-zA-Z0-9$]+)\\(",
                                      @"[\"']signature[\"']\\s*,\\s*([^\\(]+)",
-                                     @"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*c\\s*&&d.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)",
-                                     @"\\bcs*&&\\s*d\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\C"
+                                     @"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*c\\s*&&\\s*d\\.set\\([^,]+\\s*,\\s*(?:encodeURIComponent\\s*\\()?([a-zA-Z0-9$]+)\\(",
+                                     @"\\bc\\s*&&\\s*d\\.set\\([^,]+\\s*,\\s*(?:encodeURIComponent\\s*\\()?\\s*([a-zA-Z0-9$]+)\\(",
+									 @"\\bc\\s*&&\\s*d\\.set\\([^,]+\\s*,\\s*\\([^)]*\\)\\s*\\(\\s*([a-zA-Z0-9$]+)\\("
                                      ];
 	
     NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];

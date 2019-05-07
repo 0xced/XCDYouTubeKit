@@ -11,6 +11,7 @@ __attribute__((visibility("hidden")))
 
 @property (nonatomic, readonly) NSDictionary *playerConfiguration;
 @property (nonatomic, readonly) NSDictionary *videoInfo;
+@property (nonatomic, readonly) NSString *sts;
 @property (nonatomic, readonly) NSURL *javaScriptPlayerURL;
 @property (nonatomic, readonly) BOOL isAgeRestricted;
 @property (nonatomic, readonly) NSSet *regionsAllowed;
