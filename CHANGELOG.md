@@ -1,3 +1,7 @@
+#### Version 2.7.5
+
+* Adaptation to YouTube API change. (#433)
+
 #### Version 2.7.4
 
 * Add the ability to fetch certain age-gate videos. (#431)
