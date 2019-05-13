@@ -207,6 +207,8 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 			NSDictionary *stream = XCDDictionaryWithQueryString(streamQuery);
 			
 			NSString *scrambledSignature = stream[@"s"];
+			NSString *spParam = stream[@"sp"];
+			
 			if (scrambledSignature && !playerScript)
 			{
 				userInfo[XCDYouTubeNoStreamVideoUserInfoKey] = self;
@@ -230,7 +232,15 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 				if (signature)
 				{
 					NSString *escapedSignature = [signature stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-					streamURL = URLBySettingParameter(streamURL, @"signature", escapedSignature);
+					
+					if (spParam.length > 0)
+					{
+						streamURL = URLBySettingParameter(streamURL, spParam, escapedSignature);
+						
+					} else
+					{
+						streamURL = URLBySettingParameter(streamURL, @"signature", escapedSignature);
+					}
 				}
 				
 				streamURLs[@(itag.integerValue)] = URLBySettingParameter(streamURL, @"ratebypass", @"yes");
