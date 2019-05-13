@@ -108,7 +108,7 @@
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
-			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		}];
 		[expectation fulfill];
 	}];
@@ -142,7 +142,7 @@
 		 XCTAssertTrue(video.streamURLs.count > 0);
 		 XCTAssertTrue(video.duration > 0);
 		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
-			 XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			 XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		 }];
 		 [expectation fulfill];
 	 }];

@@ -5,6 +5,7 @@
 #import "XCDYouTubeKitTestCase.h"
 
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
+#import "XCDYouTubeVideo+Private.h"
 
 @interface XCDYouTubeProtectedVideosTestCase : XCDYouTubeKitTestCase
 extern NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies(void);
@@ -56,7 +57,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		 XCTAssertTrue(video.duration > 0);
 		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		  {
-			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		  }];
 		 [expectation fulfill];
 	 }];
@@ -102,7 +103,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		 XCTAssertTrue(video.duration > 0);
 		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		  {
-			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		  }];
 		 [expectation fulfill];
 	 }];
@@ -161,7 +162,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		{
-			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		}];
 		[expectation fulfill];
 	}];
@@ -181,7 +182,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		{
-			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		}];
 		[expectation fulfill];
 	}];
@@ -201,7 +202,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		{
-			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		}];
 		[expectation fulfill];
 	}];
@@ -221,7 +222,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		{
-			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		}];
 		[expectation fulfill];
 	}];
@@ -241,7 +242,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		{
-			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		}];
 		[expectation fulfill];
 	}];
@@ -303,7 +304,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		{
-			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		}];
 		[expectation fulfill];
 	}];
@@ -349,7 +350,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		 XCTAssertTrue(video.duration > 0);
 		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		  {
-			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		  }];
 		 [expectation fulfill];
 	 }];
@@ -504,7 +505,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		 XCTAssertTrue(video.duration > 0);
 		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
 		  {
-			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound);
+			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
 		  }];
 		 [expectation fulfill];
 	 }];
