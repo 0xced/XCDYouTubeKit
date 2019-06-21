@@ -463,7 +463,8 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
-// Edit testProtectedVideoWithNonAnonymousJavaScriptPlayerFunction.json by replacing `(function(){if(AY)` with `(Xfunction(){if(AY)` and `(function(){zj` with `(function(){zj`
+// Edit testProtectedVideoWithNonAnonymousJavaScriptPlayerFunction.json by replacing all `(function` with `(Xfunction`
+// And replace `s&&f.set(k` with `x.&&f.set(k` and `c&&a.set(b` with `x.&&a.set(b`
 - (void) testProtectedVideoWithNonAnonymousJavaScriptPlayerFunction_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
