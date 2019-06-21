@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                   = "XCDYouTubeKit"
-  s.version                = "2.7.5"
+  s.version                = "2.7.6"
   s.summary                = "YouTube video player for iOS and OS X."
   s.homepage               = "https://github.com/0xced/XCDYouTubeKit"
   s.screenshot             = "https://raw.github.com/0xced/XCDYouTubeKit/#{s.version}/Screenshots/XCDYouTubeVideoPlayerViewController.png"
