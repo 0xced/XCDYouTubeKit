@@ -92,25 +92,15 @@
     }
 	
     for (NSRegularExpression *regularExpression in validRegularExpressions) {
-		if (_signatureFunction)
-			break;
-		
+
         NSArray<NSTextCheckingResult *> *regexResults =  [regularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
 		
         for (NSTextCheckingResult *signatureResult in regexResults)
         {
-			NSString *signatureFunctionName = nil;
-			//I noticed that even when evaluating the numberOfRanges passing rangeAtIndex:1 causes throws an `NSException`
-			//To see check out https://github.com/0xced/XCDYouTubeKit/releases/tag/2.7.5 and run the -testSpaceVideoIdentifier test
-			//I believe this error is caused to the new bool operator in the regex `s*d|a`. However, I am not sure how to fix it out than catching the exception
-			@try {
-				signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
-				if (!signatureFunctionName)
-					continue;
-			} @catch (NSException *__unused exception) {
+			NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
+			if (!signatureFunctionName)
 				continue;
-			}
-			
+		
             JSValue *signatureFunction = self.context[signatureFunctionName];
             if (signatureFunction.isObject)
             {
