@@ -92,6 +92,8 @@
     }
 	
     for (NSRegularExpression *regularExpression in validRegularExpressions) {
+		if (_signatureFunction)
+			break;
 		
         NSArray<NSTextCheckingResult *> *regexResults =  [regularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
 		
