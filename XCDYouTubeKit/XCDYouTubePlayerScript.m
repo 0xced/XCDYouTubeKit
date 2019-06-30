@@ -118,7 +118,7 @@
     }
 	
 	if (!_signatureFunction)
-		XCDYouTubeLogWarning(@"No signature function in player script");
+		XCDYouTubeLogWarning(@"No signature function in player script: \n%@. Regular Expressions: \n%@", script, validRegularExpressions);
 	
 	return self;
 }
