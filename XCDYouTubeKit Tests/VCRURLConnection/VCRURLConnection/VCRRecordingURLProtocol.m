@@ -42,6 +42,9 @@ static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
+	for (NSHTTPCookie *cookie in [VCR cookies]) {
+		[[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookie:cookie];
+	}
     return request;
 }
 

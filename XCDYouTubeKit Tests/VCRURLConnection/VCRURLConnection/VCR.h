@@ -108,4 +108,7 @@
  */
 + (void)save:(NSString *)path;
 
++ (NSArray<NSHTTPCookie *>*)cookies;
++ (void)setCookies:(NSArray<NSHTTPCookie *>*)cookies;
+
 @end
