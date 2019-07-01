@@ -9,25 +9,9 @@
 
 @interface XCDYouTubeProtectedVideosTestCase : XCDYouTubeKitTestCase
 extern NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies(void);
-extern NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosMinorUserCookies(void);
 @end
 
 @implementation XCDYouTubeProtectedVideosTestCase
-
-NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosMinorUserCookies()
-{
-	NSURL *cookieURL = [[NSBundle bundleForClass:[XCDYouTubeProtectedVideosTestCase class]]URLForResource:@"minorUserCookieData" withExtension:nil subdirectory:@"Cookies"];
-	
-	NSCAssert(cookieURL != nil, @"Cookie data could not be found!");
-	NSData *cookieData = [NSData dataWithContentsOfURL:cookieURL];
-	NSCAssert(cookieData != nil, @"Cookie data could not be found!");
-	NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc]initForReadingFromData:cookieData error:nil];
-	unArchiver.requiresSecureCoding = NO;
-	NSSet *codingClasses = [NSSet setWithArray:@[ [NSArray classForCoder],[NSHTTPCookie classForCoder] ]];
-	NSArray <NSHTTPCookie *>*cookies = [unArchiver decodeObjectOfClasses:codingClasses forKey:NSKeyedArchiveRootObjectKey];
-	NSCAssert(cookies.count != 0, @"No cookies found!");
-	return cookies;
-}
 
 NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 {
@@ -69,52 +53,6 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosAdultUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	 {
-		 XCTAssertNil(error);
-		 XCTAssertNotNil(video.title);
-		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
-		 XCTAssertTrue(video.streamURLs.count > 0);
-		 XCTAssertTrue(video.duration > 0);
-		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
-		 request.HTTPMethod = @"HEAD";
-		 NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
-		 {
-			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
-			[expectation fulfill];
-		}];
-		 
-		[dataTask resume];
-	 }];
-	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
-}
-
-- (void) testAgeRestrictedVideoThatRequiresCookiesWithMinorUserCookies_online
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	 {
-		 XCTAssertNil(error);
-		 XCTAssertNotNil(video.title);
-		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
-		 XCTAssertTrue(video.streamURLs.count > 0);
-		 XCTAssertTrue(video.duration > 0);
-		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
-		  {
-			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
-		  }];
-		 [expectation fulfill];
-	 }];
-	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
-}
-
-- (void) testAgeRestrictedVideoThatRequiresCookiesWithMinortUserCookiesIsPlayable_online
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
@@ -337,51 +275,6 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	[self waitForExpectationsWithTimeout:30 handler:nil];
 }
 
-- (void) testAgeRestrictedVEVOVideoWithMinorUserCookies_online
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	 {
-		 XCTAssertNil(error);
-		 XCTAssertNotNil(video.title);
-		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
-		 XCTAssertTrue(video.streamURLs.count > 0);
-		 XCTAssertTrue(video.duration > 0);
-		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
-		  {
-			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
-		  }];
-		 [expectation fulfill];
-	 }];
-	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
-}
-
-- (void) testAgeRestrictedVEVOVideoWithMinorUserCookiesIsPlayable_online
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	 {
-		 XCTAssertNil(error);
-		 XCTAssertNotNil(video.title);
-		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
-		 XCTAssertTrue(video.streamURLs.count > 0);
-		 XCTAssertTrue(video.duration > 0);
-		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
-		 request.HTTPMethod = @"HEAD";
-		 NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
-		 {
-			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
-			[expectation fulfill];
-		}];
-		 
-		[dataTask resume];
-	 }];
-	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
-}
 
 // With Charles
 //   * Enable SSL proxying for *.youtube.com
