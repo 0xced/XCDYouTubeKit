@@ -77,7 +77,7 @@ static NSArray *_VCRCookies;
 }
 
 + (void)stop {
-	for (NSHTTPCookie *cookie in _VCRCookies) {
+	for (NSHTTPCookie *cookie in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies) {
 		[[NSHTTPCookieStorage sharedHTTPCookieStorage]deleteCookie:cookie];
 	}
     [self setRecording:NO];
