@@ -305,7 +305,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:yts/* to simulate connection error on the player script
@@ -320,7 +320,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // Edit testProtectedVideoWithoutSignatureFunction.json by replacing `c&&a.set(b,encodeURIComponent(Bv(` with `c.&&a.set(b,encodeURIComponent(Bv(` and
@@ -336,7 +336,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // Edit testProtectedVideoWithBrokenSignatureFunction.json by returning null in the signature function
@@ -353,7 +353,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // Edit testProtectedVideoWithoutJavaScriptPlayerURL.json by replacing `\"js\":` with `\"xs\":`
@@ -368,7 +368,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // Edit testProtectedVideoWithNonAnonymousJavaScriptPlayerFunction.json by replacing all `(function` with `(Xfunction`
@@ -384,7 +384,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page
@@ -399,7 +399,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"Sign in to confirm your age");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5  handler:nil];
 }
 
 // See https://github.com/0xced/XCDYouTubeKit/issues/431
@@ -436,7 +436,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		 XCTAssertEqualObjects(error.localizedDescription, @"Sign in to confirm your age");
 		 [expectation fulfill];
 	 }];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 @end
