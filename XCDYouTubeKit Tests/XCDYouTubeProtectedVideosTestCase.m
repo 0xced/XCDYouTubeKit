@@ -8,15 +8,14 @@
 #import "XCDYouTubeVideo+Private.h"
 
 @interface XCDYouTubeProtectedVideosTestCase : XCDYouTubeKitTestCase
-extern NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies(void);
-extern NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosMinorUserCookies(void);
+extern NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies(void);
 @end
 
 @implementation XCDYouTubeProtectedVideosTestCase
 
-NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosMinorUserCookies()
+NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 {
-	NSURL *cookieURL = [[NSBundle bundleForClass:[XCDYouTubeProtectedVideosTestCase class]]URLForResource:@"minorUserCookieData" withExtension:nil subdirectory:@"Cookies"];
+	NSURL *cookieURL = [[NSBundle bundleForClass:[XCDYouTubeProtectedVideosTestCase class]]URLForResource:@"UserCookieData" withExtension:nil subdirectory:@"Cookies"];
 	
 	NSCAssert(cookieURL != nil, @"Cookie data could not be found!");
 	NSData *cookieData = [NSData dataWithContentsOfURL:cookieURL];
@@ -29,25 +28,25 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosMinorUserCookies()
 	return cookies;
 }
 
-NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
+- (void)tearDown
 {
-	NSURL *cookieURL = [[NSBundle bundleForClass:[XCDYouTubeProtectedVideosTestCase class]]URLForResource:@"adultUserCookieData" withExtension:nil subdirectory:@"Cookies"];
-	
-	NSCAssert(cookieURL != nil, @"Cookie data could not be found!");
-	NSData *cookieData = [NSData dataWithContentsOfURL:cookieURL];
-	NSCAssert(cookieData != nil, @"Cookie data could not be found!");
-	NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc]initForReadingFromData:cookieData error:nil];
-	unArchiver.requiresSecureCoding = NO;
-	NSSet *codingClasses = [NSSet setWithArray:@[ [NSArray classForCoder],[NSHTTPCookie classForCoder] ]];
-	NSArray <NSHTTPCookie *>*cookies = [unArchiver decodeObjectOfClasses:codingClasses forKey:NSKeyedArchiveRootObjectKey];
-	NSCAssert(cookies.count != 0, @"No cookies found!");
-	return cookies;
+	self.cookies = nil;
+	[super tearDown];
 }
 
-- (void) testAgeRestrictedVideoThatRequiresCookiesWithAdultUserCookies_online
+- (void)setUpTestWithSelector:(SEL)selector
+{
+	if ([NSStringFromSelector(selector) containsString:@"Cookies"])
+	{
+		self.cookies = XCDYouTubeProtectedVideosCookies();
+	}
+	[super setUpTestWithSelector:selector];
+}
+
+- (void) testAgeRestrictedVideoThatRequiresCookiesWithUserCookies
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosAdultUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
@@ -62,13 +61,13 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		 [expectation fulfill];
 	 }];
 	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void) testAgeRestrictedVideoThatRequiresCookiesWithAdultUserCookiesIsPlayable_online
+- (void) testAgeRestrictedVideoThatRequiresCookiesWithUserCookiesIsPlayable
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosAdultUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
@@ -87,53 +86,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		[dataTask resume];
 	 }];
 	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
-}
-
-- (void) testAgeRestrictedVideoThatRequiresCookiesWithMinorUserCookies_online
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	 {
-		 XCTAssertNil(error);
-		 XCTAssertNotNil(video.title);
-		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
-		 XCTAssertTrue(video.streamURLs.count > 0);
-		 XCTAssertTrue(video.duration > 0);
-		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
-		  {
-			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
-		  }];
-		 [expectation fulfill];
-	 }];
-	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
-}
-
-- (void) testAgeRestrictedVideoThatRequiresCookiesWithMinortUserCookiesIsPlayable_online
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"vhG9_yBJmVE" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	 {
-		 XCTAssertNil(error);
-		 XCTAssertNotNil(video.title);
-		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
-		 XCTAssertTrue(video.streamURLs.count > 0);
-		 XCTAssertTrue(video.duration > 0);
-		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
-		 request.HTTPMethod = @"HEAD";
-		 NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
-		 {
-			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
-			[expectation fulfill];
-		}];
-		 
-		[dataTask resume];
-	 }];
-	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testAgeRestrictedVideoThatRequiresCookiesWithoutCookies
@@ -291,10 +244,10 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void) testAgeRestrictedVEVOVideoWithAdultUserCookies_online
+- (void) testAgeRestrictedVEVOVideoWithUserCookies
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosAdultUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
@@ -309,13 +262,13 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		[expectation fulfill];
 	}];
 	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void) testAgeRestrictedVEVOVideoWithAdultUserCookiesIsPlayable_online
+- (void) testAgeRestrictedVEVOVideoWithUserCookiesIsPlayable
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosAdultUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
@@ -334,54 +287,9 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		[dataTask resume];
 	 }];
 	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void) testAgeRestrictedVEVOVideoWithMinorUserCookies_online
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	 {
-		 XCTAssertNil(error);
-		 XCTAssertNotNil(video.title);
-		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
-		 XCTAssertTrue(video.streamURLs.count > 0);
-		 XCTAssertTrue(video.duration > 0);
-		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
-		  {
-			  XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
-		  }];
-		 [expectation fulfill];
-	 }];
-	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
-}
-
-- (void) testAgeRestrictedVEVOVideoWithMinorUserCookiesIsPlayable_online
-{
-	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"07FYdnEawAQ" cookies:XCDYouTubeProtectedVideosMinorUserCookies() completionHandler:^(XCDYouTubeVideo *video, NSError *error)
-	 {
-		 XCTAssertNil(error);
-		 XCTAssertNotNil(video.title);
-		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
-		 XCTAssertTrue(video.streamURLs.count > 0);
-		 XCTAssertTrue(video.duration > 0);
-		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
-		 request.HTTPMethod = @"HEAD";
-		 NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
-		 {
-			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
-			[expectation fulfill];
-		}];
-		 
-		[dataTask resume];
-	 }];
-	
-	[self waitForExpectationsWithTimeout:30 handler:nil];
-}
 
 // With Charles
 //   * Enable SSL proxying for *.youtube.com
@@ -397,7 +305,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:yts/* to simulate connection error on the player script
@@ -412,7 +320,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // Edit testProtectedVideoWithoutSignatureFunction.json by replacing `c&&a.set(b,encodeURIComponent(Bv(` with `c.&&a.set(b,encodeURIComponent(Bv(` and
@@ -428,7 +336,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // Edit testProtectedVideoWithBrokenSignatureFunction.json by returning null in the signature function
@@ -445,7 +353,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // Edit testProtectedVideoWithoutJavaScriptPlayerURL.json by replacing `\"js\":` with `\"xs\":`
@@ -460,7 +368,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // Edit testProtectedVideoWithNonAnonymousJavaScriptPlayerFunction.json by replacing all `(function` with `(Xfunction`
@@ -476,7 +384,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 // With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page
@@ -491,7 +399,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"Sign in to confirm your age");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5  handler:nil];
 }
 
 // See https://github.com/0xced/XCDYouTubeKit/issues/431
@@ -528,7 +436,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosAdultUserCookies()
 		 XCTAssertEqualObjects(error.localizedDescription, @"Sign in to confirm your age");
 		 [expectation fulfill];
 	 }];
-	[self waitForExpectationsWithTimeout:1 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 @end

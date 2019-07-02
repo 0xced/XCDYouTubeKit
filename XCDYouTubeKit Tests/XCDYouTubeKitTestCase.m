@@ -52,6 +52,7 @@ static NSString *const onlineSuffix = @"_online";
 - (void) setUpTestWithSelector:(SEL)selector
 {
 	[super setUpTestWithSelector:selector];
+	[VCR setCookies:self.cookies];
 	
 	BOOL onlineTests = [[[[NSProcessInfo processInfo] environment] objectForKey:@"ONLINE_TESTS"] boolValue];
 	

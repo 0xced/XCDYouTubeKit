@@ -31,6 +31,7 @@
 
 static BOOL _VCRIsRecording;
 static BOOL _VCRIsReplaying;
+static NSArray *_VCRCookies;
 
 
 @implementation VCR
@@ -76,12 +77,25 @@ static BOOL _VCRIsReplaying;
 }
 
 + (void)stop {
+	for (NSHTTPCookie *cookie in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies) {
+		[[NSHTTPCookieStorage sharedHTTPCookieStorage]deleteCookie:cookie];
+	}
     [self setRecording:NO];
     [self setReplaying:NO];
 }
 
 + (void)save:(NSString *)path {
     return [[VCRCassetteManager defaultManager] save:path];
+}
+
++ (NSArray<NSHTTPCookie *> *)cookies {
+	return  _VCRCookies;
+}
+
++ (void)setCookies:(NSArray<NSHTTPCookie *> *)cookies {
+	if (_VCRCookies != cookies) {
+		_VCRCookies = cookies;
+	}
 }
 
 @end

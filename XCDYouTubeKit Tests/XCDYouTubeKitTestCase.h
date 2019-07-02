@@ -8,4 +8,6 @@
 #import "VCRCassetteManager.h"
 
 @interface XCDYouTubeKitTestCase : XCTestCase
+- (void) setUpTestWithSelector:(SEL)selector;
+@property NSArray<NSHTTPCookie *>*cookies;
 @end
