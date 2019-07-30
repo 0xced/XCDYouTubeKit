@@ -65,6 +65,15 @@ NSArray <NSDictionary *> *XCDCaptionArrayWithString(NSString *string)
 	return captionTracks;
 }
 
+NSDictionary *XCDDictionaryWithString(NSString *string)
+{
+	NSError *error = nil;
+	NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+	if (!data) { return nil; }
+	
+	return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+}
+
 NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 {
 	NSMutableDictionary *dictionary = [NSMutableDictionary new];
@@ -157,6 +166,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	NSString *playerResponse = info[@"player_response"];
 	NSString *httpLiveStream = info[@"hlsvp"] ?: XCDHTTPLiveStreamingStringWithString(playerResponse);
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
+	NSDictionary *videoDetails = XCDDictionaryWithString(playerResponse)[@"videoDetails"];
 	
 	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: (id)response.URL } mutableCopy] : [NSMutableDictionary new];
 	
@@ -165,9 +175,12 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		NSMutableArray *streamQueries = [[streamMap componentsSeparatedByString:@","] mutableCopy];
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
 		
-		NSString *title = info[@"title"] ?: @"";
+		NSString *title = info[@"title"] == nil? videoDetails[@"title"] : info[@"title"];
+		if (title == nil)
+			title = @"";
 		_title = title;
-		_duration = [(NSString *)info[@"length_seconds"] doubleValue];
+		
+		_duration = info[@"length_seconds"] == nil? [(NSString *)videoDetails[@"lengthSeconds"] doubleValue] : [(NSString *)info[@"length_seconds"] doubleValue];
 		
 		NSString *thumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
 		_thumbnailURL = thumbnail ? [NSURL URLWithString:thumbnail] : nil;

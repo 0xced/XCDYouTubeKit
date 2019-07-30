@@ -1,3 +1,7 @@
+#### Version 2.7.8
+
+* Adaptation to YouTube API change. (#443)
+
 #### Version 2.7.7
 
 * Add another player script regular expression (#438)
