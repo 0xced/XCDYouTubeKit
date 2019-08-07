@@ -180,7 +180,7 @@
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"i2-MnWWoL6M" completionHandler:^(XCDYouTubeVideo *video, NSError *error) {
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"This live stream recording is not available.");
 		[expectation fulfill];
 	}];
@@ -196,7 +196,7 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is no longer available because the YouTube account associated with this video has been terminated.");
 		[expectation fulfill];
 	}];
@@ -213,7 +213,7 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"\"9/11 The F...\" is no longer available due to a copyright claim by Digital Rights Group Ltd.");
 		[expectation fulfill];
 	}];
@@ -227,7 +227,7 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"The uploader has not made this video available in your country.");
 		[expectation fulfill];
 	}];
@@ -255,7 +255,7 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
@@ -269,7 +269,7 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"Cette vidéo n'est pas disponible.");
 		[expectation fulfill];
 	}];

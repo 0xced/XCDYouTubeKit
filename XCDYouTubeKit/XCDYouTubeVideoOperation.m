@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 
 static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *languageIdentifier)
 {
-	if (error.code == XCDYouTubeErrorRestrictedPlayback && regionsAllowed.count > 0)
+	if (error.code == XCDYouTubeErrorNoStreamAvailable && regionsAllowed.count > 0)
 	{
 		NSLocale *locale = [NSLocale localeWithLocaleIdentifier:languageIdentifier];
 		NSMutableSet *allowedCountries = [NSMutableSet new];
@@ -247,8 +247,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		else
 		{
 			self.lastError = error;
-			if (error.code > 0)
-				self.youTubeError = error;
+			self.youTubeError = error;
 			
 			[self startNextRequest];
 		}

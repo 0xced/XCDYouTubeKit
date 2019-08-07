@@ -312,9 +312,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 				userInfo[NSLocalizedDescriptionKey] = reason;
 			}
 			
-			NSString *errorcode = info[@"errorcode"];
-			NSInteger code = errorcode ? errorcode.integerValue : XCDYouTubeErrorNoStreamAvailable;
-			*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:code userInfo:userInfo];
+			*error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:userInfo];
 		}
 		return nil;
 	}
