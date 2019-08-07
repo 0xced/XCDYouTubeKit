@@ -214,7 +214,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
-		XCTAssertEqualObjects(error.localizedDescription, @"\"9/11 The F...\" is no longer available due to a copyright claim by Digital Rights Group Ltd.");
+		XCTAssertEqualObjects(error.localizedDescription, @"This video has been removed for violating YouTube's Terms of Service.");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
