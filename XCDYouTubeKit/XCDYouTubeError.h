@@ -10,7 +10,7 @@
 extern NSString *const XCDYouTubeVideoErrorDomain;
 
 /**
- *  A key that may be present in the error's userInfo dictionary when the error code is XCDYouTubeErrorRestrictedPlayback.
+ *  A key that may be present in the error's userInfo dictionary when the error code is XCDYouTubeErrorNoStreamAvailable.
  *  The object for that key is a NSSet instance containing localized country names.
  */
 extern NSString *const XCDYouTubeAllowedCountriesUserInfoKey;
@@ -20,7 +20,10 @@ extern NSString *const XCDYouTubeAllowedCountriesUserInfoKey;
  */
 typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {
 	/**
-	 *  Returned when no suitable video stream is available.
+	 *  Returned when no suitable video stream is available. This can occur due to various reason such as:
+	 *  * The video is not playable because of legal reasons or when the video is private.
+	 *  * The given video identifier string is invalid.
+	 *  * The video was removed as a violation of YouTube's policy or when the video did not exist.
 	 */
 	XCDYouTubeErrorNoStreamAvailable      = -2,
 	
