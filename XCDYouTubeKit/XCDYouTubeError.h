@@ -30,9 +30,10 @@ typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {
 	XCDYouTubeErrorNetwork                = -1,
 	
 	/**
-	 *  Returned when the given video identifier string is invalid.
+	 *  Previously returned when the given video identifier string is invalid.
+	 *  Use `XCDYouTubeErrorNoStreamAvailable` instead.
 	 */
-	XCDYouTubeErrorInvalidVideoIdentifier = 2,
+	XCDYouTubeErrorInvalidVideoIdentifier DEPRECATED_MSG_ATTRIBUTE("YouTube has stopped using error code 2.") = 2,
 	
 	/**
 	 *  Previously returned when the video was removed as a violation of YouTube's policy or when the video did not exist.

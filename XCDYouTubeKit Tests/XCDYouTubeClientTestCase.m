@@ -241,7 +241,7 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[expectation fulfill];
 	}];
@@ -283,7 +283,7 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[expectation fulfill];
 	}];
@@ -297,7 +297,7 @@
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorInvalidVideoIdentifier);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"Invalid parameters.");
 		[expectation fulfill];
 	}];
