@@ -300,7 +300,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	{
 		if (error)
 		{
-			NSString *reason = info[@"reason"];
+			NSString *reason = info[@"reason"] == nil ? XCDDictionaryWithString(playerResponse)[@"playabilityStatus"][@"reason"] : info[@"reason"];
 			if (reason)
 			{
 				reason = [reason stringByReplacingOccurrencesOfString:@"<br\\s*/?>" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, reason.length)];
