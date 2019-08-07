@@ -301,7 +301,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
@@ -316,7 +316,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
@@ -332,7 +332,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
@@ -349,7 +349,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
@@ -364,7 +364,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
@@ -380,7 +380,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
 		[expectation fulfill];
 	}];
@@ -395,7 +395,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		XCTAssertEqualObjects(error.localizedDescription, @"Sign in to confirm your age");
 		[expectation fulfill];
 	}];
@@ -432,7 +432,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	 {
 		 XCTAssertNil(video);
 		 XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
-		 XCTAssertEqual(error.code, XCDYouTubeErrorRestrictedPlayback);
+		 XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		 XCTAssertEqualObjects(error.localizedDescription, @"Sign in to confirm your age");
 		 [expectation fulfill];
 	 }];
