@@ -247,7 +247,8 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		else
 		{
 			self.lastError = error;
-			self.youTubeError = error;
+			if (error.userInfo[NSLocalizedDescriptionKey])
+				self.youTubeError = error;
 			
 			[self startNextRequest];
 		}
