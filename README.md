@@ -33,13 +33,13 @@ XCDYouTubeKit is available through [CocoaPods](https://cocoapods.org/), [Carthag
 CocoaPods:
 
 ```ruby
-pod "XCDYouTubeKit", "~> 2.7"
+pod "XCDYouTubeKit", "~> 2.8"
 ```
 
 Carthage:
 
 ```objc
-github "0xced/XCDYouTubeKit" ~> 2.7
+github "0xced/XCDYouTubeKit" ~> 2.8
 ```
 
 Accio:

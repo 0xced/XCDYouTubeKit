@@ -1,3 +1,8 @@
+#### Version 2.8.0
+
+* Adaptation to YouTube API change.
+	* Deprecated `XCDYouTubeErrorRestrictedPlayback` & `XCDYouTubeErrorInvalidVideoIdentifier` use `XCDYouTubeErrorNoStreamAvailable` instead.
+
 #### Version 2.7.8
 
 * Adaptation to YouTube API change. (#443)
