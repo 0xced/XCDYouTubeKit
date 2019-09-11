@@ -1,3 +1,7 @@
+#### Version 2.8.1
+
+* Adaptation to YouTube API change. (#447, #448, #449)
+
 #### Version 2.8.0
 
 * Adaptation to YouTube API change.
