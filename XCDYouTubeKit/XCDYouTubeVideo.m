@@ -258,7 +258,9 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		}
 		
 		NSError *streamURLsError;
-		_streamURLs = [self extractStreamURLsWithQuery:streamQueries.count == 0 ? alternativeStreamQueries : streamQueries playerScript:playerScript userInfo:userInfo error:&streamURLsError];
+		NSDictionary *mainStreamURLs = [self extractStreamURLsWithQuery:streamQueries.count == 0 ? alternativeStreamQueries : streamQueries playerScript:playerScript userInfo:userInfo error:&streamURLsError];
+		if (mainStreamURLs)
+			[streamURLs addEntriesFromDictionary:mainStreamURLs];
 		
 		if (streamURLsError)
 		{
@@ -266,6 +268,8 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 				*error = streamURLsError;
 			return nil;
 		}
+		
+		_streamURLs = [streamURLs copy];
 		
 		if (_streamURLs.count == 0)
 		{
