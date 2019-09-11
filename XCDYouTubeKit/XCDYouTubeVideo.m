@@ -29,14 +29,7 @@ NSDictionary *XCDStreamingDataWithString(NSString *string)
 
 NSString *XCDHTTPLiveStreamingStringWithString(NSString *string)
 {
-	NSError *error = nil;
-	NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-	if (!data) { return nil; }
-	NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-	
-	if (error) { return nil; }
-	
-	NSDictionary *streamingData = JSON[@"streamingData"];
+	NSDictionary *streamingData = XCDStreamingDataWithString(string);
 	NSString *manifestURL = streamingData[@"hlsManifestUrl"];
 	if (manifestURL.length == 0) { return nil; }
 	
