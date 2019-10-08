@@ -4,13 +4,15 @@
 
 #import <TargetConditionals.h>
 
-#import <XCDYouTubeKit/XCDYouTubeClient.h>
-#import <XCDYouTubeKit/XCDYouTubeError.h>
-#import <XCDYouTubeKit/XCDYouTubeLogger.h>
-#import <XCDYouTubeKit/XCDYouTubeOperation.h>
-#import <XCDYouTubeKit/XCDYouTubeVideo.h>
-#import <XCDYouTubeKit/XCDYouTubeVideoOperation.h>
+#import "XCDYouTubeClient.h"
+#import "XCDYouTubeError.h"
+#import "XCDYouTubeLogger.h"
+#import "XCDYouTubeOperation.h"
+#import "XCDYouTubeVideo.h"
+#import "XCDYouTubeVideoOperation.h"
 
+/*
 #if TARGET_OS_IOS || (!defined(TARGET_OS_IOS) && TARGET_OS_IPHONE)
-#import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
+#import "XCDYouTubeVideoPlayerViewController.h"
 #endif
+*/

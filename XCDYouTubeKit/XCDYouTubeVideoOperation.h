@@ -10,8 +10,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import <XCDYouTubeKit/XCDYouTubeOperation.h>
-#import <XCDYouTubeKit/XCDYouTubeVideo.h>
+#import "XCDYouTubeOperation.h"
+#import "XCDYouTubeVideo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
