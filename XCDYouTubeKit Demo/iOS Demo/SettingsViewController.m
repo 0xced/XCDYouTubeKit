@@ -20,6 +20,9 @@
 {
 	[super viewDidLoad];
 	
+	if (@available(iOS 13.0, *)) {
+		self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+	} 
 	self.playVideoInBackgroundSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"PlayVideoInBackground"];
 	self.audioSessionCategoryLabel.text = [[AVAudioSession sharedInstance] category];
 	
