@@ -7,10 +7,8 @@
 @interface DemoInlineViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIView *videoContainerView;
-@property (nonatomic, weak) IBOutlet UISwitch *prepareToPlaySwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *shouldAutoplaySwitch;
 
 - (IBAction) load:(id)sender;
-- (IBAction) prepareToPlay:(UISwitch *)sender;
 
 @end

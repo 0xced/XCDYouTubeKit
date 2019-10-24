@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		019AFA1E2361E9CD00B03F57 /* DemoFullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019AFA1D2361E9CC00B03F57 /* DemoFullScreenViewController.swift */; };
+		019AFA202361F10D00B03F57 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019AFA1F2361F10D00B03F57 /* Utilities.swift */; };
 		0ADD88CC5EC5E9D286D8A8E0 /* libPods-XCDYouTubeKit iOS Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3DDE49D0638521AD03AA01 /* libPods-XCDYouTubeKit iOS Demo.a */; };
 		6941B80FC7AE87BA698FDD61 /* libPods-XCDYouTubeKit OS X Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF61ADAFAE5A8C5F8C082438 /* libPods-XCDYouTubeKit OS X Demo.a */; };
 		C232DA831C00BCEB00E26E3A /* GradientMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = C232DA821C00BCEB00E26E3A /* GradientMaskView.m */; };
@@ -29,7 +31,6 @@
 		C27415A617F491230026834B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27415A517F491230026834B /* CoreGraphics.framework */; };
 		C27415D217F4CDD80026834B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415C017F4CDD80026834B /* AppDelegate.m */; };
 		C27415D317F4CDD80026834B /* DemoAsynchronousViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415C217F4CDD80026834B /* DemoAsynchronousViewController.m */; };
-		C27415D417F4CDD80026834B /* DemoFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415C417F4CDD80026834B /* DemoFullScreenViewController.m */; };
 		C27415D517F4CDD80026834B /* DemoInlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415C617F4CDD80026834B /* DemoInlineViewController.m */; };
 		C27415D617F4CDD80026834B /* DemoThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27415C817F4CDD80026834B /* DemoThumbnailViewController.m */; };
 		C27415D717F4CDD80026834B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C27415C917F4CDD80026834B /* MainStoryboard.storyboard */; };
@@ -90,6 +91,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		019AFA1C2361E9CC00B03F57 /* XCDYouTubeKit iOS Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XCDYouTubeKit iOS Demo-Bridging-Header.h"; sourceTree = "<group>"; };
+		019AFA1D2361E9CC00B03F57 /* DemoFullScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoFullScreenViewController.swift; sourceTree = "<group>"; };
+		019AFA1F2361F10D00B03F57 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		044E71F373F947A64C774319 /* Pods-XCDYouTubeKit iOS Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit iOS Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XCDYouTubeKit iOS Demo/Pods-XCDYouTubeKit iOS Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		4805F31947DAD8E88035A44A /* Pods-XCDYouTubeKit OS X Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCDYouTubeKit OS X Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XCDYouTubeKit OS X Demo/Pods-XCDYouTubeKit OS X Demo.release.xcconfig"; sourceTree = "<group>"; };
 		5B3DDE49D0638521AD03AA01 /* libPods-XCDYouTubeKit iOS Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCDYouTubeKit iOS Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,8 +122,6 @@
 		C27415C017F4CDD80026834B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C27415C117F4CDD80026834B /* DemoAsynchronousViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoAsynchronousViewController.h; sourceTree = "<group>"; };
 		C27415C217F4CDD80026834B /* DemoAsynchronousViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoAsynchronousViewController.m; sourceTree = "<group>"; };
-		C27415C317F4CDD80026834B /* DemoFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoFullScreenViewController.h; sourceTree = "<group>"; };
-		C27415C417F4CDD80026834B /* DemoFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoFullScreenViewController.m; sourceTree = "<group>"; };
 		C27415C517F4CDD80026834B /* DemoInlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoInlineViewController.h; sourceTree = "<group>"; };
 		C27415C617F4CDD80026834B /* DemoInlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoInlineViewController.m; sourceTree = "<group>"; };
 		C27415C717F4CDD80026834B /* DemoThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoThumbnailViewController.h; sourceTree = "<group>"; };
@@ -274,10 +276,10 @@
 				C2630D3E1935C449000D3917 /* PlayerEventLogger.m */,
 				C2570B841A02415F00127127 /* NowPlayingInfoCenterProvider.h */,
 				C2570B851A02415F00127127 /* NowPlayingInfoCenterProvider.m */,
-				C27415C317F4CDD80026834B /* DemoFullScreenViewController.h */,
-				C27415C417F4CDD80026834B /* DemoFullScreenViewController.m */,
 				C2C5D2961A6E5AB900F2B3F8 /* VideoPickerController.h */,
 				C2C5D2971A6E5AB900F2B3F8 /* VideoPickerController.m */,
+				019AFA1F2361F10D00B03F57 /* Utilities.swift */,
+				019AFA1D2361E9CC00B03F57 /* DemoFullScreenViewController.swift */,
 				C27415C517F4CDD80026834B /* DemoInlineViewController.h */,
 				C27415C617F4CDD80026834B /* DemoInlineViewController.m */,
 				C27415C717F4CDD80026834B /* DemoThumbnailViewController.h */,
@@ -290,6 +292,7 @@
 				C2BA376C192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m */,
 				C27415C917F4CDD80026834B /* MainStoryboard.storyboard */,
 				C27415CB17F4CDD80026834B /* Supporting Files */,
+				019AFA1C2361E9CC00B03F57 /* XCDYouTubeKit iOS Demo-Bridging-Header.h */,
 			);
 			path = "iOS Demo";
 			sourceTree = "<group>";
@@ -422,6 +425,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Cédric Luthi";
 				TargetAttributes = {
+					C274159D17F491230026834B = {
+						LastSwiftMigration = 1110;
+					};
 					C2D627581BE3C648005367FF = {
 						CreatedOnToolsVersion = 7.1;
 					};
@@ -432,6 +438,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -636,11 +643,12 @@
 				C2570B861A02415F00127127 /* NowPlayingInfoCenterProvider.m in Sources */,
 				C27415D317F4CDD80026834B /* DemoAsynchronousViewController.m in Sources */,
 				C2630D3F1935C449000D3917 /* PlayerEventLogger.m in Sources */,
+				019AFA202361F10D00B03F57 /* Utilities.swift in Sources */,
 				C2CF7CEE1B17737400C356EA /* ContextLogFormatter.m in Sources */,
-				C27415D417F4CDD80026834B /* DemoFullScreenViewController.m in Sources */,
 				C2C5D2981A6E5AB900F2B3F8 /* VideoPickerController.m in Sources */,
 				C27415D517F4CDD80026834B /* DemoInlineViewController.m in Sources */,
 				C27415D617F4CDD80026834B /* DemoThumbnailViewController.m in Sources */,
+				019AFA1E2361E9CD00B03F57 /* DemoFullScreenViewController.swift in Sources */,
 				C27415DC17F4CDD80026834B /* main.m in Sources */,
 				C2EFB48718730A2B0046B1FE /* SettingsViewController.m in Sources */,
 				C2BA376D192AB32200B27FAD /* MPMoviePlayerController+BackgroundPlayback.m in Sources */,
@@ -833,10 +841,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit.demo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS Demo/XCDYouTubeKit iOS Demo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -848,10 +860,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "iOS Demo/Supporting Files/XCDYouTubeKit iOS Demo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.pitaya.xcdyoutubekit.demo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS Demo/XCDYouTubeKit iOS Demo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

@@ -465,28 +465,14 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Autoplay:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSN-K3-9AY">
-                                        <rect key="frame" x="81" y="285" width="80" height="21"/>
+                                        <rect key="frame" x="81" y="255" width="80" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8bF-dY-bcy">
-                                        <rect key="frame" x="197" y="280" width="51" height="31"/>
+                                        <rect key="frame" x="197" y="250" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    </switch>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Prepare to play:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRm-fV-LOK">
-                                        <rect key="frame" x="35" y="253" width="126" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ew8-jW-8Vp">
-                                        <rect key="frame" x="197" y="248" width="51" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <action selector="prepareToPlay:" destination="Hee-31-VcG" eventType="valueChanged" id="As8-P9-qr2"/>
-                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -496,7 +482,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Inline Player" id="SHp-5y-dGQ"/>
                     <connections>
-                        <outlet property="prepareToPlaySwitch" destination="Ew8-jW-8Vp" id="KLr-FX-Emp"/>
                         <outlet property="shouldAutoplaySwitch" destination="8bF-dY-bcy" id="NW4-cJ-Xnh"/>
                         <outlet property="videoContainerView" destination="MnV-RJ-fGr" id="LQk-4H-xOv"/>
                     </connections>
