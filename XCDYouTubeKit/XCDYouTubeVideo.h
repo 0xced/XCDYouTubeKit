@@ -108,6 +108,13 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
 
 /**
 
+*  A streamURL that is compatible on Apple devices.
+*  The `streamURLs` may contain both video and audio streams, some video streams do not contain any audio. This property will return a video stream that contains both audio and video with a maximum video quality of 720p in the case of videos that aren't live. Also, this properly will return the URL to a live stream in the case of live videos.
+*/
+@property (nonatomic, readonly) NSURL *streamURL;
+
+/**
+
  *  A dictionary of caption URLs (XML).
  *
  *  The keys are the [language codes](https://www.loc.gov/standards/iso639-2/php/code_list.php) values as `NSString` objects. The values are the caption URLs as `NSURL` objects.
