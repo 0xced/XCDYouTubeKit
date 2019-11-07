@@ -1,6 +1,7 @@
 //
 //  Copyright (c) 2013-2016 Cédric Luthi. All rights reserved.
 //
+#if TARGET_OS_IOS || (!defined(TARGET_OS_IOS) && TARGET_OS_IPHONE)
 
 #import "XCDYouTubeVideoPlayerViewController.h"
 
@@ -207,3 +208,4 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 }
 
 @end
+#endif
