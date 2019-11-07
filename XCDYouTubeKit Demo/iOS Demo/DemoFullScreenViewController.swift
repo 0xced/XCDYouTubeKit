@@ -32,7 +32,9 @@ class DemoFullScreenViewController: UIViewController {
 	
     @IBOutlet weak open var lowQualitySwitch: UISwitch!
     @IBOutlet weak open var videoIdentifierTextField: UITextField!
-       
+	var ob: NSKeyValueObservation?
+	private var timeObserverToken: Any?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.videoIdentifierTextField.text = UserDefaults.standard.string(forKey: "VideoIdentifier")
@@ -42,20 +44,17 @@ class DemoFullScreenViewController: UIViewController {
 		self.view.endEditing(true)
 	}
 	
-    @IBAction open func play(_ sender: Any!) {
-		let playerViewController = AVPlayerViewController()
-		self.present(playerViewController, animated: true, completion: nil)
-		
+	@IBAction open func play(_ sender: Any!) {
 		XCDYouTubeClient.default().getVideoWithIdentifier(self.videoIdentifierTextField.text) { (video, error) in
 			guard error == nil else {
 				Utilities.shared.displayError(error! as NSError, originViewController: self)
 				return
 			}
-			
-			let streamURL = self.lowQualitySwitch.isOn ? video?.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?? video?.streamURLs[XCDYouTubeVideoQuality.medium360.rawValue] ?? video?.streamURLs[XCDYouTubeVideoQuality.small240.rawValue] : video?.streamURL
-			
-			playerViewController.player = AVPlayer(url: streamURL!)
-			playerViewController.player?.play()
+			AVPlayerViewControllerManager.shared.lowQualityMode = self.lowQualitySwitch.isOn
+			AVPlayerViewControllerManager.shared.video = video
+			self.present(AVPlayerViewControllerManager.shared.controller, animated: true) {
+				AVPlayerViewControllerManager.shared.controller.player?.play()
+			}
 		}
-    }
+	}
 }

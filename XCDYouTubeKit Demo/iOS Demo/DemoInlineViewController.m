@@ -12,23 +12,28 @@
 
 @implementation DemoInlineViewController
 
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	
+	[[AVPlayerViewControllerManager shared].controller.player pause];
+}
 - (IBAction) load:(id)sender
 {
 	NSString *videoIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"VideoIdentifier"];
-	
-	AVPlayerViewController *playerViewController = [AVPlayerViewController new];
-	playerViewController.view.frame = self.videoContainerView.bounds;
-	[self addChildViewController:playerViewController];
-	[self.videoContainerView addSubview:playerViewController.view];
-	[playerViewController didMoveToParentViewController:self];
-	
-	__weak AVPlayerViewController *weakPlayerViewController = playerViewController;
+
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error) {
 		if (video)
 		{
-			weakPlayerViewController.player = [AVPlayer playerWithURL:video.streamURL];
+			[AVPlayerViewControllerManager shared].video = video;
+			AVPlayerViewController *playerViewController = [AVPlayerViewControllerManager shared].controller;
+			playerViewController.view.frame = self.videoContainerView.bounds;
+			[self addChildViewController:playerViewController];
+			[self.videoContainerView addSubview:playerViewController.view];
+			[playerViewController didMoveToParentViewController:self];
+			
 			if (self.shouldAutoplaySwitch.on)
-				[weakPlayerViewController.player play];
+				[playerViewController.player play];
 		}
 		else
 		{

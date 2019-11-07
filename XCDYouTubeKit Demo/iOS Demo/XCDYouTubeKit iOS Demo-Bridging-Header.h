@@ -3,3 +3,4 @@
 //
 
 #import "VideoPickerController.h"
+#import <XCDYouTubeKit/XCDYouTubeVideo.h>

@@ -36,8 +36,8 @@
 
 - (IBAction) play:(id)sender
 {
-	AVPlayerViewController *playerViewController = [AVPlayerViewController new];
-	playerViewController.player = [AVPlayer playerWithURL:self.video.streamURL];
+	[AVPlayerViewControllerManager shared].video = self.video;
+	AVPlayerViewController *playerViewController = [AVPlayerViewControllerManager shared].controller;
 	[self presentViewController:playerViewController animated:YES completion:nil];
 	[playerViewController.player play];
 }
