@@ -9,8 +9,6 @@
 #define null_resettable
 #endif
 
-#if TARGET_OS_IOS || (!defined(TARGET_OS_IOS) && TARGET_OS_IPHONE)
-
 #import <MediaPlayer/MediaPlayer.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -126,5 +124,3 @@ MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL DEPRECATED_MSG_ATTRIB
 MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL DEPRECATED_MSG_ATTRIBUTE("Use XCDYouTubeVideoUserInfoKey instead.");
 
 NS_ASSUME_NONNULL_END
-
-#endif
