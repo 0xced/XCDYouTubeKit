@@ -85,12 +85,35 @@ extension UIView {
     }
 	
 	public lazy var controller: AVPlayerViewController = {
-		  let controller = AVPlayerViewController()
-		  if #available(iOS 10.0, *) {
-			  controller.updatesNowPlayingInfoCenter = false
-		  }
-		  return controller
-	  }()
+		let controller = AVPlayerViewController()
+		if #available(iOS 10.0, *) {
+			controller.updatesNowPlayingInfoCenter = false
+		}
+		return controller
+	}()
+	
+	override init() {
+		super.init()
+		
+		NotificationCenter.default.addObserver(forName: AVAudioSession.interruptionNotification, object:  AVAudioSession.sharedInstance(), queue: .main) { (notification) in
+			
+			guard let userInfo = notification.userInfo,
+				let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+				let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {
+					return
+			}
+			
+			if type == .began {
+				self.player?.pause()
+			} else if type == .ended {
+				guard ((try? AVAudioSession.sharedInstance().setActive(true)) != nil) else { return }
+				guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
+				let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
+				guard options.contains(.shouldResume) else { return }
+				self.player?.play()
+			}
+		}
+	}
 	
 	public func disconnectPlayer() {
         self.controller.player = nil
