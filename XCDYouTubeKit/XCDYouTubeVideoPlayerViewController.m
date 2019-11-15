@@ -1,13 +1,14 @@
 //
 //  Copyright (c) 2013-2016 Cédric Luthi. All rights reserved.
 //
-#if TARGET_OS_IOS || (!defined(TARGET_OS_IOS) && TARGET_OS_IPHONE)
 
 #import "XCDYouTubeVideoPlayerViewController.h"
 
 #import "XCDYouTubeClient.h"
 
 #import <objc/runtime.h>
+
+#if TARGET_OS_IOS
 
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 

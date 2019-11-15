@@ -9,7 +9,9 @@
 #define null_resettable
 #endif
 
-#if TARGET_OS_IOS || (!defined(TARGET_OS_IOS) && TARGET_OS_IPHONE)
+#import <TargetConditionals.h>
+
+#if TARGET_OS_IOS
 
 #import <MediaPlayer/MediaPlayer.h>
 
