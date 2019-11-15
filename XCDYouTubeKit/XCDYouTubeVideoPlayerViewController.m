@@ -8,6 +8,8 @@
 
 #import <objc/runtime.h>
 
+#if TARGET_OS_IOS
+
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 NSString *const XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey = @"error"; // documented in -[MPMoviePlayerController initWithContentURL:]
@@ -207,3 +209,4 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 }
 
 @end
+#endif
