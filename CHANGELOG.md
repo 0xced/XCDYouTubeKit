@@ -1,3 +1,10 @@
+#### Version 2.8.2
+
+* Add new `streamURL` property on `XCDYouTubeVideo`
+* Fixed Swift Package Manager (#441)
+* Support iOS 13 in Demo Projects
+  * Support background playback (#427, #442)
+
 #### Version 2.8.1
 
 * Adaptation to YouTube API change. (#447, #448, #449)
