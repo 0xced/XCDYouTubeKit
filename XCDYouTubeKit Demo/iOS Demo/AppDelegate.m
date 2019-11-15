@@ -9,6 +9,7 @@
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 
 #import "ContextLogFormatter.h"
+#import "XCDYouTubeKit_iOS_Demo-Swift.h"
 
 @implementation AppDelegate
 
@@ -18,9 +19,6 @@
 {
 	if (!(self = [super init]))
 		return nil;
-	
-	_playerEventLogger = [PlayerEventLogger new];
-	_nowPlayingInfoCenterProvider = [NowPlayingInfoCenterProvider new];
 	
 	return self;
 }
@@ -78,6 +76,15 @@ static void InitializeAppearance(UINavigationController *rootViewController)
 	InitializeAudioSession();
 	InitializeAppearance((UINavigationController *)self.window.rootViewController);
 	return YES;
+}
+
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	[[AVPlayerViewControllerManager shared]disconnectPlayer];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+	[[AVPlayerViewControllerManager shared]reconnectPlayerWithRootViewController:self.window.rootViewController];
 }
 
 @end

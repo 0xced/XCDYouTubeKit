@@ -6,11 +6,13 @@
 
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 
-#import "MPMoviePlayerController+BackgroundPlayback.h"
+#import <AVKit/AVKit.h>
+
+#import "XCDYouTubeKit_iOS_Demo-Swift.h"
 
 @interface DemoThumbnailViewController ()
 
-@property (nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;
+@property (nonatomic, strong) XCDYouTubeVideo *video;
 
 @end
 
@@ -19,46 +21,48 @@
 - (IBAction) loadThumbnail:(id)sender
 {
 	NSString *videoIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"VideoIdentifier"];
-	self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:videoIdentifier];
-	self.videoPlayerViewController.moviePlayer.backgroundPlaybackEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"PlayVideoInBackground"];
 	
-	NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-	[defaultCenter addObserver:self selector:@selector(videoPlayerViewControllerDidReceiveVideo:) name:XCDYouTubeVideoPlayerViewControllerDidReceiveVideoNotification object:self.videoPlayerViewController];
-	[defaultCenter addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.videoPlayerViewController.moviePlayer];
+	[[XCDYouTubeClient defaultClient]getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error)
+	{
+		if (error) {
+			[[Utilities shared]displayError:error originViewController:self];
+			return;
+		}
+		
+		[self displayThumbnailWithVideo:video];
+		
+	}];
 }
 
 - (IBAction) play:(id)sender
 {
-	[self.videoPlayerViewController presentInView:self.videoContainerView];
-	[self.videoPlayerViewController.moviePlayer play];
+	[AVPlayerViewControllerManager shared].video = self.video;
+	AVPlayerViewController *playerViewController = [AVPlayerViewControllerManager shared].controller;
+	[self presentViewController:playerViewController animated:YES completion:nil];
+	[playerViewController.player play];
 }
 
-#pragma mark - Notifications
-
-- (void) videoPlayerViewControllerDidReceiveVideo:(NSNotification *)notification
+- (void) displayThumbnailWithVideo:(XCDYouTubeVideo *)video
 {
-	XCDYouTubeVideo *video = notification.userInfo[XCDYouTubeVideoUserInfoKey];
+	self.video = video;
 	self.titleLabel.text = video.title;
-	
-	NSURL *thumbnailURL = video.mediumThumbnailURL ?: video.smallThumbnailURL;
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:thumbnailURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-	{
-		self.thumbnailImageView.image = [UIImage imageWithData:data];
-		
-		[self.actionButton setTitle:NSLocalizedString(@"Play Video", nil) forState:UIControlStateNormal];
-		[self.actionButton removeTarget:self action:NULL forControlEvents:UIControlEventAllEvents];
-		[self.actionButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
-	}];
-}
+	NSURL *thumbnailURL = video.thumbnailURL;
 
-- (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
-{
-	NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
-	if (error)
-	{
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-		[alertView show];
-	}
+	[[[NSURLSession sharedSession]dataTaskWithURL:thumbnailURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
+	  {
+		if (error) {
+			[[Utilities shared]displayError:error originViewController:self];
+			return;
+		}
+		
+		[[NSOperationQueue mainQueue]addOperationWithBlock:^{
+			self.thumbnailImageView.image = [UIImage imageWithData:data];
+			[self.actionButton setTitle:NSLocalizedString(@"Play Video", nil) forState:UIControlStateNormal];
+			[self.actionButton removeTarget:self action:NULL forControlEvents:UIControlEventAllEvents];
+			[self.actionButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
+		}];
+		
+	}] resume];
 }
 
 @end
