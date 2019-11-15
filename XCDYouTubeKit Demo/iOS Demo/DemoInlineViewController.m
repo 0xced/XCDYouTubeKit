@@ -6,44 +6,40 @@
 
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 
-#import "MPMoviePlayerController+BackgroundPlayback.h"
+#import <AVKit/AVKit.h>
 
-@interface DemoInlineViewController ()
-
-@property (nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;
-
-@end
+#import "XCDYouTubeKit_iOS_Demo-Swift.h"
 
 @implementation DemoInlineViewController
 
-- (void) viewWillDisappear:(BOOL)animated
-{
+
+- (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	
-	// Beware, viewWillDisappear: is called when the player view enters full screen on iOS 6+
-	if ([self isMovingFromParentViewController])
-		[self.videoPlayerViewController.moviePlayer stop];
+	[[AVPlayerViewControllerManager shared].controller.player pause];
 }
-
 - (IBAction) load:(id)sender
 {
-	[self.videoContainerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-	
 	NSString *videoIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"VideoIdentifier"];
-	self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:videoIdentifier];
-	self.videoPlayerViewController.moviePlayer.backgroundPlaybackEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"PlayVideoInBackground"];
-	[self.videoPlayerViewController presentInView:self.videoContainerView];
-	
-	if (self.prepareToPlaySwitch.on)
-		[self.videoPlayerViewController.moviePlayer prepareToPlay];
-	
-	self.videoPlayerViewController.moviePlayer.shouldAutoplay = self.shouldAutoplaySwitch.on;
-}
 
-- (IBAction) prepareToPlay:(UISwitch *)sender
-{
-	if (sender.on)
-		[self.videoPlayerViewController.moviePlayer prepareToPlay];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:videoIdentifier completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error) {
+		if (video)
+		{
+			[AVPlayerViewControllerManager shared].video = video;
+			AVPlayerViewController *playerViewController = [AVPlayerViewControllerManager shared].controller;
+			playerViewController.view.frame = self.videoContainerView.bounds;
+			[self addChildViewController:playerViewController];
+			[self.videoContainerView addSubview:playerViewController.view];
+			[playerViewController didMoveToParentViewController:self];
+			
+			if (self.shouldAutoplaySwitch.on)
+				[playerViewController.player play];
+		}
+		else
+		{
+			[[Utilities shared]displayError:error originViewController:self];
+		}
+	}];
 }
 
 @end

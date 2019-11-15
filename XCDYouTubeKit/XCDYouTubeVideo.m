@@ -280,6 +280,8 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 			}
 		}
 		
+		_streamURL =  _streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?: _streamURLs[@(XCDYouTubeVideoQualityHD720)] ?: _streamURLs[@(XCDYouTubeVideoQualityMedium360)] ?: _streamURLs[@(XCDYouTubeVideoQualitySmall240)];
+		
 		return self;
 	}
 	else
