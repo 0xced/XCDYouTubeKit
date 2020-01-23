@@ -1,3 +1,7 @@
+#### Version 2.8.3
+
+* Adaptation to YouTube API change. (#458)
+
 #### Version 2.8.2
 
 * Add new `streamURL` property on `XCDYouTubeVideo`
