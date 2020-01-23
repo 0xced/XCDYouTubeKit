@@ -73,11 +73,15 @@
 		XCDYouTubeLogWarning(@"Unexpected player script (no anonymous function found)");
 	}
 	
-   //See list of regex patterns here https://github.com/rg3/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1179
+   //See list of regex patterns here https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1344
     NSArray<NSString *>*patterns = @[@"\\b[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
                                      @"\\b[a-zA-Z0-9]+\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
 									 @"\\b([a-zA-Z0-9$]{2})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)",
 									 @"([a-zA-Z0-9$]+)\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)",
+									 /*The rest patterns are supposed to be obsolete but I am keep them here in case some older pattern matches the YouTube API in the future
+									  * IMPORTANT: Please note that the patterns above should be placed in the same order as seen in youtube-dl here: https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1344
+									  * If they do not match the same order some video won't play because of using the wrong signature.
+									  */
                                      @"([\"\\\'])signature\\1\\s*,\\s*([a-zA-Z0-9$]+)\\(",
                                      @"\\.sig\\|\\|([a-zA-Z0-9$]+)\\(",
 								     @"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*(?:encodeURIComponent\\s*\\()?\\s*([a-zA-Z0-9$]+)\\(",
