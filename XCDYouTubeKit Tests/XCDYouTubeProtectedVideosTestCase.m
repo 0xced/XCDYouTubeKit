@@ -50,6 +50,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
 		 XCTAssertNotNil(video.thumbnailURL);
 		 XCTAssertTrue(video.streamURLs.count > 0);
@@ -71,6 +72,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
 		 XCTAssertNotNil(video.thumbnailURL);
 		 XCTAssertTrue(video.streamURLs.count > 0);
@@ -109,6 +111,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -129,6 +132,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -149,6 +153,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -169,6 +174,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -189,6 +195,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -209,6 +216,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -251,6 +259,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -272,6 +281,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
 		 XCTAssertNotNil(video.thumbnailURL);
 		 XCTAssertTrue(video.streamURLs.count > 0);
@@ -410,6 +420,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
 		 XCTAssertNotNil(video.thumbnailURL);
 		 XCTAssertTrue(video.streamURLs.count > 0);
