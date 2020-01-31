@@ -208,8 +208,8 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		return;
 	}
 	
-	NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: connectionError.localizedDescription,
-	                            NSUnderlyingErrorKey: connectionError };
+	NSDictionary *userInfo = @{	NSLocalizedDescriptionKey: connectionError.localizedDescription,
+								NSUnderlyingErrorKey: connectionError };
 	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
 	
 	[self startNextRequest];

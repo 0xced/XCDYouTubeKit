@@ -94,8 +94,8 @@ NSDictionary *XCDDictionaryWithQueryString(NSString *string)
 			if (dictionary[key] && ![(NSObject *)dictionary[key] isEqual:value])
 			{
 				XCDYouTubeLogWarning(@"Using XCDDictionaryWithQueryString is inappropriate because the query string has multiple values for the key '%@'\n"
-				                     @"Query: %@\n"
-				                     @"Discarded value: %@", key, string, dictionary[key]);
+									 @"Query: %@\n"
+									 @"Discarded value: %@", key, string, dictionary[key]);
 			}
 			dictionary[key] = value;
 		}
@@ -323,7 +323,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		}
 		else
 		{
-		    stream = XCDDictionaryWithQueryString((NSString *)streamQuery);
+			stream = XCDDictionaryWithQueryString((NSString *)streamQuery);
 		}
 		NSDictionary *alternativeStreamInfo = XCDDictionaryWithQueryString(stream[@"cipher"]);
 		NSString *alternativeURLString = alternativeStreamInfo[@"url"];
