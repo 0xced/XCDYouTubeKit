@@ -2,3 +2,4 @@ XcodeCoverage
 RELEASE_NOTES.md
 .DS_Store
 *.xcuserstate
+xcuserdata/
