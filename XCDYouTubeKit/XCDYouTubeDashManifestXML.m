@@ -53,19 +53,19 @@
 	if (error)
 		return nil;
 	
-    NSArray *checkingResults = [regex matchesInString:self.XMLString options:0 range:NSMakeRange(0, [self.XMLString length])];
+	NSArray *checkingResults = [regex matchesInString:self.XMLString options:0 range:NSMakeRange(0, [self.XMLString length])];
 	
 	if (checkingResults.count == 0 || checkingResults == nil)
 		return nil;
 	
 	NSMutableArray <NSURL *>*URLs = [NSMutableArray new];
 	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
-
+	
 	for (NSTextCheckingResult *checkingResult in checkingResults)
 	{
 		NSString* substringForMatch = [self.XMLString substringWithRange:checkingResult.range];
 		NSURL *url = [NSURL URLWithString:substringForMatch];
-	
+		
 		NSRange youtubeRange = [url.absoluteString rangeOfString:@"youtube" options:0];
 		NSRange itagnRange = [url.absoluteString rangeOfString:@"itag" options:0];
 		
@@ -84,7 +84,7 @@
 			continue;
 		
 		NSTextCheckingResult *itagCheckingResult = [itagRegex firstMatchInString:(NSString *_Nonnull)url.absoluteString options:0 range:NSMakeRange(0, url.absoluteString.length)];
-
+		
 		NSString *itag = [url.absoluteString substringWithRange:itagCheckingResult.range];
 		streamURLs[@(itag.integerValue)] = url;
 	}
