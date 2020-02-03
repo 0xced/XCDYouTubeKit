@@ -72,62 +72,63 @@
 	{
 		XCDYouTubeLogWarning(@"Unexpected player script (no anonymous function found)");
 	}
-	
-   //See list of regex patterns here https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1344
-    NSArray<NSString *>*patterns =  [@[@"\\b[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
-                                     @"\\b[a-zA-Z0-9]+\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
-									 @"\\b([a-zA-Z0-9$]{2})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)",
-									 @"([a-zA-Z0-9$]+)\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)",
-									 /*The rest patterns are supposed to be obsolete but I am keep them here in case some older pattern matches the YouTube API in the future
-									  * IMPORTANT: Please note that the patterns above should be placed in the same order as seen in youtube-dl here: https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1344
-									  * If they do not match the same order some video won't play because of using the wrong signature.
-									  */
-                                     @"([\"\\\'])signature\\1\\s*,\\s*([a-zA-Z0-9$]+)\\(",
-                                     @"\\.sig\\|\\|([a-zA-Z0-9$]+)\\(",
-								     @"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*(?:encodeURIComponent\\s*\\()?\\s*([a-zA-Z0-9$]+)\\(",
-									 @"\\b[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\(",
-									 @"\\b[a-zA-Z0-9]+\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\(",
-									 @"\\bc\\s*&&\\s*a\\.set\\([^,]+\\s*,\\s*\\([^)]*\\)\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
-									 @"\\bc\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*\\([^)]*\\)\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
-									 @"\\bc\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*\\([^)]*\\)\\s*\\(\\s*([a-zA-Z0-9$]+)\\("
+
+	//See list of regex patterns here https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1344
+	NSArray<NSString *>*patterns = [@[
+		@"\\b[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
+		@"\\b[a-zA-Z0-9]+\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
+		@"\\b([a-zA-Z0-9$]{2})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)",
+		@"([a-zA-Z0-9$]+)\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)",
+		/*The rest patterns are supposed to be obsolete but I am keep them here in case some older pattern matches the YouTube API in the future
+		 *IMPORTANT: Please note that the patterns above should be placed in the same order as seen in youtube-dl here: https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1344
+		 *If they do not match the same order some video won't play because of using the wrong signature.
+		 */
+		@"([\"\\\'])signature\\1\\s*,\\s*([a-zA-Z0-9$]+)\\(",
+		@"\\.sig\\|\\|([a-zA-Z0-9$]+)\\(",
+		@"yt\\.akamaized\\.net/\\)\\s*\\|\\|\\s*.*?\\s*[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*(?:encodeURIComponent\\s*\\()?\\s*([a-zA-Z0-9$]+)\\(",
+		@"\\b[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\(",
+		@"\\b[a-zA-Z0-9]+\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*([a-zA-Z0-9$]+)\\(",
+		@"\\bc\\s*&&\\s*a\\.set\\([^,]+\\s*,\\s*\\([^)]*\\)\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
+		@"\\bc\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*\\([^)]*\\)\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
+		@"\\bc\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*\\([^)]*\\)\\s*\\(\\s*([a-zA-Z0-9$]+)\\("
 	] arrayByAddingObjectsFromArray:customPatterns];
-
-    NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];
-
-    for (NSString *pattern in patterns) {
-		NSError* error = NULL;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+	
+	NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];
+	
+	for (NSString *pattern in patterns) {
+    NSError* error = NULL;
+		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:NULL];
 		
-		if (error) {
+    if (error) {
 			XCDYouTubeLogWarning(@"Error when creating regular expression from the pattern: %@", pattern);
 			continue;
 		}
-		
-        if (regex != nil) {
-            [validRegularExpressions addObject:regex];
-        }
-    }
-	
-    for (NSRegularExpression *regularExpression in validRegularExpressions) {
+    
+    if (regex != nil) {
+			[validRegularExpressions addObject:regex];
+		}
+	}
+  
+	for (NSRegularExpression *regularExpression in validRegularExpressions) {
 		if (_signatureFunction)
 			break;
 		
-        NSArray<NSTextCheckingResult *> *regexResults =  [regularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
+		NSArray<NSTextCheckingResult *> *regexResults =  [regularExpression matchesInString:script options:(NSMatchingOptions)0 range:NSMakeRange(0, script.length)];
 		
-        for (NSTextCheckingResult *signatureResult in regexResults)
-        {
+		for (NSTextCheckingResult *signatureResult in regexResults)
+		{
 			NSString *signatureFunctionName = signatureResult.numberOfRanges > 1 ? [script substringWithRange:[signatureResult rangeAtIndex:1]] : nil;
 			if (!signatureFunctionName)
 				continue;
-		
-            JSValue *signatureFunction = self.context[signatureFunctionName];
-            if (signatureFunction.isObject)
-            {
-                _signatureFunction = signatureFunction;
-                break;
-            }
-        }
-    }
+			
+			JSValue *signatureFunction = self.context[signatureFunctionName];
+			if (signatureFunction.isObject)
+			{
+				_signatureFunction = signatureFunction;
+				break;
+			}
+		}
+	}
 	
 	if (!_signatureFunction)
 		XCDYouTubeLogWarning(@"No signature function in player script: \n%@. Regular Expressions: \n%@", script, validRegularExpressions);

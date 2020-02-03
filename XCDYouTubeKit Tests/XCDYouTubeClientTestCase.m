@@ -103,6 +103,7 @@
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -122,6 +123,7 @@
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[expectation fulfill];
@@ -138,6 +140,7 @@
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.thumbnailURL);
 		 XCTAssertTrue(video.streamURLs.count > 0);
 		 XCTAssertTrue(video.duration > 0);
@@ -158,6 +161,7 @@
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
