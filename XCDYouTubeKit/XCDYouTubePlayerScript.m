@@ -15,11 +15,7 @@
 
 @implementation XCDYouTubePlayerScript
 
-- (instancetype) initWithString:(NSString *)string {
-	return [self initWithString:string additionalPatterns:nil];
-}
-
-- (instancetype) initWithString:(NSString *)string additionalPatterns:(NSArray<NSString *> *)customPatterns
+- (instancetype) initWithString:(NSString *)string customPatterns:(NSArray<NSString *> *)customPatterns
 {
 	if (!(self = [super init]))
 		return nil; // LCOV_EXCL_LINE
@@ -99,9 +95,15 @@
     NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];
 
     for (NSString *pattern in patterns) {
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:NULL];
-        if (regex != nil)
-        {
+		NSError* error = NULL;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+		
+		if (error) {
+			XCDYouTubeLogWarning(@"Error when creating regular expression from the pattern: %@", pattern);
+			continue;
+		}
+		
+        if (regex != nil) {
             [validRegularExpressions addObject:regex];
         }
     }
