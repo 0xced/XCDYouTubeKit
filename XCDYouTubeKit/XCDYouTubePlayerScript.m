@@ -96,15 +96,15 @@
 	NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];
 	
 	for (NSString *pattern in patterns) {
-    NSError* error = NULL;
+		NSError* error = NULL;
 		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:NULL];
 		
-    if (error) {
+		if (error) {
 			XCDYouTubeLogWarning(@"Error when creating regular expression from the pattern: %@", pattern);
 			continue;
 		}
     
-    if (regex != nil) {
+		if (regex != nil) {
 			[validRegularExpressions addObject:regex];
 		}
 	}
