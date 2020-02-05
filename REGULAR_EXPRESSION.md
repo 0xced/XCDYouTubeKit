@@ -6,8 +6,8 @@ Some YouTube videos require regular expressions for the XCDYouTubeKit to success
 
 * The regular expressions are based on those used by the [YouTube extractor module](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py) of the *youtube-dl* project. See the list of expressions [here](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1344)
 * The order of the expressions are very important, adding the expressions to an array in an incorrect order can lead to some videos being unable to play. 
-* The strings contained in the array passed to the `customPatterns` argument should be ICU regular expressions. You can find out more about that pattern [here](http://userguide.icu-project.org/strings/regexp).
- 
+* The strings contained in the array passed to the `customPatterns` argument should be [ICU regular expressions](http://userguide.icu-project.org/strings/regexp).
+
 ### Best Practices  
 
 Generally speaking, the only time you would use the custom patterns is so that you can push new changes to your users faster and remotely, this would be done by using a server. Here are some best practices when using custom patterns :
