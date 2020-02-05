@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param videoIdentifier  A 11 characters YouTube video identifier.
  *  @param languageIdentifier An [ISO 639-1 two-letter language code](http://www.loc.gov/standards/iso639-2/php/code_list.php) used for error localization. If you pass a nil language identifier then English (`en`) is used.
  *  @param cookies An array of `NSHTTPCookie` objects, can be nil. These cookies can be used for certain videos that require a login.
- *  @param customPatterns An array of `NSString` objects, can be nil. These patterns can be used to create custom regular expression objects in favor of the internal hard-coded patterns for video parsing. If none of these patterns produces a valid `NSRegularExpression` object then the internal hard-coded regular expression objects are used. Typically, you do not need to use this parameter, however, it can be used a way to use update patterns when needed (i.e to adapt to YouTube API changes).
+ *  @param customPatterns An array of `NSString` objects, can be nil. These patterns can be used to create custom regular expression objects in favor of the internal hard-coded patterns for video parsing. If none of these patterns produces a valid `NSRegularExpression` object then the internal hard-coded regular expression objects are used. Typically, you do not need to use this parameter, however, it can be used a way to use update patterns when needed (i.e to adapt to YouTube API changes). See https://github.com/0xced/XCDYouTubeKit/blob/master/REGULAR_EXPRESSION.md for more info.
  *
  *  @return An initialized `XCDYouTubeVideoOperation` object.
  */
