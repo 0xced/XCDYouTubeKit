@@ -15,3 +15,19 @@ Generally speaking, the only time you would use the custom patterns is so that y
 * Make sure that you're using the latest version of  `XCDYouTubeKit`. 
 * Check the current patterns being used by the library under the section titled "Current Patterns"
 * Update the patterns accordingly on your server, this will allow users who haven't updated to the latest version of your app to use the latest patterns.
+
+### Current Patterns
+
+These are the patterns used in version 2.9.0 of XCDYouTubeKit:
+
+```
+\\b[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(
+
+\\b[a-zA-Z0-9]+\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(
+
+\\b([a-zA-Z0-9$]{2})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)
+
+([a-zA-Z0-9$]+)\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)
+```
+
+**Note**: Sometimes videos may still fail due to stream even if the patterns are up to date and would require an updated version of XCDYouTubeKit. Updated patterns won't always fix issues when YouTube changes its API, however, when the change merely requires new patterns using custom patterns should be sufficient.
