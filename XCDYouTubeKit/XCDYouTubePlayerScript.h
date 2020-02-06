@@ -7,7 +7,7 @@
 __attribute__((visibility("hidden")))
 @interface XCDYouTubePlayerScript : NSObject
 
-- (instancetype) initWithString:(NSString *)string;
+- (instancetype) initWithString:(NSString *)string customPatterns:(NSArray<NSString *> *)customPatterns;
 
 - (NSString *) unscrambleSignature:(NSString *)scrambledSignature;
 

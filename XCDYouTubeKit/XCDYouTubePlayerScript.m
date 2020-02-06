@@ -15,7 +15,7 @@
 
 @implementation XCDYouTubePlayerScript
 
-- (instancetype) initWithString:(NSString *)string
+- (instancetype) initWithString:(NSString *)string customPatterns:(NSArray<NSString *> *)customPatterns
 {
 	if (!(self = [super init]))
 		return nil; // LCOV_EXCL_LINE
@@ -72,9 +72,9 @@
 	{
 		XCDYouTubeLogWarning(@"Unexpected player script (no anonymous function found)");
 	}
-	
+
 	//See list of regex patterns here https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L1344
-	NSArray<NSString *>*patterns = @[
+	NSArray<NSString *>*hardCodedPatterns = @[
 		@"\\b[cs]\\s*&&\\s*[adf]\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
 		@"\\b[a-zA-Z0-9]+\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*encodeURIComponent\\s*\\(\\s*([a-zA-Z0-9$]+)\\(",
 		@"\\b([a-zA-Z0-9$]{2})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)",
@@ -93,17 +93,12 @@
 		@"\\bc\\s*&&\\s*[a-zA-Z0-9]+\\.set\\([^,]+\\s*,\\s*\\([^)]*\\)\\s*\\(\\s*([a-zA-Z0-9$]+)\\("
 	];
 	
+	NSArray *hardCodedPatternsExpressions = [self regularExpressionFromPatterns:hardCodedPatterns];
+	NSArray *customPatternsExpressions = [self regularExpressionFromPatterns:customPatterns];
+
 	NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];
-	
-	for (NSString *pattern in patterns) {
-		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:NULL];
-		if (regex != nil)
-		{
-			[validRegularExpressions addObject:regex];
-		}
-	}
-	
-	for (NSRegularExpression *regularExpression in validRegularExpressions) {
+  
+	for (NSRegularExpression *regularExpression in customPatternsExpressions.count == 0 ? hardCodedPatternsExpressions : customPatternsExpressions) {
 		if (_signatureFunction)
 			break;
 		
@@ -137,6 +132,30 @@
 	
 	JSValue *unscrambledSignature = [self.signatureFunction callWithArguments:@[ scrambledSignature ]];
 	return [unscrambledSignature isString] ? [unscrambledSignature toString] : nil;
+}
+
+- (NSArray<NSRegularExpression *> *)regularExpressionFromPatterns:(NSArray<NSString *> *)patterns
+{
+	NSMutableArray<NSRegularExpression *>*validRegularExpressions = [NSMutableArray new];
+	
+	for (NSString *pattern in patterns)
+	{
+		NSError* error = NULL;
+		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+		
+		if (error)
+		{
+			XCDYouTubeLogWarning(@"Error when creating regular expression from the pattern: %@", pattern);
+			continue;
+		}
+    
+		if (regex != nil)
+		{
+			[validRegularExpressions addObject:regex];
+		}
+	}
+	
+	return validRegularExpressions.copy;
 }
 
 @end
