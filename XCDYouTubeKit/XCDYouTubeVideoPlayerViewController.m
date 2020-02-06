@@ -27,9 +27,10 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 @property (nonatomic, weak) id<XCDYouTubeOperation> videoOperation;
 @property (nonatomic, assign, getter = isEmbedded) BOOL embedded;
 @end
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
 @implementation XCDYouTubeVideoPlayerViewController
-
+#pragma clang diagnostic pop
 /*
  * MPMoviePlayerViewController on iOS 7 and earlier
  * - (id) init
