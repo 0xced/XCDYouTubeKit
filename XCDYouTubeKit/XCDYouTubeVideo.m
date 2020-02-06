@@ -174,6 +174,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
 	NSArray *alternativeAdaptiveFormats = XCDStreamingDataWithString(playerResponse)[@"adaptiveFormats"];
 	NSDictionary *videoDetails = XCDDictionaryWithString(playerResponse)[@"videoDetails"];
+	NSString *multiCameraMetadataMap = XCDDictionaryWithString(playerResponse)[@"multicamera"][@"playerLegacyMulticameraRenderer"][@"metadataList"];
 	
 	NSMutableDictionary *userInfo = response.URL ? [@{ NSURLErrorKey: (id)response.URL } mutableCopy] : [NSMutableDictionary new];
 	
@@ -280,6 +281,34 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 				_expirationDate = ExpirationDate(streamURL);
 				break;
 			}
+		}
+		
+		NSMutableArray *videoIdentifiers = [NSMutableArray new];
+		
+		NSArray<NSString *>*multiCameraMetadata = [multiCameraMetadataMap componentsSeparatedByString:@","];
+		for (NSString *cameraMetadata in multiCameraMetadata)
+		{
+			NSArray<NSString *>*metadata = [cameraMetadata componentsSeparatedByString:@"&"];
+			if (metadata.count == 0)
+			{
+				continue;
+			}
+			if ([metadata.firstObject rangeOfString:@"id"].location == NSNotFound)
+			{
+				continue;
+			}
+			NSString *videoIdentifier = [metadata.firstObject componentsSeparatedByString:@"="].lastObject;
+			if ([videoIdentifier isEqualToString:identifier])
+			{
+				continue;
+			}
+			
+			[videoIdentifiers addObject:videoIdentifier];
+		}
+		
+		if (videoIdentifiers.count != 0)
+		{
+			_videoIdentifiers = videoIdentifiers.copy;
 		}
 		
 		_streamURL =  _streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?: _streamURLs[@(XCDYouTubeVideoQualityHD720)] ?: _streamURLs[@(XCDYouTubeVideoQualityMedium360)] ?: _streamURLs[@(XCDYouTubeVideoQualitySmall240)];
