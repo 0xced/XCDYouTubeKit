@@ -48,7 +48,7 @@ Add `XCDYouTubeKit` to the dependencies value of your `Package.swift`
 
 ```swift
 dependencies: [
-	.package(url: "https://github.com/0xced/XCDYouTubeKit.git", from: "2.8.0")
+	.package(url: "https://github.com/0xced/XCDYouTubeKit.git", from: "2.9.0")
 ]
 ```
 
