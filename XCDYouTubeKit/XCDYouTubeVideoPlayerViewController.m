@@ -27,9 +27,10 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 @property (nonatomic, weak) id<XCDYouTubeOperation> videoOperation;
 @property (nonatomic, assign, getter = isEmbedded) BOOL embedded;
 @end
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
 @implementation XCDYouTubeVideoPlayerViewController
-
+#pragma clang diagnostic pop
 /*
  * MPMoviePlayerViewController on iOS 7 and earlier
  * - (id) init
@@ -64,9 +65,9 @@ NSString *const XCDYouTubeVideoUserInfoKey = @"Video";
 {
 #if defined(DEBUG) && DEBUG
 	NSString *callStackSymbols = [[NSThread callStackSymbols] componentsJoinedByString:@"\n"];
-	if (([callStackSymbols rangeOfString:@"-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]_block_invoke"].length > 0) || ([callStackSymbols rangeOfString:@"-[XCDYouTubeClient getVideoWithIdentifier:cookies:completionHandler:]_block_invoke"].length > 0))
+	if (([callStackSymbols rangeOfString:@"-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]_block_invoke"].length > 0) || ([callStackSymbols rangeOfString:@"-[XCDYouTubeClient getVideoWithIdentifier:cookies:completionHandler:]_block_invoke"].length > 0) || ([callStackSymbols rangeOfString:@"-[XCDYouTubeClient getVideoWithIdentifier:cookies:customPatterns:completionHandler:]_block_invoke"].length > 0))
 	{
-		NSString *reason = @"XCDYouTubeVideoPlayerViewController must not be used in the completion handler of `-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]` or `-[XCDYouTubeClient getVideoWithIdentifier:cookies:completionHandler:]`. Please read the documentation and sample code to properly use XCDYouTubeVideoPlayerViewController.";
+		NSString *reason = @"XCDYouTubeVideoPlayerViewController must not be used in the completion handler of `-[XCDYouTubeClient getVideoWithIdentifier:completionHandler:]` or `-[XCDYouTubeClient getVideoWithIdentifier:cookies:completionHandler:]` or `-[XCDYouTubeClient getVideoWithIdentifier:cookies:customPatterns:completionHandler:]`. Please read the documentation and sample code to properly use XCDYouTubeVideoPlayerViewController.";
 		@throw [NSException exceptionWithName:NSGenericException reason:reason userInfo:nil];
 	}
 #endif

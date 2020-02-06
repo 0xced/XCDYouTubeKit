@@ -1,3 +1,9 @@
+#### Version 2.9.0
+
+* Add the ability to use custom regular expression patterns via `-[XCDYouTubeClient getVideoWithIdentifier:cookies:customPatterns:completionHandler:]` & `initWithVideoIdentifier:cookies:languageIdentifier:customPatterns` (#463, #199)
+* Add new `viewCount` property in `XCDYouTubeVideo` (#460)
+* Silence warning about deprecated implementation (#450)
+
 #### Version 2.8.3
 
 * Adaptation to YouTube API change. (#458)

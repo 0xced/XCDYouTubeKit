@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, copy, readonly) NSString *videoIdentifier;
 @property (atomic, copy, readonly) NSString *languageIdentifier;
 @property (atomic, strong, readonly) NSArray <NSHTTPCookie *> *cookies;
+@property (atomic, strong, readonly) NSArray <NSString *> *customPatterns;
 
 @property (atomic, assign) NSInteger requestCount;
 @property (atomic, assign) XCDYouTubeRequestType requestType;
@@ -80,7 +81,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 } // LCOV_EXCL_LINE
 #pragma clang diagnostic pop
 
-- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier cookies:(NSArray<NSHTTPCookie *> *)cookies
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier cookies:(NSArray<NSHTTPCookie *> *)cookies customPatterns:(NSArray<NSString *> *)customPatterns
 {
 	if (!(self = [super init]))
 		return nil; // LCOV_EXCL_LINE
@@ -90,6 +91,8 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	
 	_session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
 	_cookies = [cookies copy];
+	_customPatterns = [customPatterns copy];
+	
 	for (NSHTTPCookie *cookie in _cookies) {
 		[_session.configuration.HTTPCookieStorage setCookie:cookie];
 	}
@@ -100,7 +103,12 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 
 - (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier
 {
-	return [self initWithVideoIdentifier:videoIdentifier languageIdentifier:languageIdentifier cookies:nil];
+	return [self initWithVideoIdentifier:videoIdentifier languageIdentifier:languageIdentifier cookies:nil customPatterns:nil];
+}
+
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier cookies:(NSArray<NSHTTPCookie *> *)cookies
+{
+	return [self initWithVideoIdentifier:videoIdentifier languageIdentifier:languageIdentifier cookies:cookies customPatterns:nil];
 }
 
 #pragma mark - Requests
@@ -208,8 +216,8 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		return;
 	}
 	
-	NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: connectionError.localizedDescription,
-	                            NSUnderlyingErrorKey: connectionError };
+	NSDictionary *userInfo = @{	NSLocalizedDescriptionKey: connectionError.localizedDescription,
+								NSUnderlyingErrorKey: connectionError };
 	self.lastError = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNetwork userInfo:userInfo];
 	
 	[self startNextRequest];
@@ -299,7 +307,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 {
 	XCDYouTubeLogDebug(@"Handling JavaScript player response");
 	
-	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script];
+	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script customPatterns:self.customPatterns];
 	
 	if (self.webpage.isAgeRestricted && self.cookies.count == 0)
 	{

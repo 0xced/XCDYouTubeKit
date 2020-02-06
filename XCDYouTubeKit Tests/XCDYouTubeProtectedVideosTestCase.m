@@ -50,6 +50,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
 		 XCTAssertNotNil(video.thumbnailURL);
 		 XCTAssertTrue(video.streamURLs.count > 0);
@@ -71,6 +72,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
 		 XCTAssertNotNil(video.thumbnailURL);
 		 XCTAssertTrue(video.streamURLs.count > 0);
@@ -109,6 +111,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -129,6 +132,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -142,6 +146,123 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void) testProtectedVEVOVideoWithInvalidCustomPattern
+{
+	//Although, this uses a valid regular expression (xxxxxxx) it does not match the signature function in `XCDYouTubePlayerScript`
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" cookies:nil customPatterns:@[@"xxxxxxx"] completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error)
+	{
+		XCTAssertNotNil(error);
+		XCTAssertNil(video);
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testProtectedVEVOVideoWithNilCustomPatternIsPlayable
+{
+	//If a nil array is passed then we should fallback to the hard-coded patterns
+	
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" cookies:nil customPatterns:nil completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
+		XCTAssertNotNil(video.expirationDate);
+		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
+		request.HTTPMethod = @"HEAD";
+		NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		{
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		[dataTask resume];
+	}];
+	[self waitForExpectationsWithTimeout:100 handler:nil];
+}
+
+- (void) testProtectedVEVOVideoWithEmptyCustomPatternIsPlayable
+{
+	//If an empty array is passed then we should fallback to the hard-coded patterns
+	
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" cookies:nil customPatterns:@[] completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
+		XCTAssertNotNil(video.expirationDate);
+		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
+		request.HTTPMethod = @"HEAD";
+		NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		{
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		[dataTask resume];
+	}];
+	[self waitForExpectationsWithTimeout:100 handler:nil];
+}
+
+- (void) testProtectedVEVOVideoWithInvalidCustomPatternIsPlayable
+{
+	//Although, this uses an invalid regular expression `{{{{{` the video should still be playable because we fallback to the hard-coded patterns in `XCDYouTubePlayerScript`.
+	
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" cookies:nil customPatterns:@[@"{{{{{"] completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
+		XCTAssertNotNil(video.expirationDate);
+		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
+		request.HTTPMethod = @"HEAD";
+		NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		{
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		[dataTask resume];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testProtectedVEVOVideoWithValidCustomPatternIsPlayable
+{
+	//Here we're testing if pattern `\\b([a-zA-Z0-9$]{2})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)` works, this pattern is valid as of Feb 5, 2020 and works for video id `rId6PKlDXeU`
+	
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" cookies:nil customPatterns:@[@"\\b([a-zA-Z0-9$]{2})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)"] completionHandler:^(XCDYouTubeVideo * _Nullable video, NSError * _Nullable error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
+		XCTAssertNotNil(video.expirationDate);
+		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
+		request.HTTPMethod = @"HEAD";
+		NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError)
+		{
+			XCTAssertEqual([(NSHTTPURLResponse *)response statusCode], 200);
+			[expectation fulfill];
+		}];
+		[dataTask resume];
+	}];
+	[self waitForExpectationsWithTimeout:100 handler:nil];
+}
+
 - (void) testProtectedVEVOVideo1
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -149,6 +270,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -169,6 +291,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -189,6 +312,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -209,6 +333,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -251,6 +376,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	{
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
@@ -272,6 +398,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
 		 XCTAssertNotNil(video.thumbnailURL);
 		 XCTAssertTrue(video.streamURLs.count > 0);
@@ -410,6 +537,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	 {
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
 		 XCTAssertNotNil(video.thumbnailURL);
 		 XCTAssertTrue(video.streamURLs.count > 0);
