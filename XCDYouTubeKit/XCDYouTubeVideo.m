@@ -185,6 +185,13 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		NSMutableArray *streamQueries = [[streamMap componentsSeparatedByString:@","] mutableCopy];
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
 		
+		if (streamQueries == nil && (alternativeStreamMap.count > 0 || alternativeAdaptiveFormats.count > 0))
+		{
+			streamQueries = [NSMutableArray new];
+			[streamQueries addObjectsFromArray:alternativeStreamMap];
+			[streamQueries addObjectsFromArray:alternativeAdaptiveFormats];
+		}
+		
 		NSString *title = info[@"title"] == nil? videoDetails[@"title"] : info[@"title"];
 		if (title == nil)
 			title = @"";
