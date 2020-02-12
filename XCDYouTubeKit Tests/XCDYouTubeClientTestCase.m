@@ -210,7 +210,7 @@
 		}];
 	}];
 	
-	[self waitForExpectationsWithTimeout:6000 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 	
 }
 - (void) testExpiredLiveVideo
