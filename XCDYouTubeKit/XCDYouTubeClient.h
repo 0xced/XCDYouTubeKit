@@ -14,6 +14,7 @@
 #import "XCDYouTubeOperation.h"
 #import "XCDYouTubeVideo.h"
 #import "XCDYouTubeError.h"
+#import "XCDYouTubeVideoQueryOperation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -109,6 +110,8 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return An opaque object conforming to the `<XCDYouTubeOperation>` protocol for canceling the asynchronous video information operation. If you call the `cancel` method before the operation is finished, the completion handler will not be called. It is recommended that you store this opaque object as a weak property.
  */
 - (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier cookies:(nullable NSArray <NSHTTPCookie *>*)cookies customPatterns:(nullable NSArray<NSString *> *)customPatterns completionHandler:(void (^)(XCDYouTubeVideo * __nullable video, NSError * __nullable error))completionHandler;
+
+- (XCDYouTubeVideoQueryOperation *) queryVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray <NSHTTPCookie *>*)cookies completionHandler:(void (^)(NSDictionary *streamURLs, NSError * __nullable error))completionHandler;
 
 @end
 

@@ -177,7 +177,42 @@
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
-
+- (void) testVideo1ReturnsSomePlayableStreams
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	
+	//These are the playble itag stream for `cdqP6wI8TCc` as of Feb 12, 2020 in the US
+	NSArray<NSNumber *>*playableStreamKeys = @[@140, @136, @251, @134];
+	
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"cdqP6wI8TCc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError) {
+			
+			XCTAssertNotNil(streamURLs);
+			for (NSNumber *itag in playableStreamKeys)
+			{
+				XCTAssertTrue([streamURLs.allKeys containsObject:itag]);
+			}
+			
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+			
+			XCTAssertEqual(playableStreamKeys.count, streamURLs.count, @"`streamURLs` count should be equal to `playableStreamKeys` count");
+			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
+			
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:6000 handler:nil];
+	
+}
 - (void) testExpiredLiveVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];

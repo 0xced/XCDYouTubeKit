@@ -86,4 +86,29 @@
 	return [self getVideoWithIdentifier:videoIdentifier cookies:cookies customPatterns:nil  completionHandler:completionHandler];
 }
 
+- (XCDYouTubeVideoQueryOperation *) queryVideo:(XCDYouTubeVideo *)video cookies:(NSArray<NSHTTPCookie *> *)cookies completionHandler:(void (^)(NSDictionary * _Nonnull, NSError * _Nullable))completionHandler
+{
+	if (!completionHandler)
+		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The `completionHandler` argument must not be nil." userInfo:nil];
+	
+	XCDYouTubeVideoQueryOperation *operation = [[XCDYouTubeVideoQueryOperation alloc]initWithVideo:video cookies:cookies];
+	operation.completionBlock = ^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-retain-cycles"
+		if (operation.streamURLs || operation.error)
+		{
+			NSAssert(!(operation.streamURLs && operation.error), @"One of `streamURLs` or `error` must be nil.");
+			completionHandler(operation.streamURLs, operation.error);
+		} else
+		{
+			NSAssert(operation.isCancelled, @"Both `streamURLs` and `error` can not be nil if the operation was not canceled.");
+		}
+		operation.completionBlock = nil;
+#pragma clang diagnostic pop
+	};
+	
+	[self.queue addOperation:operation];
+	return operation;
+}
+
 @end
