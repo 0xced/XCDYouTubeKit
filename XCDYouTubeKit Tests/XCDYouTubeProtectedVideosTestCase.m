@@ -182,7 +182,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:100 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testProtectedVEVOVideoWithEmptyCustomPatternIsPlayable
@@ -208,7 +208,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:100 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testProtectedVEVOVideoWithInvalidCustomPatternIsPlayable
@@ -260,7 +260,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:100 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testProtectedVEVOVideo1
