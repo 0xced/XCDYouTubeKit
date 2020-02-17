@@ -22,6 +22,14 @@
 
 @implementation XCDYouTubeVideoQueryOperation
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
+- (instancetype)init
+{
+	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideo:cookies:` method instead." userInfo:nil];
+}
+#pragma clang diagnostic pop
+
 - (instancetype) initWithVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray<NSHTTPCookie *> *)cookies
 {
 	if (!(self = [super init]))
