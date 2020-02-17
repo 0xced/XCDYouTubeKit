@@ -1,3 +1,9 @@
+#### Version 2.10.0
+
+* Fixed issue that caused certain videos to return error (#468)
+* Add the ability to query `XCDYouTubeVideo` for reachable streams via `-[XCDYouTubeClient queryVideo:video:cookies:completionHandler:]` & `XCDYouTubeVideoQueryOperation` class
+* Add new `videoIdentifiers` property in `XCDYouTubeVideo` (#290)
+
 #### Version 2.9.0
 
 * Add the ability to use custom regular expression patterns via `-[XCDYouTubeClient getVideoWithIdentifier:cookies:customPatterns:completionHandler:]` & `initWithVideoIdentifier:cookies:languageIdentifier:customPatterns` (#463, #199)
