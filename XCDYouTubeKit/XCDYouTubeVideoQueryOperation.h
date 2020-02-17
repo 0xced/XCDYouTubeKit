@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XCDYouTubeVideoQueryOperation : NSOperation
 
-- (instancetype) initWithVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray<NSHTTPCookie *> *)cookies;
+- (instancetype) initWithVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray<NSHTTPCookie *> *)cookies NS_DESIGNATED_INITIALIZER;
 
 @property (atomic, strong, readonly) XCDYouTubeVideo *video;
 @property (atomic, copy, readonly, nullable) NSArray<NSHTTPCookie *>*cookies;
