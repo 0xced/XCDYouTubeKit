@@ -5,6 +5,7 @@
 #import "XCDYouTubeKitTestCase.h"
 
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
+#import <XCDYouTubeKit/XCDYouTubeVideoOperation.h>
 
 @interface XCDYouTubeClientTestCase : XCDYouTubeKitTestCase
 @end
@@ -34,6 +35,41 @@
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testThatVideoHasOtherStreams
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"sBHFOh5qe20" completionHandler:^(XCDYouTubeVideo *mainVideo, NSError *error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(mainVideo.videoIdentifiers);
+		
+		NSMutableArray *operations = [NSMutableArray new];
+		NSOperationQueue *queue = [NSOperationQueue new];
+		queue.maxConcurrentOperationCount = 6;
+		
+		for (NSString *videoIdentifier in mainVideo.videoIdentifiers)
+		{
+			[operations addObject:[[XCDYouTubeVideoOperation alloc]initWithVideoIdentifier:videoIdentifier languageIdentifier:nil]];
+		}
+		
+		XCTAssertTrue(operations.count != 0);
+		[queue addOperations:operations waitUntilFinished:YES];
+		
+		for (XCDYouTubeVideoOperation *operation in operations)
+		{
+			XCTAssertNil(operation.error);
+			XCTAssertNotNil(operation.video);
+			XCTAssertTrue(operation.video.streamURLs.count > 0);
+			XCTAssertTrue(operation.video.duration > 0);
+			XCTAssertNotEqualObjects(operation.video, mainVideo, @"None of the `videoIdentifiers` returned from the `mainVideo` should be the same `videoIdentifier` was the `mainVideo`");
+		}
+		
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
