@@ -129,7 +129,8 @@
 		}
 	}
 	
-	self.streamErrors = streamErrors.mutableCopy;
+	if (streamErrors.count != 0)
+		self.streamErrors = streamErrors.mutableCopy;
 	
 	if (streamURLs.count == 0)
 	{
