@@ -86,7 +86,7 @@
 	return [self getVideoWithIdentifier:videoIdentifier cookies:cookies customPatterns:nil  completionHandler:completionHandler];
 }
 
-- (XCDYouTubeVideoQueryOperation *) queryVideo:(XCDYouTubeVideo *)video cookies:(NSArray<NSHTTPCookie *> *)cookies completionHandler:(void (^)(NSDictionary * _Nonnull, NSError * _Nullable))completionHandler
+- (XCDYouTubeVideoQueryOperation *) queryVideo:(XCDYouTubeVideo *)video cookies:(NSArray<NSHTTPCookie *> *)cookies completionHandler:(void (^)(NSDictionary * _Nonnull, NSError * _Nullable, NSDictionary<id, NSError *> *streamErrors))completionHandler
 {
 	if (!completionHandler)
 		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The `completionHandler` argument must not be nil." userInfo:nil];
@@ -98,7 +98,7 @@
 		if (operation.streamURLs || operation.error)
 		{
 			NSAssert(!(operation.streamURLs && operation.error), @"One of `streamURLs` or `error` must be nil.");
-			completionHandler(operation.streamURLs, operation.error);
+			completionHandler(operation.streamURLs, operation.error, operation.streamErrors);
 		} else
 		{
 			NSAssert(operation.isCancelled, @"Both `streamURLs` and `error` can not be nil if the operation was not canceled.");
