@@ -1,0 +1,19 @@
+[
+  {
+    "body" : "",
+    "headers" : {
+      "X-Content-Type-Options" : "nosniff",
+      "Content-Type" : "text\/html; charset=utf-8",
+      "Server" : "YouTube Frontend Proxy",
+      "Cache-Control" : "no-cache",
+      "Date" : "Mon, 17 Feb 2020 14:12:18 GMT",
+      "X-XSS-Protection" : "0",
+      "Alt-Svc" : "quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000",
+      "Content-Length" : "0",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 GMT"
+    },
+    "method" : "HEAD",
+    "status" : 404,
+    "uri" : "http:\/\/www.youtube.com\/video1.mp4?ratebypass=yes"
+  }
+]

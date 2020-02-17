@@ -14,6 +14,7 @@
 #import "XCDYouTubeOperation.h"
 #import "XCDYouTubeVideo.h"
 #import "XCDYouTubeError.h"
+#import "XCDYouTubeVideoQueryOperation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -109,6 +110,21 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return An opaque object conforming to the `<XCDYouTubeOperation>` protocol for canceling the asynchronous video information operation. If you call the `cancel` method before the operation is finished, the completion handler will not be called. It is recommended that you store this opaque object as a weak property.
  */
 - (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier cookies:(nullable NSArray <NSHTTPCookie *>*)cookies customPatterns:(nullable NSArray<NSString *> *)customPatterns completionHandler:(void (^)(XCDYouTubeVideo * __nullable video, NSError * __nullable error))completionHandler;
+
+/**
+ *  Starts an asynchronous operation for the specified `XCDYouTubeVide` object`, and calls a handler upon completion.
+ *
+ *  @param video  The `<XCDYouTubeVideo>` object that this operation will query. Passing a `nil` video will throw an `NSInvalidArgumentException` exception.
+ *  @param cookies  An array of `NSHTTPCookie` objects, can be nil. These cookies can be used for certain videos that require a login.
+ *  @param completionHandler A block to execute when the client finishes the operation. The completion handler is executed on the main thread. If the completion handler is nil, this method throws an exception.
+ *  @discussion If the query operation completes successfully (i.e. at least one URL stream is reachable), the `streamURLs` parameter of the completion handler block contains a `NSDictionary` object, and the error parameter is nil. If the operation fails, the `streamURLs` parameter is nil and the error parameter contains information about the failure. The error's domain is always `XCDYouTubeVideoErrorDomain`. The `streamErrors` does not indicate that the operation failed but can contain detailed information on why a specific stream failed.In addition,  this parameter is dictionary of `NSError` objects. The keys are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_formats) values as `NSNumber` objects.
+ *
+ *  @see XCDYouTubeVideoQueryOperation
+ *
+ *
+ *  @return A newly initialized`<XCDYouTubeVideoQueryOperation>` object for canceling the asynchronous query  operation. If you call the `cancel` method before the operation is finished, the completion handler will not be called.
+ */
+- (XCDYouTubeVideoQueryOperation *) queryVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray <NSHTTPCookie *>*)cookies completionHandler:(void (^)(NSDictionary *streamURLs, NSError * __nullable error, NSDictionary<id, NSError *> *streamErrors))completionHandler;
 
 @end
 

@@ -214,6 +214,135 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void) testVideo1ReturnsSomePlayableStreams
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	
+	//These are the playble itag stream for `cdqP6wI8TCc` as of Feb 12, 2020 in the US
+	NSArray<NSNumber *>*playableStreamKeys = @[@140, @136, @251, @134];
+	
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"cdqP6wI8TCc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id, NSError *> *streamErrors) {
+			
+			XCTAssertNil(queryError);
+			XCTAssertNotNil(streamURLs);
+			
+			for (NSNumber *itag in playableStreamKeys)
+			{
+				XCTAssertTrue([streamURLs.allKeys containsObject:itag]);
+			}
+			
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+			
+			XCTAssertEqual(playableStreamKeys.count, streamURLs.count, @"`streamURLs` count should be equal to `playableStreamKeys` count");
+			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
+			
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+// Disable internet connection before running to allow some queries to fail
+- (void) testVideo1ReturnsSomePlayableStreamsEvenIfSomeFailDueToConnectionError_offline
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"cdqP6wI8TCc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id, NSError *> *streamErrors) {
+			
+			XCTAssertNil(queryError);
+			XCTAssertNotNil(streamURLs);
+
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+			
+			XCTAssertTrue(streamErrors.count != 0);
+			for (NSError *streamError in streamErrors.allValues)
+			{
+				XCTAssertEqualObjects(streamError.localizedDescription, @"The Internet connection appears to be offline.");
+			}
+			
+			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
+			
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+// Disable internet connection before running to allow all queries to fail
+- (void) testVideo1ReturnsNoPlayableStreamsBecauseConnectionError_offline
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"cdqP6wI8TCc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id, NSError *> *streamErrors) {
+			
+			XCTAssertNotNil(queryError);
+			XCTAssertNil(streamURLs);
+			XCTAssertTrue(streamErrors.count != 0);
+			
+			for (NSError *streamError in streamErrors.allValues)
+			{
+				XCTAssertEqualObjects(streamError.localizedDescription, @"The Internet connection appears to be offline.");
+			}
+			
+			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
+			
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testVideo2ReturnsAllPlayableStreams
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"QcIy9NiNbmo" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id, NSError *> *streamErrors) {
+			
+			XCTAssertNil(queryError);
+			XCTAssertNil(streamErrors);
+			XCTAssertNotNil(streamURLs);
+			
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+			
+			XCTAssertEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should be equal since all the streams are playable.");
+			
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:90 handler:nil];
+}
+
 - (void) testExpiredLiveVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -386,6 +515,26 @@
 	[expectation performSelector:@selector(fulfill) withObject:nil afterDelay:0.2];
 	[operation cancel];
 	[self waitForExpectationsWithTimeout:1 handler:nil];
+}
+
+- (void) testCancelingOperationQueryOperation
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__block XCDYouTubeVideoQueryOperation *operation = nil;
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"6kLq3WMV1nU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		XCTAssertNotNil(video);
+		
+		operation = [[XCDYouTubeClient defaultClient] queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id,NSError *> * _Nonnull streamErrors)
+		{
+			XCTFail();
+		}];
+		
+		[operation cancel];
+		[expectation fulfill];
+	}];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testNilCompletionHandler
