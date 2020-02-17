@@ -279,6 +279,34 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void) testVideo2ReturnsAllPlayableStreams
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"QcIy9NiNbmo" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id, NSError *> *streamErrors) {
+			
+			XCTAssertNil(queryError);
+			XCTAssertNil(streamErrors);
+			XCTAssertNotNil(streamURLs);
+			
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+			
+			XCTAssertEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should be equal since all the streams are playable.");
+			
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:90 handler:nil];
+}
+
 - (void) testExpiredLiveVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
