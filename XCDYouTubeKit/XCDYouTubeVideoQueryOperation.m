@@ -104,6 +104,9 @@
 	
 	[self.queryQueue addOperations:operations waitUntilFinished:YES];
 	
+	if (self.isCancelled)
+		return;
+	
 	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
 	NSMutableDictionary<id, NSError *> *streamErrors = [NSMutableDictionary new];
 	
