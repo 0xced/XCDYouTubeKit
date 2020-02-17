@@ -8,6 +8,7 @@
 
 #import "XCDYouTubeVideoQueryOperation.h"
 #import "XCDURLHeadOperation.h"
+#import "XCDYouTubeError.h"
 
 @interface XCDYouTubeVideoQueryOperation ()
 
@@ -15,6 +16,8 @@
 @property (atomic, assign) BOOL isFinished;
 
 @property (atomic, readwrite) NSDictionary<id, NSURL *> *streamURLs;
+@property (atomic, readwrite, nullable) NSError *error;
+@property (atomic, readwrite, nullable) NSDictionary<id, NSError *> *streamErrors;
 
 @property (atomic, strong) NSOperationQueue *queryQueue;
 @property (atomic, readonly) dispatch_semaphore_t operationStartSemaphore;
@@ -50,8 +53,8 @@
 
 + (BOOL) automaticallyNotifiesObserversForKey:(NSString *)key
 {
-    SEL selector = NSSelectorFromString(key);
-    return selector == @selector(isExecuting) || selector == @selector(isFinished) || [super automaticallyNotifiesObserversForKey:key];
+	SEL selector = NSSelectorFromString(key);
+	return selector == @selector(isExecuting) || selector == @selector(isFinished) || [super automaticallyNotifiesObserversForKey:key];
 }
 
 - (BOOL) isAsynchronous
@@ -99,13 +102,20 @@
 		
 	}];
 	
-	
 	[self.queryQueue addOperations:operations waitUntilFinished:YES];
 	
 	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
+	NSMutableDictionary<id, NSError *> *streamErrors = [NSMutableDictionary new];
 	
 	for (XCDURLHeadOperation *operation in operations)
 	{
+		
+		if (operation.error != nil)
+		{
+			NSNumber *itag = operation.info.allKeys[0];
+			streamErrors[itag] = operation.error;
+			continue;
+		}
 		
 		if (operation.error == nil && [(NSHTTPURLResponse *)operation.response statusCode] == 200)
 		{
@@ -113,9 +123,12 @@
 		}
 	}
 	
+	self.streamErrors = streamErrors.mutableCopy;
+	
 	if (streamURLs.count == 0)
 	{
-		//TODO: Create new error domain and error code
+		NSError *error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:@{NSLocalizedDescriptionKey : @"No stream URLs are reachable!"}];
+		[self finishWithError:error];
 		return;
 	}
 	
@@ -125,6 +138,12 @@
 - (void) finishWithStreamURL:(NSMutableDictionary *)streamURLs
 {
 	self.streamURLs = [streamURLs copy];
+	[self finish];
+}
+
+- (void) finishWithError:(NSError *)error
+{
+	self.error = error;
 	[self finish];
 }
 

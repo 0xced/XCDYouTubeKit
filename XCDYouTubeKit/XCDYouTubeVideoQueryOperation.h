@@ -34,6 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (atomic, readonly, nullable) NSError *error;
 
+#if __has_feature(objc_generics)
+@property (atomic, readonly, nullable) NSDictionary<id, NSError *> *streamErrors;
+#else
+@property (atomic, readonly, nullable) NSDictionary *streamErrors;
+#endif
+
 @end
 
 NS_ASSUME_NONNULL_END
