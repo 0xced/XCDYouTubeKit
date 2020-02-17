@@ -79,8 +79,8 @@
 		self.response = response;
 		self.error = error;
 		
-		self.isFinished = YES;
 		self.isExecuting = NO;
+		self.isFinished = YES;
 		
 	}];
 	
@@ -98,8 +98,8 @@
 	
 	dispatch_semaphore_wait(self.operationStartSemaphore, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(200 * NSEC_PER_MSEC)));
 	
-	self.isFinished = YES;
 	self.isExecuting = NO;
+	self.isFinished = YES;
 }
 
 @end

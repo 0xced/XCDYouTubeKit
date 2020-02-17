@@ -149,8 +149,8 @@
 
 - (void) finish
 {
-	self.isFinished = YES;
 	self.isExecuting = NO;
+	self.isFinished = YES;
 }
 
 @end
