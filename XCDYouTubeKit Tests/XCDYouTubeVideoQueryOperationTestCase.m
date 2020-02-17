@@ -21,6 +21,14 @@ XCDYouTubeVideo *XCDYouTubeVideoQueryOperationVideo()
 	return [[XCDYouTubeVideo alloc] initWithIdentifier:@"video1" info:@{ @"url_encoded_fmt_stream_map": @"url=http://www.youtube.com/video1.mp4&itag=123"} playerScript:nil response:nil error:NULL];
 }
 
+- (void) testNilVideoInInitializer
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+	XCTAssertThrowsSpecificNamed([[XCDYouTubeVideoQueryOperation alloc]initWithVideo:nil cookies:nil], NSException, NSInvalidArgumentException);
+#pragma clang diagnostic pop
+}
+
 - (void) testWrongInitializer
 {
 	XCTAssertThrowsSpecificNamed([[XCDYouTubeVideoQueryOperation alloc] init], NSException, NSGenericException);
