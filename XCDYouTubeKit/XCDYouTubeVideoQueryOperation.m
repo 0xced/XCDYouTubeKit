@@ -35,6 +35,9 @@
 
 - (instancetype) initWithVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray<NSHTTPCookie *> *)cookies
 {
+	if (video == nil)
+		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"`video` must not be nil" userInfo:nil];
+	
 	if (!(self = [super init]))
 		return nil;
 	
