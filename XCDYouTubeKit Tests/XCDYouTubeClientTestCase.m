@@ -453,6 +453,26 @@
 	[self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
+- (void) testCancelingOperationQueryOperation
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	__block XCDYouTubeVideoQueryOperation *operation = nil;
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"6kLq3WMV1nU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		XCTAssertNotNil(video);
+		
+		operation = [[XCDYouTubeClient defaultClient] queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id,NSError *> * _Nonnull streamErrors)
+		{
+			XCTFail();
+		}];
+		
+		[operation cancel];
+		[expectation fulfill];
+	}];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testNilCompletionHandler
 {
 #pragma clang diagnostic push
