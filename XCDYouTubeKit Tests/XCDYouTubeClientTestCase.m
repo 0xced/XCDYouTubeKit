@@ -231,6 +231,7 @@
 			
 			XCTAssertNil(queryError);
 			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
 			
 			for (NSNumber *itag in playableStreamKeys)
 			{
@@ -266,6 +267,7 @@
 			
 			XCTAssertNil(queryError);
 			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
 
 			for (id key in streamURLs.allKeys)
 			{
@@ -301,6 +303,7 @@
 			XCTAssertNotNil(queryError);
 			XCTAssertNil(streamURLs);
 			XCTAssertTrue(streamErrors.count != 0);
+			XCTAssertTrue([NSThread isMainThread]);
 			
 			for (NSError *streamError in streamErrors.allValues)
 			{
@@ -329,6 +332,7 @@
 			XCTAssertNil(queryError);
 			XCTAssertNil(streamErrors);
 			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
 			
 			for (id key in streamURLs.allKeys)
 			{
@@ -364,6 +368,7 @@
 			XCTAssertNil(queryError);
 			XCTAssertNotNil(streamErrors);
 			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
 			
 			for (id key in streamURLs.allKeys)
 			{
