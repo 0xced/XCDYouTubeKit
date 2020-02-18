@@ -387,6 +387,38 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void) testThatQueryingLiveVideoReturnsPlayableStreams
+{
+	/**
+	 * This video `hHW1oY26kxQ` is a live stream
+	 * See https://github.com/0xced/XCDYouTubeKit/issues/456 for more information.
+	 */
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"hHW1oY26kxQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id, NSError *> *streamErrors) {
+			
+			XCTAssertNil(queryError);
+			XCTAssertNotNil(streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming], @"Should contain live stream");
+			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
+			
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:900 handler:nil];
+}
+
 - (void) testExpiredLiveVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
