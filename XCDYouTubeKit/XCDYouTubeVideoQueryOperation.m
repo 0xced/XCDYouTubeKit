@@ -97,6 +97,7 @@
 - (void) startQuery
 {
 	NSMutableArray <XCDURLHeadOperation *>*HEADOperations = [NSMutableArray new];
+	BOOL isHTTPLiveStream = self.video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] != nil;
 	
 	[self.video.streamURLs enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, NSURL * _Nonnull obj, BOOL * _Nonnull stop)
 	{
@@ -113,6 +114,7 @@
 	
 	NSMutableArray <XCDURLGetOperation *>*GETOperations = [NSMutableArray new];
 	NSMutableDictionary<id, NSError *> *streamErrors = [NSMutableDictionary new];
+	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
 	
 	for (XCDURLHeadOperation *HEADOperation in HEADOperations)
 	{
@@ -126,10 +128,32 @@
 		
 		if (HEADOperation.error == nil && [(NSHTTPURLResponse *)HEADOperation.response statusCode] == 200)
 		{
-			[GETOperations addObject:[[XCDURLGetOperation alloc]initWithURL:HEADOperation.url info:HEADOperation.info cookes:HEADOperation.cookies]];
+			if (isHTTPLiveStream)
+			{
+				[streamURLs addEntriesFromDictionary:(NSDictionary *)HEADOperation.info];
+			}
+			else
+			{
+				[GETOperations addObject:[[XCDURLGetOperation alloc]initWithURL:HEADOperation.url info:HEADOperation.info cookes:HEADOperation.cookies]];
+			}
 		}
 	}
 	
+	if (isHTTPLiveStream)
+	{
+		/**
+		 * When it's a live stream all the other streams plus the live stream will cause the `XCDURLGetOperation` to take a extremely longtime to complete.
+		 * Since it's a live stream clients would tend to be only interested in the `XCDYouTubeVideoQualityHTTPLiveStreaming` value and since we checked this already with the head operation then we consider these URLs to be reachable
+		*/
+		[self finishWithStreamURLs:streamURLs streamErrors:streamErrors];
+		return;
+	}
+	
+	[self startGETOperations:GETOperations streamErrors:streamErrors];
+}
+
+- (void) startGETOperations:(NSArray <XCDURLGetOperation *>*)GETOperations streamErrors:(NSMutableDictionary <id, NSError *> *)streamErrors
+{
 	[self.queryQueue addOperations:GETOperations waitUntilFinished:YES];
 	
 	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
@@ -151,8 +175,13 @@
 		}
 	}
 	
+	[self finishWithStreamURLs:streamURLs streamErrors:streamErrors];
+}
+
+- (void) finishWithStreamURLs:(NSDictionary *)streamURLs streamErrors:(NSDictionary *)streamErrors
+{
 	if (streamErrors.count != 0)
-		self.streamErrors = streamErrors.mutableCopy;
+		self.streamErrors = streamErrors.copy;
 	
 	if (streamURLs.count == 0)
 	{
@@ -161,11 +190,6 @@
 		return;
 	}
 	
-	[self finishWithStreamURL:streamURLs];
-}
-
-- (void) finishWithStreamURL:(NSMutableDictionary *)streamURLs
-{
 	self.streamURLs = [streamURLs copy];
 	[self finish];
 }
