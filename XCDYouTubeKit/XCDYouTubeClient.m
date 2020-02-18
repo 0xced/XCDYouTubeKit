@@ -93,18 +93,20 @@
 	
 	XCDYouTubeVideoQueryOperation *operation = [[XCDYouTubeVideoQueryOperation alloc]initWithVideo:video cookies:cookies];
 	operation.completionBlock = ^{
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
-		if (operation.streamURLs || operation.error)
-		{
-			NSAssert(!(operation.streamURLs && operation.error), @"One of `streamURLs` or `error` must be nil.");
-			completionHandler(operation.streamURLs, operation.error, operation.streamErrors);
-		} else
-		{
-			NSAssert(operation.isCancelled, @"Both `streamURLs` and `error` can not be nil if the operation was not canceled.");
-		}
-		operation.completionBlock = nil;
+			if (operation.streamURLs || operation.error)
+			{
+				NSAssert(!(operation.streamURLs && operation.error), @"One of `streamURLs` or `error` must be nil.");
+				completionHandler(operation.streamURLs, operation.error, operation.streamErrors);
+			} else
+			{
+				NSAssert(operation.isCancelled, @"Both `streamURLs` and `error` can not be nil if the operation was not canceled.");
+			}
+			operation.completionBlock = nil;
 #pragma clang diagnostic pop
+		}];
 	};
 	
 	[self.queue addOperation:operation];
