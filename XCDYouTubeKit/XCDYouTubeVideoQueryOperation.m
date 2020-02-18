@@ -9,6 +9,7 @@
 #import "XCDYouTubeVideoQueryOperation.h"
 #import "XCDURLHeadOperation.h"
 #import "XCDYouTubeError.h"
+#import "XCDURLGetOperation.h"
 
 @interface XCDYouTubeVideoQueryOperation ()
 
@@ -95,37 +96,58 @@
 
 - (void) startQuery
 {
-	NSMutableArray *operations = [NSMutableArray new];
+	NSMutableArray <XCDURLHeadOperation *>*HEADOperations = [NSMutableArray new];
 	
 	[self.video.streamURLs enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, NSURL * _Nonnull obj, BOOL * _Nonnull stop)
 	{
 		
 		XCDURLHeadOperation *operation = [[XCDURLHeadOperation alloc]initWithURL:obj info:@{key : obj} cookes:self.cookies];
-		[operations addObject:operation];
+		[HEADOperations addObject:operation];
 		
 	}];
 	
-	[self.queryQueue addOperations:operations waitUntilFinished:YES];
+	[self.queryQueue addOperations:HEADOperations waitUntilFinished:YES];
 	
 	if (self.isCancelled)
 		return;
 	
-	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
+	NSMutableArray <XCDURLGetOperation *>*GETOperations = [NSMutableArray new];
 	NSMutableDictionary<id, NSError *> *streamErrors = [NSMutableDictionary new];
 	
-	for (XCDURLHeadOperation *operation in operations)
+	for (XCDURLHeadOperation *HEADOperation in HEADOperations)
 	{
 		
-		if (operation.error != nil)
+		if (HEADOperation.error != nil)
 		{
-			NSNumber *itag = operation.info.allKeys[0];
-			streamErrors[itag] = operation.error;
+			NSNumber *itag = HEADOperation.info.allKeys[0];
+			streamErrors[itag] = HEADOperation.error;
 			continue;
 		}
 		
-		if (operation.error == nil && [(NSHTTPURLResponse *)operation.response statusCode] == 200)
+		if (HEADOperation.error == nil && [(NSHTTPURLResponse *)HEADOperation.response statusCode] == 200)
 		{
-			[streamURLs addEntriesFromDictionary:(NSDictionary *)operation.info];
+			[GETOperations addObject:[[XCDURLGetOperation alloc]initWithURL:HEADOperation.url info:HEADOperation.info cookes:HEADOperation.cookies]];
+		}
+	}
+	
+	[self.queryQueue addOperations:GETOperations waitUntilFinished:YES];
+	
+	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
+	
+	for (XCDURLGetOperation *GETOperation in GETOperations)
+	{
+		
+		if (GETOperation.error != nil)
+		{
+			NSNumber *itag = GETOperation.info.allKeys[0];
+			streamErrors[itag] = GETOperation.error;
+			continue;
+		}
+		
+		NSInteger statusCode = [(NSHTTPURLResponse *)GETOperation.response statusCode];
+		if (GETOperation.error == nil  && (statusCode == 200 || statusCode == 206))
+		{
+			[streamURLs addEntriesFromDictionary:(NSDictionary *)GETOperation.info];
 		}
 	}
 	

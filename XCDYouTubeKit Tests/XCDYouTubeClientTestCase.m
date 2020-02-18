@@ -343,6 +343,44 @@
 	[self waitForExpectationsWithTimeout:90 handler:nil];
 }
 
+- (void) testVideo3ReturnsSomePlayableStreams
+{
+	/**
+	 * This video `550S-6XVRsw` contains some streams (e.g. itag=22)  that don't play (the file appeas to be incomplete on YouTube's servers).
+	 * This test ensures that we catch those kinds of errors and they aren't included in the `streamURLs`
+	 * See https://github.com/0xced/XCDYouTubeKit/issues/456 for more information.
+	 */
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	NSNumber *nonPlayableStreamKey = @(XCDYouTubeVideoQualityHD720);
+	
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"550S-6XVRsw" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id, NSError *> *streamErrors) {
+			
+			XCTAssertNil(queryError);
+			XCTAssertNotNil(streamErrors);
+			XCTAssertNotNil(streamURLs);
+			
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+			
+			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
+			XCTAssertNil(streamURLs[nonPlayableStreamKey], @"itag 22 should not be available in this stream.");
+			//I noticed when the file stored on the server is not complete we get this error
+			XCTAssertTrue([streamErrors.allValues.firstObject.domain isEqual:NSURLErrorDomain]);
+			XCTAssertEqual(streamErrors.allValues.firstObject.code, NSURLErrorNetworkConnectionLost);
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testExpiredLiveVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
