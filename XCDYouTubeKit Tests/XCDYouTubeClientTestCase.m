@@ -253,6 +253,7 @@
 }
 
 // Disable internet connection before running to allow some queries to fail
+// Also, this test requires using Charles Proxy tools (or similar app) to block some of the streamURLs
 - (void) testVideo1ReturnsSomePlayableStreamsEvenIfSomeFailDueToConnectionError_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
