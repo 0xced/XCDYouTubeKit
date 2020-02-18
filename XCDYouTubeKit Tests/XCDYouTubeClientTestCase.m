@@ -275,7 +275,7 @@
 			XCTAssertTrue(streamErrors.count != 0);
 			for (NSError *streamError in streamErrors.allValues)
 			{
-				XCTAssertEqualObjects(streamError.localizedDescription, @"The Internet connection appears to be offline.");
+				XCTAssertNotNil(streamError.localizedDescription);
 			}
 			
 			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
@@ -304,7 +304,7 @@
 			
 			for (NSError *streamError in streamErrors.allValues)
 			{
-				XCTAssertEqualObjects(streamError.localizedDescription, @"The Internet connection appears to be offline.");
+				XCTAssertNotNil(streamError.localizedDescription);
 			}
 			
 			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
