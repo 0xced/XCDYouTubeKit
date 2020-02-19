@@ -93,6 +93,13 @@
 - (void)finishWithError:(NSError *)error
 {
 	self.error = error;
+	if (error.code == NSURLErrorNetworkConnectionLost && [error.domain isEqual: NSURLErrorDomain])
+	{
+		//This might have failed because the file on YouTube's servers is incomplete. See https://github.com/0xced/XCDYouTubeKit/issues/456 for more info.
+		NSMutableDictionary *modifiedUserInfo = self.error.userInfo.mutableCopy;
+		modifiedUserInfo[NSLocalizedRecoverySuggestionErrorKey] = @"The file stored on the server might be incomplete.";
+		self.error = [NSError errorWithDomain:(NSString *)self.error.domain code:self.error.code userInfo:modifiedUserInfo.copy];
+	}
 	XCDYouTubeLogError(@"URL GET operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
 	[self finish];
 }

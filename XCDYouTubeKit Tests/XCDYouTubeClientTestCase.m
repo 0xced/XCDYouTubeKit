@@ -380,6 +380,8 @@
 			//I noticed when the file stored on the server is not complete we get this error
 			XCTAssertTrue([streamErrors.allValues.firstObject.domain isEqual:NSURLErrorDomain]);
 			XCTAssertEqual(streamErrors.allValues.firstObject.code, NSURLErrorNetworkConnectionLost);
+			XCTAssertNotNil(streamErrors.allValues.firstObject.userInfo[NSLocalizedRecoverySuggestionErrorKey]);
+			XCTAssertTrue([streamErrors.allValues.firstObject.userInfo[NSLocalizedRecoverySuggestionErrorKey] isEqual:@"The file stored on the server might be incomplete."]);
 			[expectation fulfill];
 		}];
 	}];
