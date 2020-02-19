@@ -192,7 +192,7 @@
 	
 	if (streamURLs.count == 0)
 	{
-		NSError *error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:@{NSLocalizedDescriptionKey : @"No stream URLs are reachable!"}];
+		NSError *error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:@{NSLocalizedDescriptionKey : @"No stream URLs are reachable."}];
 		[self finishWithError:error];
 		return;
 	}
