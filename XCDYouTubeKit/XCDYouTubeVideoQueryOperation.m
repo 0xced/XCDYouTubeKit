@@ -206,4 +206,11 @@
 	self.isFinished = YES;
 }
 
+#pragma mark - NSObject
+
+- (NSString *) description
+{
+	return [NSString stringWithFormat:@"<%@: %p> %@", self.class, self, self.video];
+}
+
 @end
