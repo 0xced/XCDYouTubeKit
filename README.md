@@ -33,13 +33,13 @@ XCDYouTubeKit is available through [CocoaPods](https://cocoapods.org/), [Carthag
 CocoaPods:
 
 ```ruby
-pod "XCDYouTubeKit", "~> 2.10"
+pod "XCDYouTubeKit", "~> 2.11"
 ```
 
 Carthage:
 
 ```objc
-github "0xced/XCDYouTubeKit" ~> 2.10
+github "0xced/XCDYouTubeKit" ~> 2.11
 ```
 
 Swift Package Manager:
@@ -48,7 +48,7 @@ Add `XCDYouTubeKit` to the dependencies value of your `Package.swift`
 
 ```swift
 dependencies: [
-	.package(url: "https://github.com/0xced/XCDYouTubeKit.git", from: "2.10.0")
+	.package(url: "https://github.com/0xced/XCDYouTubeKit.git", from: "2.11.0")
 ]
 ```
 

@@ -1,3 +1,11 @@
+#### Version 2.11.0
+
+* `-[XCDYouTubeClient queryVideo:video:cookies:completionHandler:]` completion handler is now correctly called on the main thread.
+* Improved video querying to handle videos that have incomplete streams. (#456)
+* Errors returned in `streamErrors` may contain the `NSLocalizedRecoverySuggestionErrorKey` key in `-[NSError userInfo]` when `NSURLErrorNetworkConnectionLost` is reported, this may indicate the file is incomplete on YouTube's server. 
+* Add logging to `XCDYouTubeVideoQueryOperation` class.
+* Improved `-[XCDYouTubeVideoQueryOperation description]`.
+
 #### Version 2.10.0
 
 * Fixed issue that caused certain videos to return error (#468)
