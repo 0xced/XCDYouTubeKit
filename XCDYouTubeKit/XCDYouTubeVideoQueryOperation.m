@@ -7,9 +7,9 @@
 //
 
 #import "XCDYouTubeVideoQueryOperation.h"
-#import "XCDURLHeadOperation.h"
+#import "XCDURLHEADOperation.h"
 #import "XCDYouTubeError.h"
-#import "XCDURLGetOperation.h"
+#import "XCDURLGETOperation.h"
 #import "XCDYouTubeLogger+Private.h"
 
 @interface XCDYouTubeVideoQueryOperation ()
@@ -103,13 +103,13 @@
 {
 	XCDYouTubeLogDebug(@"Starting query request for video: %@", self.video);
 	
-	NSMutableArray <XCDURLHeadOperation *>*HEADOperations = [NSMutableArray new];
+	NSMutableArray <XCDURLHEADOperation *>*HEADOperations = [NSMutableArray new];
 	BOOL isHTTPLiveStream = self.video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] != nil;
 	
 	[self.video.streamURLs enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, NSURL * _Nonnull obj, BOOL * _Nonnull stop)
 	{
 		
-		XCDURLHeadOperation *operation = [[XCDURLHeadOperation alloc]initWithURL:obj info:@{key : obj} cookes:self.cookies];
+		XCDURLHEADOperation *operation = [[XCDURLHEADOperation alloc]initWithURL:obj info:@{key : obj} cookes:self.cookies];
 		[HEADOperations addObject:operation];
 		
 	}];
@@ -119,11 +119,11 @@
 	if (self.isCancelled)
 		return;
 	
-	NSMutableArray <XCDURLGetOperation *>*GETOperations = [NSMutableArray new];
+	NSMutableArray <XCDURLGETOperation *>*GETOperations = [NSMutableArray new];
 	NSMutableDictionary<id, NSError *> *streamErrors = [NSMutableDictionary new];
 	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
 	
-	for (XCDURLHeadOperation *HEADOperation in HEADOperations)
+	for (XCDURLHEADOperation *HEADOperation in HEADOperations)
 	{
 		
 		if (HEADOperation.error != nil)
@@ -141,7 +141,7 @@
 			}
 			else
 			{
-				[GETOperations addObject:[[XCDURLGetOperation alloc]initWithURL:HEADOperation.url info:HEADOperation.info cookes:HEADOperation.cookies]];
+				[GETOperations addObject:[[XCDURLGETOperation alloc]initWithURL:HEADOperation.url info:HEADOperation.info cookes:HEADOperation.cookies]];
 			}
 		}
 	}
@@ -159,13 +159,13 @@
 	[self startGETOperations:GETOperations streamErrors:streamErrors];
 }
 
-- (void) startGETOperations:(NSArray <XCDURLGetOperation *>*)GETOperations streamErrors:(NSMutableDictionary <id, NSError *> *)streamErrors
+- (void) startGETOperations:(NSArray <XCDURLGETOperation *>*)GETOperations streamErrors:(NSMutableDictionary <id, NSError *> *)streamErrors
 {
 	[self.queryQueue addOperations:GETOperations waitUntilFinished:YES];
 	
 	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
 	
-	for (XCDURLGetOperation *GETOperation in GETOperations)
+	for (XCDURLGETOperation *GETOperation in GETOperations)
 	{
 		
 		if (GETOperation.error != nil)

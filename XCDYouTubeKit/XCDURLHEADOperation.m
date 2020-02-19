@@ -6,10 +6,10 @@
 //  Copyright © 2020 Cédric Luthi. All rights reserved.
 //
 
-#import "XCDURLHeadOperation.h"
+#import "XCDURLHEADOperation.h"
 #import "XCDYouTubeLogger+Private.h"
 
-@interface XCDURLHeadOperation ()
+@interface XCDURLHEADOperation ()
 @property (atomic, assign) BOOL isExecuting;
 @property (atomic, assign) BOOL isFinished;
 
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation XCDURLHeadOperation
+@implementation XCDURLHEADOperation
 
 - (instancetype) initWithURL:(NSURL *)url info:(NSDictionary *)info cookes:(NSArray<NSHTTPCookie *> *)cookies
 {

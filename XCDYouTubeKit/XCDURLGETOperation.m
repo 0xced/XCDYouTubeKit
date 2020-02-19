@@ -6,10 +6,10 @@
 //  Copyright © 2020 Cédric Luthi. All rights reserved.
 //
 
-#import "XCDURLGetOperation.h"
+#import "XCDURLGETOperation.h"
 #import "XCDYouTubeLogger+Private.h"
 
-@interface XCDURLGetOperation() <NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
+@interface XCDURLGETOperation() <NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 @property (atomic, assign) BOOL isExecuting;
 @property (atomic, assign) BOOL isFinished;
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation XCDURLGetOperation
+@implementation XCDURLGETOperation
 
 - (instancetype) initWithURL:(NSURL *)url info:(NSDictionary *)info cookes:(NSArray<NSHTTPCookie *> *)cookies
 {

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 __attribute__((visibility("hidden")))
-@interface XCDURLGetOperation : NSOperation
+@interface XCDURLGETOperation : NSOperation
 
 - (instancetype) initWithURL:(NSURL *)url info:(nullable NSDictionary *)info cookes:(nullable NSArray <NSHTTPCookie *> *)cookies;
 
