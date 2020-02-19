@@ -231,6 +231,7 @@
 			
 			XCTAssertNil(queryError);
 			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
 			
 			for (NSNumber *itag in playableStreamKeys)
 			{
@@ -253,6 +254,7 @@
 }
 
 // Disable internet connection before running to allow some queries to fail
+// Also, this test requires using Charles Proxy tools (or similar app) to block some of the streamURLs
 - (void) testVideo1ReturnsSomePlayableStreamsEvenIfSomeFailDueToConnectionError_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -265,6 +267,7 @@
 			
 			XCTAssertNil(queryError);
 			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
 
 			for (id key in streamURLs.allKeys)
 			{
@@ -274,7 +277,7 @@
 			XCTAssertTrue(streamErrors.count != 0);
 			for (NSError *streamError in streamErrors.allValues)
 			{
-				XCTAssertEqualObjects(streamError.localizedDescription, @"The Internet connection appears to be offline.");
+				XCTAssertNotNil(streamError.localizedDescription);
 			}
 			
 			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
@@ -300,10 +303,11 @@
 			XCTAssertNotNil(queryError);
 			XCTAssertNil(streamURLs);
 			XCTAssertTrue(streamErrors.count != 0);
+			XCTAssertTrue([NSThread isMainThread]);
 			
 			for (NSError *streamError in streamErrors.allValues)
 			{
-				XCTAssertEqualObjects(streamError.localizedDescription, @"The Internet connection appears to be offline.");
+				XCTAssertNotNil(streamError.localizedDescription);
 			}
 			
 			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
@@ -328,6 +332,7 @@
 			XCTAssertNil(queryError);
 			XCTAssertNil(streamErrors);
 			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
 			
 			for (id key in streamURLs.allKeys)
 			{
@@ -340,7 +345,80 @@
 		}];
 	}];
 	
-	[self waitForExpectationsWithTimeout:90 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testVideo3ReturnsSomePlayableStreams
+{
+	/**
+	 * This video `550S-6XVRsw` contains some streams (e.g. itag=22)  that don't play (the file appeas to be incomplete on YouTube's servers).
+	 * This test ensures that we catch those kinds of errors and they aren't included in the `streamURLs`
+	 * See https://github.com/0xced/XCDYouTubeKit/issues/456 for more information.
+	 */
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	NSNumber *nonPlayableStreamKey = @(XCDYouTubeVideoQualityHD720);
+	
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"550S-6XVRsw" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id, NSError *> *streamErrors) {
+			
+			XCTAssertNil(queryError);
+			XCTAssertNotNil(streamErrors);
+			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
+			
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+			
+			XCTAssertNotEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should not be equal since this video contains some streams are unplayable");
+			XCTAssertNil(streamURLs[nonPlayableStreamKey], @"itag 22 should not be available in this stream.");
+			//I noticed when the file stored on the server is not complete we get this error
+			XCTAssertTrue([streamErrors.allValues.firstObject.domain isEqual:NSURLErrorDomain]);
+			XCTAssertEqual(streamErrors.allValues.firstObject.code, NSURLErrorNetworkConnectionLost);
+			XCTAssertNotNil(streamErrors.allValues.firstObject.userInfo[NSLocalizedRecoverySuggestionErrorKey]);
+			XCTAssertTrue([streamErrors.allValues.firstObject.userInfo[NSLocalizedRecoverySuggestionErrorKey] isEqual:@"The file stored on the server may be incomplete."]);
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testThatQueryingLiveVideoReturnsPlayableStreams
+{
+	/**
+	 * This video `hHW1oY26kxQ` is a live stream
+	 * See https://github.com/0xced/XCDYouTubeKit/issues/456 for more information.
+	 */
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"hHW1oY26kxQ" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+		
+		[[XCDYouTubeClient defaultClient]queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable queryError, NSDictionary<id, NSError *> *streamErrors) {
+			
+			XCTAssertNil(queryError);
+			XCTAssertNotNil(streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming], @"Should contain live stream");
+			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
+			
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+
+			[expectation fulfill];
+		}];
+	}];
+	
+	[self waitForExpectationsWithTimeout:900 handler:nil];
 }
 
 - (void) testExpiredLiveVideo

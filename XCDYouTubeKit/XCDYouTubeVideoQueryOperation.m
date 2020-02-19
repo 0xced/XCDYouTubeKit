@@ -7,8 +7,10 @@
 //
 
 #import "XCDYouTubeVideoQueryOperation.h"
-#import "XCDURLHeadOperation.h"
+#import "XCDURLHEADOperation.h"
 #import "XCDYouTubeError.h"
+#import "XCDURLGETOperation.h"
+#import "XCDYouTubeLogger+Private.h"
 
 @interface XCDYouTubeVideoQueryOperation ()
 
@@ -73,6 +75,8 @@
 	if (self.isCancelled)
 		return;
 	
+	XCDYouTubeLogInfo(@"Starting query operation: %@", self);
+	
 	self.isExecuting = YES;
 	[self startQuery];
 }
@@ -81,7 +85,9 @@
 {
 	if (self.isCancelled || self.isFinished)
 		return;
-		
+	
+	XCDYouTubeLogInfo(@"Canceling query operation: %@", self);
+	
 	[super cancel];
 	
 	[self.queryQueue cancelAllOperations];
@@ -95,55 +101,102 @@
 
 - (void) startQuery
 {
-	NSMutableArray *operations = [NSMutableArray new];
+	XCDYouTubeLogDebug(@"Starting query request for video: %@", self.video);
+	
+	NSMutableArray <XCDURLHEADOperation *>*HEADOperations = [NSMutableArray new];
+	BOOL isHTTPLiveStream = self.video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] != nil;
 	
 	[self.video.streamURLs enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, NSURL * _Nonnull obj, BOOL * _Nonnull stop)
 	{
 		
-		XCDURLHeadOperation *operation = [[XCDURLHeadOperation alloc]initWithURL:obj info:@{key : obj} cookes:self.cookies];
-		[operations addObject:operation];
+		XCDURLHEADOperation *operation = [[XCDURLHEADOperation alloc]initWithURL:obj info:@{key : obj} cookes:self.cookies];
+		[HEADOperations addObject:operation];
 		
 	}];
 	
-	[self.queryQueue addOperations:operations waitUntilFinished:YES];
+	[self.queryQueue addOperations:HEADOperations waitUntilFinished:YES];
 	
 	if (self.isCancelled)
 		return;
 	
-	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
+	NSMutableArray <XCDURLGETOperation *>*GETOperations = [NSMutableArray new];
 	NSMutableDictionary<id, NSError *> *streamErrors = [NSMutableDictionary new];
+	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
 	
-	for (XCDURLHeadOperation *operation in operations)
+	for (XCDURLHEADOperation *HEADOperation in HEADOperations)
 	{
 		
-		if (operation.error != nil)
+		if (HEADOperation.error != nil)
 		{
-			NSNumber *itag = operation.info.allKeys[0];
-			streamErrors[itag] = operation.error;
+			NSNumber *itag = HEADOperation.info.allKeys[0];
+			streamErrors[itag] = HEADOperation.error;
 			continue;
 		}
 		
-		if (operation.error == nil && [(NSHTTPURLResponse *)operation.response statusCode] == 200)
+		if (HEADOperation.error == nil && [(NSHTTPURLResponse *)HEADOperation.response statusCode] == 200)
 		{
-			[streamURLs addEntriesFromDictionary:(NSDictionary *)operation.info];
+			if (isHTTPLiveStream)
+			{
+				[streamURLs addEntriesFromDictionary:(NSDictionary *)HEADOperation.info];
+			}
+			else
+			{
+				[GETOperations addObject:[[XCDURLGETOperation alloc]initWithURL:HEADOperation.url info:HEADOperation.info cookes:HEADOperation.cookies]];
+			}
 		}
 	}
 	
-	if (streamErrors.count != 0)
-		self.streamErrors = streamErrors.mutableCopy;
-	
-	if (streamURLs.count == 0)
+	if (isHTTPLiveStream)
 	{
-		NSError *error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:@{NSLocalizedDescriptionKey : @"No stream URLs are reachable!"}];
-		[self finishWithError:error];
+		/**
+		 * When it's a live stream all the other streams plus the live stream will cause the `XCDURLGetOperation` to take a extremely longtime to complete.
+		 * Since it's a live stream clients would tend to be only interested in the `XCDYouTubeVideoQualityHTTPLiveStreaming` value and since we checked this already with the head operation then we consider these URLs to be reachable
+		*/
+		[self finishWithStreamURLs:streamURLs streamErrors:streamErrors];
 		return;
 	}
 	
-	[self finishWithStreamURL:streamURLs];
+	[self startGETOperations:GETOperations streamErrors:streamErrors];
 }
 
-- (void) finishWithStreamURL:(NSMutableDictionary *)streamURLs
+- (void) startGETOperations:(NSArray <XCDURLGETOperation *>*)GETOperations streamErrors:(NSMutableDictionary <id, NSError *> *)streamErrors
 {
+	[self.queryQueue addOperations:GETOperations waitUntilFinished:YES];
+	
+	NSMutableDictionary *streamURLs = [NSMutableDictionary new];
+	
+	for (XCDURLGETOperation *GETOperation in GETOperations)
+	{
+		
+		if (GETOperation.error != nil)
+		{
+			NSNumber *itag = GETOperation.info.allKeys[0];
+			streamErrors[itag] = GETOperation.error;
+			continue;
+		}
+		
+		NSInteger statusCode = [(NSHTTPURLResponse *)GETOperation.response statusCode];
+		if (GETOperation.error == nil  && (statusCode == 200 || statusCode == 206))
+		{
+			[streamURLs addEntriesFromDictionary:(NSDictionary *)GETOperation.info];
+		}
+	}
+	
+	[self finishWithStreamURLs:streamURLs streamErrors:streamErrors];
+}
+
+- (void) finishWithStreamURLs:(NSDictionary *)streamURLs streamErrors:(NSDictionary *)streamErrors
+{
+	if (streamErrors.count != 0)
+		self.streamErrors = streamErrors.copy;
+	
+	if (streamURLs.count == 0)
+	{
+		NSError *error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorNoStreamAvailable userInfo:@{NSLocalizedDescriptionKey : @"No stream URLs are reachable."}];
+		[self finishWithError:error];
+		return;
+	}
+	XCDYouTubeLogInfo(@"Query operation finished with success: %@", streamURLs);
 	self.streamURLs = [streamURLs copy];
 	[self finish];
 }
@@ -151,6 +204,7 @@
 - (void) finishWithError:(NSError *)error
 {
 	self.error = error;
+	XCDYouTubeLogError(@"Query operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
 	[self finish];
 }
 
@@ -158,6 +212,13 @@
 {
 	self.isExecuting = NO;
 	self.isFinished = YES;
+}
+
+#pragma mark - NSObject
+
+- (NSString *) description
+{
+	return [NSString stringWithFormat:@"<%@: %p> %@", self.class, self, self.video];
 }
 
 @end

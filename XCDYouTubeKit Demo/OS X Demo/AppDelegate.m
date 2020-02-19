@@ -25,18 +25,30 @@
 	[self.progressIndicator startAnimation:sender];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:[sender stringValue] completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
-		[self.progressIndicator stopAnimation:sender];
 		
 		if (video)
 		{
-			NSDictionary *streamURLs = video.streamURLs;
-			NSURL *url = streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?: streamURLs[@(XCDYouTubeVideoQualityHD720)] ?: streamURLs[@(XCDYouTubeVideoQualityMedium360)] ?: streamURLs[@(XCDYouTubeVideoQualitySmall240)];
-			AVPlayer *player = [AVPlayer playerWithURL:url];
-			self.playerView.player = player;
-			[player play];
+		
+			[[XCDYouTubeClient defaultClient] queryVideo:video cookies:nil completionHandler:^(NSDictionary * _Nonnull streamURLs, NSError * _Nullable streamError, NSDictionary<id,NSError *> * _Nonnull streamErrors)
+			 {
+				[self.progressIndicator stopAnimation:sender];
+				
+				if (streamURLs)
+				{
+					NSURL *url = streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?: streamURLs[@(XCDYouTubeVideoQualityHD720)] ?: streamURLs[@(XCDYouTubeVideoQualityMedium360)] ?: streamURLs[@(XCDYouTubeVideoQualitySmall240)];
+					AVPlayer *player = [AVPlayer playerWithURL:url];
+					self.playerView.player = player;
+					[player play];
+				}
+				else
+				{
+					[[NSAlert alertWithError:streamError] runModal];
+				}
+			}];
 		}
 		else
 		{
+			[self.progressIndicator stopAnimation:sender];
 			[[NSAlert alertWithError:error] runModal];
 		}
 	}];

@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Returns an error of the `XCDYouTubeVideoErrorDomain` domain if the operation failed or nil if it succeeded. The operation will only return an error if no stream URL is reachable (error code: `XCDYouTubeErrorNoStreamAvailable`). Also, this returns `nil` if the operation is not yet finished or if it was canceled.
 @property (atomic, readonly, nullable) NSError *error;
 
-/// A dictionary of `NSError` objects. The keys are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_formats) values as `NSNumber` objects. Use this property to query why a specific stream was unavailable.
+/// A dictionary of `NSError` objects. The keys are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_formats) values as `NSNumber` objects. Use this property to query why a specific stream was unavailable. In some cases the errors within this dictionary may contain `NSError` objects with the code `NSURLErrorNetworkConnectionLost`—this may indicate that the file stored on YouTube's server is incomplete—furthermore, the error will make this suggestion via the`NSLocalizedRecoverySuggestionErrorKey` key of the error's `userInfo`.
 #if __has_feature(objc_generics)
 @property (atomic, readonly, nullable) NSDictionary<id, NSError *> *streamErrors;
 #else

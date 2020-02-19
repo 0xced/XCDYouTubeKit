@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		017234C223FC223D00196707 /* XCDURLGETOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 017234C023FC223D00196707 /* XCDURLGETOperation.h */; };
+		017234C323FC223D00196707 /* XCDURLGETOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 017234C123FC223D00196707 /* XCDURLGETOperation.m */; };
+		017234C423FC223D00196707 /* XCDURLGETOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 017234C123FC223D00196707 /* XCDURLGETOperation.m */; };
 		0178E76D23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0178E76C23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.m */; };
 		0178E76E23F4A023001C382E /* XCDYouTubeVideoQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0178E76B23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0178E76F23F4A02A001C382E /* XCDYouTubeVideoQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0178E76C23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.m */; };
 		0178E77023F4A049001C382E /* XCDYouTubeVideoQueryOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 0178E76B23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.h */; };
-		0178E77323F4A0D8001C382E /* XCDURLHeadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0178E77123F4A0D8001C382E /* XCDURLHeadOperation.h */; };
-		0178E77423F4A0D8001C382E /* XCDURLHeadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0178E77223F4A0D8001C382E /* XCDURLHeadOperation.m */; };
-		0178E77523F4A0D8001C382E /* XCDURLHeadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0178E77223F4A0D8001C382E /* XCDURLHeadOperation.m */; };
+		0178E77323F4A0D8001C382E /* XCDURLHEADOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0178E77123F4A0D8001C382E /* XCDURLHEADOperation.h */; };
+		0178E77423F4A0D8001C382E /* XCDURLHEADOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0178E77223F4A0D8001C382E /* XCDURLHEADOperation.m */; };
+		0178E77523F4A0D8001C382E /* XCDURLHEADOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0178E77223F4A0D8001C382E /* XCDURLHEADOperation.m */; };
 		01D2370A1FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D237091FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m */; };
 		01D2370B1FA03ADE00A13E5F /* XCDYouTubeDashManifestXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 01D237081FA03AC100A13E5F /* XCDYouTubeDashManifestXML.h */; };
 		01D2370C1FA03AF100A13E5F /* XCDYouTubeDashManifestXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D237091FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m */; };
@@ -107,10 +110,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		017234C023FC223D00196707 /* XCDURLGETOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDURLGETOperation.h; sourceTree = "<group>"; };
+		017234C123FC223D00196707 /* XCDURLGETOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDURLGETOperation.m; sourceTree = "<group>"; };
 		0178E76B23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideoQueryOperation.h; sourceTree = "<group>"; };
 		0178E76C23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoQueryOperation.m; sourceTree = "<group>"; };
-		0178E77123F4A0D8001C382E /* XCDURLHeadOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDURLHeadOperation.h; sourceTree = "<group>"; };
-		0178E77223F4A0D8001C382E /* XCDURLHeadOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDURLHeadOperation.m; sourceTree = "<group>"; };
+		0178E77123F4A0D8001C382E /* XCDURLHEADOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDURLHEADOperation.h; sourceTree = "<group>"; };
+		0178E77223F4A0D8001C382E /* XCDURLHEADOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDURLHEADOperation.m; sourceTree = "<group>"; };
 		01D237081FA03AC100A13E5F /* XCDYouTubeDashManifestXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeDashManifestXML.h; sourceTree = "<group>"; };
 		01D237091FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeDashManifestXML.m; sourceTree = "<group>"; };
 		01EAD0DE23FACB0800F1E936 /* XCDYouTubeVideoQueryOperationTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDYouTubeVideoQueryOperationTestCase.m; sourceTree = "<group>"; };
@@ -244,8 +249,10 @@
 				C24C162D18E9A139005E92E9 /* XCDYouTubeVideoOperation.m */,
 				0178E76B23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.h */,
 				0178E76C23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.m */,
-				0178E77123F4A0D8001C382E /* XCDURLHeadOperation.h */,
-				0178E77223F4A0D8001C382E /* XCDURLHeadOperation.m */,
+				0178E77123F4A0D8001C382E /* XCDURLHEADOperation.h */,
+				0178E77223F4A0D8001C382E /* XCDURLHEADOperation.m */,
+				017234C023FC223D00196707 /* XCDURLGETOperation.h */,
+				017234C123FC223D00196707 /* XCDURLGETOperation.m */,
 				C2A3F2D517F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.h */,
 				C2A3F2D717F4827800AC1C3B /* XCDYouTubeVideoPlayerViewController.m */,
 				C2386B1C1974036300646123 /* XCDYouTubeVideoWebpage.h */,
@@ -300,11 +307,12 @@
 				C257F7941C206D26006146D3 /* XCDYouTubeLogger.h in Headers */,
 				C257F7911C206B8F006146D3 /* XCDYouTubeLogger+Private.h in Headers */,
 				C2F0E5901944F83E00D8EBA8 /* XCDYouTubeOperation.h in Headers */,
-				0178E77323F4A0D8001C382E /* XCDURLHeadOperation.h in Headers */,
+				0178E77323F4A0D8001C382E /* XCDURLHEADOperation.h in Headers */,
 				C2F0E5931944F84700D8EBA8 /* XCDYouTubeVideo.h in Headers */,
 				C2F0E5941944F84A00D8EBA8 /* XCDYouTubeVideoOperation.h in Headers */,
 				C215BEB91BE2E5B500F9783B /* XCDYouTubeVideoWebpage.h in Headers */,
 				C2F0E5951944F85500D8EBA8 /* XCDYouTubeVideoPlayerViewController.h in Headers */,
+				017234C223FC223D00196707 /* XCDURLGETOperation.h in Headers */,
 				C2F0E5921944F84400D8EBA8 /* XCDYouTubeVideo+Private.h in Headers */,
 				C2F0E5911944F84200D8EBA8 /* XCDYouTubePlayerScript.h in Headers */,
 			);
@@ -517,7 +525,8 @@
 				C25308C518D7392500132734 /* XCDYouTubeClient.m in Sources */,
 				0178E76D23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.m in Sources */,
 				C24C162E18E9A139005E92E9 /* XCDYouTubeVideoOperation.m in Sources */,
-				0178E77423F4A0D8001C382E /* XCDURLHeadOperation.m in Sources */,
+				017234C323FC223D00196707 /* XCDURLGETOperation.m in Sources */,
+				0178E77423F4A0D8001C382E /* XCDURLHEADOperation.m in Sources */,
 				01D2370A1FA03AC100A13E5F /* XCDYouTubeDashManifestXML.m in Sources */,
 				C25308C818D739EB00132734 /* XCDYouTubeVideo.m in Sources */,
 				C2597EA61B0CE6D80030E9F2 /* XCDYouTubeLogger.m in Sources */,
@@ -534,7 +543,8 @@
 				C2F0E59C1944F8CF00D8EBA8 /* XCDYouTubeVideoOperation.m in Sources */,
 				0178E76F23F4A02A001C382E /* XCDYouTubeVideoQueryOperation.m in Sources */,
 				C2F0E5991944F8C200D8EBA8 /* XCDYouTubeClient.m in Sources */,
-				0178E77523F4A0D8001C382E /* XCDURLHeadOperation.m in Sources */,
+				017234C423FC223D00196707 /* XCDURLGETOperation.m in Sources */,
+				0178E77523F4A0D8001C382E /* XCDURLHEADOperation.m in Sources */,
 				01D2370C1FA03AF100A13E5F /* XCDYouTubeDashManifestXML.m in Sources */,
 				C2F0E59A1944F8C700D8EBA8 /* XCDYouTubePlayerScript.m in Sources */,
 				C2597EA71B0CE6D80030E9F2 /* XCDYouTubeLogger.m in Sources */,
@@ -639,10 +649,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.10.0;
+				DYLIB_CURRENT_VERSION = 2.11.0;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -717,10 +727,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 2.0.0;
-				DYLIB_CURRENT_VERSION = 2.10.0;
+				DYLIB_CURRENT_VERSION = 2.11.0;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
