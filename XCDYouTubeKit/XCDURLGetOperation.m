@@ -95,6 +95,7 @@
 {
 	self.isExecuting = NO;
 	self.isFinished = YES;
+	[self.session invalidateAndCancel];
 }
 
 #pragma mark -
