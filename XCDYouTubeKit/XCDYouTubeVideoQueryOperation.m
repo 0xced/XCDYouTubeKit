@@ -10,6 +10,7 @@
 #import "XCDURLHeadOperation.h"
 #import "XCDYouTubeError.h"
 #import "XCDURLGetOperation.h"
+#import "XCDYouTubeLogger+Private.h"
 
 @interface XCDYouTubeVideoQueryOperation ()
 
@@ -74,6 +75,8 @@
 	if (self.isCancelled)
 		return;
 	
+	XCDYouTubeLogInfo(@"Starting query operation: %@", self);
+	
 	self.isExecuting = YES;
 	[self startQuery];
 }
@@ -82,7 +85,9 @@
 {
 	if (self.isCancelled || self.isFinished)
 		return;
-		
+	
+	XCDYouTubeLogInfo(@"Canceling query operation: %@", self);
+	
 	[super cancel];
 	
 	[self.queryQueue cancelAllOperations];
@@ -96,6 +101,8 @@
 
 - (void) startQuery
 {
+	XCDYouTubeLogDebug(@"Starting query request for video: %@", self.video);
+	
 	NSMutableArray <XCDURLHeadOperation *>*HEADOperations = [NSMutableArray new];
 	BOOL isHTTPLiveStream = self.video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] != nil;
 	
@@ -189,7 +196,7 @@
 		[self finishWithError:error];
 		return;
 	}
-	
+	XCDYouTubeLogInfo(@"Query operation finished with success: %@", streamURLs);
 	self.streamURLs = [streamURLs copy];
 	[self finish];
 }
@@ -197,6 +204,7 @@
 - (void) finishWithError:(NSError *)error
 {
 	self.error = error;
+	XCDYouTubeLogError(@"Query operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
 	[self finish];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "XCDURLGetOperation.h"
+#import "XCDYouTubeLogger+Private.h"
 
 @interface XCDURLGetOperation() <NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 @property (atomic, assign) BOOL isExecuting;
@@ -64,6 +65,8 @@
 	if (self.isCancelled)
 		return;
 	
+	XCDYouTubeLogInfo(@"Starting URL GET operation: %@", self);
+	
 	self.isExecuting = YES;
 	
 	[self startRequest];
@@ -73,6 +76,8 @@
 {
 	if (self.isCancelled || self.isFinished)
 		return;
+	
+	XCDYouTubeLogInfo(@"Canceling URL GET operation: %@", self);
 	
 	[super cancel];
 	
@@ -88,6 +93,7 @@
 - (void)finishWithError:(NSError *)error
 {
 	self.error = error;
+	XCDYouTubeLogError(@"URL GET operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
 	[self finish];
 }
 
@@ -96,6 +102,7 @@
 	self.isExecuting = NO;
 	self.isFinished = YES;
 	[self.session invalidateAndCancel];
+	XCDYouTubeLogInfo(@"URL GET operation finished");
 }
 
 #pragma mark -
@@ -109,6 +116,9 @@
 	
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.url];
 	[request addValue:[NSString stringWithFormat:@"bytes=%@-%@", @(rangeStart), @(rangeEnd)] forHTTPHeaderField:@"Range"];
+	
+	XCDYouTubeLogDebug(@"Starting URL GET operation with URL: %@", self.url);
+	XCDYouTubeLogInfo(@"URL GET request: %@", request.description);
 
 	self.dataTask = [self.session dataTaskWithRequest:request];
 	
@@ -152,6 +162,7 @@
 - (void) URLSession:(NSURLSession *)session task:(NSURLSessionTask *)dataTask didCompleteWithError:(NSError *)error
 {
 	self.response = dataTask.response;
+	XCDYouTubeLogVerbose(@"%@ Response: %@", self, self.response);
 	if (self.isCancelled)
 		return;
 	
