@@ -166,6 +166,12 @@
 	if (self.isCancelled)
 		return;
 	
+	if (error == nil)
+	{
+		[self finish];
+		return;
+	}
+	
 	[self finishWithError:error];
 }
 
