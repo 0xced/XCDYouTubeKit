@@ -51,7 +51,7 @@
 	for (id key in streamURLsToQuery)
 	{
 		//Has to contain the same key and value of in the `video` object `streamURLs` or we skip
-		if (_video.streamURLs[key] == nil && [(NSURL *)_video.streamURLs[key] isNotEqualTo:(NSURL *)streamURLsToQuery[key]])
+		if (_video.streamURLs[key] == nil && [(NSURL *)_video.streamURLs[key] isEqual:(NSURL *)streamURLsToQuery[key]] == NO)
 		{
 			continue;
 		}
