@@ -32,7 +32,7 @@
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (instancetype)init
 {
-	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideo:cookies:` method instead." userInfo:nil];
+	@throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithVideo:streamURLsToQuery:options:cookies:` method instead." userInfo:nil];
 }
 #pragma clang diagnostic pop
 
