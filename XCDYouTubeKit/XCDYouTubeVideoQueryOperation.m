@@ -21,6 +21,7 @@
 @property (atomic, readwrite, nullable) NSError *error;
 @property (atomic, readwrite, nullable) NSDictionary<id, NSError *> *streamErrors;
 
+@property (atomic, strong) NSDictionary<id, NSURL *> *streamURLsToQuery;
 @property (atomic, strong) NSOperationQueue *queryQueue;
 @property (atomic, readonly) dispatch_semaphore_t operationStartSemaphore;
 @end
@@ -35,23 +36,50 @@
 }
 #pragma clang diagnostic pop
 
-- (instancetype) initWithVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray<NSHTTPCookie *> *)cookies
+- (instancetype)initWithVideo:(XCDYouTubeVideo *)video streamURLsToQuery:(NSDictionary<id,NSURL *> *)streamURLsToQuery options:(NSDictionary *)options cookies:(NSArray<NSHTTPCookie *> *)cookies
 {
 	if (video == nil)
 		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"`video` must not be nil" userInfo:nil];
-	
+
 	if (!(self = [super init]))
 		return nil;
-	
+
 	_video = video;
+
+	NSMutableDictionary *streamURLsToQueryMutable = [NSMutableDictionary new];
+
+	for (id key in streamURLsToQuery)
+	{
+		//Has to contain the same key and value of in the `video` object `streamURLs` or we skip
+		if (_video.streamURLs[key] == nil && [_video.streamURLs[key] isNotEqualTo:streamURLsToQuery[key]])
+		{
+			continue;
+		}
+		streamURLsToQueryMutable[key] = _video.streamURLs[key];
+	}
+
+	if (streamURLsToQueryMutable.count == 0)
+	{
+		//No key and value matched so we disregard `streamURLs` and simply use the `streamURLs` from the `video` object
+		_streamURLsToQuery = _video.streamURLs;
+	}
+	else
+	{
+		_streamURLsToQuery = streamURLsToQueryMutable.copy;
+	}
 	_cookies = [cookies copy];
-	
+
 	_queryQueue = [NSOperationQueue new];
 	_queryQueue.name = [NSString stringWithFormat:@"%@ Query Queue", NSStringFromClass(self.class)];
 	_queryQueue.maxConcurrentOperationCount = 6; // paul_irish: Chrome re-confirmed that the 6 connections-per-host limit is the right magic number: https://code.google.com/p/chromium/issues/detail?id=285567#c14 [https://twitter.com/paul_irish/status/422808635698212864]
-	
+
 	_operationStartSemaphore = dispatch_semaphore_create(0);
 	return self;
+}
+
+- (instancetype) initWithVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray<NSHTTPCookie *> *)cookies
+{
+	return [self initWithVideo:video streamURLsToQuery:nil options:nil cookies:cookies];
 }
 
 #pragma mark - NSOperation
@@ -104,9 +132,10 @@
 	XCDYouTubeLogDebug(@"Starting query request for video: %@", self.video);
 	
 	NSMutableArray <XCDURLHEADOperation *>*HEADOperations = [NSMutableArray new];
+	//Always use the `video` to check if it's a live stream (clients might not include `XCDYouTubeVideoQualityHTTPLiveStreaming` in `streamURLsToQuery`)
 	BOOL isHTTPLiveStream = self.video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] != nil;
 	
-	[self.video.streamURLs enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, NSURL * _Nonnull obj, BOOL * _Nonnull stop)
+	[self.streamURLsToQuery enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, NSURL * _Nonnull obj, BOOL * _Nonnull stop)
 	{
 		
 		XCDURLHEADOperation *operation = [[XCDURLHEADOperation alloc]initWithURL:obj info:@{key : obj} cookes:self.cookies];

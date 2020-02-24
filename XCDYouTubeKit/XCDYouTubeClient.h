@@ -126,6 +126,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (XCDYouTubeVideoQueryOperation *) queryVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray <NSHTTPCookie *>*)cookies completionHandler:(void (^)(NSDictionary * __nullable streamURLs, NSError * __nullable error, NSDictionary<id, NSError *> * __nullable streamErrors))completionHandler;
 
+- (XCDYouTubeVideoQueryOperation *) queryVideo:(XCDYouTubeVideo *)video streamURLsToQuery:(NSDictionary<id, NSURL *> * __nullable)streamURLsToQuery options:(NSDictionary * __nullable)options cookies:(nullable NSArray <NSHTTPCookie *>*)cookies completionHandler:(void (^)(NSDictionary *__nullable streamURLs, NSError * __nullable error, NSDictionary<id, NSError *> *__nullable streamErrors))completionHandler;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
