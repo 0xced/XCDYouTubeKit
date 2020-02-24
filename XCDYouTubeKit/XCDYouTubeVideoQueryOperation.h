@@ -36,9 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// A dictionary of video stream URLs that are reachable. The keys are the YouTube [itag](https://en.wikipedia.org/wiki/YouTube#Quality_and_formats) values as `NSNumber` objects. The values are the video URLs as `NSURL` objects. There is also the special `XCDYouTubeVideoQualityHTTPLiveStreaming` key for live videos.
 #if __has_feature(objc_generics)
-@property (atomic, readonly) NSDictionary<id, NSURL *> *streamURLs;
+@property (atomic, readonly, nullable) NSDictionary<id, NSURL *> *streamURLs;
 #else
-@property (atomic, readonly) NSDictionary *streamURLs;
+@property (atomic, readonly, nullable) NSDictionary *streamURLs;
 #endif
 
 /// Returns an error of the `XCDYouTubeVideoErrorDomain` domain if the operation failed or nil if it succeeded. The operation will only return an error if no stream URL is reachable (error code: `XCDYouTubeErrorNoStreamAvailable`). Also, this returns `nil` if the operation is not yet finished or if it was canceled.
