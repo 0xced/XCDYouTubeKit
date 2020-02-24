@@ -1,3 +1,9 @@
+#### Version 2.12.0
+
+* Add the ability to specify which `streamURLs` to query via `-[XCDYouTubeClient queryVideo:video:streamURLsToQuery:options:cookies:completionHandler:]` & `XCDYouTubeVideoQueryOperation` class.
+	* `initWithVideo:streamURLsToQuery:options:cookies:` is now the designated initializer for  `XCDYouTubeVideoQueryOperation`.
+* Correctly annotate the `streamURLs` & `streamErrors` properties as `nullable`.
+
 #### Version 2.11.0
 
 * `-[XCDYouTubeClient queryVideo:video:cookies:completionHandler:]` completion handler is now correctly called on the main thread.
