@@ -124,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return A newly initialized`<XCDYouTubeVideoQueryOperation>` object for canceling the asynchronous query  operation. If you call the `cancel` method before the operation is finished, the completion handler will not be called.
  */
-- (XCDYouTubeVideoQueryOperation *) queryVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray <NSHTTPCookie *>*)cookies completionHandler:(void (^)(NSDictionary *streamURLs, NSError * __nullable error, NSDictionary<id, NSError *> *streamErrors))completionHandler;
+- (XCDYouTubeVideoQueryOperation *) queryVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray <NSHTTPCookie *>*)cookies completionHandler:(void (^)(NSDictionary * __nullable streamURLs, NSError * __nullable error, NSDictionary<id, NSError *> * __nullable streamErrors))completionHandler;
 
 @end
 
