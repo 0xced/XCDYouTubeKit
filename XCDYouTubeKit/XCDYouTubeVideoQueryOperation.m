@@ -21,7 +21,7 @@
 @property (atomic, readwrite, nullable) NSError *error;
 @property (atomic, readwrite, nullable) NSDictionary<id, NSError *> *streamErrors;
 
-@property (atomic, strong) NSDictionary<id, NSURL *> *streamURLsToQuery;
+@property (atomic, strong, readwrite, nullable) NSDictionary<id, NSURL *> *streamURLsToQuery;
 @property (atomic, strong) NSOperationQueue *queryQueue;
 @property (atomic, readonly) dispatch_semaphore_t operationStartSemaphore;
 @end

@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// The `video` object that the operation initialized initialized with.
 @property (atomic, strong, readonly) XCDYouTubeVideo *video;
 
+@property (atomic, strong, readonly, nullable) NSDictionary<id, NSURL *> *streamURLsToQuery;
+
 /// The array of `NSHTTPCookie` objects passed during initialization.
 @property (atomic, copy, readonly, nullable) NSArray<NSHTTPCookie *>*cookies;
 
