@@ -418,7 +418,165 @@
 		}];
 	}];
 	
-	[self waitForExpectationsWithTimeout:900 handler:nil];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testQueryingWithSpecifiedStreamURLs
+{
+	/**
+	 * This video `NZzQQ1090wc` {itag 137 & 22) are reachable
+	 * This test ensures that when specifying streamURLs that are in the `video` object that the operation returns only streamURLs that we specified when complete
+	 */
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"NZzQQ1090wc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+
+		NSArray<NSNumber *>*specifiedStreamiTags = @[@137, @22];
+		NSMutableDictionary *specifiedStreamURLs = [NSMutableDictionary new];
+
+		for (NSNumber *itag in specifiedStreamiTags)
+		{
+			if (video.streamURLs[itag])
+			{
+				specifiedStreamURLs[itag] = video.streamURLs[itag];
+			}
+		}
+
+		[[XCDYouTubeClient defaultClient] queryVideo:video streamURLsToQuery:specifiedStreamURLs options:nil cookies:nil completionHandler:^(NSDictionary * _Nullable streamURLs, NSError * _Nullable queryError, NSDictionary<id,NSError *> * _Nullable streamErrors)
+		{
+			XCTAssertNil(queryError);
+			XCTAssertNil(streamErrors);
+			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
+
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+
+			XCTAssertEqual(specifiedStreamURLs.count, streamURLs.count, @"`streamURLs` count should be equal since we specified two streams that we know are reachable.");
+
+			[expectation fulfill];
+		}];
+	}];
+
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testQueryingWithSpecifiedStreamURLsSomeNotBeingInVideoObject
+{
+	/**
+	 * This video `NZzQQ1090wc` {itag 137 & 22) are reachable
+	 * This test ensures that when specifying streamURLs (with some not being in `video.streamURLs` that operation completes)
+	 */
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"NZzQQ1090wc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+
+		NSArray<NSNumber *>*specifiedStreamiTags = @[@137, @22, @1111111];
+		NSMutableDictionary *specifiedStreamURLs = [NSMutableDictionary new];
+
+		for (NSNumber *itag in specifiedStreamiTags)
+		{
+			if ([itag isEqual:@1111111] || [itag isEqual:@137])
+			{
+				//This will ensure the we do not query keys that are not in the `video` object's `streamURLs` and will ensure that the URL is the same was the value of specified key
+				specifiedStreamURLs[itag] = [NSURL URLWithString:@"https://www.youtube.com"];
+				continue;
+			}
+
+			specifiedStreamURLs[itag] = video.streamURLs[itag];
+		}
+
+		[[XCDYouTubeClient defaultClient] queryVideo:video streamURLsToQuery:specifiedStreamURLs options:nil cookies:nil completionHandler:^(NSDictionary * _Nullable streamURLs, NSError * _Nullable queryError, NSDictionary<id,NSError *> * _Nullable streamErrors)
+		{
+			XCTAssertNil(queryError);
+			XCTAssertNil(streamErrors);
+			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
+
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+
+			XCTAssertEqual(1, streamURLs.count, @"`streamURLs` should be equal to 1 since we know only 1 of the specified streams would be queried.");
+			XCTAssertNotNil(streamURLs[@22]);
+
+			[expectation fulfill];
+		}];
+	}];
+
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testQueryingWhenNoSpecifiedURLsAreInVideoObject
+{
+	/**
+	 * This video `NZzQQ1090wc` contains 24 streamURLs that are reachable ( all the URLs returned in `video.streamURLs` that are reachable)
+	 * This test ensure that when none of the  specified URLs are contained in `video.streamURLs` that we fallback to using `video.streamURLs` for querying.
+	 */
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"NZzQQ1090wc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+
+		NSMutableDictionary *specifiedStreamURLs = [NSMutableDictionary new];
+		specifiedStreamURLs[@1111111] = [NSURL URLWithString:@"https://www.youtube.com"];
+
+		[[XCDYouTubeClient defaultClient] queryVideo:video streamURLsToQuery:specifiedStreamURLs options:nil cookies:nil completionHandler:^(NSDictionary * _Nullable streamURLs, NSError * _Nullable queryError, NSDictionary<id,NSError *> * _Nullable streamErrors)
+		{
+			XCTAssertNil(queryError);
+			XCTAssertNil(streamErrors);
+			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
+
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+
+			XCTAssertNotEqual(specifiedStreamURLs.count, streamURLs.count, @"`specifiedStreamURLs` should not be equal to `streamURLs` since when no streamURL is contained in `video.streamURLs` we use the `video.streamURLs` for querying. In this test we know `video.streamURLs` contains 24 objects.");
+
+			[expectation fulfill];
+		}];
+	}];
+
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+-(void) testQueryingWhenSpecifiedURLsAreEmpty
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"NZzQQ1090wc" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNotNil(video);
+		XCTAssertNil(error);
+
+		[[XCDYouTubeClient defaultClient] queryVideo:video streamURLsToQuery:@{} options:nil cookies:nil completionHandler:^(NSDictionary * _Nullable streamURLs, NSError * _Nullable queryError, NSDictionary<id,NSError *> * _Nullable streamErrors)
+		{
+			XCTAssertNil(queryError);
+			XCTAssertNil(streamErrors);
+			XCTAssertNotNil(streamURLs);
+			XCTAssertTrue([NSThread isMainThread]);
+
+			for (id key in streamURLs.allKeys)
+			{
+				XCTAssertNotNil(streamURLs[key]);
+			}
+
+			XCTAssertEqual(video.streamURLs.count, streamURLs.count, @"`streamURLs` count should be equal to `video.streamURLs` since we specified an empty array and should fallback to the `video` object's `streamURLs`. We also, know all the streamsURLs are reachable.");
+
+			[expectation fulfill];
+		}];
+	}];
+
+	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void) testExpiredLiveVideo

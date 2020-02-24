@@ -86,12 +86,17 @@
 	return [self getVideoWithIdentifier:videoIdentifier cookies:cookies customPatterns:nil  completionHandler:completionHandler];
 }
 
-- (XCDYouTubeVideoQueryOperation *)queryVideo:(XCDYouTubeVideo *)video cookies:(NSArray<NSHTTPCookie *> *)cookies completionHandler:(void (^)(NSDictionary * _Nullable, NSError * _Nullable, NSDictionary<id,NSError *> * _Nullable))completionHandler
+- (XCDYouTubeVideoQueryOperation *)queryVideo:(XCDYouTubeVideo *)video cookies:(NSArray<NSHTTPCookie *> *)cookies completionHandler:(void (^)(NSDictionary * _Nonnull, NSError * _Nullable, NSDictionary<id,NSError *> * _Nonnull))completionHandler
+{
+	return [self queryVideo:video streamURLsToQuery:nil options:nil cookies:cookies completionHandler:completionHandler];
+}
+
+- (XCDYouTubeVideoQueryOperation *)queryVideo:(XCDYouTubeVideo *)video streamURLsToQuery:(NSDictionary<id,NSURL *> *)streamURLsToQuery options:(NSDictionary *)options cookies:(NSArray<NSHTTPCookie *> *)cookies completionHandler:(void (^)(NSDictionary * _Nullable, NSError * _Nullable, NSDictionary<id,NSError *> * _Nullable))completionHandler
 {
 	if (!completionHandler)
 		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The `completionHandler` argument must not be nil." userInfo:nil];
 	
-	XCDYouTubeVideoQueryOperation *operation = [[XCDYouTubeVideoQueryOperation alloc]initWithVideo:video cookies:cookies];
+	XCDYouTubeVideoQueryOperation *operation = [[XCDYouTubeVideoQueryOperation alloc]initWithVideo:video streamURLsToQuery:streamURLsToQuery options:options cookies:cookies];
 	operation.completionBlock = ^{
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 #pragma clang diagnostic push
