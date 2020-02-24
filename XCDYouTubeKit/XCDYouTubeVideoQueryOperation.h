@@ -28,6 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param cookies  An array of `NSHTTPCookie` objects, can be nil. These cookies can be used for certain videos that require a login.
 - (instancetype) initWithVideo:(XCDYouTubeVideo *)video cookies:(nullable NSArray<NSHTTPCookie *> *)cookies;
 
+/// Initializes a video  query operation with the specified video,  stream URLs to query and cookies.
+/// @param video The `<XCDYouTubeVideo>` object that this operation will query. Passing a `nil` video will throw an `NSInvalidArgumentException` exception.
+/// @param streamURLsToQuery The specific stream URLs to query, can be nil. These URLs and keys must be contained in the `streamURLs` property of the `video` object, if none of the values in `streamURLsToQuery` match then all of the `streamURLs`  will be queried.
+/// @param options  Options that are reserved for future use.
+/// @param cookies  An array of `NSHTTPCookie` objects, can be nil. These cookies can be used for certain videos that require a login.
 - (instancetype) initWithVideo:(XCDYouTubeVideo *)video streamURLsToQuery:(nullable NSDictionary<id, NSURL *>*)streamURLsToQuery options:(nullable NSDictionary *)options cookies:(nullable NSArray<NSHTTPCookie *> *)cookies NS_DESIGNATED_INITIALIZER;
 
 /// The `video` object that the operation initialized initialized with.
