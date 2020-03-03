@@ -198,6 +198,21 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 			title = @"";
 		_title = title;
 		
+		NSString *author = info[@"author"] == nil? videoDetails[@"author"] : info[@"author"];
+		if (author == nil)
+			author = @"";
+		_author = author;
+		
+		NSString *channelId = info[@"ucid"] == nil? videoDetails[@"channelId"] : info[@"ucid"];
+		if (channelId == nil)
+			channelId = @"";
+		_channelId = channelId;
+		
+		NSString *description = videoDetails[@"shortDescription"];
+		if (description == nil)
+			description = @"";
+		_videoDescription = description;
+		
 		_viewCount = info[@"viewCount"] == nil? [(NSString *)videoDetails[@"viewCount"] integerValue] : [(NSString *)info[@"viewCount"] integerValue];
 		
 		_duration = info[@"length_seconds"] == nil? [(NSString *)videoDetails[@"lengthSeconds"] doubleValue] : [(NSString *)info[@"length_seconds"] doubleValue];
