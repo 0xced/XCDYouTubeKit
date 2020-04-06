@@ -203,10 +203,10 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 			author = @"";
 		_author = author;
 		
-		NSString *channelId = info[@"ucid"] == nil? videoDetails[@"channelId"] : info[@"ucid"];
-		if (channelId == nil)
-			channelId = @"";
-		_channelId = channelId;
+		NSString *channelIdentifier = info[@"ucid"] == nil? videoDetails[@"channelId"] : info[@"ucid"];
+		if (channelIdentifier == nil)
+			channelIdentifier = @"";
+		_channelIdentifier = channelIdentifier;
 		
 		NSString *description = videoDetails[@"shortDescription"];
 		if (description == nil)

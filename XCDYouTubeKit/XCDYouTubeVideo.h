@@ -76,7 +76,7 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
 /**
  * The channeId of the video
  */
-@property (nonatomic, readonly) NSString *channelId;
+@property (nonatomic, readonly) NSString *channelIdentifier;
 /**
  * The description of the video
  */
