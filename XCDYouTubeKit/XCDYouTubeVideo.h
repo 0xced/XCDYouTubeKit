@@ -70,15 +70,15 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
  */
 @property (nonatomic, readonly) NSString *title;
 /**
- * The author of the video
+ * The name of author that uploaded this video.
  */
 @property (nonatomic, readonly) NSString *author;
 /**
- * The channeId of the video
+ * The channel identifier of YouTube channel that this video belongs to.
  */
 @property (nonatomic, readonly) NSString *channelIdentifier;
 /**
- * The description of the video
+ * The description of the video.
  */
 @property (nonatomic, readonly) NSString *videoDescription;
 /**
