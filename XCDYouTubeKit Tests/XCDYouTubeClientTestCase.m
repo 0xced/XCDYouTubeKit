@@ -32,6 +32,9 @@
 		XCTAssertNil(error);
 		XCTAssertEqualObjects(video.identifier, @"9TTioMbNT9I");
 		XCTAssertEqualObjects(video.title, @"Super Mario Bros Theme Song on Wine Glasses and a Frying Pan (슈퍼 마리오 브라더스 - スーパーマリオブラザーズ - 超級瑪莉)");
+		XCTAssertEqualObjects(video.author, @"Dan Newbie");
+		XCTAssertEqualObjects(video.channelIdentifier, @"UCxjo61fSS-hR7RiyBxnnHdg");
+		XCTAssertNotEqualObjects(video.videoDescription, @"");
 		XCTAssertNotNil(video.thumbnailURL);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
