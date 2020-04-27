@@ -1,3 +1,10 @@
+#### Version 2.13.0
+
+* Deprecated `-[XCDYouTubeVideo thumbnailURL]` use `-[XCDYouTubeVideo thumbnailURLs]` (#477)
+* Exclude plist files from Swift Package Manager (#478)
+* Annotate `languageIdentifier` argument as `nullable` in `XCDYouTubeVideoOperation`
+* Add new `author`, `videoDescription` and `channelIdentifier` properties to `XCDYouTubeVideo` (#471)
+
 #### Version 2.12.0
 
 * Add the ability to specify which `streamURLs` to query via `-[XCDYouTubeClient queryVideo:video:streamURLsToQuery:options:cookies:completionHandler:]` & `XCDYouTubeVideoQueryOperation` class.
