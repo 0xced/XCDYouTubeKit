@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return An initialized `XCDYouTubeVideoOperation` object.
  */
-- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(NSString *)languageIdentifier cookies:(nullable NSArray <NSHTTPCookie *> *)cookies;
+- (instancetype) initWithVideoIdentifier:(NSString *)videoIdentifier languageIdentifier:(nullable NSString *)languageIdentifier cookies:(nullable NSArray <NSHTTPCookie *> *)cookies;
 
 /**
  *  Initializes a video operation with the specified video identifier and language identifier and cookies and additional patterns.

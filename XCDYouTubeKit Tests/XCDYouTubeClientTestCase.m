@@ -3,7 +3,9 @@
 //
 
 #import "XCDYouTubeKitTestCase.h"
-
+#if TARGET_OS_OSX
+#import <AppKit/NSImage.h>
+#endif
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
 #import <XCDYouTubeKit/XCDYouTubeVideoOperation.h>
 
@@ -32,14 +34,45 @@
 		XCTAssertNil(error);
 		XCTAssertEqualObjects(video.identifier, @"9TTioMbNT9I");
 		XCTAssertEqualObjects(video.title, @"Super Mario Bros Theme Song on Wine Glasses and a Frying Pan (슈퍼 마리오 브라더스 - スーパーマリオブラザーズ - 超級瑪莉)");
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertEqualObjects(video.author, @"Dan Newbie");
+		XCTAssertEqualObjects(video.channelIdentifier, @"UCxjo61fSS-hR7RiyBxnnHdg");
+		XCTAssertNotEqualObjects(video.videoDescription, @"");
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
+#if TARGET_OS_OSX
+- (void) testThatThumbnailsAreOrderedCorrectly
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"9TTioMbNT9I" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.thumbnailURLs);
+		XCTAssertNotEqual(video.thumbnailURLs.count, 0);
 
+		NSMutableArray<NSImage *>*thumbnailImages = [NSMutableArray new];
+
+		for (NSURL *thumbnailURL in video.thumbnailURLs)
+		{
+			[thumbnailImages addObject:[[NSImage alloc]initWithContentsOfURL:thumbnailURL]];
+		}
+
+		[thumbnailImages sortUsingComparator:^NSComparisonResult(NSImage * _Nonnull image1, NSImage *  _Nonnull image2)
+		{
+			BOOL isSmaller = image1.size.width < image2.size.width && image1.size.height < image2.size.height;
+			XCTAssertTrue(isSmaller, @"`thumbnailURLs` should be ordered from smallest to largest");
+			return isSmaller;
+		}];
+
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+#endif
 - (void) testThatVideoHasOtherStreams
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -141,7 +174,7 @@
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
@@ -160,7 +193,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[expectation fulfill];
 	}];
@@ -177,7 +210,7 @@
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
 		 XCTAssertTrue(video.viewCount > 0);
-		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		 XCTAssertTrue(video.streamURLs.count > 0);
 		 XCTAssertTrue(video.duration > 0);
 		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
@@ -199,7 +232,7 @@
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
