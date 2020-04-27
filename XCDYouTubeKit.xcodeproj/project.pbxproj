@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012718E82457786400123A28 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 012718E72457786400123A28 /* AppKit.framework */; };
 		017234C223FC223D00196707 /* XCDURLGETOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 017234C023FC223D00196707 /* XCDURLGETOperation.h */; };
 		017234C323FC223D00196707 /* XCDURLGETOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 017234C123FC223D00196707 /* XCDURLGETOperation.m */; };
 		017234C423FC223D00196707 /* XCDURLGETOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 017234C123FC223D00196707 /* XCDURLGETOperation.m */; };
@@ -110,6 +111,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		012718E72457786400123A28 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		017234C023FC223D00196707 /* XCDURLGETOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDURLGETOperation.h; sourceTree = "<group>"; };
 		017234C123FC223D00196707 /* XCDURLGETOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDURLGETOperation.m; sourceTree = "<group>"; };
 		0178E76B23F49BBC001C382E /* XCDYouTubeVideoQueryOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCDYouTubeVideoQueryOperation.h; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				012718E82457786400123A28 /* AppKit.framework in Frameworks */,
 				C284FA011DA19941006C4AAE /* XCDYouTubeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +190,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		012718E62457786300123A28 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				012718E72457786400123A28 /* AppKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C20F57A118817D5400EDBFB0 /* XCDYouTubeKit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +223,7 @@
 				C2A3F2D217F4827800AC1C3B /* XCDYouTubeKit */,
 				C20F57A118817D5400EDBFB0 /* XCDYouTubeKit Tests */,
 				C2A3F2CE17F4827800AC1C3B /* Products */,
+				012718E62457786300123A28 /* Frameworks */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";

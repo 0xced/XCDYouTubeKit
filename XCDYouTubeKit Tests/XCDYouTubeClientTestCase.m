@@ -3,7 +3,7 @@
 //
 
 #import "XCDYouTubeKitTestCase.h"
-
+#import <AppKit/NSImage.h>
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
 #import <XCDYouTubeKit/XCDYouTubeVideoOperation.h>
 
@@ -38,6 +38,34 @@
 		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void) testThatThumbnailsAreOrderedCorrectly
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"9TTioMbNT9I" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.thumbnailURLs);
+		XCTAssertNotEqual(video.thumbnailURLs.count, 0);
+
+		NSMutableArray<NSImage *>*thumbnailImages = [NSMutableArray new];
+
+		for (NSURL *thumbnailURL in video.thumbnailURLs)
+		{
+			[thumbnailImages addObject:[[NSImage alloc]initWithContentsOfURL:thumbnailURL]];
+		}
+
+		[thumbnailImages sortUsingComparator:^NSComparisonResult(NSImage * _Nonnull image1, NSImage *  _Nonnull image2)
+		{
+			BOOL isSmaller = image1.size.width < image2.size.width && image1.size.height < image2.size.height;
+			XCTAssertTrue(isSmaller, @"`thumbnailURLs` should be ordered from smallest to largest");
+			return isSmaller;
+		}];
+
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
