@@ -52,7 +52,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		 XCTAssertNotNil(video.title);
 		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		 XCTAssertTrue(video.streamURLs.count > 0);
 		 XCTAssertTrue(video.duration > 0);
 		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -74,7 +74,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		 XCTAssertNotNil(video.title);
 		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		 XCTAssertTrue(video.streamURLs.count > 0);
 		 XCTAssertTrue(video.duration > 0);
 		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
@@ -113,7 +113,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -134,7 +134,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -170,7 +170,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
@@ -196,7 +196,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
@@ -222,7 +222,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
@@ -248,7 +248,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
@@ -272,7 +272,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -293,7 +293,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -314,7 +314,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -335,7 +335,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
@@ -378,7 +378,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
@@ -400,7 +400,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		 XCTAssertNotNil(video.title);
 		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		 XCTAssertTrue(video.streamURLs.count > 0);
 		 XCTAssertTrue(video.duration > 0);
 		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];
@@ -539,7 +539,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		 XCTAssertNotNil(video.title);
 		 XCTAssertTrue(video.viewCount > 0);
 		 XCTAssertNotNil(video.expirationDate);
-		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		 XCTAssertTrue(video.streamURLs.count > 0);
 		 XCTAssertTrue(video.duration > 0);
 		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)

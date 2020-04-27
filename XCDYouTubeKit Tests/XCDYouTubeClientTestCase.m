@@ -35,7 +35,7 @@
 		XCTAssertEqualObjects(video.author, @"Dan Newbie");
 		XCTAssertEqualObjects(video.channelIdentifier, @"UCxjo61fSS-hR7RiyBxnnHdg");
 		XCTAssertNotEqualObjects(video.videoDescription, @"");
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[expectation fulfill];
@@ -144,7 +144,7 @@
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
@@ -163,7 +163,7 @@
 		XCTAssertNil(error);
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertNotNil(video.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming]);
 		[expectation fulfill];
 	}];
@@ -180,7 +180,7 @@
 		 XCTAssertNil(error);
 		 XCTAssertNotNil(video.title);
 		 XCTAssertTrue(video.viewCount > 0);
-		 XCTAssertNotNil(video.thumbnailURL);
+		 XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		 XCTAssertTrue(video.streamURLs.count > 0);
 		 XCTAssertTrue(video.duration > 0);
 		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
@@ -202,7 +202,7 @@
 		XCTAssertNotNil(video.title);
 		XCTAssertTrue(video.viewCount > 0);
 		XCTAssertNotNil(video.expirationDate);
-		XCTAssertNotNil(video.thumbnailURL);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
 		XCTAssertTrue(video.streamURLs.count > 0);
 		XCTAssertTrue(video.duration > 0);
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:video.streamURLs[@(XCDYouTubeVideoQualityMedium360)]];

@@ -221,9 +221,25 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		_thumbnailURL = thumbnail ? [NSURL URLWithString:thumbnail] : nil;
 		
 		if (!_thumbnailURL) {
-			NSArray <NSDictionary *>*thumnails = XCDThumnailArrayWithString(playerResponse);
-			if (thumnails.count >= 1) {
-				NSString *thumbnailURLString = thumnails[0][@"url"];
+			NSArray<NSDictionary *> *thumbnails = XCDThumnailArrayWithString(playerResponse);
+			if (thumbnails.count >= 1) {
+				// Prepare array of thumbnails URLs.
+				NSMutableArray<NSURL *> *thumbnailURLs = [[NSMutableArray<NSURL *> alloc] initWithCapacity:thumbnails.count];
+				
+				// Extract URLs.
+				for (NSDictionary *thumbnailDict in thumbnails) {
+					NSString *urlStr = thumbnailDict[@"url"];
+					NSURL *url = [NSURL URLWithString:urlStr];
+					if (url) {
+						[thumbnailURLs addObject:url];
+					}
+				}
+				
+				// Set array.
+				_thumbnailURLs = [thumbnailURLs copy];
+				
+				// DEPRECATED
+				NSString *thumbnailURLString = thumbnails[0][@"url"];
 				_thumbnailURL = thumbnailURLString ? [NSURL URLWithString:thumbnailURLString] : nil;
 			}
 		}
@@ -470,7 +486,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	NSDateComponentsFormatter *dateComponentsFormatter = [NSDateComponentsFormatter new];
 	dateComponentsFormatter.unitsStyle = NSDateComponentsFormatterUnitsStyleAbbreviated;
 	NSString *duration = [dateComponentsFormatter stringFromTimeInterval:self.duration] ?: [NSString stringWithFormat:@"%@ seconds", @(self.duration)];
-	NSString *thumbnailDescription = [NSString stringWithFormat:@"Thumbnail: %@", self.thumbnailURL];
+	NSString *thumbnailDescription = [NSString stringWithFormat:@"Thumbnails: %@", self.thumbnailURLs];
 	NSString *streamsDescription = SortedDictionaryDescription(self.streamURLs);
 	return [NSString stringWithFormat:@"<%@: %p> %@\nDuration: %@\nExpiration date: %@\n%@\nStreams: %@", self.class, self, self.description, duration, self.expirationDate, thumbnailDescription, streamsDescription];
 }

@@ -90,9 +90,14 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
  */
 @property (nonatomic, readonly) NSInteger viewCount;
 /**
+ *  An array of thumbnail URLs for an images of different sizes. Ordered from smaller to bigger.
+ */
+@property (nonatomic, readonly, nullable) NSArray<NSURL *> *thumbnailURLs;
+/**
  *  A thumbnail URL for an image of small size, i.e. 120×90. May be nil.
  */
-@property (nonatomic, readonly, nullable) NSURL *thumbnailURL;
+@property (nonatomic, readonly, nullable) NSURL *thumbnailURL
+	DEPRECATED_MSG_ATTRIBUTE("Use `thumbnailURLs` instead.");
 /**
  *  A thumbnail URL for an image of small size, i.e. 120×90. May be nil.
  */
