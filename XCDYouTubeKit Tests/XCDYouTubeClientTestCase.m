@@ -3,7 +3,9 @@
 //
 
 #import "XCDYouTubeKitTestCase.h"
+#if TARGET_OS_OSX
 #import <AppKit/NSImage.h>
+#endif
 #import <XCDYouTubeKit/XCDYouTubeClient.h>
 #import <XCDYouTubeKit/XCDYouTubeVideoOperation.h>
 
@@ -42,7 +44,7 @@
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
-
+#if TARGET_OS_OSX
 - (void) testThatThumbnailsAreOrderedCorrectly
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -70,7 +72,7 @@
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
-
+#endif
 - (void) testThatVideoHasOtherStreams
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		012718E82457786400123A28 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 012718E72457786400123A28 /* AppKit.framework */; };
 		017234C223FC223D00196707 /* XCDURLGETOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 017234C023FC223D00196707 /* XCDURLGETOperation.h */; };
 		017234C323FC223D00196707 /* XCDURLGETOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 017234C123FC223D00196707 /* XCDURLGETOperation.m */; };
 		017234C423FC223D00196707 /* XCDURLGETOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 017234C123FC223D00196707 /* XCDURLGETOperation.m */; };
@@ -182,7 +181,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				012718E82457786400123A28 /* AppKit.framework in Frameworks */,
 				C284FA011DA19941006C4AAE /* XCDYouTubeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,6 +597,8 @@
 				"OTHER_LDFLAGS[sdk=macosx*]" = (
 					"-framework",
 					CoreServices,
+					"-framework",
+					AppKit,
 				);
 				WARNING_CFLAGS = (
 					"$(inherited)",
@@ -632,6 +632,8 @@
 				"OTHER_LDFLAGS[sdk=macosx*]" = (
 					"-framework",
 					CoreServices,
+					"-framework",
+					AppKit,
 				);
 				WARNING_CFLAGS = (
 					"$(inherited)",
