@@ -1,3 +1,8 @@
+#### Version 2.14.0
+
+* Add new `XCDYouTubeErrorEmptyResponse` error (#479)
+* Adaptation to YouTube API change. (a048776eb0d87de869c1636e244d78ffb311adc6)
+
 #### Version 2.13.0
 
 * Deprecated `-[XCDYouTubeVideo thumbnailURL]` use `-[XCDYouTubeVideo thumbnailURLs]` (#477)
