@@ -397,7 +397,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		{
 			stream = XCDDictionaryWithQueryString((NSString *)streamQuery);
 		}
-		NSDictionary *alternativeStreamInfo = XCDDictionaryWithQueryString(stream[@"cipher"]) == nil? XCDDictionaryWithQueryString(stream[@"signatureCipher"]) : XCDDictionaryWithQueryString(stream[@"cipher"]);
+		NSDictionary *alternativeStreamInfo = XCDDictionaryWithQueryString(stream[@"cipher"]).count == 0? XCDDictionaryWithQueryString(stream[@"signatureCipher"]) : XCDDictionaryWithQueryString(stream[@"cipher"]);
 		NSString *alternativeURLString = alternativeStreamInfo[@"url"];
 		
 		NSString *scrambledSignature = stream[@"s"] == nil? alternativeStreamInfo[@"s"] : stream[@"s"];
