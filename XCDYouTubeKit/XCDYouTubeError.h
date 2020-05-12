@@ -31,6 +31,11 @@ typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {
 	 *  Returned when a network error occurs. See `NSUnderlyingErrorKey` in the userInfo dictionary for more information.
 	 */
 	XCDYouTubeErrorNetwork                = -1,
+	/**
+	 * Returned when an empty response is returned. This may indicate that YouTube has blocked requests from your IP address because of overuse.
+	 * This error does not contain any info in the `userInfo` property and is not appropriate to show to the user.
+	*/
+	XCDYouTubeErrorEmptyResponse = -3,
 	
 	/**
 	 *  Previously returned when the given video identifier string is invalid.

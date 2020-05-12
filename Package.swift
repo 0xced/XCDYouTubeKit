@@ -9,7 +9,7 @@ let package = Package(
         .macOS(.v10_10)
     ],
     products: [
-        .library(name: "XCDYouTubeKit" , targets: ["XCDYouTubeKit"])
+        .library(name: "XCDYouTubeKit", targets: ["XCDYouTubeKit"])
     ],
     targets: [
         .target(

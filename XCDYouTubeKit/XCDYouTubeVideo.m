@@ -397,12 +397,14 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		{
 			stream = XCDDictionaryWithQueryString((NSString *)streamQuery);
 		}
-		NSDictionary *alternativeStreamInfo = XCDDictionaryWithQueryString(stream[@"cipher"]);
+		NSDictionary *alternativeStreamInfo = XCDDictionaryWithQueryString(stream[@"cipher"]).count == 0? XCDDictionaryWithQueryString(stream[@"signatureCipher"]) : XCDDictionaryWithQueryString(stream[@"cipher"]);
 		NSString *alternativeURLString = alternativeStreamInfo[@"url"];
 		
 		NSString *scrambledSignature = stream[@"s"] == nil? alternativeStreamInfo[@"s"] : stream[@"s"];
 		NSString *spParam = stream[@"sp"] == nil ? alternativeStreamInfo[@"sp"] : stream[@"sp"];
-		
+
+		if (scrambledSignature == nil)
+			XCDYouTubeLogInfo(@"No scrambled signature for stream: \n%@ This might result in a error.", stream);
 		if (scrambledSignature && !playerScript)
 		{
 			userInfo[XCDYouTubeNoStreamVideoUserInfoKey] = self;

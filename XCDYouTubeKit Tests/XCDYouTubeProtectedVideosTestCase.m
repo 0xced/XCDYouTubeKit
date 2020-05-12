@@ -326,6 +326,29 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+// See testAlternativeSignatureValue.xml for Charles Proxy Setting
+// Import: Charles Proxy > Tools > Rewrite
+- (void) testAlternativeSignatureValue_offline
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"rId6PKlDXeU" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		XCTAssertNil(error);
+		XCTAssertNotNil(video.title);
+		XCTAssertTrue(video.viewCount > 0);
+		XCTAssertNotNil(video.expirationDate);
+		XCTAssertNotNil(video.thumbnailURLs.firstObject);
+		XCTAssertTrue(video.streamURLs.count > 0);
+		XCTAssertTrue(video.duration > 0);
+		[video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop)
+		{
+			XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
+		}];
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testProtectedVEVOIsPlayable
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];

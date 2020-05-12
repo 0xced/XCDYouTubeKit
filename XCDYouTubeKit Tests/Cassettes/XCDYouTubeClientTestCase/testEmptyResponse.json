@@ -1,0 +1,67 @@
+[
+  {
+    "body" : "",
+    "headers" : {
+      "Content-Type" : "text\/javascript",
+      "Alt-Svc" : "h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"",
+      "Age" : "13776",
+      "Content-Encoding" : "gzip",
+      "Server" : "sffe",
+      "X-XSS-Protection" : "0",
+      "Expires" : "Tue, 11 May 2021 22:13:55 GMT",
+      "Cache-Control" : "public, max-age=31536000",
+      "Date" : "Mon, 11 May 2020 22:13:55 GMT",
+      "Content-Length" : "431582",
+      "X-Content-Type-Options" : "nosniff",
+      "Accept-Ranges" : "bytes",
+      "Vary" : "Accept-Encoding, Origin",
+      "Last-Modified" : "Thu, 07 May 2020 00:28:50 GMT"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/s\/player\/0acb4375\/player_ias.vflset\/en_US\/base.js"
+  },
+  {
+    "body" : "",
+    "headers" : {
+      "Content-Type" : "application\/x-www-form-urlencoded",
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/answer\/151657?hl=en for more info.\"",
+      "Alt-Svc" : "h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"",
+      "Content-Encoding" : "br",
+      "Server" : "YouTube Frontend Proxy",
+      "X-XSS-Protection" : "0",
+      "Transfer-Encoding" : "Identity",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 GMT",
+      "Cache-Control" : "no-store",
+      "Date" : "Tue, 12 May 2020 02:03:26 GMT",
+      "Strict-Transport-Security" : "max-age=31536000",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/get_video_info?el=embedded&hl=en&ps=default&video_id=HxaM6UJpAyg"
+  },
+  {
+    "body" : "",
+    "headers" : {
+      "Content-Type" : "text\/html; charset=utf-8",
+      "P3P" : "CP=\"This is not a P3P policy! See http:\/\/support.google.com\/accounts\/answer\/151657?hl=en for more info.\"",
+      "Alt-Svc" : "h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"",
+      "Content-Encoding" : "br",
+      "Server" : "YouTube Frontend Proxy",
+      "X-XSS-Protection" : "0",
+      "Transfer-Encoding" : "Identity",
+      "Expires" : "Tue, 27 Apr 1971 19:44:06 GMT",
+      "Set-Cookie" : "VISITOR_INFO1_LIVE=ci6MCaynJqU; path=\/; domain=.youtube.com; secure; expires=Sun, 08-Nov-2020 02:03:31 GMT; httponly; samesite=None, GPS=1; path=\/; domain=.youtube.com; expires=Tue, 12-May-2020 02:33:31 GMT, YSC=GwFOF9Lp9CY; path=\/; domain=.youtube.com; secure; httponly; samesite=None",
+      "Cache-Control" : "no-cache",
+      "Date" : "Tue, 12 May 2020 02:03:31 GMT",
+      "Strict-Transport-Security" : "max-age=31536000",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "SAMEORIGIN"
+    },
+    "method" : "GET",
+    "status" : 200,
+    "uri" : "https:\/\/www.youtube.com\/watch?bpctr=9999999999&has_verified=1&hl=en&v=HxaM6UJpAyg"
+  }
+]
