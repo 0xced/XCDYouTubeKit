@@ -686,6 +686,19 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void) testEmptyResponse_offline
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"HxaM6UJpAyg" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+ 		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorEmptyResponse);
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testNonExistentVideoIdentifier
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
