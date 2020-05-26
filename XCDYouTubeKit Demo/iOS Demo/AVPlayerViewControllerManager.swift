@@ -57,7 +57,8 @@ extension UIView {
 				self.controller.player = self.player
 				return
 			}
-			self.player = AVPlayer(url: video.streamURL)
+			guard let streamURL = video.streamURL else { fatalError("No stream URL")}
+			self.player = AVPlayer(url: streamURL)
 			self.controller.player = self.player
 		}
 	}
