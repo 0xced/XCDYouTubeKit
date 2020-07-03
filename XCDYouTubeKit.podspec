@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.public_header_files    = "XCDYouTubeKit/XCDYouTube{Client,Error,Kit,Logger,Operation,Video,VideoOperation,VideoQueryOperation,VideoPlayerViewController}.h"
   s.osx.exclude_files      = "XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.{h,m}"
   s.tvos.exclude_files     = "XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.{h,m}"
-  s.ios.frameworks         = "JavaScriptCore", "MediaPlayer"
+  s.ios.frameworks         = "JavaScriptCore", "MediaPlayer", "UIKit"
   s.osx.frameworks         = "JavaScriptCore"
   s.tvos.frameworks        = "JavaScriptCore"
   s.requires_arc           = true
