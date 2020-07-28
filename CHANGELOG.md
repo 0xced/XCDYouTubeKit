@@ -1,3 +1,7 @@
+#### Version 2.14.1
+
+* Adaptation to YouTube API change. (#487)
+
 #### Version 2.14.0
 
 * Add new `XCDYouTubeErrorEmptyResponse` error (#479)
