@@ -135,6 +135,11 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
 @property (nonatomic, readonly, nullable) NSURL *streamURL;
 
 /**
+ * A link to the dash manifest of a youtube video. (can be `nil`)
+ */
+@property (nonatomic, readonly, nullable) NSURL *dashManifestURL;
+
+/**
 
  *  A dictionary of caption URLs (XML).
  *
