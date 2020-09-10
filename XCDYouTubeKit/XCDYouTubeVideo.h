@@ -90,6 +90,10 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
  */
 @property (nonatomic, readonly) NSInteger viewCount;
 /**
+ *  The age restricted status of the video
+ */
+@property (nonatomic) BOOL isAgeRestricted;
+/**
  *  An array of thumbnail URLs for an images of different sizes. Ordered from smaller to bigger.
  */
 @property (nonatomic, readonly, nullable) NSArray<NSURL *> *thumbnailURLs;
