@@ -489,7 +489,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-// Edit testProtectedVideoWithoutJavaScriptPlayerURL.json by replacing `\"js\":` with `\"xs\":`
+// Edit testProtectedVideoWithoutJavaScriptPlayerURL.json by replacing `\"js\":` with `\"xs\":` and and `jsUrl` with `jsXUrl` 
 - (void) testProtectedVideoWithoutJavaScriptPlayerURL_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -521,7 +521,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-// With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page
+// With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page and replace and `jsUrl` with `jsXUrl` in testAgeRestrictedVEVOVideoWithEmbedWebPageConnectionError.json
 - (void) testAgeRestrictedVEVOVideoWithEmbedWebPageConnectionError_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
@@ -559,7 +559,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 }
 
 // See https://github.com/0xced/XCDYouTubeKit/issues/431
-// Replace `assets` with `Xassets` in testAgeRestrictedVideo1WithNoJavaScriptPlayerURL.json
+// Replace `assets` with `Xassets` and `jsUrl` with `jsXUrl` in testAgeRestrictedVideo1WithNoJavaScriptPlayerURL.json
 - (void) testAgeRestrictedVideo1WithNoJavaScriptPlayerURL_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
