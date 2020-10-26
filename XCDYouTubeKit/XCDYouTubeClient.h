@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Starts an asynchronous operation for the specified video identifier, and calls a handler upon completion.
  *
- *  @param videoIdentifier   A 11 characters YouTube video identifier. If the video identifier is invalid (including nil) the completion handler will be called with an error with `XCDYouTubeVideoErrorDomain` domain and `XCDYouTubeErrorInvalidVideoIdentifier` code.
+ *  @param videoIdentifier   A 11 characters YouTube video identifier. If the video identifier is invalid (including nil) the completion handler will be called with an error with `XCDYouTubeVideoErrorDomain` domain and `XCDYouTubeErrorNoStreamAvailable` code.
  *  @param completionHandler A block to execute when the client finishes the operation. The completion handler is executed on the main thread. If the completion handler is nil, this method throws an exception.
  *
  *  @discussion If the operation completes successfully, the video parameter of the handler block contains a `<XCDYouTubeVideo>` object, and the error parameter is nil. If the operation fails, the video parameter is nil and the error parameter contains information about the failure. The error's domain is always `XCDYouTubeVideoErrorDomain`.
@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Starts an asynchronous operation for the specified video identifier, and calls a handler upon completion.
  *
- *  @param videoIdentifier   A 11 characters YouTube video identifier. If the video identifier is invalid (including nil) the completion handler will be called with an error with `XCDYouTubeVideoErrorDomain` domain and `XCDYouTubeErrorInvalidVideoIdentifier` code.
+ *  @param videoIdentifier   A 11 characters YouTube video identifier. If the video identifier is invalid (including nil) the completion handler will be called with an error with `XCDYouTubeVideoErrorDomain` domain and `XCDYouTubeErrorNoStreamAvailable` code.
  *	@param cookies An array of `NSHTTPCookie` objects, can be nil. These cookies can be used for certain videos that require a login.
  *  @param completionHandler A block to execute when the client finishes the operation. The completion handler is executed on the main thread. If the completion handler is nil, this method throws an exception.
  *
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Starts an asynchronous operation for the specified video identifier, and calls a handler upon completion.
  *
- *  @param videoIdentifier   A 11 characters YouTube video identifier. If the video identifier is invalid (including nil) the completion handler will be called with an error with `XCDYouTubeVideoErrorDomain` domain and `XCDYouTubeErrorInvalidVideoIdentifier` code.
+ *  @param videoIdentifier   A 11 characters YouTube video identifier. If the video identifier is invalid (including nil) the completion handler will be called with an error with `XCDYouTubeVideoErrorDomain` domain and `XCDYouTubeErrorNoStreamAvailable` code.
  *	@param cookies An array of `NSHTTPCookie` objects, can be nil. These cookies can be used for certain videos that require a login.
  *  @param customPatterns An array of `NSString` objects, can be nil. These patterns can be used to create custom regular expression objects in favor of the internal hard-coded patterns for video parsing. If none of these patterns produces a valid `NSRegularExpression` object then the internal hard-coded regular expression objects are used. Typically, you do not need to use this parameter, however, it can be used a way to use update patterns when needed (i.e to adapt to YouTube API changes). See https://github.com/0xced/XCDYouTubeKit/blob/master/REGULAR_EXPRESSION.md for more info.
  *  @param completionHandler A block to execute when the client finishes the operation. The completion handler is executed on the main thread. If the completion handler is nil, this method throws an exception.
