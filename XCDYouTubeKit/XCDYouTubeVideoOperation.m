@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 @property (atomic, copy, readonly) NSString *languageIdentifier;
 @property (atomic, strong, readonly) NSArray <NSHTTPCookie *> *cookies;
 @property (atomic, strong, readonly) NSArray <NSString *> *customPatterns;
-
+@property (atomic, assign) BOOL ranLastEmbedPage;
 @property (atomic, assign) NSInteger requestCount;
 @property (atomic, assign) XCDYouTubeRequestType requestType;
 @property (atomic, strong) NSMutableArray *eventLabels;
@@ -118,9 +118,17 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	if (self.eventLabels.count == 0)
 	{
 		if (self.requestType == XCDYouTubeRequestTypeWatchPage || self.webpage)
+		{
+			if (self.ranLastEmbedPage == NO) {
+				[self startLastEmbedPageRequest];
+				return;
+			}
 			[self finishWithError];
+		}
 		else
+		{
 			[self startWatchPageRequest];
+		}
 	}
 	else
 	{
@@ -142,13 +150,21 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	[self startRequestWithURL:webpageURL type:XCDYouTubeRequestTypeWatchPage];
 }
 
+// Last resort request, sometimes the `javaScriptPlayerURL` will randomly not appear on `webpage` but will appear on the `embedWebpage` regardless of age restrictions. This appears to be how youtube-dl handles it, see https://github.com/l1ving/youtube-dl/blob/4fcd20a46cbf35ebbeaf06dde3999ad4309d7a8e/youtube_dl/extractor/youtube.py#L1963
+- (void) startLastEmbedPageRequest
+{
+	self.ranLastEmbedPage = YES;
+	NSString *embedURLString = [NSString stringWithFormat:@"https://www.youtube.com/embed/%@", self.videoIdentifier];
+	[self startRequestWithURL:[NSURL URLWithString:embedURLString] type:XCDYouTubeRequestTypeEmbedPage];
+}
+
 - (void) startRequestWithURL:(NSURL *)url type:(XCDYouTubeRequestType)requestType
 {
 	if (self.isCancelled)
 		return;
 	
-	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 1×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo + 1xDashManifest
-	if (++self.requestCount > 7)
+	// Max (age-restricted VEVO) = 2×GetVideoInfo + 1×WatchPage + 2×EmbedPage + 1×JavaScriptPlayer + 1×GetVideoInfo + 1xDashManifest
+	if (++self.requestCount > 8)
 	{
 		// This condition should never happen but the request flow is quite complex so better abort here than go into an infinite loop of requests
 		[self finishWithError];
