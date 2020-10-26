@@ -362,7 +362,7 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	{
 		if (error)
 		{
-			NSString *reason = info[@"reason"] == nil ? XCDDictionaryWithString(playerResponse)[@"playabilityStatus"][@"reason"] : info[@"reason"];
+			NSString *reason = XCDReasonForErrorWithDictionary(info, playerResponse);
 			if (reason)
 			{
 				reason = [reason stringByReplacingOccurrencesOfString:@"<br\\s*/?>" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, reason.length)];
@@ -378,6 +378,27 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		}
 		return nil;
 	}
+}
+
+static NSString *XCDReasonForErrorWithDictionary(NSDictionary *info, NSString *playerResponse)
+{
+	NSString *reason = info[@"reason"] == nil ? XCDDictionaryWithString(playerResponse)[@"playabilityStatus"][@"reason"] : info[@"reason"];
+	NSDictionary *subReason =  XCDDictionaryWithString(playerResponse)[@"playabilityStatus"][@"errorScreen"][@"playerErrorMessageRenderer"][@"subreason"];
+	NSArray<NSDictionary *>* runs = subReason[@"runs"];
+	NSString *runsMessage = @"";
+	for (NSDictionary *message in runs)
+	{
+		NSString *text = message[@"text"];
+		if (text == nil)
+			continue;
+		runsMessage = [runsMessage stringByAppendingString:text];
+	}
+	if (runsMessage.length != 0)
+		return runsMessage;
+	if (subReason[@"simpleText"])
+		return subReason[@"simpleText"];
+
+	return reason;
 }
 
 - (NSDictionary <id, NSURL *>*)extractStreamURLsWithQuery:(NSArray *)streamQueries playerScript:(XCDYouTubePlayerScript *)playerScript userInfo:(NSMutableDictionary *)userInfo error:(NSError *__autoreleasing *)error
