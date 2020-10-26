@@ -200,6 +200,13 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	// Use kCFStringEncodingMacRoman as fallback because it defines characters for every byte value and is ASCII compatible. See https://mikeash.com/pyblog/friday-qa-2010-02-19-character-encodings.html
 	NSString *responseString = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, data.bytes, (CFIndex)data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingMacRoman, false)) ?: @"";
 	XCDYouTubeLogVerbose(@"Response: %@\n%@", response, responseString);
+	if ([(NSHTTPURLResponse *)response statusCode] == 429)
+	{
+		//See 429 indicates too many requests https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+		// This can happen when YouTube blocks the clients because of too many requests
+		[self handleConnectionError:[NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorTooManyRequests userInfo:@{NSLocalizedDescriptionKey : @"The operation couldn’t be completed because too many requests were sent."}] requestType:requestType];
+		return;
+	}
 	if (responseString.length == 0)
 	{
 		//Previously we would throw an assertion here, however, this has been changed to an error

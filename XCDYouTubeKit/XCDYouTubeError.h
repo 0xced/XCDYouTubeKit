@@ -36,7 +36,11 @@ typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {
 	 * This error does not contain any info in the `userInfo` property and is not appropriate to show to the user.
 	*/
 	XCDYouTubeErrorEmptyResponse = -3,
-	
+	/**
+	 * Returned when an 429 HTTP code is returned. This may indicate that YouTube has blocked requests from your IP address because of overuse.
+	 * This error is not localized.
+	*/
+	XCDYouTubeErrorTooManyRequests = -4,
 	/**
 	 *  Previously returned when the given video identifier string is invalid.
 	 *  Use `XCDYouTubeErrorNoStreamAvailable` instead.
