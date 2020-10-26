@@ -707,7 +707,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
-		XCTAssertEqualObjects(error.localizedDescription, @"This video is unavailable.");
+		XCTAssertEqualObjects(error.localizedDescription, @"Video unavailable");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
@@ -721,7 +721,7 @@
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
 		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
-		XCTAssertEqualObjects(error.localizedDescription, @"Cette vidéo n'est pas disponible.");
+		XCTAssertEqualObjects(error.localizedDescription, @"Vidéo non disponible");
 		[expectation fulfill];
 	}];
 	[self waitForExpectationsWithTimeout:5 handler:nil];
