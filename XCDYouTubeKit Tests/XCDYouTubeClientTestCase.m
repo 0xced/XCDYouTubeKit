@@ -644,6 +644,25 @@
 		setenv("XCDYouTubeKitLogLevel", logLevel, 1);
 }
 
+//One crude way to get this error to trigger for testing is to execute a ton of operations in a for loop
+//However, you can also do this with a tool like Charles Proxy and returning a 429 status code for every request to youtube.com
+- (void) testTooManyRequestsError
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"V_xRSxKE1jg" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	{
+		NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
+		XCTAssertNil(video);
+		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(error.code, XCDYouTubeErrorNetwork);
+		XCTAssertEqual(underlyingError.domain, XCDYouTubeVideoErrorDomain);
+		XCTAssertEqual(underlyingError.code, XCDYouTubeErrorTooManyRequests);
+		XCTAssertEqualObjects(error.localizedDescription, @"The operation couldn’t be completed because too many requests were sent.");
+		[expectation fulfill];
+	}];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 - (void) testRemovedVideo
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
