@@ -42,6 +42,10 @@ typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {
 	*/
 	XCDYouTubeErrorTooManyRequests = -4,
 	/**
+	 * Returned  to indicate an unknown error. This error is not localized.
+	*/
+	XCDYouTubeErrorUnknown = -5,
+	/**
 	 *  Previously returned when the given video identifier string is invalid.
 	 *  Use `XCDYouTubeErrorNoStreamAvailable` instead.
 	 */

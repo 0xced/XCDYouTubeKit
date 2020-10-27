@@ -379,6 +379,12 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) finishWithError
 {
 	self.error = self.youTubeError ? YouTubeError(self.youTubeError, self.webpage.regionsAllowed, self.languageIdentifier) : self.lastError;
+	if (self.error == nil)
+	{
+		//This condition should never happen but as a last resort.
+		//See https://github.com/0xced/XCDYouTubeKit/issues/484
+		self.error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorUnknown userInfo:@{NSLocalizedDescriptionKey : @"The operation couldn’t be completed because of an unknown error."}];
+	}
 	XCDYouTubeLogError(@"Video operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
 	[self finish];
 }
