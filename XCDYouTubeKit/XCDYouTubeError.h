@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, XCDYouTubeErrorCode) {
 	XCDYouTubeErrorEmptyResponse = -3,
 	/**
 	 * Returned when an 429 HTTP code is returned. This may indicate that YouTube has blocked requests from your IP address because of overuse.
-	 * This error is not localized.
+	 * This error code will the be code of the `NSError` in `NSUnderlyingErrorKey` when `XCDYouTubeErrorNetwork` is return when appropriate. This error is not localized.
 	*/
 	XCDYouTubeErrorTooManyRequests = -4,
 	/**
