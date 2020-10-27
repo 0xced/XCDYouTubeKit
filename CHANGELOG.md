@@ -1,3 +1,11 @@
+#### Version 2.15.0
+
+* Adaptation to YouTube API change (#501)
+* New `XCDYouTubeErrorUnknown` error code (#484, #491)
+* New `XCDYouTubeErrorTooManyRequests` error code ([comment](https://github.com/0xced/XCDYouTubeKit/issues/501#issuecomment-716812836))
+* Improve error message for `XCDYouTubeErrorNoStreamAvailable` code
+* Remove platforms in Swift Package Manager (#496)
+
 #### Version 2.14.1
 
 * Adaptation to YouTube API change. (#487)
