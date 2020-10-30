@@ -9,13 +9,12 @@ let package = Package(
     targets: [
         .target(
             name: "XCDYouTubeKit",
-            path: "./XCDYouTubeKit",
-            exclude: [
-                "./XCDYouTubeKit/Info.plist",
-                "./XCDYouTubeKit/Configuration.plist",
-                "./XCDYouTubeKit/AppledocSettings.plist"
+            path: ".",
+            exclude: ["./XCDYouTubeKit Tests",
+                      "./XCDYouTubeKit Demo"
             ],
-            publicHeadersPath: ""
+            sources: ["XCDYouTubeKit"],
+            publicHeadersPath: "XCDYouTubeKit"
         )
     ]
 )
