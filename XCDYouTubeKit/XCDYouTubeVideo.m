@@ -208,9 +208,11 @@ static NSDate * ExpirationDate(NSURL *streamURL)
         _channelIdentifier = channelIdentifier;
         _videoDescription = description;
         
-        _viewCount = [(NSString *)info[@"viewCount"] integerValue] ?: [(NSString *)videoDetails[@"viewCount"] integerValue];
+		NSString* viewCount = (NSString *)info[@"viewCount"] ?: (NSString *)videoDetails[@"viewCount"];
+        _viewCount = [viewCount integerValue] ?: [viewCount integerValue];
         
-        _duration = [(NSString *)info[@"length_seconds"] doubleValue] ?: [(NSString *)videoDetails[@"lengthSeconds"] doubleValue];
+		NSString* lengthSeconds = (NSString *)info[@"length_seconds"]  ?: (NSString *)videoDetails[@"lengthSeconds"];
+        _duration = [lengthSeconds doubleValue];
 		
 		NSString *thumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
 		NSURL *thumbnailURL = thumbnail ? [NSURL URLWithString:thumbnail] : nil;
