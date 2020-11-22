@@ -28,7 +28,7 @@
 		XCTAssertThrowsSpecificNamed([[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"6v2L2UGZJAM"], NSException, NSGenericException);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 #endif
 }
 
@@ -41,7 +41,7 @@
 		XCTAssertNotNil(notification.userInfo[XCDYouTubeVideoUserInfoKey]);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testAsynchronousVideoNotification
@@ -56,7 +56,7 @@
 		XCTAssertNotNil(notification.userInfo[XCDYouTubeVideoUserInfoKey]);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testNoStreamAvailableErrorNotification
@@ -73,7 +73,7 @@
 		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testRestrictedPlaybackErrorNotification
@@ -89,7 +89,7 @@
 		XCTAssertEqual(error.code, XCDYouTubeErrorNoStreamAvailable);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testPresentInView

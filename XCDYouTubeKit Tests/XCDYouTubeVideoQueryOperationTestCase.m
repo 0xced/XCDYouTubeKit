@@ -109,7 +109,7 @@ XCDYouTubeVideo *XCDYouTubeVideoQueryOperationVideo()
 		[operation start];
 	}];
 
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testCancelingOperationAfterDelay

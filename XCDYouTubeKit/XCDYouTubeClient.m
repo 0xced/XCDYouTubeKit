@@ -57,13 +57,17 @@
 		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The `completionHandler` argument must not be nil." userInfo:nil];
 	
 	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:videoIdentifier languageIdentifier:self.languageIdentifier cookies:cookies customPatterns:customPatterns];
-    self.currentQueue = [NSOperationQueue currentQueue];
-
+	NSOperationQueue* callingQueue = [NSOperationQueue currentQueue];
+	
 	operation.completionBlock = ^{
-		[self.currentQueue addOperationWithBlock:^{
+		NSOperationQueue* callbackQueue = callingQueue ?: [NSOperationQueue mainQueue];
+		[callbackQueue addOperationWithBlock:^{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
-			if (operation.video || operation.error) // If both `video` and `error` are nil, then the operation was cancelled
+			if (operation.isCancelled) {
+				
+			}
+			else if (operation.video || operation.error) // If both `video` and `error` are nil, then the operation was cancelled
 			{
 				completionHandler(operation.video, operation.error);
 			}
