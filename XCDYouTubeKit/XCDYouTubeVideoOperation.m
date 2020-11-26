@@ -199,6 +199,13 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)response.textEncodingName ?: CFSTR(""));
 	// Use kCFStringEncodingMacRoman as fallback because it defines characters for every byte value and is ASCII compatible. See https://mikeash.com/pyblog/friday-qa-2010-02-19-character-encodings.html
 	NSString *responseString = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, data.bytes, (CFIndex)data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingMacRoman, false)) ?: @"";
+	
+	NSString *documentsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+	
+	NSString *filename = [NSString stringWithFormat:@"requestType - %lu %@.txt",(unsigned long)requestType, [NSProcessInfo processInfo].globallyUniqueString];
+	
+	[data writeToFile:[documentsFolder stringByAppendingPathComponent:filename] atomically:NO];
+	
 	XCDYouTubeLogVerbose(@"Response: %@\n%@", response, responseString);
 	if ([(NSHTTPURLResponse *)response statusCode] == 429)
 	{
@@ -297,7 +304,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleWebPageWithHTMLString:(NSString *)html
 {
 	XCDYouTubeLogDebug(@"Handling web page response");
-	XCDYouTubeLogDebug(@"Web page response: %@", html);
+	NSLog(@"Web page response:\n%@\n", html);
 	
 	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithHTMLString:html];
 	
