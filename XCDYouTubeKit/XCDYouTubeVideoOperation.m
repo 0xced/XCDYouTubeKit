@@ -200,12 +200,6 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	// Use kCFStringEncodingMacRoman as fallback because it defines characters for every byte value and is ASCII compatible. See https://mikeash.com/pyblog/friday-qa-2010-02-19-character-encodings.html
 	NSString *responseString = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, data.bytes, (CFIndex)data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingMacRoman, false)) ?: @"";
 	
-	NSString *documentsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-	
-	NSString *filename = [NSString stringWithFormat:@"requestType - %lu %@.txt",(unsigned long)requestType, [NSProcessInfo processInfo].globallyUniqueString];
-	
-	[data writeToFile:[documentsFolder stringByAppendingPathComponent:filename] atomically:NO];
-	
 	XCDYouTubeLogVerbose(@"Response: %@\n%@", response, responseString);
 	if ([(NSHTTPURLResponse *)response statusCode] == 429)
 	{
@@ -265,7 +259,6 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info response:(NSURLResponse *)response
 {
 	XCDYouTubeLogDebug(@"Handling video info response");
-	XCDYouTubeLogDebug(@"Video info response: %@", info);
 	
 	NSError *error = nil;
 	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:response error:&error];
@@ -304,7 +297,6 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleWebPageWithHTMLString:(NSString *)html
 {
 	XCDYouTubeLogDebug(@"Handling web page response");
-	NSLog(@"Web page response:\n%@\n", html);
 	
 	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithHTMLString:html];
 	
@@ -329,7 +321,6 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleEmbedWebPageWithHTMLString:(NSString *)html
 {
 	XCDYouTubeLogDebug(@"Handling embed web page response");
-	XCDYouTubeLogDebug(@"Embed page response: %@", html);
 	
 	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithHTMLString:html];
 	
@@ -346,7 +337,6 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleJavaScriptPlayerWithScript:(NSString *)script
 {
 	XCDYouTubeLogDebug(@"Handling JavaScript player response");
-	XCDYouTubeLogDebug(@"JavaScript response: %@", script);
 	
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script customPatterns:self.customPatterns];
 	
@@ -397,8 +387,6 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 		self.error = [NSError errorWithDomain:XCDYouTubeVideoErrorDomain code:XCDYouTubeErrorUnknown userInfo:@{NSLocalizedDescriptionKey : @"The operation couldn’t be completed because of an unknown error."}];
 	}
 	XCDYouTubeLogError(@"Video operation finished with error: %@\nDomain: %@\nCode:   %@\nUser Info: %@", self.error.localizedDescription, self.error.domain, @(self.error.code), self.error.userInfo);
-	XCDYouTubeLogInfo(@"Video info: %@", self.webpage.videoInfo);
-	XCDYouTubeLogInfo(@"Embed info: %@", self.embedWebpage.videoInfo);
 	[self finish];
 }
 
