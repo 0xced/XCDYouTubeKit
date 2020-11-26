@@ -258,6 +258,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleVideoInfoResponseWithInfo:(NSDictionary *)info response:(NSURLResponse *)response
 {
 	XCDYouTubeLogDebug(@"Handling video info response");
+	XCDYouTubeLogDebug(@"Video info response: %@", info);
 	
 	NSError *error = nil;
 	XCDYouTubeVideo *video = [[XCDYouTubeVideo alloc] initWithIdentifier:self.videoIdentifier info:info playerScript:self.playerScript response:response error:&error];
@@ -296,6 +297,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleWebPageWithHTMLString:(NSString *)html
 {
 	XCDYouTubeLogDebug(@"Handling web page response");
+	XCDYouTubeLogDebug(@"Web page response: %@", html);
 	
 	self.webpage = [[XCDYouTubeVideoWebpage alloc] initWithHTMLString:html];
 	
@@ -320,6 +322,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleEmbedWebPageWithHTMLString:(NSString *)html
 {
 	XCDYouTubeLogDebug(@"Handling embed web page response");
+	XCDYouTubeLogDebug(@"Embed page response: %@", html);
 	
 	self.embedWebpage = [[XCDYouTubeVideoWebpage alloc] initWithHTMLString:html];
 	
@@ -336,6 +339,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 - (void) handleJavaScriptPlayerWithScript:(NSString *)script
 {
 	XCDYouTubeLogDebug(@"Handling JavaScript player response");
+	XCDYouTubeLogDebug(@"JavaScript response: %@", script);
 	
 	self.playerScript = [[XCDYouTubePlayerScript alloc] initWithString:script customPatterns:self.customPatterns];
 	
