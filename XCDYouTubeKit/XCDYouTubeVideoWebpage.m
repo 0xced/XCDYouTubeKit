@@ -78,6 +78,10 @@ static NSDictionary *XCDPlayerConfigurationWithString(NSString *html, NSString *
 	if (!_videoInfo)
 	{
 		NSDictionary *args = self.playerConfiguration[@"args"];
+		if (args == nil)
+		{
+			return XCDPlayerConfigurationWithString(self.html, @"ytInitialPlayerResponse\\s*=\\s*(\\{.+?\\})\\s*;");
+		}
 		if ([args isKindOfClass:[NSDictionary class]])
 		{
 			NSMutableDictionary *info = [NSMutableDictionary new];
