@@ -473,8 +473,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-// Edit testProtectedVideoWithoutSignatureFunction.json by replacing `Xu=function` with `Xu=funXtion` and
-//`decodeURIComponent` with `deXodeURIComponent`
+// Edit testProtectedVideoWithoutSignatureFunction.json by removing entire body for javascript URL and adding "XXXX"
 - (void) testProtectedVideoWithoutSignatureFunction_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
