@@ -169,10 +169,10 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 	
 	NSString *playerResponse = info[@"player_response"];
 	NSString *streamMap = info[@"url_encoded_fmt_stream_map"];
-	NSArray *alternativeStreamMap = XCDStreamingDataWithString(playerResponse)[@"formats"];
+	NSArray *alternativeStreamMap = XCDStreamingDataWithString(playerResponse)[@"formats"] == nil ? info[@"streamingData"][@"formats"]: XCDStreamingDataWithString(playerResponse)[@"formats"];
 	NSString *httpLiveStream = info[@"hlsvp"] ?: XCDHTTPLiveStreamingStringWithString(playerResponse);
 	NSString *adaptiveFormats = info[@"adaptive_fmts"];
-	NSArray *alternativeAdaptiveFormats = XCDStreamingDataWithString(playerResponse)[@"adaptiveFormats"];
+	NSArray *alternativeAdaptiveFormats = XCDStreamingDataWithString(playerResponse)[@"adaptiveFormats"]  == nil ? info[@"streamingData"][@"adaptiveFormats"] : XCDStreamingDataWithString(playerResponse)[@"adaptiveFormats"];
 	NSDictionary *videoDetails = XCDDictionaryWithString(playerResponse)[@"videoDetails"];
 	NSString *multiCameraMetadataMap = XCDDictionaryWithString(playerResponse)[@"multicamera"][@"playerLegacyMulticameraRenderer"][@"metadataList"];
 	
