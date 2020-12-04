@@ -33,7 +33,15 @@
 {
 	if (!_playerConfiguration)
 	{
-		_playerConfiguration = XCDPlayerConfigurationWithString(self.html, @"ytplayer.config\\s*=\\s*(\\{.*?\\});|[\\({]\\s*'PLAYER_CONFIG'[,:]\\s*(\\{.*?\\})\\s*(?:,'|\\))");
+		NSArray<NSString *>*patterns = @[@";ytplayer\\.config\\s*=\\s*(\\{.+?\\});ytplayer", @";ytplayer\\.config\\s*=\\s*(\\{.+?\\});"];
+		for (NSString *pattern in patterns) {
+			NSDictionary *configuration = XCDPlayerConfigurationWithString(self.html, pattern);
+			if (configuration != nil)
+			{
+				_playerConfiguration = configuration;
+				break;
+			}
+		}
 	}
 	return _playerConfiguration;
 }

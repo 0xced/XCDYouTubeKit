@@ -221,6 +221,25 @@
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
+- (void) testVideo2
+{
+	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"CHqg6qOn4no" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	 {
+		 XCTAssertNil(error);
+		 XCTAssertNotNil(video.title);
+		 XCTAssertTrue(video.viewCount > 0);
+		 XCTAssertNotNil(video.thumbnailURLs.firstObject);
+		 XCTAssertTrue(video.streamURLs.count > 0);
+		 XCTAssertTrue(video.duration > 0);
+		 [video.streamURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSURL *streamURL, BOOL *stop) {
+			 XCTAssertTrue([streamURL.query rangeOfString:@"signature="].location != NSNotFound || [streamURL.query rangeOfString:@"sig="].location != NSNotFound);
+		 }];
+		 [expectation fulfill];
+	 }];
+	[self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
 // See https://github.com/0xced/XCDYouTubeKit/issues/420#issue-400541618
 
 - (void) testVideo1IsPlayable
