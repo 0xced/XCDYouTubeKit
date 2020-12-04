@@ -223,6 +223,7 @@
 
 - (void) testVideo2
 {
+	//Add www.youtube.com path:/get_video_info to blacklist in Charles Proxy
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"CHqg6qOn4no" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	 {
