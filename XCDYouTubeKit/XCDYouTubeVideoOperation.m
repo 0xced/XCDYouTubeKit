@@ -93,36 +93,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	_cookies = [cookies copy];
 	_customPatterns = [customPatterns copy];
 	
-	NSMutableArray<NSHTTPCookie *>*safeCookies = [NSMutableArray new];
-	BOOL hasDesktopCookie = NO;
-	for (NSHTTPCookie *cookie in _cookies)
-	{
-		if ([cookie.value containsString:@"app=desktop"] && [cookie.domain isEqualToString:@".youtube.com"])
-		{
-			hasDesktopCookie = YES;
-		}
-		if ([cookie.value containsString:@"app=m"] && [cookie.domain isEqualToString:@".youtube.com"])
-		{
-			continue;
-		} else
-		{
-			[safeCookies addObject:cookie];
-		}
-	}
-	
-	if (hasDesktopCookie == NO)
-	{
-		NSHTTPCookie *desktopCookie = [NSHTTPCookie cookieWithProperties:@{
-																	NSHTTPCookiePath: @"/",
-																	NSHTTPCookieName: @"PREF",
-																	NSHTTPCookieValue:@"app=desktop",
-																	NSHTTPCookieDomain:@".youtube.com",
-																	NSHTTPCookieSecure:@"TRUE"
-																	
-		}];
-		[_session.configuration.HTTPCookieStorage setCookie:desktopCookie];
-	}
-	for (NSHTTPCookie *cookie in safeCookies) {
+	for (NSHTTPCookie *cookie in _cookies) {
 		[_session.configuration.HTTPCookieStorage setCookie:cookie];
 	}
 	_operationStartSemaphore = dispatch_semaphore_create(0);
