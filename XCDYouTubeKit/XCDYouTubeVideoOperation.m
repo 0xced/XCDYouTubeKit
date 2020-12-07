@@ -96,6 +96,18 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	for (NSHTTPCookie *cookie in _cookies) {
 		[_session.configuration.HTTPCookieStorage setCookie:cookie];
 	}
+	
+	NSString *cookieValue = [NSString stringWithFormat:@"f1=50000000&f6=8&hl=%@", _languageIdentifier];
+	
+	NSHTTPCookie *additionalCookie = [NSHTTPCookie cookieWithProperties:@{
+																		NSHTTPCookiePath: @"/",
+																		NSHTTPCookieName: @"PREF",
+																		NSHTTPCookieValue: cookieValue,
+																		NSHTTPCookieDomain:@".youtube.com",
+																		NSHTTPCookieSecure:@"TRUE"
+	}];
+
+	[_session.configuration.HTTPCookieStorage setCookie:additionalCookie];
 	_operationStartSemaphore = dispatch_semaphore_create(0);
 	
 	return self;
