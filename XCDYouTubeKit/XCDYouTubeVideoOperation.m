@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, XCDYouTubeRequestType) {
 	
 };
 
-@interface XCDYouTubeVideoOperation () <NSURLSessionTaskDelegate>
+@interface XCDYouTubeVideoOperation ()
 @property (atomic, copy, readonly) NSString *videoIdentifier;
 @property (atomic, copy, readonly) NSString *languageIdentifier;
 @property (atomic, strong, readonly) NSArray <NSHTTPCookie *> *cookies;
@@ -89,7 +89,7 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	_videoIdentifier = videoIdentifier ?: @"";
 	_languageIdentifier = languageIdentifier ?: @"en";
 	
-	_session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration] delegate:self delegateQueue:nil];
+	_session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
 	_cookies = [cookies copy];
 	_customPatterns = [customPatterns copy];
 	
@@ -140,14 +140,6 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 	return [self initWithVideoIdentifier:videoIdentifier languageIdentifier:languageIdentifier cookies:cookies customPatterns:nil];
 }
 
-#pragma mark - NSURLSessionTaskDelegate
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler
-{
-	//Prevent redirects
-	//See https://github.com/0xced/XCDYouTubeKit/issues/510#issuecomment-739465698
-	completionHandler(nil);
-}
 #pragma mark - Requests
 
 - (void) startNextRequest
@@ -432,8 +424,6 @@ static NSError *YouTubeError(NSError *error, NSSet *regionsAllowed, NSString *la
 {
 	self.isExecuting = NO;
 	self.isFinished = YES;
-	//Important to invalidate and cancel or we will leak
-	[self.session invalidateAndCancel];
 }
 
 #pragma mark - NSOperation
