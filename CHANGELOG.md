@@ -1,3 +1,7 @@
+#### Version 2.15.2
+
+* Adaptation to YouTube API change (#510)
+
 #### Version 2.15.1
 
 * Adaptation to YouTube API change (#507, #504)
