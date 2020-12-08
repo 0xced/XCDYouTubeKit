@@ -488,11 +488,11 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-// Edit testProtectedVideoWithoutJavaScriptPlayerURL.json by replacing `\"js\":` with `\"xs\":` and and `jsUrl` with `jsXUrl` 
-- (void) testProtectedVideoWithoutJavaScriptPlayerURL_offline
+// Disable (when replacing mutiple values the other values revert back to the original)
+- (void) _testProtectedVideoWithoutJavaScriptPlayerURL_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
-	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"Pgum6OT_VH8" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
+	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:@"nfWlot6h_JM" completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
 		XCTAssertNil(video);
 		XCTAssertEqualObjects(error.domain, XCDYouTubeVideoErrorDomain);
@@ -520,7 +520,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 	[self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-// With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page and replace and `jsUrl` with `jsXUrl` in testAgeRestrictedVEVOVideoWithEmbedWebPageConnectionError.json
+// With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page and replace and `jsUrl` with `jsXUrl` and `<script` with `<Xcript` in testAgeRestrictedVEVOVideoWithEmbedWebPageConnectionError.json
 - (void) testAgeRestrictedVEVOVideoWithEmbedWebPageConnectionError_offline
 {
 	__weak XCTestExpectation *expectation = [self expectationWithDescription:@""];
