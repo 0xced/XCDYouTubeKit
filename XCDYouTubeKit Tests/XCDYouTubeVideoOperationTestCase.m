@@ -41,7 +41,7 @@
 	XCTAssertTrue([NSThread isMainThread]);
 	[operation start];
 	
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testStartingOnBackgroundThread
@@ -58,7 +58,7 @@
 		XCTAssertFalse([NSThread isMainThread]);
 		[operation start];
 	});
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testCancelingOperationTwice

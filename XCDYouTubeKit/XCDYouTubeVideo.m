@@ -186,36 +186,33 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		NSMutableArray *streamQueries = [[streamMap componentsSeparatedByString:@","] mutableCopy];
 		[streamQueries addObjectsFromArray:[adaptiveFormats componentsSeparatedByString:@","]];
 		
-		if (streamQueries == nil && (alternativeStreamMap.count > 0 || alternativeAdaptiveFormats.count > 0))
-		{
-			streamQueries = [NSMutableArray new];
-			[streamQueries addObjectsFromArray:alternativeStreamMap];
-			[streamQueries addObjectsFromArray:alternativeAdaptiveFormats];
-		}
-		
-		NSString *title = info[@"title"] == nil? videoDetails[@"title"] : info[@"title"];
-		if (title == nil)
-			title = @"";
-		_title = title;
-		
-		NSString *author = info[@"author"] == nil? videoDetails[@"author"] : info[@"author"];
-		if (author == nil)
-			author = @"";
-		_author = author;
-		
-		NSString *channelIdentifier = info[@"ucid"] == nil? videoDetails[@"channelId"] : info[@"ucid"];
-		if (channelIdentifier == nil)
-			channelIdentifier = @"";
-		_channelIdentifier = channelIdentifier;
-		
-		NSString *description = videoDetails[@"shortDescription"];
-		if (description == nil)
-			description = @"";
-		_videoDescription = description;
-		
-		_viewCount = info[@"viewCount"] == nil? [(NSString *)videoDetails[@"viewCount"] integerValue] : [(NSString *)info[@"viewCount"] integerValue];
-		
-		_duration = info[@"length_seconds"] == nil? [(NSString *)videoDetails[@"lengthSeconds"] doubleValue] : [(NSString *)info[@"length_seconds"] doubleValue];
+        if (streamQueries == nil && (alternativeStreamMap.count > 0 || alternativeAdaptiveFormats.count > 0))
+        {
+            streamQueries = [NSMutableArray new];
+            [streamQueries addObjectsFromArray:alternativeStreamMap];
+            [streamQueries addObjectsFromArray:alternativeAdaptiveFormats];
+        }
+        
+        NSString *title = info[@"title"] ?: videoDetails[@"title"] ?: @"";
+        NSString *author = info[@"author"] ?: videoDetails[@"author"] ?: @"";
+        NSString *keywords = info[@"keywords"] ?: videoDetails[@"keywords"] ?: @"";
+        NSString *channelIdentifier = info[@"ucid"] ?: videoDetails[@"channelId"] ?: @"";
+        NSString *description = videoDetails[@"shortDescription"] ?: @"";
+
+        if([keywords isKindOfClass:[NSArray class]]) {
+            keywords = [(NSArray*)keywords componentsJoinedByString:@","];
+        }
+        _title = title;
+        _author = author;
+        _keywords = keywords;
+        _channelIdentifier = channelIdentifier;
+        _videoDescription = description;
+        
+		NSString* viewCount = (NSString *)info[@"viewCount"] ?: (NSString *)videoDetails[@"viewCount"];
+        _viewCount = [viewCount integerValue] ?: [viewCount integerValue];
+        
+		NSString* lengthSeconds = (NSString *)info[@"length_seconds"]  ?: (NSString *)videoDetails[@"lengthSeconds"];
+        _duration = [lengthSeconds doubleValue];
 		
 		NSString *thumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
 		NSURL *thumbnailURL = thumbnail ? [NSURL URLWithString:thumbnail] : nil;

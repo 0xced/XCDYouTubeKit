@@ -7,6 +7,8 @@
 #import "VCR.h"
 #import "VCRCassetteManager.h"
 
+extern NSTimeInterval kDefaultNetworkTimeout;
+
 @interface XCDYouTubeKitTestCase : XCTestCase
 - (void) setUpTestWithSelector:(SEL)selector;
 @property NSArray<NSHTTPCookie *>*cookies;

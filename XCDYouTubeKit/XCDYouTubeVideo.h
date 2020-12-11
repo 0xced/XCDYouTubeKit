@@ -82,6 +82,10 @@ extern NSString *const XCDYouTubeVideoQualityHTTPLiveStreaming;
  */
 @property (nonatomic, readonly) NSString *videoDescription;
 /**
+ *  The keywords of the video.
+ */
+@property (nonatomic, readonly) NSString *keywords;
+/**
  *  The duration of the video in seconds.
  */
 @property (nonatomic, readonly) NSTimeInterval duration;

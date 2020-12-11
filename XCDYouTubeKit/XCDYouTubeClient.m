@@ -8,6 +8,8 @@
 
 @interface XCDYouTubeClient ()
 @property (nonatomic, strong) NSOperationQueue *queue;
+@property (nonatomic, strong) NSOperationQueue *currentQueue;
+
 @end
 
 @implementation XCDYouTubeClient
@@ -55,18 +57,24 @@
 		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The `completionHandler` argument must not be nil." userInfo:nil];
 	
 	XCDYouTubeVideoOperation *operation = [[XCDYouTubeVideoOperation alloc] initWithVideoIdentifier:videoIdentifier languageIdentifier:self.languageIdentifier cookies:cookies customPatterns:customPatterns];
+	NSOperationQueue* callingQueue = [NSOperationQueue currentQueue];
+	
 	operation.completionBlock = ^{
-		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		NSOperationQueue* callbackQueue = callingQueue ?: [NSOperationQueue mainQueue];
+		[callbackQueue addOperationWithBlock:^{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
-			if (operation.video || operation.error)
+			if (operation.isCancelled) {
+				
+			}
+			else if (operation.video || operation.error) // If both `video` and `error` are nil, then the operation was cancelled
 			{
-				NSAssert(!(operation.video && operation.error), @"One of `video` or `error` must be nil.");
 				completionHandler(operation.video, operation.error);
 			}
 			else
 			{
-				NSAssert(operation.isCancelled, @"Both `video` and `error` can not be nil if the operation was not canceled.");
+				NSError* error = operation.error ?: [NSError errorWithDomain:@"XCDYouTubeClientDomain" code:-1 userInfo:@{NSLocalizedFailureReasonErrorKey : @"operation was cancelled or data failed to be parsed"}];
+				completionHandler(nil, error);
 			}
 			operation.completionBlock = nil;
 #pragma clang diagnostic pop

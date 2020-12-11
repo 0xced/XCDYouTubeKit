@@ -62,7 +62,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		 [expectation fulfill];
 	 }];
 	
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testAgeRestrictedVideoThatRequiresCookiesWithUserCookiesIsPlayable
@@ -88,7 +88,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		[dataTask resume];
 	 }];
 	
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testAgeRestrictedVideoThatRequiresCookiesWithoutCookies
@@ -101,7 +101,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		 [expectation fulfill];
 	 }];
 	
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testAgeRestrictedVideo
@@ -122,7 +122,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testAgeRestrictedUnratedVideo
@@ -143,7 +143,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testProtectedVEVOVideoWithInvalidCustomPattern
@@ -156,7 +156,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertNil(video);
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testProtectedVEVOVideoWithNilCustomPatternIsPlayable
@@ -182,7 +182,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testProtectedVEVOVideoWithEmptyCustomPatternIsPlayable
@@ -208,7 +208,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testProtectedVEVOVideoWithInvalidCustomPatternIsPlayable
@@ -234,7 +234,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testProtectedVEVOVideoWithValidCustomPatternIsPlayable
@@ -260,7 +260,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testProtectedVEVOVideo1
@@ -281,7 +281,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testProtectedVEVOVideo2
@@ -302,7 +302,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testProtectedVEVOVideo3
@@ -323,7 +323,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 // See testAlternativeSignatureValue.xml for Charles Proxy Setting
@@ -346,7 +346,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testProtectedVEVOIsPlayable
@@ -370,7 +370,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testDASHAudioWithRateBypassIsPlayable
@@ -389,7 +389,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		}];
 		[dataTask resume];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testAgeRestrictedVEVOVideoWithUserCookies
@@ -411,7 +411,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		[expectation fulfill];
 	}];
 	
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 - (void) testAgeRestrictedVEVOVideoWithUserCookiesIsPlayable
@@ -437,7 +437,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		[dataTask resume];
 	 }];
 	
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 
@@ -455,7 +455,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"Video unavailable");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 // With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:s/player/* to simulate connection error on the player script
@@ -470,7 +470,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"Video unavailable");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 // Edit testProtectedVideoWithoutSignatureFunction.json by removing entire body for javascript URL and adding "XXXX"
@@ -485,7 +485,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"Video unavailable");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 // Disable (when replacing mutiple values the other values revert back to the original)
@@ -500,7 +500,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"Video unavailable");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 // Edit testProtectedVideoWithNonAnonymousJavaScriptPlayerFunction.json by replacing all `(function` with `(Xfunction`
@@ -517,7 +517,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"Video unavailable");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 // With Charles: Tools -> Black List... -> Add host:www.youtube.com and path:embed/* to simulate connection error on the web page and replace and `jsUrl` with `jsXUrl` and `<script` with `<Xcript` in testAgeRestrictedVEVOVideoWithEmbedWebPageConnectionError.json
@@ -532,7 +532,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		XCTAssertEqualObjects(error.localizedDescription, @"This video may be inappropriate for some users.");
 		[expectation fulfill];
 	}];
-	[self waitForExpectationsWithTimeout:5  handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout  handler:nil];
 }
 
 // See https://github.com/0xced/XCDYouTubeKit/issues/431
@@ -554,7 +554,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		  }];
 		 [expectation fulfill];
 	 }];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 // See https://github.com/0xced/XCDYouTubeKit/issues/431
@@ -570,7 +570,7 @@ NSArray <NSHTTPCookie *>* XCDYouTubeProtectedVideosCookies()
 		 XCTAssertEqualObjects(error.localizedDescription, @"This video may be inappropriate for some users.");
 		 [expectation fulfill];
 	 }];
-	[self waitForExpectationsWithTimeout:5 handler:nil];
+	[self waitForExpectationsWithTimeout:kDefaultNetworkTimeout handler:nil];
 }
 
 @end
