@@ -33,7 +33,15 @@
 {
 	if (!_playerConfiguration)
 	{
-		_playerConfiguration = XCDPlayerConfigurationWithString(self.html, @"ytplayer.config\\s*=\\s*(\\{.*?\\});|[\\({]\\s*'PLAYER_CONFIG'[,:]\\s*(\\{.*?\\})\\s*(?:,'|\\))");
+		NSArray<NSString *>*patterns = @[@";ytplayer\\.config\\s*=\\s*(\\{.+?\\});ytplayer", @";ytplayer\\.config\\s*=\\s*(\\{.+?\\});"];
+		for (NSString *pattern in patterns) {
+			NSDictionary *configuration = XCDPlayerConfigurationWithString(self.html, pattern);
+			if (configuration != nil)
+			{
+				_playerConfiguration = configuration;
+				break;
+			}
+		}
 	}
 	return _playerConfiguration;
 }
@@ -64,15 +72,6 @@ static NSDictionary *XCDPlayerConfigurationWithString(NSString *html, NSString *
 	return  playerConfigurationDictionary;
 }
 
-- (NSDictionary *) playerContextConfiguration
-{
-	if (!_playerContextConfiguration)
-	{
-		_playerContextConfiguration = XCDPlayerConfigurationWithString(self.html, @"ytplayer.web_player_context_config\\s*=\\s(\\{[^;]*)");
-	}
-	return _playerContextConfiguration;
-}
-
 - (NSDictionary *) videoInfo
 {
 	if (!_videoInfo)
@@ -80,7 +79,8 @@ static NSDictionary *XCDPlayerConfigurationWithString(NSString *html, NSString *
 		NSDictionary *args = self.playerConfiguration[@"args"];
 		if (args == nil)
 		{
-			return XCDPlayerConfigurationWithString(self.html, @"ytInitialPlayerResponse\\s*=\\s*(\\{.+?\\})\\s*;");
+			_videoInfo = XCDPlayerConfigurationWithString(self.html, @"ytInitialPlayerResponse\\s*=\\s*(\\{.+?\\})\\s*;");
+			return _videoInfo;
 		}
 		if ([args isKindOfClass:[NSDictionary class]])
 		{
@@ -131,65 +131,43 @@ static NSURL *XCDJavaScriptPlayerURLFromString(NSString *javaScriptString)
 	
 	return [NSURL URLWithString:javaScriptPlayerURLString];
 }
-static NSRange XCDJavaScriptAssetsRange(NSString *html)
-{
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\"assets\":.+?\"js\":\\s*(\"[^\"]+\")" options:0 error:nil];
-	NSTextCheckingResult *result = [regex firstMatchInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length)];
-	if (result.numberOfRanges < 2)
-		return NSMakeRange(0, 0);
-	NSRange range = [result rangeAtIndex:1];
-	if (range.length == 0)
-		return NSMakeRange(0, 0);
-	
-	return range;
-}
+
 - (NSURL *) javaScriptPlayerURL
 {
 	if (!_javaScriptPlayerURL)
 	{
-		NSRange jsAssetsRange = XCDJavaScriptAssetsRange(self.html);
 		NSString *jsAssets = [self.playerConfiguration valueForKeyPath:@"assets.js"];
 		if ([jsAssets isKindOfClass:[NSString class]])
 		{
 			_javaScriptPlayerURL = XCDJavaScriptPlayerURLFromString(jsAssets);
 		}
-		else if (jsAssetsRange.length != 0)
-		{
-			NSString *baseJSURLPathString = [[[self.html substringWithRange:jsAssetsRange] stringByReplacingOccurrencesOfString:@"\\" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-			
-			NSURLComponents *components = [NSURLComponents componentsWithString:baseJSURLPathString];
-			if (components == nil)
-				return _javaScriptPlayerURL;
-			
-			if (components.scheme == nil || components.scheme.length == 0)
-				components.scheme = @"https";
-			
-			if (components.host == nil || components.host.length == 0)
-				components.host = @"www.youtube.com";
-			
-			if (components.URL == nil)
-				return _javaScriptPlayerURL;
-			
-			_javaScriptPlayerURL = components.URL;
-		}
-		else if (self.playerContextConfiguration[@"jsUrl"])
-		{
-			_javaScriptPlayerURL = XCDJavaScriptPlayerURLFromString(self.playerContextConfiguration[@"jsUrl"]);
-		}
 		else
 		{
-			//Fallback I noticed that `jsUrl` seems to always be present on videos that require the javascript page
-			//Because this is a very broad regex search it might catch things in the future that it shoudn't.
-			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"jsUrl\":\\s*\"([^\"]*)" options:0 error:nil];
-			NSTextCheckingResult *result = [regex firstMatchInString:self.html options:(NSMatchingOptions)0 range:NSMakeRange(0, self.html.length)];
-			if (result.numberOfRanges < 2)
-				return _javaScriptPlayerURL;
-			NSRange range = [result rangeAtIndex:1];
-			if (range.length == 0)
-				return _javaScriptPlayerURL;
-			
-			NSString *javaScriptPlayerURL = [self.html substringWithRange:range];
-			_javaScriptPlayerURL = XCDJavaScriptPlayerURLFromString(javaScriptPlayerURL);
+			NSArray<NSString *>*patterns = @[@"<script[^>]+\\bsrc=(\"[^\"]+\")[^>]+\\bname=[\"\\\']player_ias/base", @"jsUrl\"\\s*:\\s*(\"[^\"]+\")", @"\"assets\":.+?\"js\":\\s*(\"[^\"]+\")"];
+			for (NSString *pattern in patterns)
+			{
+				NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+				NSTextCheckingResult *result = [regex firstMatchInString:self.html options:(NSMatchingOptions)0 range:NSMakeRange(0, self.html.length)];
+				if (result.numberOfRanges < 2)
+				{
+					continue;
+				}
+				
+				NSRange range = [result rangeAtIndex:1];
+				if (range.length == 0)
+				{
+					continue;
+				}
+				
+				NSString *baseURLString = [[[self.html substringWithRange:range] stringByReplacingOccurrencesOfString:@"\"" withString:@""] stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+				NSURL *javaScriptPlayerURL = XCDJavaScriptPlayerURLFromString(baseURLString);
+				if (javaScriptPlayerURL != nil)
+				{
+					_javaScriptPlayerURL = javaScriptPlayerURL;
+					break;
+				}
+				
+			}
 		}
 	}
 	return _javaScriptPlayerURL;

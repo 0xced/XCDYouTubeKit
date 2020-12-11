@@ -3,7 +3,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "VCR.h"
 @import AVFoundation;
 
 #import <CocoaLumberjack/CocoaLumberjack.h>
@@ -18,13 +18,39 @@
 	[DDLog addLogger:[DDASLLogger sharedInstance]];
 }
 
+- (BOOL) shouldSaveRequests
+{
+	return [[NSProcessInfo processInfo].environment[@"XCDYouTubeKitSaveRequest"] boolValue];
+}
+
+- (NSString *)requestsDirectoryPath
+{
+	NSString *requestsDirectoryPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject] stringByAppendingPathComponent:@"XCDYouTubeKit Demo"];
+	[[NSFileManager defaultManager]createDirectoryAtPath:requestsDirectoryPath withIntermediateDirectories:YES attributes:nil error:nil];
+	return requestsDirectoryPath;
+}
+
 - (IBAction) playVideo:(id)sender
 {
+	if ([self shouldSaveRequests])
+	{
+		[VCR setRecording:YES];
+	}
+	
 	self.playerView.player = nil;
 	
 	[self.progressIndicator startAnimation:sender];
 	[[XCDYouTubeClient defaultClient] getVideoWithIdentifier:[sender stringValue] completionHandler:^(XCDYouTubeVideo *video, NSError *error)
 	{
+		
+		if ([self shouldSaveRequests])
+		{
+			[VCR setRecording:NO];
+			NSString *filePath = [[[self requestsDirectoryPath] stringByAppendingPathComponent:[sender stringValue]] stringByAppendingPathExtension:@"json"];
+			[[NSFileManager defaultManager]removeItemAtPath:filePath error:nil];
+			[VCR save:filePath];
+			
+		}
 		
 		if (video)
 		{
