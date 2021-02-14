@@ -26,6 +26,7 @@
 	_playlistItem = playlistItem;
 	
 	self.titleLabel.text = playlistItem.snippet.title;
+	self.titleLabel.textColor = [UIColor blackColor];
 	
 	GTLRYouTube_ThumbnailDetails *thumbnails = playlistItem.snippet.thumbnails;
 	GTLRYouTube_Thumbnail *thumbnail = thumbnails.maxres ?: thumbnails.high ?: thumbnails.medium ?: thumbnails.standard;
