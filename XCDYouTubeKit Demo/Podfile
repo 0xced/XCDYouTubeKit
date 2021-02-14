@@ -19,5 +19,5 @@ end
 
 target 'XCDYouTubeKit tvOS Demo' do
   platform :tvos, '9.0'
-  pod 'GoogleAPIClient/YouTube', '~> 1.0'
+  pod 'GoogleAPIClientForREST/YouTube', '~> 1.5'
 end
