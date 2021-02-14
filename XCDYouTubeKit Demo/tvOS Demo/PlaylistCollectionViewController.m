@@ -5,7 +5,7 @@
 #import "PlaylistCollectionViewController.h"
 
 #import <AVKit/AVKit.h>
-#import <GoogleAPIClient/GTLYouTube.h>
+#import <GoogleAPIClientForREST/GTLRYouTube.h>
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 
 #import "VideoCell.h"
@@ -65,7 +65,7 @@
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 {
-	GTLYouTubePlaylistItem *playlistItem = self.items[indexPath.row];
+	GTLRYouTube_PlaylistItem *playlistItem = self.items[indexPath.row];
 	
 	AVPlayerViewController *playerViewController = [AVPlayerViewController new];
 	[self presentViewController:playerViewController animated:YES completion:nil];

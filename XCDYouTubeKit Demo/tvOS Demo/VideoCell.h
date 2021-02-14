@@ -4,10 +4,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import <GoogleAPIClient/GTLYouTube.h>
+#import <GoogleAPIClientForREST/GTLRYouTube.h>
 
 @interface VideoCell : UICollectionViewCell
 
-@property (nonatomic, strong) GTLYouTubePlaylistItem *playlistItem;
+@property (nonatomic, strong) GTLRYouTube_PlaylistItem *playlistItem;
 
 @end

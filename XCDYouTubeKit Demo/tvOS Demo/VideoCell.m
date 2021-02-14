@@ -21,15 +21,16 @@
 	[self.imageDataTask cancel];
 }
 
-- (void) setPlaylistItem:(GTLYouTubePlaylistItem *)playlistItem
+- (void) setPlaylistItem:(GTLRYouTube_PlaylistItem *)playlistItem
 {
 	_playlistItem = playlistItem;
 	
 	self.titleLabel.text = playlistItem.snippet.title;
 	
-	GTLYouTubeThumbnailDetails *thumbnails = playlistItem.snippet.thumbnails;
-	GTLYouTubeThumbnail *thumbnail = thumbnails.maxres ?: thumbnails.high ?: thumbnails.medium ?: thumbnails.standard;
+	GTLRYouTube_ThumbnailDetails *thumbnails = playlistItem.snippet.thumbnails;
+	GTLRYouTube_Thumbnail *thumbnail = thumbnails.maxres ?: thumbnails.high ?: thumbnails.medium ?: thumbnails.standard;
 	NSURL *thumbnailURL = [NSURL URLWithString:thumbnail.url];
+
 	self.imageDataTask = [[NSURLSession sharedSession] dataTaskWithURL:thumbnailURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			self.imageView.image = self.playlistItem == playlistItem ? [UIImage imageWithData:data] : nil;
