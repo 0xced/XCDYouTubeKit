@@ -10,7 +10,7 @@ import UIKit
 
 @objcMembers class Utilities: NSObject {
 	static let shared = Utilities()
-	
+
 	func displayError(_ error: NSError, originViewController: UIViewController) {
 		OperationQueue.main.addOperation {
 			originViewController.dismiss(animated: true) {

@@ -6,46 +6,45 @@
 //  Copyright © 2019 Cédric Luthi. All rights reserved.
 //
 
-import UIKit
 import AVKit
+import UIKit
 import XCDYouTubeKit
 
 extension DemoFullScreenViewController: VideoPickerControllerDelegate {
 	func videoPickerController(_ videoPickerController: VideoPickerController!, didSelectVideoWithIdentifier videoIdentifier: String!) {
-		self.videoIdentifierTextField.text = videoIdentifier
+		videoIdentifierTextField.text = videoIdentifier
 		UserDefaults.standard.set(videoIdentifier, forKey: "VideoIdentifier")
 	}
 }
 
 extension DemoFullScreenViewController: UITextFieldDelegate {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		self.play(textField)
+		play(textField)
 		return true
 	}
-	
+
 	func textFieldDidEndEditing(_ textField: UITextField) {
-		UserDefaults.standard.set(self.videoIdentifierTextField.text, forKey: "VideoIdentifier")
+		UserDefaults.standard.set(videoIdentifierTextField.text, forKey: "VideoIdentifier")
 	}
 }
 
 class DemoFullScreenViewController: UIViewController {
-	
-    @IBOutlet weak open var lowQualitySwitch: UISwitch!
-    @IBOutlet weak open var videoIdentifierTextField: UITextField!
+	@IBOutlet open var lowQualitySwitch: UISwitch!
+	@IBOutlet open var videoIdentifierTextField: UITextField!
 	var ob: NSKeyValueObservation?
 	private var timeObserverToken: Any?
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.videoIdentifierTextField.text = UserDefaults.standard.string(forKey: "VideoIdentifier")
+		videoIdentifierTextField.text = UserDefaults.standard.string(forKey: "VideoIdentifier")
 	}
-    
+
 	@IBAction open func endEditing(_ sender: Any!) {
-		self.view.endEditing(true)
+		view.endEditing(true)
 	}
-	
+
 	@IBAction open func play(_ sender: Any!) {
-		XCDYouTubeClient.default().getVideoWithIdentifier(self.videoIdentifierTextField.text) { (video, error) in
+		XCDYouTubeClient.default().getVideoWithIdentifier(videoIdentifierTextField.text) { video, error in
 			guard error == nil else {
 				Utilities.shared.displayError(error! as NSError, originViewController: self)
 				return
