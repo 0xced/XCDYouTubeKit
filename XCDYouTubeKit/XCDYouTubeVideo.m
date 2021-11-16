@@ -223,9 +223,18 @@ static NSDate * ExpirationDate(NSURL *streamURL)
 		NSString *thumbnail = info[@"thumbnail_url"] ?: info[@"iurl"];
 		NSURL *thumbnailURL = thumbnail ? [NSURL URLWithString:thumbnail] : nil;
 		_thumbnailURL = thumbnailURL;
-		
+
 		if (!_thumbnailURL) {
 			NSArray<NSDictionary *> *thumbnails = XCDThumnailArrayWithString(playerResponse);
+			if (!thumbnails) {
+				NSDictionary *thumbnailDictionary = videoDetails[@"thumbnail"];
+				if (thumbnailDictionary && [thumbnailDictionary isKindOfClass:[NSDictionary class]]) {
+					NSArray *thumbnailArray = thumbnailDictionary[@"thumbnails"];
+					if (thumbnailArray && [thumbnailArray isKindOfClass:[NSArray class]]) {
+						thumbnails = thumbnailArray;
+					}
+				}
+			}
 			if (thumbnails.count >= 1) {
 				// Prepare array of thumbnails URLs.
 				NSMutableArray<NSURL *> *thumbnailURLs = [[NSMutableArray<NSURL *> alloc] initWithCapacity:thumbnails.count];
